@@ -1,0 +1,38 @@
+
+<div id="black-screen">
+    <div id="login-form">
+        <div id="loginBackground">
+            <img src="assets/images/login_background.png">
+        </div>
+
+        <div id="closeBtn" [routerLink]="''" (click)="hideLogin()"></div>
+        
+        <span>No olvide ingresar si ya es parte de nuestra gran familia</span>
+        
+        <form name="loginForm" novalidate>
+            <mat-form-field appearance="outline">
+                <mat-label>Correo electrónico</mat-label>
+                <input matInput formControlName="user">
+                <mat-icon matSuffix>mail_outline</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Contraseña</mat-label>
+                <input matInput formControlName="user">
+                <mat-icon matSuffix>visibility_off</mat-icon>
+            </mat-form-field>
+
+            <div class="remember-forgot-password">
+                <a class="forgot-password" [routerLink]="'../forgot-password'">
+                ¿Olvido su contraseña?
+                </a>
+            </div>
+    
+            <button mat-raised-button color="primary" class="submit-button" aria-label="LOGIN">
+                INICIAR SESIÓN
+            </button>
+        </form>
+    </div>
+</div>
+
+
