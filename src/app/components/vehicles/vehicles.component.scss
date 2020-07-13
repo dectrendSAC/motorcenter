@@ -48,4 +48,57 @@ $top:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D%22http%
             transition: all 2s ease 600s;
         }
     }
+
+    #title{
+        position: absolute;
+        top: 35px;
+        left: 50%;
+        font-family: "ubuntu", "arial", sans-serif;
+        font-size: 45pt;
+        color: white;
+        line-height: normal;
+
+        p:nth-child(2){
+            font-size: 64pt;
+            font-weight: bold;
+        }
+    }
+
+    #searchBar{
+        position: absolute;
+        top: 241px;
+        left: 50%;
+        color: #AFAFAF;
+        width: 20%;
+
+        ::ng-deep .mat-form-field-flex {
+            background-color: white;
+            align-items: center;
+            border-radius: 30px;
+            padding: 6px 20px;
+            font-size: 14pt;
+        }
+
+        ::ng-deep .mat-form-field-infix {
+            border-top: none;
+
+            label{
+                color: #AFAFAF;
+            }
+        }
+
+        ::ng-deep .mat-form-field-underline {
+            height: 0px;
+        }
+
+        mat-form-field {
+            width: 100%;
+
+            input{
+                font-family: 'palanquin', 'arial', sans-serif;
+                color: #AFAFAF;
+                font-size: 15pt;
+            }
+        }
+    }
 }
