@@ -17,9 +17,7 @@ export class MainComponent implements OnInit {
 
   @ViewChild('videoPlayer') videoplayer: ElementRef;
 
-  constructor(
-    private url:LocationStrategy
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
     //Random word js function

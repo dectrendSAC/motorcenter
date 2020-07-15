@@ -23,6 +23,7 @@ import { RegisterComponent } from './components/vehicles/register/register.compo
 import { BookComponent } from './components/main/workshop/book/book.component';
 import { LoginComponent } from './components/login/login.component';
 import { FilterComponent } from './components/vehicles/filter/filter.component';
+import { ListComponent } from './components/vehicles/list/list.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FilterComponent } from './components/vehicles/filter/filter.component';
     RegisterComponent,
     BookComponent,
     LoginComponent,
-    FilterComponent
+    FilterComponent,
+    ListComponent
   ],
   imports: [
     BrowserModule,

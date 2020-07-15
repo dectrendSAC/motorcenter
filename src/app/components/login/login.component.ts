@@ -14,7 +14,9 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.router.navigate([''], {state: {data: true}});
+    if (this.router.url.indexOf('/iniciar-sesion') > -1) {
+      this.router.navigate([''], {state: {data: true}});
+    }
   }
 
   //Hide Login component
