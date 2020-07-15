@@ -24,6 +24,7 @@ import { BookComponent } from './components/main/workshop/book/book.component';
 import { LoginComponent } from './components/login/login.component';
 import { FilterComponent } from './components/vehicles/filter/filter.component';
 import { ListComponent } from './components/vehicles/list/list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { ListComponent } from './components/vehicles/list/list.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
