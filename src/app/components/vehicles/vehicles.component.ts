@@ -7,19 +7,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehiclesComponent implements OnInit {
   displayLogin:boolean=false;
+  displayMore:boolean=false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  //Show login component
+  //Login component
   showLogin(){
     this.displayLogin = true;
   }
 
   hideLogin(status:boolean) {
     this.displayLogin = status;
+  }
+
+  //More component
+  showMore(status:boolean) {
+    console.log(status);
+    this.displayMore = status;
   }
 
 }

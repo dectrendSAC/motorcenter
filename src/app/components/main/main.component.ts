@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
       this.phrase = randomWord();
     }, 300);
 
-    //Check if comes from login rul
+    //Check if comes from login url
     if(history.state.data){  
       clearInterval(ranWordInterval);
       this.phrase = 'RESPONSABLES';

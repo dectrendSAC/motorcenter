@@ -1,3 +1,90 @@
+/* Extra small devices (phones, 688px and down) */
+@media only screen and (max-width: 43em) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 688px and up) */
+@media only screen and (min-width: 43em) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 48em) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 62em) {
+    #vehiclesList{
+        .vehiclesFeatures{
+            .vehicleImg{
+                padding-top: 15px;
+            }
+
+            mat-card-content{    
+                .vehicleName{
+                    padding-top: 5px;
+        
+                    .brand{
+                        padding-bottom: 5px;
+                        font-size: 15pt;
+                    }
+                    .model{
+                        padding-bottom: 20px;
+                        font-size: 20pt;
+                    }
+                }
+            
+                .vehiclePrice{
+                    font-size: 13pt;
+                    padding-bottom: 15px;
+        
+                    span{
+                        font-size: 20pt;
+                    }
+                }
+            }    
+        }
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 119em) {
+    #vehiclesList{
+        .vehiclesFeatures{
+            .vehicleImg{
+                padding-top: 30px;
+            }
+
+            mat-card-content{    
+                .vehicleName{
+                    padding-top: 10px;
+        
+                    .brand{
+                        padding-bottom: 15px;
+                        font-size: 20pt;
+                    }
+                    .model{
+                        padding-bottom: 30px;
+                        font-size: 25pt;
+                    }
+                }
+            
+                .vehiclePrice{
+                    font-size: 18pt;
+                    padding-bottom: 20px;
+        
+                    span{
+                        font-size: 25pt;
+                    }
+                }
+            }    
+        }
+    }
+}
+
+//----------------------------------
+
 #vehiclesList{
     width: 100%;
     height: 100%;
@@ -24,37 +111,26 @@
             width: 75%;
             cursor: pointer;
             margin: 0px auto;
-            padding-top: 30px;
         }
 
         mat-card-content{
             padding: 0px;
             margin: 0px;
 
-            .vehicleName{
-                padding-top: 10px;
-    
+            .vehicleName{    
                 .brand{
                     display: block;
-                    padding-bottom: 15px;
-                    font-size: 20pt;
                 }
                 .model{
                     display: block;
-                    padding-bottom: 30px;
                     color: #CA181F;
-                    font-size: 25pt;
                     font-weight: bold;
                 }
             }
         
-            .vehiclePrice{
-                font-size: 18pt;
-                padding-bottom: 20px;
-    
+            .vehiclePrice{ 
                 span{
                     font-weight: bold;
-                    font-size: 25pt;
                 }
             }
         }
@@ -70,8 +146,8 @@
                 letter-spacing: 1px;;
                 border-radius: 50px;
                 border: 3px solid #CA181F;
-                width: 220px;
-                height: 50px;
+                width: 50%;
+                height: 7%;
         
                 .bg-gradient{
                     background: rgb(202,24,31);

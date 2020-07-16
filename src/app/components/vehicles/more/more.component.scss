@@ -3,6 +3,101 @@ $close:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%
 $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%3E%3Cpath%20fill%3D%27%23CA181F%27%20d%3D%22M19%206.41L17.59%205%2012%2010.59%206.41%205%205%206.41%2010.59%2012%205%2017.59%206.41%2019%2012%2013.41%2017.59%2019%2019%2017.59%2013.41%2012z%22%2F%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E";
 //---------------
 
+/* Extra small devices (phones, 688px and down) */
+@media only screen and (max-width: 43em) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 688px and up) */
+@media only screen and (min-width: 43em) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 48em) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 62em) {
+    #black-screen{
+        #show-more{
+            #vehicleHeader{
+                .brand{
+                    width: 20%;
+                }
+    
+                span{
+                    margin: 4%;
+                    font-size: 18pt;
+                }
+            }
+
+            #vehicleContent{
+                font-size: 12pt;
+        
+                #vehicleDesc{
+                    .item{
+                        margin-bottom: 12px;
+
+                        p{
+                            margin: 0 0 3px;
+                        }
+                    }
+
+                    .colors{
+                        .color{
+                            width: 15px;
+                            height: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 119em) {
+    #black-screen{
+        #show-more{
+            #vehicleHeader{
+                .brand{
+                    width: 25%;
+                }
+    
+                span{
+                    margin: 5%;
+                    font-size: 22pt;
+                }
+            }
+
+            #vehicleContent{
+                font-size: 16pt;
+        
+                #vehicleDesc{
+                    .item{
+                        margin-bottom: 20px;
+
+                        p{
+                            margin: 0 0 12px;
+                        }
+                    }
+
+                    .colors{
+                        .color{
+                            width: 20px;
+                            height: 20px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+//------------------------------
+
 #black-screen{
     position: fixed;
     z-index: 1;
@@ -41,20 +136,16 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
 
             .brand{
                 fill: #CA181F;
-                width: 25%;
             }
 
             span{
                 font-weight: bold;
-                font-size: 22pt;
-                margin: 5%;
             }
         }
 
         #vehicleContent{
             position: relative;
             display: inline-flex;
-            font-size: 16pt;
 
             #vehicleImage{
                 width: 60%;
@@ -66,7 +157,6 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
                 margin-left: 5%;
 
                 .item{
-                    margin-bottom: 20px;
                     display: block;
                     p:nth-child(1){
                         font-weight: bold;
@@ -85,14 +175,11 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
                         display: inline-flex;
                         margin-right: 10px;
                         background: red;
-                        width: 20px;
-                        height: 20px;
                         border-radius: 25px;
                         border: 1px solid black;
                     }
                 }
             }
-
         }
 
         #closeBtn{
@@ -112,7 +199,7 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
 
         .quoteBtn {
             font-family: 'palanquin', 'arial', sans-serif;
-            width: 100%;
+            width: 50%;
             margin: 16px auto;
             display: inline-block;
             border-radius: 50px;

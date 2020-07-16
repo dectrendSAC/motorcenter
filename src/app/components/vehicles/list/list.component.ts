@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 declare let $: any;
 
@@ -8,7 +8,8 @@ declare let $: any;
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  displayLogin:boolean=false;
+  @Output()
+  displayMore = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -17,7 +18,7 @@ export class ListComponent implements OnInit {
 
   ngAfterViewInit(){
     $('#vehiclesList').owlCarousel({
-        loop:true,
+        loop:false,
         margin:50,
         nav:false,
         navText: [$('.am-next'),$('.am-prev')],
@@ -35,6 +36,7 @@ export class ListComponent implements OnInit {
     })
   }
   
+  //Owl carousel Navigator
   navLeft(){
     $('#vehiclesList').trigger('prev.owl.carousel');
   }
@@ -43,8 +45,10 @@ export class ListComponent implements OnInit {
     $('#vehiclesList').trigger('next.owl.carousel');
   }
 
+  //Show more component
   showMore(){
-    this.displayLogin = true;
+    this.displayMore.emit(true);
+    console.log(this.displayMore);
   }
 
 }
