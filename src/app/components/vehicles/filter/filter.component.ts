@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 export class FilterComponent implements OnInit {
   panelOpenBrandState = true;
   panelOpenTypeState = false;
-  selectedOptions: string;
+  selectedOptionsBrands: string;
+  selectedOptionsTypes: string;
   selectedOptionsArray: string[];
 
   constructor() { }
@@ -16,8 +17,15 @@ export class FilterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onChecked(brands){
-    this.selectedOptionsArray = brands.selectedOptions.selected.map(item => item.value);
-    this.selectedOptions = this.selectedOptionsArray.join(',').replace(/,(?=[^\s])/g, ", ");
+  onChecked(items, selection){
+    this.selectedOptionsArray = items.selectedOptions.selected.map(item => item.value);
+    if(this.selectedOptionsArray.length > 3){
+      this.selectedOptionsArray[3] = '...';
+    }
+    if(selection == 'brands'){
+      this.selectedOptionsBrands = this.selectedOptionsArray.join(',').replace(/,(?=[^\s])/g, ", ");
+    } else {
+      this.selectedOptionsTypes = this.selectedOptionsArray.join(',').replace(/,(?=[^\s])/g, ", ");
+    }
   }
 }

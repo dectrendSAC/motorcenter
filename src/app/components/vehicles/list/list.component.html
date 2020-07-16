@@ -1,58 +1,93 @@
-<div id="vehiclesList">
-    <div class="vehiclesFeatures">
-        <div class="vehicleImg">
+<div id="vehiclesList" class="owl-carousel">
+    <mat-card class="vehiclesFeatures">
+        <div class="vehicleImg" (click)="showMore()">
             <img src="assets/images/tempo.png">
-         </div>
-         <div class="vehicleName">
-            <span class="brand">Suzuki</span>
-            <span class="model">Alto 800</span>
-         </div>
-         <div class="vehiclePrice">
-            DESDE&nbsp;<span>$5000</span>
-         </div>
-        <button mat-stroked-button>
-        <div class="bg-gradient"></div>
-        <span>COTIZAR</span>
-        </button>
-    </div>
-    <div class="vehiclesFeatures">
-        <div class="vehicleImg">
-            <img src="assets/images/tempo.png">
-         </div>
-         <div class="vehicleName">
-            <span class="brand">Suzuki</span>
-            <span class="model">Alto 800</span>
-         </div>
-         <div class="vehiclePrice">
-            DESDE&nbsp;<span>$5000</span>
-         </div>
-        <button mat-stroked-button>
-        <div class="bg-gradient"></div>
-        <span>COTIZAR</span>
-        </button>
-    </div>
-    <div class="vehiclesFeatures">
-        <div class="vehicleImg">
-            <img src="assets/images/tempo.png">
-         </div>
-         <div class="vehicleName">
-            <span class="brand">Suzuki</span>
-            <span class="model">Alto 800</span>
-         </div>
-         <div class="vehiclePrice">
-            DESDE&nbsp;<span>$5000</span>
-         </div>
-        <button mat-stroked-button>
-        <div class="bg-gradient"></div>
-        <span>COTIZAR</span>
-        </button>
-    </div>
-
-    <div id="navigator">
-        <div id="navCenter">
-            <div id="navLeft"></div>
-            <div id="navSpace"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
-            <div id="navRight"></div>
         </div>
+        <mat-card-content>
+            <div class="vehicleName">
+                <span class="brand">Suzuki</span>
+                <span class="model">Alto 100</span>
+             </div>
+             <div class="vehiclePrice">
+                DESDE&nbsp;<span>$5000</span>
+             </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-stroked-button>
+                <div class="bg-gradient"></div>
+                <span>COTIZAR</span>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="vehiclesFeatures">
+        <div class="vehicleImg">
+            <img src="assets/images/tempo.png">
+        </div>
+        <mat-card-content>
+            <div class="vehicleName">
+                <span class="brand">Suzuki</span>
+                <span class="model">Alto 200</span>
+             </div>
+             <div class="vehiclePrice">
+                DESDE&nbsp;<span>$5000</span>
+             </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-stroked-button>
+                <div class="bg-gradient"></div>
+                <span>COTIZAR</span>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="vehiclesFeatures">
+        <div class="vehicleImg">
+            <img src="assets/images/tempo.png">
+        </div>
+        <mat-card-content>
+            <div class="vehicleName">
+                <span class="brand">Suzuki</span>
+                <span class="model">Alto 300</span>
+             </div>
+             <div class="vehiclePrice">
+                DESDE&nbsp;<span>$5000</span>
+             </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-stroked-button>
+                <div class="bg-gradient"></div>
+                <span>COTIZAR</span>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="vehiclesFeatures">
+        <div class="vehicleImg">
+            <img src="assets/images/tempo.png">
+        </div>
+        <mat-card-content>
+            <div class="vehicleName">
+                <span class="brand">Suzuki</span>
+                <span class="model">Alto 400</span>
+             </div>
+             <div class="vehiclePrice">
+                DESDE&nbsp;<span>$5000</span>
+             </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-stroked-button>
+                <div class="bg-gradient"></div>
+                <span>COTIZAR</span>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<div id="navigator">
+    <div id="navCenter">
+        <div id="navLeft" (click)="navLeft()"></div>
+        <div id="navSpace"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+        <div id="navRight" (click)="navRight()"></div>
     </div>
 </div>

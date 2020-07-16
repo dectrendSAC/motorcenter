@@ -25,6 +25,9 @@ import { LoginComponent } from './components/login/login.component';
 import { FilterComponent } from './components/vehicles/filter/filter.component';
 import { ListComponent } from './components/vehicles/list/list.component';
 import { FormsModule } from '@angular/forms';
+import { OwlModule } from 'ngx-owl-carousel';
+import { MoreComponent } from './components/vehicles/more/more.component';
+import { SuccessComponent } from './components/vehicles/success/success.component';
 
 @NgModule({
   declarations: [
@@ -46,14 +49,17 @@ import { FormsModule } from '@angular/forms';
     BookComponent,
     LoginComponent,
     FilterComponent,
-    ListComponent
+    ListComponent,
+    MoreComponent,
+    SuccessComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    OwlModule
   ],
   providers: [],
   bootstrap: [AppComponent]

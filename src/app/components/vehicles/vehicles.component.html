@@ -8,6 +8,8 @@
             <img src="assets/images/car.png">
         </div>
 
+        <div class="carShadow"></div>
+
         <div id="hand">
            <img src="assets/images/key.png">
         </div>
@@ -20,7 +22,7 @@
 
     <form id="searchBar" name="filterForm" novalidate>
         <mat-form-field floatLabel="never">
-            <input matInput placeholder="Buscar por marca, modelo, etc" formControlName="filter">
+            <input matInput placeholder="Buscar por marca, modelo, etc">
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
     </form>
@@ -32,7 +34,9 @@
 
     <app-list id="list-form-wrapper"></app-list>
 
-    <app-login *ngIf="displayLogin" id="login-form-wrapper" (displayLogin)="hideLogin($event)"></app-login>
+    <app-login *ngIf="displayLogin" class="component-wrapper" (displayLogin)="hideLogin($event)"></app-login>
+
+    <app-more class="component-wrapper" (displayLogin)="hideLogin($event)"></app-more>
 
 </div>
 

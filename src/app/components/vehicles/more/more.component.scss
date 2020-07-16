@@ -1,0 +1,121 @@
+//-----SVG-------
+$close:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%3E%3Cpath%20d%3D%22M19%206.41L17.59%205%2012%2010.59%206.41%205%205%206.41%2010.59%2012%205%2017.59%206.41%2019%2012%2013.41%2017.59%2019%2019%2017.59%2013.41%2012z%22%2F%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E";
+$close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%3E%3Cpath%20fill%3D%27%23CA181F%27%20d%3D%22M19%206.41L17.59%205%2012%2010.59%206.41%205%205%206.41%2010.59%2012%205%2017.59%206.41%2019%2012%2013.41%2017.59%2019%2019%2017.59%2013.41%2012z%22%2F%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E";
+//---------------
+
+#black-screen{
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color:rgba(0, 0, 0, 0.7);
+
+    img{
+        width: 100%;
+        height: auto;
+    }
+
+    #show-more{
+        font-family: "palanquin", "arial", sans-serif;
+        position: relative;
+        top: 50%;
+        transform: perspective(1px) translateY(-50%);
+        margin: 0 auto;
+        border-radius: 30px;
+        width: 30%;
+        min-width: 30%; 
+        max-width: 30%;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+        background: #fff;
+        box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
+        padding: 60px 60px 25px 60px;
+        text-align: center;
+
+        #vehicleHeader{
+            position: relative;
+            display: inline-flex;
+            top: 0px;
+            width: 100%;
+
+            .brand{
+                fill: #CA181F;
+                width: 25%;
+            }
+
+            span{
+                font-weight: bold;
+                font-size: 22pt;
+                margin: 5%;
+            }
+        }
+
+        #vehicleContent{
+            position: relative;
+            display: inline-flex;
+            font-size: 16pt;
+
+            #vehicleImage{
+                width: 60%;
+                margin-top: 20px;
+            }
+    
+            #vehicleDesc{
+                text-align: left;
+                margin-left: 5%;
+
+                .item{
+                    margin-bottom: 20px;
+                    display: block;
+                    p:nth-child(1){
+                        font-weight: bold;
+                    }
+                }
+
+                .promotion{
+                    p:nth-child(1){
+                        color: #CA181F;
+                    }
+                }
+
+                .colors{
+                    .color{
+                        position: relative;
+                        display: inline-flex;
+                        margin-right: 10px;
+                        background: red;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 25px;
+                        border: 1px solid black;
+                    }
+                }
+            }
+
+        }
+
+        #closeBtn{
+            position: absolute;
+            cursor: pointer;
+            outline: none;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: url("data:image/svg+xml, #{$close}") left center/100% 100% no-repeat !important;
+
+            &:hover{
+                background: url("data:image/svg+xml, #{$close_hover}") left center/100% 100% no-repeat !important;
+            }
+        }
+
+        .quoteBtn {
+            font-family: 'palanquin', 'arial', sans-serif;
+            width: 100%;
+            margin: 16px auto;
+            display: inline-block;
+            border-radius: 50px;
+        }
+    }
+}

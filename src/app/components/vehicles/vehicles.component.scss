@@ -103,6 +103,36 @@ $login_hover:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D
     }
 }
 
+//------Animations---------
+
+//Float animation
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-25px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+
+@keyframes float-shadow {
+	0% {
+        opacity: 0.4;
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+	}
+	50% {
+        opacity: 0;
+		box-shadow: 0 20px 15px 0px rgba(0,0,0,0.2);
+	}
+	100% {
+        opacity: 0.4;
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+	}
+}
+
 //-------------------------
 
 #mainScreen{
@@ -134,14 +164,27 @@ $login_hover:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D
         top: 0px;
         left: 25%;
         z-index: 1;
-        transition: all 0.5s;
 
         #car{
             grid-column: 8/4;
             grid-row: 1;
-            z-index: 3;
+            z-index: 4;
             padding-top: 40%;
-            transition: all 1.5s ease 600s;
+            animation: float 5s ease-in-out infinite;
+        }
+
+        .carShadow{
+            content: "";
+            position: absolute;
+            z-index: 3;
+            top: 34%;
+            left: 36%;
+            border-radius: 25px;
+            transform: rotate(32deg) skewX(-25deg);
+            width: 170px;
+            height: 68px;
+            background: black;
+            animation: float-shadow 5s ease-in-out infinite;
         }
 
         #hand{
@@ -149,7 +192,6 @@ $login_hover:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D
             grid-row: 1;
             z-index: 2;
             padding-top: 0%;
-            transition: all 2s ease 600s;
         }
     }
 
@@ -254,11 +296,11 @@ $login_hover:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D
         position: absolute;
         top: 50%;
         left: 29%;
-        width: 61%;
-        height: 42%;
+        width: 60%;
+        height: 40%;
     }
 
-    #login-form-wrapper{
+    .component-wrapper{
         position: fixed;
         top: 0;
         z-index: 3;
