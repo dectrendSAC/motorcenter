@@ -8,6 +8,9 @@ declare let $: any;
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
+  displayLeft: boolean = false;
+  displayRight: boolean = true;
+
   @Output()
   displayMore = new EventEmitter<boolean>();
 
@@ -21,7 +24,6 @@ export class ListComponent implements OnInit {
         loop:false,
         margin:50,
         nav:false,
-        navText: [$('.am-next'),$('.am-prev')],
         responsive:{
             0:{
                 items:1
@@ -32,7 +34,21 @@ export class ListComponent implements OnInit {
             1000:{
                 items:3
             }
-        }
+        },
+        onTranslated: (e) => {
+          if (e.relatedTarget.current() === 0) {
+            this.displayLeft = false;
+          } else {
+            this.displayLeft = true;
+          }
+
+          if (e.relatedTarget.current() === e.relatedTarget.maximum()) {
+            this.displayLeft = true;
+            this.displayRight = false;
+          } else {
+            this.displayRight = true;
+          }
+       }
     })
   }
   
