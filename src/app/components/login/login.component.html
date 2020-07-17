@@ -24,7 +24,7 @@
 
             <div class="remember-forgot-password">
                 <a class="forgot-password" [routerLink]="'../forgot-password'">
-                ¿Olvido su contraseña?
+                ¿Olvidó su contraseña?
                 </a>
             </div>
     
@@ -32,6 +32,11 @@
                 INICIAR SESIÓN
             </button>
         </form>
+
+        <div *ngIf="noRegisteredClient" class="register">
+            <span class="text">¿No tiene una cuenta?</span>
+            <a class="link">Crear una cuenta</a>
+        </div>
     </div>
 </div>
 

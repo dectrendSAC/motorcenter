@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,8 +8,10 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  @Output()
-  displayLogin = new EventEmitter<boolean>();
+  @Input() noRegisteredClient: boolean;
+
+  @Output() displayLogin = new EventEmitter<boolean>();
+  @Output() displayRegister = new EventEmitter<boolean>();
 
   constructor(private router: Router) { }
 
@@ -20,8 +22,13 @@ export class LoginComponent implements OnInit {
   }
 
   //Hide Login component
-  hideLogin(){
+  hideLogin(){    
+    console.log(this.noRegisteredClient);
+    
     this.displayLogin.emit(false);
+    if (this.noRegisteredClient){
+      this.displayRegister.emit(true);
+    }
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-vehicles',
@@ -7,7 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VehiclesComponent implements OnInit {
   displayLogin:boolean=false;
+  displayList:boolean=true;
+  displayRegister:boolean = false;
   displayMore:boolean=false;
+  displaySuccess:boolean=false;
+  noRegisteredClient:boolean;
+
 
   constructor() { }
 
@@ -16,6 +21,7 @@ export class VehiclesComponent implements OnInit {
 
   //Login component
   showLogin(){
+    this.noRegisteredClient = false;
     this.displayLogin = true;
   }
 
@@ -25,8 +31,24 @@ export class VehiclesComponent implements OnInit {
 
   //More component
   showMore(status:boolean) {
-    console.log(status);
     this.displayMore = status;
+  }
+
+  //Check if client is registered
+  isClientRegistered(status:boolean){
+    var login = document.getElementById("noLogin");
+    if(login){      
+      this.displayLogin = status;
+      this.noRegisteredClient = true;
+    } else {
+      this.displaySuccess = status;
+    }
+  }
+
+  //Show register form
+  showRegister(status:boolean){
+    this.displayList = !status;
+    this.displayRegister = status;
   }
 
 }

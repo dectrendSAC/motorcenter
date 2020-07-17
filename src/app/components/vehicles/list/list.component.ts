@@ -11,8 +11,8 @@ export class ListComponent implements OnInit {
   displayLeft: boolean = false;
   displayRight: boolean = true;
 
-  @Output()
-  displayMore = new EventEmitter<boolean>();
+  @Output() displayMore = new EventEmitter<boolean>();
+  @Output() verifyClient = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -64,7 +64,11 @@ export class ListComponent implements OnInit {
   //Show more component
   showMore(){
     this.displayMore.emit(true);
-    console.log(this.displayMore);
+  }
+
+  //Check if is a registered client
+  isRegistered(){
+    this.verifyClient.emit(true);
   }
 
 }

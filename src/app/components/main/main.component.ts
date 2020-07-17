@@ -1,5 +1,4 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { LocationStrategy } from '@angular/common';
 
 //JS functions
 declare function randomWord(): any;

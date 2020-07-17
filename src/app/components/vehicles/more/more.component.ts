@@ -7,8 +7,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class MoreComponent implements OnInit {
 
-  @Output()
-  displayMore = new EventEmitter<boolean>();
+  @Output() displayMore = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -18,8 +17,6 @@ export class MoreComponent implements OnInit {
   //Hide More component
   hideMore(){   
     this.displayMore.emit(false);
-    console.log(this.displayMore);
-    
   }
   
 }
