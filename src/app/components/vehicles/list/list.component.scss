@@ -17,6 +17,8 @@
 @media only screen and (min-width: 62em) {
     #vehiclesList{
         .vehiclesFeatures{
+            padding: 0 0 8% 0;
+
             .vehicleImg{
                 padding-top: 15px;
             }
@@ -43,7 +45,52 @@
                         font-size: 20pt;
                     }
                 }
-            }    
+            }  
+            
+            mat-card-actions{
+                button{
+                    font-size: 13pt;
+                }
+            }
+        }
+    }
+
+    #navigator{
+        margin-top: 10px;
+    
+        #navCenter{
+            width: 140px;
+            height: 36px;
+            
+            #navLeft{
+                border-top: 18px solid transparent;
+                border-bottom: 18px solid transparent; 
+                border-right: 26px solid #CA181F; 
+            }
+    
+            #navSpace{
+                .circle{
+                    top: 12px;
+                    width: 10px;
+                    height: 10px;
+                }
+    
+                .circle:nth-child(1){
+                    margin-left: 40px;
+                }
+                .circle:nth-child(2){
+                    margin-left: 65px;
+                }
+                .circle:nth-child(3){
+                    margin-left: 90px;
+                }
+            }
+    
+            #navRight{
+                border-top: 18px solid transparent;
+                border-bottom: 18px solid transparent;
+                border-left: 26px solid #CA181F;
+            }
         }
     }
 }
@@ -52,6 +99,8 @@
 @media only screen and (min-width: 119em) {
     #vehiclesList{
         .vehiclesFeatures{
+            padding: 0 0 6% 0;
+
             .vehicleImg{
                 padding-top: 30px;
             }
@@ -79,6 +128,51 @@
                     }
                 }
             }    
+
+            mat-card-actions{
+                button{
+                    font-size: 15pt;
+                }
+            }
+        }
+    }
+
+    #navigator{
+        margin-top: 25px;
+    
+        #navCenter{
+            width: 200px;
+            height: 50px;
+            
+            #navLeft{
+                border-top: 25px solid transparent;
+                border-bottom: 25px solid transparent; 
+                border-right: 40px solid #CA181F; 
+            }
+    
+            #navSpace{
+                .circle{
+                    top: 19px;
+                    width: 12px;
+                    height: 12px;
+                }
+    
+                .circle:nth-child(1){
+                    margin-left: 65px;
+                }
+                .circle:nth-child(2){
+                    margin-left: 95px;
+                }
+                .circle:nth-child(3){
+                    margin-left: 125px;
+                }
+            }
+    
+            #navRight{
+                border-top: 25px solid transparent;
+                border-bottom: 25px solid transparent;
+                border-left: 40px solid #CA181F;
+            }
         }
     }
 }
@@ -98,7 +192,6 @@
     .vehiclesFeatures{
         position: relative;
         display: inline-block;
-        padding: 0 0 6% 0;
         margin-right: 0%;
         width: 100%;
         background: white;
@@ -140,7 +233,6 @@
 
             button{
                 color: #CA181F;
-                font-size: 15pt;
                 font-family: 'palanquin', 'arial', sans-serif;
                 font-weight: bold;
                 letter-spacing: 1px;;
@@ -187,12 +279,9 @@
 #navigator{
     position: absolute;
     left: 50%;
-    margin-top: 25px;
 
     #navCenter{
         position: relative;
-        width: 200px;
-        height: 50px;
         left: -50%;
         
         #navLeft{
@@ -201,30 +290,14 @@
             left: 0px;
             width: 0; 
             height: 0; 
-            border-top: 25px solid transparent;
-            border-bottom: 25px solid transparent; 
-            border-right: 40px solid #CA181F; 
         }
 
         #navSpace{
             .circle{
                 display: inline-block;
                 border-radius: 25px;
-                top: 19px;
                 position: absolute;
-                width: 12px;
-                height: 12px;
                 background: #CA181F;
-            }
-
-            .circle:nth-child(1){
-                margin-left: 65px;
-            }
-            .circle:nth-child(2){
-                margin-left: 95px;
-            }
-            .circle:nth-child(3){
-                margin-left: 125px;
             }
         }
 
@@ -234,9 +307,6 @@
             right: 0px;
             width: 0;
             height: 0; 
-            border-top: 25px solid transparent;
-            border-bottom: 25px solid transparent;
-            border-left: 40px solid #CA181F;
         }
     }
 }

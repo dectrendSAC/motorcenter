@@ -3,13 +3,71 @@ $close:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%
 $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20width%3D%2224%22%3E%3Cpath%20fill%3D%27%23CA181F%27%20d%3D%22M19%206.41L17.59%205%2012%2010.59%206.41%205%205%206.41%2010.59%2012%205%2017.59%206.41%2019%2012%2013.41%2017.59%2019%2019%2017.59%2013.41%2012z%22%2F%3E%3Cpath%20d%3D%22M0%200h24v24H0z%22%20fill%3D%22none%22%2F%3E%3C%2Fsvg%3E";
 //---------------
 
-#landing-page{
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    width: 100%;;
+/* Extra small devices (phones, 688px and down) */
+@media only screen and (max-width: 43em) {
+
 }
+
+/* Small devices (portrait tablets and large phones, 688px and up) */
+@media only screen and (min-width: 43em) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 48em) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 62em) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 119em) {
+    #black-screen{
+        #login-form{
+            #loginBackground{
+                top: -65px;
+                left: -150px;
+            }
+
+            #closeBtn{
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+
+            span{
+                font-size: 16pt;
+            }
+
+            form {
+                padding-top: 32px;
+
+                mat-form-field {
+                    mat-label{
+                        font-size: 15pt;
+                        line-height: 10pt;
+                    }
+                }
+
+                .remember-forgot-password {
+                    margin-top: 8px;
+                    margin-bottom: 16px;
+    
+                    .forgot-password {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+//---------------------------------------
 
 #black-screen{
     position: fixed;
@@ -25,27 +83,25 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
     }
 
     #login-form{
-        font-family: 'palanquin', 'arial', sans-serif;
+        font-family: "palanquin", "arial", sans-serif;
         position: relative;
         top: 50%;
         transform: perspective(1px) translateY(-50%);
         margin: 0 auto;
         border-radius: 30px;
-        width: 336px;
-        min-width: 336px;
-        max-width: 336px;
+        width: 20%;
+        min-width: 20%;
+        max-width: 20%;
         overflow: auto;
         -webkit-overflow-scrolling: touch;
         background: #fff;
-        box-shadow: 0 8px 10px -5px rgba(0,0,0,.2), 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12);
-        padding: 80px 80px 25px 80px;
+        box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
+        padding: 4% 4% 1% 4%;
         text-align: center;
 
         #loginBackground{
             opacity: 0.2;
             position: absolute;
-            top: -65px;
-            left: -150px;
             width: 130%;
         }
 
@@ -53,10 +109,6 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
             position: absolute;
             cursor: pointer;
             outline: none;
-            top: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
             background: url("data:image/svg+xml, #{$close}") left center/100% 100% no-repeat !important;
 
             &:hover{
@@ -66,14 +118,12 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
 
         span{
             font-weight: bold;
-            font-size: 16pt;
         }
 
         form {
             position: relative;
             z-index: 2;
             width: 100%;
-            padding-top: 32px;
 
             ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
                 background-color: white;
@@ -84,8 +134,6 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
 
                 mat-label{
                     font-family: 'palanquin', 'arial', sans-serif;
-                    font-size: 15pt;
-                    line-height: 10pt;
                 }
     
                 button{
@@ -97,15 +145,11 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
             
             .remember-forgot-password {
                 text-align: right;
-                font-size: 13px;
-                margin-top: 8px;
-                margin-bottom: 16px;
                 cursor: pointer;
 
                 .forgot-password {
                     font-family: 'palanquin', 'arial', sans-serif;
                     color: #CA181F;
-                    font-size: 13px;
                     font-weight: 600;
                     text-decoration: none;
                 }
