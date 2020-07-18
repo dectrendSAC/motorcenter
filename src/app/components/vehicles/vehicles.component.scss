@@ -66,7 +66,7 @@ $login_hover:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D
             height: 47px;
         }
 
-        .content-wrapper{
+        .content-wrapper-list{
             top: 46%;
             height: 45%;
         }
@@ -120,9 +120,14 @@ $login_hover:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D
             height: 65px;
         }
 
-        .content-wrapper{
+        .content-wrapper-list{
             top: 50%;
             height: 40%;
+        }
+
+        .content-wrapper-register{
+            top: 50%;
+            height: 45%;
         }
     }
 }
@@ -154,8 +159,6 @@ $login_hover:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D
         box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
     }
 }
-
-//------Animations---------
 
 //Float animation
 @keyframes float {
@@ -330,7 +333,13 @@ $login_hover:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D
         animation: none;
     }
 
-    .content-wrapper{
+    .content-wrapper-list{
+        position: absolute;
+        left: 29%;
+        width: 60%;
+    }
+
+    .content-wrapper-register{
         position: absolute;
         left: 29%;
         width: 60%;

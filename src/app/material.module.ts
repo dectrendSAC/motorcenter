@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule ({
     imports: [
@@ -16,7 +17,8 @@ import { MatCardModule } from '@angular/material/card';
         MatInputModule,
         MatListModule,
         MatExpansionModule,
-        MatCardModule 
+        MatCardModule,
+        MatStepperModule 
     ],
     exports:[
         MatButtonModule,
@@ -25,7 +27,8 @@ import { MatCardModule } from '@angular/material/card';
         MatInputModule,
         MatListModule,
         MatExpansionModule,
-        MatCardModule 
+        MatCardModule,
+        MatStepperModule 
     ]
 })
 

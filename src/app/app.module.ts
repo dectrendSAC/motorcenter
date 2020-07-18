@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,7 +25,6 @@ import { BookComponent } from './components/main/workshop/book/book.component';
 import { LoginComponent } from './components/login/login.component';
 import { FilterComponent } from './components/vehicles/filter/filter.component';
 import { ListComponent } from './components/vehicles/list/list.component';
-import { FormsModule } from '@angular/forms';
 import { OwlModule } from 'ngx-owl-carousel';
 import { MoreComponent } from './components/vehicles/more/more.component';
 import { SuccessComponent } from './components/vehicles/success/success.component';
@@ -59,6 +59,7 @@ import { SuccessComponent } from './components/vehicles/success/success.componen
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
     OwlModule
   ],
   providers: [],

@@ -1,1 +1,56 @@
-<p>register works!</p>
+<div id="closeBtn"></div>
+
+<div id="personType" *ngIf="showSelection">
+  <div class="title">¿Cómo se desea registrar?</div>
+  <div class="content">
+    <div id="business" class="item" (click)="startRegister(true)">
+      <div class="image"></div>
+      <div class="description">Empresa</div>
+    </div>
+    <div id="people" class="item" (click)="startRegister(false)">
+      <div class="image"></div>
+      <div class="description">Persona natural</div>
+    </div>
+  </div>
+</div>
+
+<mat-horizontal-stepper id="registerForm" *ngIf="showRegister" [linear]=true #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>{{type ? 'Razón social' : 'Nombres y apellidos'}}</ng-template>
+      <mat-form-field>
+        <mat-label>{{type ? 'Razón' : 'Nombres'}}</mat-label>
+        <input matInput placeholder="{{type ? 'Ingresa tu razón social' : 'Ingresa tus nombres'}}" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <mat-form-field *ngIf="!type">
+        <mat-label>Apellidos</mat-label>
+        <input matInput placeholder="Ingresa tus apellidos" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>SIGUIENTE</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Otros datos</ng-template>
+      <mat-form-field>
+        <mat-label>Address</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
+                required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>ATRAS</button>
+        <button mat-button matStepperNext>ENVIAR</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>¡Listo!</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

@@ -32,9 +32,9 @@
         <div id="noLogin" class="no-profile"></div>
     </div>
 
-    <app-list *ngIf="displayList" class="content-wrapper" (displayMore)="showMore($event)" (verifyClient)="isClientRegistered($event)"></app-list>
+    <app-list *ngIf=false class="content-wrapper-list" (displayMore)="showMore($event)" (verifyClient)="isClientRegistered($event)"></app-list>
 
-    <app-register *ngIf="displayRegister" class="content-wrapper"></app-register>
+    <app-register *ngIf=true class="content-wrapper-register"></app-register>
 
     <app-login *ngIf="displayLogin" class="component-wrapper" (displayLogin)="hideLogin($event)" (displayRegister)="showRegister($event)" [noRegisteredClient]="noRegisteredClient"></app-login>
 

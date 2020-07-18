@@ -1,9 +1,7 @@
 
 <div id="black-screen">
     <div id="login-form">
-        <div id="loginBackground">
-            <img src="assets/images/login_background.png">
-        </div>
+        <div id="loginBackground"></div>
 
         <div id="closeBtn" (click)="hideLogin()"></div>
         
@@ -35,7 +33,7 @@
 
         <div *ngIf="noRegisteredClient" class="register">
             <span class="text">¿No tiene una cuenta?</span>
-            <a class="link">Crear una cuenta</a>
+            <a class="link" (click)="hideLogin()">Registrese ahora</a>
         </div>
     </div>
 </div>
