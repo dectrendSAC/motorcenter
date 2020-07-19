@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-vehicles',
@@ -6,13 +6,14 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./vehicles.component.scss']
 })
 export class VehiclesComponent implements OnInit {
+  displaySearch:boolean=true;
   displayLogin:boolean=false;
   displayList:boolean=true;
   displayRegister:boolean = false;
   displayMore:boolean=false;
   displaySuccess:boolean=false;
   noRegisteredClient:boolean;
-
+  disableFilter:boolean;
 
   constructor() { }
 
@@ -48,7 +49,20 @@ export class VehiclesComponent implements OnInit {
   //Show register form
   showRegister(status:boolean){
     this.displayList = !status;
+    this.displaySearch = !status;
     this.displayRegister = status;
+  }
+
+  //Show list
+  showList(status:boolean){
+    this.displayRegister = !status;
+    this.displaySearch = status;
+    this.displayList = status;
+  }
+
+  //Disable filter
+  disableFilterMethod(status:boolean){
+    this.disableFilter = status;
   }
 
 }

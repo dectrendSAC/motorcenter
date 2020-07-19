@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,11 @@ export class RegisterComponent implements OnInit {
   showRegister:boolean = false;
   showSelection:boolean = true;
   type:boolean;
+  name:string;
+  email:string;
+
+  @Output() showList = new EventEmitter<boolean>();
+  @Output() disableFilter = new EventEmitter<boolean>();
 
   constructor(private _formBuilder: FormBuilder) { }
 
@@ -24,10 +29,33 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  //Start registration form
   startRegister(type:boolean){
     this.showSelection = false;
     this.type = type;
     this.showRegister = true;
+  }
+
+  //Get name of client
+  passName(name:string){
+    this.name = name;
+  }
+
+  //Get email of client
+  passEmail(email){
+    this.email = email;
+  }
+
+  //Choose type of person
+  choosePersonType(){
+    this.showRegister = false;
+    this.showSelection = true;
+  }
+
+  //Close register form
+  closeRegister(){
+    this.showList.emit(true);
+    this.disableFilter.emit(false);
   }
 
 }

@@ -8,6 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule ({
     imports: [
@@ -18,7 +19,8 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatListModule,
         MatExpansionModule,
         MatCardModule,
-        MatStepperModule 
+        MatStepperModule,
+        MatCheckboxModule 
     ],
     exports:[
         MatButtonModule,
@@ -28,7 +30,8 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatListModule,
         MatExpansionModule,
         MatCardModule,
-        MatStepperModule 
+        MatStepperModule,
+        MatCheckboxModule 
     ]
 })
 

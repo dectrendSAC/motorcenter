@@ -1,7 +1,7 @@
 <div id="mainScreen">
     <div id="topCurve"></div>
 
-    <app-filter></app-filter>
+    <app-filter [disableFilter]="disableFilter"></app-filter>
 
     <div id="image-stack">
         <div id="car">
@@ -20,7 +20,7 @@
         <p>Al alcance de tus manos</p>
     </div>
 
-    <form id="searchBar" name="filterForm" novalidate>
+    <form *ngIf="displaySearch" id="searchBar" name="filterForm" novalidate>
         <mat-form-field floatLabel="never">
             <input matInput placeholder="Buscar por marca, modelo, etc">
             <mat-icon matSuffix>search</mat-icon>
@@ -32,11 +32,11 @@
         <div id="noLogin" class="no-profile"></div>
     </div>
 
-    <app-list *ngIf=false class="content-wrapper-list" (displayMore)="showMore($event)" (verifyClient)="isClientRegistered($event)"></app-list>
+    <app-list *ngIf="displayList" class="content-wrapper-list" (displayMore)="showMore($event)" (verifyClient)="isClientRegistered($event)"></app-list>
 
-    <app-register *ngIf=true class="content-wrapper-register"></app-register>
+    <app-register *ngIf="displayRegister" class="content-wrapper-register" (showList)="showList($event)" (disableFilter)="disableFilterMethod($event)"></app-register>
 
-    <app-login *ngIf="displayLogin" class="component-wrapper" (displayLogin)="hideLogin($event)" (displayRegister)="showRegister($event)" [noRegisteredClient]="noRegisteredClient"></app-login>
+    <app-login *ngIf="displayLogin" class="component-wrapper" (displayLogin)="hideLogin($event)" (displayRegister)="showRegister($event)" (disableFilter)="disableFilterMethod($event)" [noRegisteredClient]="noRegisteredClient"></app-login>
 
     <app-more *ngIf="displayMore" class="component-wrapper" (displayMore)="showMore($event)"></app-more>
 

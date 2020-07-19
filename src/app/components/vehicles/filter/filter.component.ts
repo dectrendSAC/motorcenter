@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-filter',
@@ -11,6 +11,8 @@ export class FilterComponent implements OnInit {
   selectedOptionsBrands: string;
   selectedOptionsTypes: string;
   selectedOptionsArray: string[];
+
+  @Input() disableFilter: boolean;
 
   constructor() { }
 

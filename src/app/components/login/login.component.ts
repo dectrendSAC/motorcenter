@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   @Output() displayLogin = new EventEmitter<boolean>();
   @Output() displayRegister = new EventEmitter<boolean>();
+  @Output() disableFilter = new EventEmitter<boolean>();
 
   constructor(private router: Router) { }
 
@@ -23,10 +24,9 @@ export class LoginComponent implements OnInit {
 
   //Hide Login component
   hideLogin(){    
-    console.log(this.noRegisteredClient);
-    
     this.displayLogin.emit(false);
     if (this.noRegisteredClient){
+      this.disableFilter.emit(true);
       this.displayRegister.emit(true);
     }
   }
