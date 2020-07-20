@@ -9,6 +9,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCardModule } from '@angular/material/card';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule ({
     imports: [
@@ -20,7 +21,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatExpansionModule,
         MatCardModule,
         MatStepperModule,
-        MatCheckboxModule 
+        MatCheckboxModule,
+        MatMenuModule 
     ],
     exports:[
         MatButtonModule,
@@ -31,7 +33,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
         MatExpansionModule,
         MatCardModule,
         MatStepperModule,
-        MatCheckboxModule 
+        MatCheckboxModule,
+        MatMenuModule 
     ]
 })
 

@@ -27,10 +27,30 @@
         </mat-form-field>
     </form>
 
-    <span class="pulse"></span>
+    <span *ngIf="!displayProfile" class="pulse"></span>
     <div class="login" (click)="showLogin()">
-        <div id="noLogin" class="no-profile"></div>
+        <div *ngIf="!displayProfile" id="noLogin" class="no-profile"></div>
+        <div *ngIf="displayProfile" [matMenuTriggerFor]="menu" id="Login" class="profile"></div>
+        <div *ngIf="displayProfile" [matMenuTriggerFor]="menu" class="profileFrame"><div class="profileContent"></div></div>
     </div>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>account_circle</mat-icon>
+          <span>Perfil</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>directions_car</mat-icon>
+          <span>Vehículos</span>
+        </button>
+        <button mat-menu-item disabled>
+          <mat-icon>home_repair_service</mat-icon>
+          <span>Taller</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Salir</span>
+        </button>
+    </mat-menu>
 
     <app-list *ngIf="displayList" class="content-wrapper-list" (displayMore)="showMore($event)" (verifyClient)="isClientRegistered($event)"></app-list>
 

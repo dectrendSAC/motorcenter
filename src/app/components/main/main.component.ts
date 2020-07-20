@@ -13,6 +13,7 @@ var ranWordInterval = null;
 export class MainComponent implements OnInit {
   phrase: string;
   displayLogin:boolean=false;
+  displayProfile:boolean = true;
 
   @ViewChild('videoPlayer') videoplayer: ElementRef;
 

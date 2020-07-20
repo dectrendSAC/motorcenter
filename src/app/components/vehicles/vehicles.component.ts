@@ -14,6 +14,7 @@ export class VehiclesComponent implements OnInit {
   displaySuccess:boolean=false;
   noRegisteredClient:boolean;
   disableFilter:boolean;
+  displayProfile:boolean = false;
 
   constructor() { }
 
@@ -22,8 +23,11 @@ export class VehiclesComponent implements OnInit {
 
   //Login component
   showLogin(){
-    this.noRegisteredClient = false;
-    this.displayLogin = true;
+    var nologin = document.getElementById("noLogin");
+    if(nologin){
+      this.displayLogin = true;
+      this.noRegisteredClient = false;
+    }
   }
 
   hideLogin(status:boolean) {
@@ -37,8 +41,8 @@ export class VehiclesComponent implements OnInit {
 
   //Check if client is registered
   isClientRegistered(status:boolean){
-    var login = document.getElementById("noLogin");
-    if(login){      
+    var nologin = document.getElementById("noLogin");
+    if(nologin){      
       this.displayLogin = status;
       this.noRegisteredClient = true;
     } else {
