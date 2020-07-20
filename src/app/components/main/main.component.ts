@@ -53,8 +53,10 @@ export class MainComponent implements OnInit {
 
   //Show login component
   showLogin(){
-    clearInterval(ranWordInterval);
-    this.displayLogin = true;
+    var nologin = document.getElementById("noLogin");
+    if(nologin){
+      this.displayLogin = true;
+    }
   }
 
   hideLogin(status:boolean) {
@@ -64,5 +66,12 @@ export class MainComponent implements OnInit {
     }, 300);
     this.displayLogin = status;
   }
+
+  //LogOut
+  logOut(){
+    this.displayProfile = false;
+  }
+
+  onOpenMenu(): void {}
 
 }

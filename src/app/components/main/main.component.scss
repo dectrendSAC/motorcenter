@@ -74,6 +74,27 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
                 font-size: 15pt;
                 line-height: 40pt;
             }
+
+            #Login{
+                height: 55px;
+
+                .profile{
+                    width: 55px;
+                    height: 55px;
+                }
+    
+                .profileFrame{
+                    top: -55px;
+                    width: 49px;
+                    height: 49px;
+        
+                    .profileContent{
+                        left: -3px;
+                        width: 55px;
+                        height: 55px;
+                    }
+                }
+            }
         }
         
         .pulse {
@@ -164,9 +185,25 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
                 line-height: 45pt;
             }
 
-            .profile{
-                width: 70px;
+            #Login{
                 height: 70px;
+
+                .profile{
+                    width: 70px;
+                    height: 70px;
+                }
+    
+                .profileFrame{
+                    top: -70px;
+                    width: 64px;
+                    height: 64px;
+        
+                    .profileContent{
+                        left: -3px;
+                        width: 70px;
+                        height: 70px;
+                    }
+                }
             }
         }
 
@@ -396,36 +433,35 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
             }
         }
 
-        .profile{
+        #Login{
             position: relative;
-            z-index: 2;
-            overflow: hidden;
-            background: url("data:image/svg+xml, #{$profile_frame}") left center/100% 100% no-repeat !important;
-        }
 
-        .profile:hover + .profileFrame{
-            .profileContent{
-                filter: blur(1px);
-            }
-        }
-
-        .profileFrame{
-            margin: 3px auto;
-            position: relative;
-            left: -67px;
-            width: 64px;
-            height: 64px;
-            overflow: hidden;
-            border-radius: 100px;
-
-            .profileContent{
+            .profile{
                 position: relative;
-                left: -3px;
-                width: 70px;
-                height: 70px;
-                z-index: 1;
-                background: url("data:image/svg+xml, #{$male_profile}") center/cover no-repeat !important;
-                transition: all 0.5s;
+                z-index: 2;
+                overflow: hidden;
+                background: url("data:image/svg+xml, #{$profile_frame}") left center/100% 100% no-repeat !important;
+            }
+    
+            .profile:hover + .profileFrame{
+                .profileContent{
+                    filter: blur(1px);
+                }
+            }
+    
+            .profileFrame{
+                margin: 3px auto;
+                position: relative;
+                overflow: hidden;
+                border-radius: 100px;
+    
+                .profileContent{
+                    position: relative;
+                    left: -3px;
+                    z-index: 1;
+                    background: url("data:image/svg+xml, #{$male_profile}") center/cover no-repeat !important;
+                    transition: all 0.5s;
+                }
             }
         }
     }
