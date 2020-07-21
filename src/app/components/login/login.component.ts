@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   @Output() displayLogin = new EventEmitter<boolean>();
   @Output() displayRegister = new EventEmitter<boolean>();
   @Output() disableFilter = new EventEmitter<boolean>();
+  @Output() displayProfile = new EventEmitter<boolean>();
 
   constructor(private router: Router) { }
 
@@ -28,7 +29,17 @@ export class LoginComponent implements OnInit {
     if (this.noRegisteredClient){
       this.disableFilter.emit(true);
       this.displayRegister.emit(true);
-    }
+    } 
   }
+
+  //Log in client
+  logIn(){
+    this.displayLogin.emit(false);
+    this.displayProfile.emit(true);
+    this.disableFilter.emit(false);
+    this.displayRegister.emit(false);
+  }
+
+
 
 }

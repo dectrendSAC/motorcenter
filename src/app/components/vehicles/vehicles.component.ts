@@ -46,6 +46,7 @@ export class VehiclesComponent implements OnInit {
       this.displayLogin = status;
       this.noRegisteredClient = true;
     } else {
+      this.noRegisteredClient = false;
       this.displaySuccess = status;
     }
   }
@@ -67,6 +68,21 @@ export class VehiclesComponent implements OnInit {
   //Disable filter
   disableFilterMethod(status:boolean){
     this.disableFilter = status;
+  }
+
+  //LogOut
+  logOut(){
+    this.displayProfile = false;
+  }
+
+  //Show profile
+  showProfile(status:boolean){
+    this.displayProfile = status;
+  }
+
+  //Success component
+  hideSuccess(status:boolean){
+    this.displaySuccess = status;
   }
 
 }

@@ -65,7 +65,7 @@
         </button>
     </mat-menu>
     <mat-menu #dealer="matMenu">
-        <button mat-menu-item>
+        <button mat-menu-item routerLink="/vehiculos">
           <mat-icon>directions_car</mat-icon>
           <span>Vehículos</span>
         </button>
@@ -85,6 +85,6 @@
         <a href="" id="waBtn" class="sBtn"></a>
     </div>
 
-    <app-login *ngIf="displayLogin" id="login-form-wrapper" (displayLogin)="hideLogin($event)"></app-login>
+    <app-login *ngIf="displayLogin" id="login-form-wrapper" (displayLogin)="hideLogin($event)" (displayProfile)="showProfile($event)"></app-login>
 
 </div>

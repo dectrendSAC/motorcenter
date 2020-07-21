@@ -21,27 +21,18 @@ $background: "%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
-
-}
-
-/* Extra large devices (large laptops and desktops, 1900px and up) */
-@media only screen and (min-width: 119em) {
     #black-screen{
         #login-form{
             #loginBackground{
                 top: -20%;
-                left: -28%;
+                left: -38%;
             }
 
             #closeBtn{
-                top: 20px;
-                right: 20px;
-                width: 50px;
-                height: 50px;
-            }
-
-            span{
-                font-size: 16pt;
+                top: 10px;
+                right: 10px;
+                width: 45px;
+                height: 45px;
             }
 
             form {
@@ -49,7 +40,6 @@ $background: "%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x
 
                 mat-form-field {
                     mat-label{
-                        font-size: 15pt;
                         line-height: 10pt;
                     }
                 }
@@ -65,7 +55,44 @@ $background: "%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x
             }
         }
     }
+}
 
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 119em) {
+    #black-screen{
+        #login-form{
+            #loginBackground{
+                top: -12%;
+                left: -31%;
+            }
+
+            #closeBtn{
+                top: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+            }
+
+            form {
+                padding-top: 32px;
+
+                mat-form-field {
+                    mat-label{
+                        line-height: 10pt;
+                    }
+                }
+
+                .remember-forgot-password {
+                    margin-top: 8px;
+                    margin-bottom: 16px;
+    
+                    .forgot-password {
+                        font-size: 13px;
+                    }
+                }
+            }
+        }
+    }
 }
 
 //---------------------------------------
@@ -105,9 +132,9 @@ $background: "%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x
             opacity: 0.1;
             position: absolute;
             z-index: 1;
-            width: 130%;
+            width: 140%;
             height: 110%;
-            background: url("data:image/svg+xml, #{$background}") left center/100% 100% no-repeat !important;
+            background: url("data:image/svg+xml, #{$background}") left center/cover no-repeat !important;
         }
 
         #closeBtn{
@@ -123,6 +150,7 @@ $background: "%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x
         }
 
         span{
+            font-size: 1.4em;
             font-weight: bold;
         }
 
@@ -139,6 +167,7 @@ $background: "%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x
                 width: 100%;
 
                 mat-label{
+                    font-size: 1.3em;
                     font-family: 'palanquin', 'arial', sans-serif;
                 }
 

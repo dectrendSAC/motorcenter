@@ -13,7 +13,7 @@ var ranWordInterval = null;
 export class MainComponent implements OnInit {
   phrase: string;
   displayLogin:boolean=false;
-  displayProfile:boolean = true;
+  displayProfile:boolean = false;
 
   @ViewChild('videoPlayer') videoplayer: ElementRef;
 
@@ -73,5 +73,10 @@ export class MainComponent implements OnInit {
   }
 
   onOpenMenu(): void {}
+
+  //Show profile
+  showProfile(status:boolean){
+    this.displayProfile = status;
+  }
 
 }
