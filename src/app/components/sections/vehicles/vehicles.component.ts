@@ -14,24 +14,10 @@ export class VehiclesComponent implements OnInit {
   displaySuccess:boolean=false;
   noRegisteredClient:boolean;
   disableFilter:boolean;
-  displayProfile:boolean = false;
 
   constructor() { }
 
   ngOnInit(): void {
-  }
-
-  //Login component
-  showLogin(){
-    var nologin = document.getElementById("noLogin");
-    if(nologin){
-      this.displayLogin = true;
-      this.noRegisteredClient = false;
-    }
-  }
-
-  hideLogin(status:boolean) {
-    this.displayLogin = status;
   }
 
   //More component
@@ -68,16 +54,6 @@ export class VehiclesComponent implements OnInit {
   //Disable filter
   disableFilterMethod(status:boolean){
     this.disableFilter = status;
-  }
-
-  //LogOut
-  logOut(){
-    this.displayProfile = false;
-  }
-
-  //Show profile
-  showProfile(status:boolean){
-    this.displayProfile = status;
   }
 
   //Success component

@@ -1,0 +1,42 @@
+<div id="toolbar">
+    <div id="top" [className]="disableFilter ? 'active' : ''">
+        <div id="logoHome" [routerLink]="''"></div>
+        <div class="line"></div>
+        <div id="about">NOSOTROS</div>
+    </div>
+
+    <span *ngIf="!displayProfile" class="pulse"></span>
+    <div class="login" (click)="showLogin()">
+        <div *ngIf="!displayProfile" id="noLogin" class="no-profile"></div>
+        <div *ngIf="displayProfile" [matMenuTriggerFor]="menu" id="Login" class="profile"></div>
+        <div *ngIf="displayProfile" [matMenuTriggerFor]="menu" class="profileFrame"><div class="profileContent"></div></div>
+    </div>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item color="primary">
+          <mat-icon>account_circle</mat-icon>
+          <span>Perfil</span>
+        </button>
+        <button mat-menu-item [matMenuTriggerFor]="dealer">
+          <mat-icon>emoji_transportation</mat-icon>
+          <span>Concesionario</span>
+        </button>
+        <button mat-menu-item (click)="logOut()">
+            <mat-icon>exit_to_app</mat-icon>
+            <span>Salir</span>
+        </button>
+    </mat-menu>
+    <mat-menu #dealer="matMenu">
+        <button mat-menu-item routerLink="/vehiculos">
+          <mat-icon>directions_car</mat-icon>
+          <span>Vehículos</span>
+        </button>
+        <button mat-menu-item disabled>
+            <mat-icon>miscellaneous_services</mat-icon>
+            <span>Repuestos</span>
+          </button>
+        <button mat-menu-item disabled>
+          <mat-icon>home_repair_service</mat-icon>
+          <span>Taller</span>
+        </button>
+    </mat-menu>
+</div>>
