@@ -26,11 +26,10 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
-    #toolbar{
-        #top{
+    #topLinks{
+        .content{
             height: 60px;
-            padding-top: 20px;
-            padding-left: 30px;
+            padding: 25px;
 
             #logoHome{
                 margin-right: 20px;
@@ -46,97 +45,96 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
                 line-height: 60px;
             }
         }
+    }
 
-        .login{
-            top: 25px;
-            right: 25px;
-    
-            .no-profile{
-                width: 50px;
-                height: 50px;
-            }
+    .login{
+        top: 25px;
+        right: 25px;
 
-            .profile{
-                left: 47px;
-                width: 50px;
-                height: 50px;
-            }
-
-            .profileFrame{
-                width: 44px;
-                height: 44px;
-    
-                .profileContent{
-                    width: 50px;
-                    height: 50px;
-                }
-            }
+        .no-profile{
+            width: 50px;
+            height: 50px;
         }
-        
-        .pulse {
-            top: 26px;
-            right: 26px;
-            width: 47px;
-            height: 47px;
+
+        .profile{
+            left: 47px;
+            width: 50px;
+            height: 50px;
+        }
+
+        .profileFrame{
+            width: 44px;
+            height: 44px;
+
+            .profileContent{
+                width: 50px;
+                height: 50px;
+            }
         }
     }
+    
+    .pulse {
+        top: 26px;
+        right: 26px;
+        width: 47px;
+        height: 47px;
+    }  
 }
 
 /* Extra large devices (large laptops and desktops, 1900px and up) */
 @media only screen and (min-width: 119em) {
-    #toolbar{
-        #top{
+    #topLinks{
+        .content{
             height: 100px;
-            padding-top: 35px;
-            padding-left: 35px;
-
+            padding: 35px;
+    
             #logoHome{
                 margin-right: 40px;
             }
-
+    
             .line{
                 margin-right: 40px;
                 width: 120px;
             }
-
+    
             #about{
                 font-size: 14pt;
                 line-height: 100px;
             }
         }
+    }
 
-        .login{
-            top: 35px;
-            right: 35px;
-    
-            .no-profile{
+    .login{
+        top: 35px;
+        right: 35px;
+
+        .no-profile{
+            width: 70px;
+            height: 70px;
+        }
+
+        .profile{
+            left: 67px;
+            width: 70px;
+            height: 70px;
+        }
+
+        .profileFrame{
+            width: 64px;
+            height: 64px;
+
+            .profileContent{
                 width: 70px;
                 height: 70px;
             }
-
-            .profile{
-                left: 67px;
-                width: 70px;
-                height: 70px;
-            }
-
-            .profileFrame{
-                width: 64px;
-                height: 64px;
-    
-                .profileContent{
-                    width: 70px;
-                    height: 70px;
-                }
-            }
         }
+    }
 
-        .pulse {
-            top: 37px;
-            right: 37px;
-            width: 65px;
-            height: 65px;
-        }
+    .pulse {
+        top: 37px;
+        right: 37px;
+        width: 65px;
+        height: 65px;
     }
 }
 
@@ -169,14 +167,15 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
 }
 
 //----------------------------------------------------------------
+#topLinks{
+    position: relative;
+    width: 25%;
 
-#toolbar{
-    #top{
+    .content{
         position: relative;
-        z-index: 3;
         display: inline-flex;
         width: 100%;
-    
+
         #logoHome{
             position: relative;
             outline: none;
@@ -216,67 +215,67 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
             }
         }
     }
+}
 
-    .login{
-        color: white;
-        font-family: 'palanquin', 'arial', sans-serif;
-        font-weight: bold;
-        cursor: pointer;
-        outline: none;
-        position: absolute;
-        z-index: 1;
-        display: flex;
+.login{
+    color: white;
+    font-family: 'palanquin', 'arial', sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    position: absolute;
+    z-index: 1;
+    display: flex;
+    transition: all 0.5s;
+
+    .no-profile{
+        background: url("data:image/svg+xml, #{$login}") left center/100% 100% no-repeat !important;
         transition: all 0.5s;
+    }
 
+    &:hover{
         .no-profile{
-            background: url("data:image/svg+xml, #{$login}") left center/100% 100% no-repeat !important;
+            background: url("data:image/svg+xml, #{$login_hover}") left center/100% 100% no-repeat !important;
+        }
+    }
+
+    .profile{
+        position: relative;
+        z-index: 2;
+        overflow: hidden;
+        background: url("data:image/svg+xml, #{$profile_frame}") left center/100% 100% no-repeat !important;
+    }
+
+    .profile:hover + .profileFrame{
+        .profileContent{
+            filter: blur(1px);
+        }
+    }
+
+    .profileFrame{
+        margin: 3px auto;
+        overflow: hidden;
+        border-radius: 100px;
+
+        .profileContent{
+            position: relative;
+            left: -3px;
+            z-index: 1;
+            background: url("data:image/svg+xml, #{$male_profile}") center/cover no-repeat !important;
             transition: all 0.5s;
         }
-
-        &:hover{
-            .no-profile{
-                background: url("data:image/svg+xml, #{$login_hover}") left center/100% 100% no-repeat !important;
-            }
-        }
-
-        .profile{
-            position: relative;
-            z-index: 2;
-            overflow: hidden;
-            background: url("data:image/svg+xml, #{$profile_frame}") left center/100% 100% no-repeat !important;
-        }
-
-        .profile:hover + .profileFrame{
-            .profileContent{
-                filter: blur(1px);
-            }
-        }
-
-        .profileFrame{
-            margin: 3px auto;
-            overflow: hidden;
-            border-radius: 100px;
-
-            .profileContent{
-                position: relative;
-                left: -3px;
-                z-index: 1;
-                background: url("data:image/svg+xml, #{$male_profile}") center/cover no-repeat !important;
-                transition: all 0.5s;
-            }
-        }
     }
-    
-    .pulse {
-        position: absolute;
-        display: block;
-        border-radius: 50%;
-        box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
-        -webkit-animation: pulse 2s infinite;
-        animation: pulse 2s infinite;
-    }
+}
 
-    .pulse:hover {
-        animation: none;
-    }
+.pulse {
+    position: absolute;
+    display: block;
+    border-radius: 50%;
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0.5);
+    -webkit-animation: pulse 2s infinite;
+    animation: pulse 2s infinite;
+}
+
+.pulse:hover {
+    animation: none;
 }

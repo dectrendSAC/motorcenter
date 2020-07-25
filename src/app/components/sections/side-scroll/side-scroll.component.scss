@@ -1,0 +1,53 @@
+/* Extra small devices (phones, 688px and down) */
+@media only screen and (max-width: 43em) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 688px and up) */
+@media only screen and (min-width: 43em) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 48em) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 62em) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 119em) {
+
+}
+
+/*----------------------------------------*/
+
+#items{
+    position: absolute;
+    top: 0;
+    right: 30px;
+    vertical-align: middle;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+    .menuItem{
+        display: block;
+        float: right;
+        clear: both;
+        background: url('../../../../assets/images/sidebar-menu.png') right 20px repeat-y;
+        margin-bottom: 18px;
+        cursor: pointer;
+
+        .menuItemText{
+            display: block;
+            line-height: 41px;
+            padding-right: 19px;
+            font-size: 1.3em;
+            color: black;
+        }
+    }
+}

@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ToolbarComponent implements OnInit {
   displayLogin:boolean=false;
   displayProfile:boolean = false;
+  noRegisteredClient:boolean = false;
 
   @Input() disableFilter: boolean;
 

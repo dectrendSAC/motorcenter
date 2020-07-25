@@ -1,0 +1,49 @@
+/* Extra small devices (phones, 688px and down) */
+@media only screen and (max-width: 43em) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 688px and up) */
+@media only screen and (min-width: 43em) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 48em) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 62em) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 119em) {
+
+}
+
+/*----------------------------------------*/
+#toolbar{
+    position: absolute;
+    z-index: 3;
+    left: 0px;
+    width: 100%;
+}
+
+#sideScroll{
+    position: absolute;
+    z-index: 2;
+    right: 0px;
+    width: 10%;
+    height: 100%;
+}
+
+#vehicles{
+    position: absolute;
+    z-index: 1;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+}
