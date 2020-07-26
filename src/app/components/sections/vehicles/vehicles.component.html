@@ -31,11 +31,5 @@
 
     <app-register *ngIf="displayRegister" class="content-wrapper-register" (showList)="showList($event)" (disableFilter)="disableFilterMethod($event)"></app-register>
 
-    <app-login *ngIf="displayLogin" class="component-wrapper" (displayProfile)="showProfile($event)" (displayLogin)="hideLogin($event)" (displayRegister)="showRegister($event)" (disableFilter)="disableFilterMethod($event)" [noRegisteredClient]="noRegisteredClient"></app-login>
-
-    <app-more *ngIf="displayMore" class="component-wrapper" (displayMore)="showMore($event)" (verifyClient)="isClientRegistered($event)"></app-more>
-
-    <app-success *ngIf="displaySuccess" (displaySuccess)="hideSuccess($event)" class="component-wrapper"></app-success>
-
 </div>
 

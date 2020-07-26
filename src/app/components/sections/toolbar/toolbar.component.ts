@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-toolbar',
@@ -6,11 +6,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-  displayLogin:boolean=false;
-  displayProfile:boolean = false;
-  noRegisteredClient:boolean = false;
 
   @Input() disableFilter: boolean;
+  @Input() displayProfile: boolean;
+
+  @Output() displayLoginFromToolbar = new EventEmitter<{status: boolean, extra: string}>();
 
   constructor() { }
 
@@ -21,23 +21,12 @@ export class ToolbarComponent implements OnInit {
   showLogin(){
     var nologin = document.getElementById("noLogin");
     if(nologin){
-      this.displayLogin = true;
-      this.noRegisteredClient = false;
+      this.displayLoginFromToolbar.emit({status: true, extra: 'toolbar'});
     }
-  }
-
-  hideLogin(status:boolean) {
-    this.displayLogin = status;
   }
 
   //LogOut
   logOut(){
-    this.displayProfile = false;
+    this.displayLoginFromToolbar.emit({status: false, extra: 'toolbar'});
   }
-
-  //Show profile
-  showProfile(status:boolean){
-    this.displayProfile = status;
-  }
-
 }

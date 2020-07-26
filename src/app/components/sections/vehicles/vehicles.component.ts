@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-vehicles',
@@ -12,8 +12,9 @@ export class VehiclesComponent implements OnInit {
   displayRegister:boolean = false;
   displayMore:boolean=false;
   displaySuccess:boolean=false;
-  noRegisteredClient:boolean;
   disableFilter:boolean;
+
+  @Output() verifyClientFromVehicle = new EventEmitter<{status: boolean, extra: string}>();
 
   constructor() { }
 
@@ -27,14 +28,15 @@ export class VehiclesComponent implements OnInit {
 
   //Check if client is registered
   isClientRegistered(status:boolean){
-    var nologin = document.getElementById("noLogin");
+    this.verifyClientFromVehicle.emit({status: status, extra: 'vehicles'});
+    /*var nologin = document.getElementById("noLogin");
     if(nologin){      
       this.displayLogin = status;
       this.noRegisteredClient = true;
     } else {
       this.noRegisteredClient = false;
       this.displaySuccess = status;
-    }
+    }*/
   }
 
   //Show register form
