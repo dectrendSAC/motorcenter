@@ -1,11 +1,11 @@
-<app-toolbar id="toolbar" (displayLoginFromToolbar)="showLogin($event)" [displayProfile]="showProfileStatus"></app-toolbar>
+<app-toolbar id="toolbar" (displayLoginFromToolbar)="showLogin($event)" [displayProfile]="showProfileStatus" [changeToolbarClass]="changeToolbarClassStatus"></app-toolbar>
 
 <app-side-scroll id="sideScroll"></app-side-scroll>
 
-<app-vehicles id="vehicles" (verifyClientFromVehicle)="showLogin($event)"></app-vehicles>
+<app-vehicles id="vehicles" (verifyClientFromVehicle)="showLogin($event)" (hideRegisterFromVehicle)="hideRegister($event)" (displayMoreFromVehicle)="showMore($event)" [displayRegisterFromSection]="showRegisterStatus"></app-vehicles>
 
-<app-login *ngIf="displayLogin" class="component-wrapper" (displayLogin)="hideLogin($event)" (displayProfile)="showProfile($event)" (displayRegister)="showRegister($event)" (disableFilter)="disableFilterMethod($event)" [noRegisteredClient]="noRegisteredClient"></app-login>
+<app-login *ngIf="displayLogin" class="component-wrapper" (displayLogin)="hideLogin($event)" (displayProfile)="showProfile($event)" (displayRegister)="showRegister($event)" (changeToolbarClassFromLogin)="changeToolbarClass($event)" [noRegisteredClient]="noRegisteredClient"></app-login>
 
-<app-more *ngIf="displayMore" class="component-wrapper" (displayMore)="showMore($event)" (verifyClient)="isClientRegistered($event)"></app-more>
+<app-more *ngIf="displayMore" class="component-wrapper" (displayMore)="showMore($event)" (verifyClientFromMore)="showLogin($event)"></app-more>
 
 <app-success *ngIf="displaySuccess" class="component-wrapper" (displaySuccess)="hideSuccess($event)"></app-success>

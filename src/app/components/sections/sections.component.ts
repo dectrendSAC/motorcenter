@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-sections',
@@ -6,8 +6,11 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./sections.component.scss']
 })
 export class SectionsComponent implements OnInit {
-  displayLogin:boolean=false;
+  displayLogin:boolean = false;
+  displayMore:boolean = false;
   showProfileStatus:boolean = false;
+  showRegisterStatus:boolean = false;
+  changeToolbarClassStatus:boolean = false;
   noRegisteredClient: boolean;
 
   constructor() { }
@@ -32,4 +35,23 @@ export class SectionsComponent implements OnInit {
     this.displayLogin = status;
   }
 
+  //Vehicles functions
+  showRegister(status:boolean){
+    this.showRegisterStatus = status;
+  }
+
+  hideRegister(status:boolean){
+    this.showRegisterStatus = status;
+    this.changeToolbarClassStatus = status;
+  }
+
+  //Toolbar functions
+  changeToolbarClass(status:boolean){
+    this.changeToolbarClassStatus = status;
+  }
+
+  //More functions
+  showMore(status:boolean){
+    this.displayMore = status;
+  }
 }

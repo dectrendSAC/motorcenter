@@ -1,7 +1,7 @@
 <div id="mainScreen">
     <div id="topCurve"></div>
 
-    <app-filter [disableFilter]="disableFilter"></app-filter>
+    <app-filter [enableFilter]="displayRegisterFromSection"></app-filter>
 
     <div id="image-stack">
         <div id="car">
@@ -20,16 +20,16 @@
         <p>Al alcance de tus manos</p>
     </div>
 
-    <form *ngIf="displaySearch" id="searchBar" name="filterForm" novalidate>
+    <form *ngIf="!displayRegisterFromSection" id="searchBar" name="filterForm" novalidate>
         <mat-form-field floatLabel="never">
             <input matInput placeholder="Buscar por marca, modelo, etc">
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
     </form>
 
-    <app-list *ngIf="displayList" class="content-wrapper-list" (displayMore)="showMore($event)" (verifyClient)="isClientRegistered($event)"></app-list>
+    <app-list *ngIf="!displayRegisterFromSection" class="content-wrapper-list" (displayMore)="showMore($event)" (verifyClient)="isClientRegistered($event)"></app-list>
 
-    <app-register *ngIf="displayRegister" class="content-wrapper-register" (showList)="showList($event)" (disableFilter)="disableFilterMethod($event)"></app-register>
+    <app-register *ngIf="displayRegisterFromSection" class="content-wrapper-register" (showList)="showList($event)"></app-register>
 
 </div>
 

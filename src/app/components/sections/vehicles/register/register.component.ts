@@ -16,7 +16,6 @@ export class RegisterComponent implements OnInit {
   email:string;
 
   @Output() showList = new EventEmitter<boolean>();
-  @Output() disableFilter = new EventEmitter<boolean>();
 
   constructor(private _formBuilder: FormBuilder) { }
 
@@ -55,7 +54,6 @@ export class RegisterComponent implements OnInit {
   //Close register form
   closeRegister(){
     this.showList.emit(true);
-    this.disableFilter.emit(false);
   }
 
 }

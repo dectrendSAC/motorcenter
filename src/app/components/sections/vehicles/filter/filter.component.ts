@@ -12,7 +12,7 @@ export class FilterComponent implements OnInit {
   selectedOptionsTypes: string;
   selectedOptionsArray: string[];
 
-  @Input() disableFilter: boolean;
+  @Input() enableFilter: boolean;
 
   constructor() { }
 

@@ -8,7 +8,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class MoreComponent implements OnInit {
 
   @Output() displayMore = new EventEmitter<boolean>();
-  @Output() verifyClient = new EventEmitter<boolean>();
+  @Output() verifyClientFromMore = new EventEmitter<{status: boolean, extra: string}>();
 
   constructor() { }
 
@@ -23,7 +23,7 @@ export class MoreComponent implements OnInit {
   //Check if is a registered client
   isRegistered(){
     this.displayMore.emit(false);
-    this.verifyClient.emit(true);
+    this.verifyClientFromMore.emit({status: true, extra: 'vehicles'});
   }
   
 }

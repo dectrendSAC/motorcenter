@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
 
   @Output() displayLogin = new EventEmitter<boolean>();
   @Output() displayRegister = new EventEmitter<boolean>();
-  @Output() disableFilter = new EventEmitter<boolean>();
+  @Output() changeToolbarClassFromLogin = new EventEmitter<boolean>();
   @Output() displayProfile = new EventEmitter<boolean>();
 
   constructor(private router: Router) { }
@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
   hideLogin(){    
     this.displayLogin.emit(false);
     if (this.noRegisteredClient){
-      this.disableFilter.emit(true);
+      this.changeToolbarClassFromLogin.emit(true);
       this.displayRegister.emit(true);
     } 
   }
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   logIn(){
     this.displayLogin.emit(false);
     this.displayProfile.emit(true);
-    this.disableFilter.emit(false);
+    this.changeToolbarClassFromLogin.emit(false);
     this.displayRegister.emit(false);
   }
 
