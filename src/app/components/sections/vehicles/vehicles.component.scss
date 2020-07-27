@@ -41,9 +41,16 @@ $top:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D%22http%
 
         #searchBar{
             left: 47%;
+
             ::ng-deep .mat-form-field-flex {
                 padding: 4px 15px;
                 font-size: 11pt;
+            }
+
+            mat-form-field {
+                input{
+                    font-size: 13pt;
+                }
             }
         }
 
@@ -115,9 +122,16 @@ $top:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D%22http%
 
         #searchBar{
             left: 50%;
+
             ::ng-deep .mat-form-field-flex {
                 padding: 6px 20px;
                 font-size: 14pt;
+            }
+
+            mat-form-field {
+                input{
+                    font-size: 15pt;
+                }
             }
         }
 
@@ -325,7 +339,6 @@ $top:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D%22http%
             input{
                 font-family: 'palanquin', 'arial', sans-serif;
                 color: #AFAFAF;
-                font-size: 15pt;
             }
         }
     }

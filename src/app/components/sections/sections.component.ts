@@ -18,7 +18,7 @@ export class SectionsComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //Login functions
+  //Login methods
   showLogin($event){
     this.displayLogin = $event.status;
     this.showProfileStatus = false;
@@ -35,7 +35,7 @@ export class SectionsComponent implements OnInit {
     this.displayLogin = status;
   }
 
-  //Vehicles functions
+  //Vehicles methods
   showRegister(status:boolean){
     this.showRegisterStatus = status;
   }
@@ -45,13 +45,15 @@ export class SectionsComponent implements OnInit {
     this.changeToolbarClassStatus = status;
   }
 
-  //Toolbar functions
+  //Toolbar methods
   changeToolbarClass(status:boolean){
     this.changeToolbarClassStatus = status;
   }
 
-  //More functions
+  //More methods
   showMore(status:boolean){
     this.displayMore = status;
   }
+
+  //Success methods
 }

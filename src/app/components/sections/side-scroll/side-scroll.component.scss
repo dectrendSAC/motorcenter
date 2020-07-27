@@ -15,12 +15,24 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
-
+    #items{
+        .menuItem{
+            .menuItemText{
+                font-size: 1.1em;
+            }
+        }
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1900px and up) */
 @media only screen and (min-width: 119em) {
-
+    #items{
+        .menuItem{
+            .menuItemText{
+                font-size: 1.3em;
+            }
+        }
+    }
 }
 
 /*----------------------------------------*/
@@ -46,7 +58,6 @@
             display: block;
             line-height: 41px;
             padding-right: 19px;
-            font-size: 1.3em;
             color: black;
         }
     }
