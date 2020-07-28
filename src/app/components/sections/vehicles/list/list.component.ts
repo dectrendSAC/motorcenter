@@ -71,4 +71,29 @@ export class ListComponent implements OnInit {
     this.verifyClient.emit(true);
   }
 
+  //Sort list by price
+  sortListByPrice(method:string){
+    var list = document.getElementsByClassName('owl-stage')[0];
+
+    var items = document.getElementsByClassName('owl-item');
+    var itemsArr = [];
+    for (var i in items) {
+        if (items[i].nodeType == 1) {
+            itemsArr.push(items[i]);
+        }
+    }    
+    
+    itemsArr.sort(function(a, b) {
+      if(method == "highest"){
+        return b.getElementsByClassName('price')[0].innerText - a.getElementsByClassName('price')[0].innerText
+      } else {
+        return a.getElementsByClassName('price')[0].innerText - b.getElementsByClassName('price')[0].innerText
+      }
+    });
+    
+    for (var j = 0 ; j < itemsArr.length; j++) {
+      list.appendChild(itemsArr[j]);
+    }
+  }
+
 }

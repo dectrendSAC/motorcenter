@@ -11,6 +11,8 @@ export class FilterComponent implements OnInit {
   selectedOptionsBrands: string;
   selectedOptionsTypes: string;
   selectedOptionsArray: string[];
+  priceValue:number = 1000;
+  priceSoles:number = this.priceValue * 3.5;
 
   @Input() enableFilter: boolean;
 
@@ -29,5 +31,10 @@ export class FilterComponent implements OnInit {
     } else {
       this.selectedOptionsTypes = this.selectedOptionsArray.join(',').replace(/,(?=[^\s])/g, ", ");
     }
+  }
+
+  //change price to Soles
+  exchangeRate(value:number){
+    this.priceSoles = value * 3.5;
   }
 }

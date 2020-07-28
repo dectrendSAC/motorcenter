@@ -30,11 +30,6 @@ export class VehiclesComponent implements OnInit {
     this.verifyClientFromVehicle.emit({status: status, extra: 'vehicles'});
   }
 
-  //Success component
-  hideSuccess(status:boolean){
-    this.showSuccessFromVehicle.emit(status);
-  }
-
   //Show list component
   showList(status:boolean){
     this.hideRegisterFromVehicle.emit(!status);

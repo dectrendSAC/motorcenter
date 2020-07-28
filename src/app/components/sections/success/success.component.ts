@@ -14,8 +14,8 @@ export class SuccessComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  //Hide More component
-  hideMore(){   
+  //Hide Success component
+  hideSuccess(){   
     this.displaySuccess.emit(false);
   }
 

@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SectionsComponent implements OnInit {
   displayLogin:boolean = false;
   displayMore:boolean = false;
+  displaySuccess:boolean = false;
   showProfileStatus:boolean = false;
   showRegisterStatus:boolean = false;
   changeToolbarClassStatus:boolean = false;
@@ -20,10 +21,18 @@ export class SectionsComponent implements OnInit {
 
   //Login methods
   showLogin($event){
-    this.displayLogin = $event.status;
-    this.showProfileStatus = false;
-    if($event.extra == "vehicles"){
-      this.noRegisteredClient = $event.status;
+    var noLoginExists = document.getElementById("noLogin");
+    if(noLoginExists){
+      this.displayLogin = $event.status;
+      this.showProfileStatus = !$event.status;
+      if($event.extra == "vehicles"){
+        this.noRegisteredClient = $event.status;
+      } else {
+        this.noRegisteredClient = !$event.status;
+      }
+    } else {
+      this.showProfileStatus = $event.status;
+      this.displaySuccess = $event.status;
     }
   }
 
@@ -56,4 +65,8 @@ export class SectionsComponent implements OnInit {
   }
 
   //Success methods
+  hideSuccess(status:boolean){
+    this.displaySuccess = status;
+  }
+
 }

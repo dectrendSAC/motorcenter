@@ -1,3 +1,21 @@
+<button mat-icon-button matTooltip="Ordenar vehículos" matTooltipPosition="before" [matMenuTriggerFor]="menu" id="sortBtn">
+    <mat-icon>sort</mat-icon>
+</button>
+<mat-menu #menu="matMenu" xPosition="before">
+<button mat-menu-item>
+    <mat-icon>star_rate</mat-icon>
+    <span>Más relevantes</span>
+</button>
+<button mat-menu-item (click)="sortListByPrice('lowest')">
+    <mat-icon>trending_down</mat-icon>
+    <span>Menor precio</span>
+</button>
+<button mat-menu-item (click)="sortListByPrice('highest')">
+    <mat-icon>trending_up</mat-icon>
+    <span>Mayor precio</span>
+</button>
+</mat-menu>
+
 <div id="vehiclesList" class="owl-carousel">
     <mat-card class="vehiclesFeatures">
         <div class="vehicleImg" (click)="showMore()">
@@ -9,7 +27,7 @@
                 <span class="model">Alto 100</span>
              </div>
              <div class="vehiclePrice">
-                DESDE&nbsp;<span>$5000</span>
+                DESDE&nbsp;$<span class="price">7000</span>
              </div>
         </mat-card-content>
         <mat-card-actions>
@@ -30,7 +48,7 @@
                 <span class="model">Alto 200</span>
              </div>
              <div class="vehiclePrice">
-                DESDE&nbsp;<span>$5000</span>
+                DESDE&nbsp;$<span class="price">5000</span>
              </div>
         </mat-card-content>
         <mat-card-actions>
@@ -51,7 +69,7 @@
                 <span class="model">Alto 300</span>
              </div>
              <div class="vehiclePrice">
-                DESDE&nbsp;<span>$5000</span>
+                DESDE&nbsp;$<span class="price">8000</span>
              </div>
         </mat-card-content>
         <mat-card-actions>
@@ -72,7 +90,7 @@
                 <span class="model">Alto 400</span>
              </div>
              <div class="vehiclePrice">
-                DESDE&nbsp;<span>$5000</span>
+                DESDE&nbsp;$<span class="price">15000</span>
              </div>
         </mat-card-content>
         <mat-card-actions>
@@ -93,7 +111,7 @@
                 <span class="model">Alto 500</span>
              </div>
              <div class="vehiclePrice">
-                DESDE&nbsp;<span>$5000</span>
+                DESDE&nbsp;$<span class="price">10000</span>
              </div>
         </mat-card-content>
         <mat-card-actions>

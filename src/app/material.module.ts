@@ -10,6 +10,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule ({
     imports: [
@@ -22,7 +24,9 @@ import { MatMenuModule } from '@angular/material/menu';
         MatCardModule,
         MatStepperModule,
         MatCheckboxModule,
-        MatMenuModule 
+        MatMenuModule,
+        MatSliderModule,
+        MatTooltipModule 
     ],
     exports:[
         MatButtonModule,
@@ -34,7 +38,9 @@ import { MatMenuModule } from '@angular/material/menu';
         MatCardModule,
         MatStepperModule,
         MatCheckboxModule,
-        MatMenuModule 
+        MatMenuModule,
+        MatSliderModule,
+        MatTooltipModule 
     ]
 })
 
