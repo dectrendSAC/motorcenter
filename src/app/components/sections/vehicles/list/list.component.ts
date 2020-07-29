@@ -72,7 +72,7 @@ export class ListComponent implements OnInit {
   }
 
   //Sort list by price
-  sortListByPrice(method:string){
+  sortList(method:string){
     var list = document.getElementsByClassName('owl-stage')[0];
 
     var items = document.getElementsByClassName('owl-item');
@@ -86,8 +86,12 @@ export class ListComponent implements OnInit {
     itemsArr.sort(function(a, b) {
       if(method == "highest"){
         return b.getElementsByClassName('price')[0].innerText - a.getElementsByClassName('price')[0].innerText
-      } else {
+      } 
+      else if(method == "lowest"){
         return a.getElementsByClassName('price')[0].innerText - b.getElementsByClassName('price')[0].innerText
+      } 
+      else if(method == "relevant") {
+        return b.getElementsByClassName('offerContainer')[0].innerText - a.getElementsByClassName('offerContainer')[0].innerText
       }
     });
     

@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sections.component.scss']
 })
 export class SectionsComponent implements OnInit {
+  displayVehicles:boolean = false;
+  displayWorkshop:boolean = true;
   displayLogin:boolean = false;
   displayMore:boolean = false;
   displaySuccess:boolean = false;

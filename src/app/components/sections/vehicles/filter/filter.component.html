@@ -158,14 +158,14 @@
 
                 <div class="line"></div>
 
-                <mat-expansion-panel (opened)="panelOpenTypeState = true"
-                                        (closed)="panelOpenTypeState = false">
+                <mat-expansion-panel (opened)="panelOpenPriceState = true"
+                                        (closed)="panelOpenPriceState = false">
                     <mat-expansion-panel-header>
                         <mat-panel-title class="fltrSubtitle">
                             Precio desde
                         </mat-panel-title>
                         <mat-panel-description>
-                            {{panelOpenTypeState  ? '' : '$'+priceValue+' ó S/'+priceSoles}}
+                            {{panelOpenPriceState  ? '' : '$'+priceValue+' ó S/'+priceSoles}}
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-card id="price">

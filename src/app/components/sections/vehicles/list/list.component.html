@@ -2,15 +2,15 @@
     <mat-icon>sort</mat-icon>
 </button>
 <mat-menu #menu="matMenu" xPosition="before">
-<button mat-menu-item>
+<button mat-menu-item (click)="sortList('relevant')">
     <mat-icon>local_offer</mat-icon>
     <span>Más relevantes</span>
 </button>
-<button mat-menu-item (click)="sortListByPrice('lowest')">
+<button mat-menu-item (click)="sortList('lowest')">
     <mat-icon>trending_down</mat-icon>
     <span>Menor precio</span>
 </button>
-<button mat-menu-item (click)="sortListByPrice('highest')">
+<button mat-menu-item (click)="sortList('highest')">
     <mat-icon>trending_up</mat-icon>
     <span>Mayor precio</span>
 </button>
@@ -18,6 +18,7 @@
 
 <div id="vehiclesList" class="owl-carousel">
     <mat-card class="vehiclesFeatures">
+        <div class="offerContainer">1<div class="vehicleOffer" (click)="showMore()"></div></div>
         <div class="vehicleImg" (click)="showMore()">
             <img src="assets/images/tempo.png">
         </div>
@@ -27,7 +28,7 @@
                 <span class="model">Alto 100</span>
              </div>
              <div class="vehiclePrice">
-                DESDE&nbsp;$<span class="price">7000</span>
+                DESDE&nbsp;<span class="moneySimbol">$</span><span class="price">7000</span>&nbsp;(S/21000)
              </div>
         </mat-card-content>
         <mat-card-actions>
@@ -39,6 +40,7 @@
     </mat-card>
 
     <mat-card class="vehiclesFeatures">
+        <div class="offerContainer">0</div>
         <div class="vehicleImg">
             <img src="assets/images/tempo.png">
         </div>
@@ -48,7 +50,7 @@
                 <span class="model">Alto 200</span>
              </div>
              <div class="vehiclePrice">
-                DESDE&nbsp;$<span class="price">5000</span>
+                DESDE&nbsp;<span class="usdSimbol">$</span><span class="price">5000</span>&nbsp;(S/15000)
              </div>
         </mat-card-content>
         <mat-card-actions>
@@ -60,6 +62,7 @@
     </mat-card>
 
     <mat-card class="vehiclesFeatures">
+        <div class="offerContainer">1<div class="vehicleOffer" (click)="showMore()"></div></div>
         <div class="vehicleImg">
             <img src="assets/images/tempo.png">
         </div>
@@ -69,7 +72,7 @@
                 <span class="model">Alto 300</span>
              </div>
              <div class="vehiclePrice">
-                DESDE&nbsp;$<span class="price">8000</span>
+                DESDE&nbsp;<span class="usdSimbol">$</span><span class="price">8000</span>&nbsp;(S/24000)
              </div>
         </mat-card-content>
         <mat-card-actions>
@@ -81,6 +84,7 @@
     </mat-card>
 
     <mat-card class="vehiclesFeatures">
+        <div class="offerContainer">0</div>
         <div class="vehicleImg">
             <img src="assets/images/tempo.png">
         </div>
@@ -90,7 +94,7 @@
                 <span class="model">Alto 400</span>
              </div>
              <div class="vehiclePrice">
-                DESDE&nbsp;$<span class="price">15000</span>
+                DESDE&nbsp;<span class="usdSimbol">$</span><span class="price">15000</span>&nbsp;(S/45000)
              </div>
         </mat-card-content>
         <mat-card-actions>
@@ -102,6 +106,7 @@
     </mat-card>
 
     <mat-card class="vehiclesFeatures">
+        <div class="offerContainer">0</div>
         <div class="vehicleImg">
             <img src="assets/images/tempo.png">
         </div>
@@ -111,7 +116,7 @@
                 <span class="model">Alto 500</span>
              </div>
              <div class="vehiclePrice">
-                DESDE&nbsp;$<span class="price">10000</span>
+                DESDE&nbsp;<span class="usdSimbol">$</span><span class="price">10000</span>&nbsp;(S/30000)
              </div>
         </mat-card-content>
         <mat-card-actions>

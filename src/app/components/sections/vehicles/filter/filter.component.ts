@@ -8,6 +8,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class FilterComponent implements OnInit {
   panelOpenBrandState = true;
   panelOpenTypeState = false;
+  panelOpenPriceState = false;
   selectedOptionsBrands: string;
   selectedOptionsTypes: string;
   selectedOptionsArray: string[];
@@ -25,6 +26,7 @@ export class FilterComponent implements OnInit {
     this.selectedOptionsArray = items.selectedOptions.selected.map(item => item.value);
     if(this.selectedOptionsArray.length > 3){
       this.selectedOptionsArray[3] = '...';
+      this.selectedOptionsArray.length = 4;
     }
     if(selection == 'brands'){
       this.selectedOptionsBrands = this.selectedOptionsArray.join(',').replace(/,(?=[^\s])/g, ", ");
