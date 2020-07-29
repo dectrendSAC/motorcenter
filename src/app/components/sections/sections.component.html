@@ -1,4 +1,4 @@
-<app-toolbar id="toolbar" (displayLoginFromToolbar)="showLogin($event)" [displayProfile]="showProfileStatus" [changeToolbarClass]="changeToolbarClassStatus"></app-toolbar>
+<app-toolbar id="toolbar" (displayLoginFromToolbar)="showLogin($event)" [displayProfile]="showProfileStatus" [changeTopLinksClass]="changeTopLinksClassStatus"></app-toolbar>
 
 <app-side-scroll id="sideScroll"></app-side-scroll>
 
@@ -6,7 +6,7 @@
 
 <app-workshop *ngIf="displayWorkshop" id="workshop"></app-workshop>
 
-<app-login *ngIf="displayLogin" class="component-wrapper" (displayLogin)="hideLogin($event)" (displayProfile)="showProfile($event)" (displayRegister)="showRegister($event)" (changeToolbarClassFromLogin)="changeToolbarClass($event)" [noRegisteredClient]="noRegisteredClient"></app-login>
+<app-login *ngIf="displayLogin" class="component-wrapper" (displayLogin)="hideLogin($event)" (displayProfile)="showProfile($event)" (displayRegister)="showRegister($event)" (changeToolbarClassFromLogin)="changeTopLinksClass($event)" [noRegisteredClient]="noRegisteredClient"></app-login>
 
 <app-more *ngIf="displayMore" class="component-wrapper" (displayMore)="showMore($event)" (verifyClientFromMore)="showLogin($event)"></app-more>
 

@@ -1,0 +1,61 @@
+/* Extra small devices (phones, 688px and down) */
+@media only screen and (max-width: 43em) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 688px and up) */
+@media only screen and (min-width: 43em) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 48em) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 62em) {
+    #workshopBooking{
+        padding: 8%;
+
+        .booking{
+            .subtitle{
+                font-size: 24px;
+            }
+        }
+    }
+    
+}
+
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 119em) {
+    #workshopBooking{
+        padding: 9%;
+    }
+
+}
+
+//----------------------------------------------------------------
+
+#workshopBooking{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+    img{
+        width: 100%;
+        height: auto;
+    }
+
+    .booking{
+        .subtitle{
+            font-family: "palanquin", "arial", sans-serif;
+            color: #CA181F;
+            padding-bottom: 25px;
+        }
+
+        ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+            background-color: white;
+        }
+    }
+}

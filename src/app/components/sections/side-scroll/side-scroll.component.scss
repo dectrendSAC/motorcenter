@@ -59,6 +59,13 @@
             line-height: 41px;
             padding-right: 19px;
             color: black;
+            background: rgb(239,239,239, 0.3);
+            border-radius: 15px 0px 0px 15px;
+            padding: 0px 15px;
+        }
+
+        .menuItemText:hover{
+            opacity: 0.6;
         }
     }
 }

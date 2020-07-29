@@ -13,7 +13,7 @@ export class SectionsComponent implements OnInit {
   displaySuccess:boolean = false;
   showProfileStatus:boolean = false;
   showRegisterStatus:boolean = false;
-  changeToolbarClassStatus:boolean = false;
+  changeTopLinksClassStatus:boolean = false;
   noRegisteredClient: boolean;
 
   constructor() { }
@@ -53,12 +53,12 @@ export class SectionsComponent implements OnInit {
 
   hideRegister(status:boolean){
     this.showRegisterStatus = status;
-    this.changeToolbarClassStatus = status;
+    this.changeTopLinksClassStatus = status;
   }
 
   //Toolbar methods
-  changeToolbarClass(status:boolean){
-    this.changeToolbarClassStatus = status;
+  changeTopLinksClass(status:boolean){
+    this.changeTopLinksClassStatus = status;
   }
 
   //More methods

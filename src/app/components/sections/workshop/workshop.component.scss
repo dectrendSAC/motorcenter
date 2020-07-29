@@ -19,10 +19,54 @@ $bottom:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Ax
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
+    #mainScreen{
+        #bottomCurve{
+            width: 100%;
+            height: 67.7%;
+        }
+
+        #image-stack{
+            width: 39%;
+            bottom: 25px;
+            left: 25px;
+        }
+
+        #title{
+            left: 47%;
+            bottom: 25px;
+            font-size: 25pt;
+
+            p:nth-child(2){
+                font-size: 44pt;
+            }
+        }
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1900px and up) */
 @media only screen and (min-width: 119em) {
+    #mainScreen{
+        #bottomCurve{
+            width: 100%;
+            height: 61.15%;
+        }
+
+        #image-stack{
+            width: 42%;
+            bottom: 35px;
+            left: 35px;
+        }
+
+        #title{
+            left: 50%;
+            bottom: 35px;
+            font-size: 45pt;
+
+            p:nth-child(2){
+                font-size: 64pt;
+            }
+        }
+    }
 }
 
 //Float animation
@@ -61,21 +105,16 @@ $bottom:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Ax
 
     #bottomCurve{
         position: fixed;
-        width: 100%;
-        height: 61.15%;
         z-index: 0;
         bottom: 0px;
-        left: 0px;
-        background: url("data:image/svg+xml, #{$bottom}") left no-repeat !important;
+        right: 0px;
+        background: url("data:image/svg+xml, #{$bottom}") right no-repeat !important;
     }
 
     #image-stack{
         display: grid;
         grid-template-columns: repeat(20, 1fr);
         position: absolute;
-        width: 42%;
-        bottom: 35px;
-        left: 35px;
         z-index: 1;
 
         #carWorkshop{
@@ -144,6 +183,17 @@ $bottom:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Ax
             grid-row: 1;
             z-index: 2;
             padding-top: 0%;
+        }
+    }
+
+    #title{
+        position: absolute;
+        font-family: "ubuntu", "arial", sans-serif;
+        color: white;
+        line-height: normal;
+
+        p:nth-child(2){
+            font-weight: bold;
         }
     }
 }
