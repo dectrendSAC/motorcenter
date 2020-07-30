@@ -2,27 +2,34 @@
     <form class="booking">
         <div class="subtitle">Reserva tu cita en nuestro taller</div>
         <mat-form-field appearance="fill">
-          <mat-label>Fecha de ingreso</mat-label>
-          <input matInput placeholder="Selecciona una fecha" required>
+          <span class="itemTitle">Fecha de ingreso</span>
+          <input matInput [matDatepicker]="dp3" placeholder="Selecciona una fecha" disabled>
+          <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-label>Hora</mat-label>
-          <input matInput required>
+          <span class="itemTitle">Hora</span>
+          <mat-select required>
+            <mat-option value="option">8:00 am</mat-option>
+          </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Número de placa</mat-label>
-            <input matInput placeholder="Ingresa el número" required>
+          <span class="itemTitle">Número de placa</span>
+          <input matInput placeholder="Ingresa el número" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Servicio a solicitar</mat-label>
-            <input matInput placeholder="Seleccione los servicios" required>
+          <span class="itemTitle">Servicio a solicitar</span>
+          <input matInput placeholder="Seleccione los servicios" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
-            <mat-label>Promoción</mat-label>
-            <input matInput placeholder="Ingrese el código" required>
+          <span class="itemTitle">Promoción</span>
+          <input matInput placeholder="Ingrese el código" required>
         </mat-form-field>
         <div class="buttons">
-          <button mat-raised-button color="primary" class="nextBtn">SIGUIENTE</button>
+          <button mat-raised-button color="primary">
+            <span>ENVIAR</span>
+          </button>
+          <mat-checkbox color="primary" labelPosition="before" checked=true>Incluir lavado del vehículo <a>GRATIS</a></mat-checkbox>
         </div>
     </form>
 </div>

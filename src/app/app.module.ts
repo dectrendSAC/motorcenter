@@ -31,6 +31,7 @@ import { SuccessComponent } from './components/sections/success/success.componen
 import { SideScrollComponent } from './components/sections/side-scroll/side-scroll.component';
 import { SectionsComponent } from './components/sections/sections.component';
 import { ToolbarComponent } from './components/sections/toolbar/toolbar.component';
+import { ServicesComponent } from './components/sections/workshop/services/services.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ToolbarComponent } from './components/sections/toolbar/toolbar.componen
     SuccessComponent,
     SideScrollComponent,
     SectionsComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ServicesComponent
   ],
   imports: [
     BrowserModule,

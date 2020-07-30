@@ -1,7 +1,7 @@
 <div id="mainScreen">
     <div id="bottomCurve"></div>
 
-    <app-book></app-book>
+    <app-services *ngIf="displayServices" class="content-wrapper-services"></app-services>
 
     <div id="image-stack">
         <div id="carWorkshop">
@@ -31,5 +31,7 @@
         <p>Servicios de mantenimiento, reparación, planchado/pintura y lavado</p>
         <p>Reserva tu cita hoy</p>
     </div>
+
+    <app-book class="content-wrapper-book"></app-book>
 
 </div>

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./workshop.component.scss']
 })
 export class WorkshopComponent implements OnInit {
+  displayServices:boolean = false;
 
   constructor() { }
 

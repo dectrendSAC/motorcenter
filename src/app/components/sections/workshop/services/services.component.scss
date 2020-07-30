@@ -90,17 +90,17 @@
 
 /* Extra large devices (large laptops and desktops, 1900px and up) */
 @media only screen and (min-width: 119em) {
-    #sidebarFilter{
+    #sidebarServices{
         width: 25%;
         -webkit-box-shadow: 5px 0px 34px -5px rgba(0,0,0,0.7);
         -moz-box-shadow: 5px 0px 34px -5px rgba(0,0,0,0.7);
         box-shadow: 5px 0px 34px -5px rgba(0,0,0,0.7);
 
-        #filter{
+        #services{
             top: 14%;
-            padding: 30px 35px 35px;
+            padding: 7% 7.5% 5%;
 
-            #fltrTitle{
+            #servicesTitle{
                 font-size: 25pt;
             }
 
@@ -109,12 +109,7 @@
                 left: -35px;
             }
 
-            #filterForm{    
-                .fltrSubtitle{
-                    font-size: 18pt;
-                    padding: 30px 0px;
-                }
-
+            #serviceForm{    
                 mat-expansion-panel{
                     mat-panel-description{
                         font-size: 13pt;
@@ -122,32 +117,17 @@
                     }
                 }
 
-                #brands{
+                #items{
                     mat-list-option{
-                        margin-right: 27px;
-                        margin-bottom: 30px;
+                        margin-right: 57px;
+                        margin-bottom: 100px;
     
                         &:nth-child(9), &:nth-child(10), &:nth-child(11), &:nth-child(12){
                             margin-bottom: 15px;
                         }
                     }
     
-                    .brand{
-                        width: 70px;
-                    }
-                }
-
-                #types{
-                    mat-list-option{
-                        margin-right: 5px;
-                        margin-bottom: 30px;
-    
-                        &:nth-child(9), &:nth-child(10), &:nth-child(11), &:nth-child(12){
-                            margin-bottom: 15px;
-                        }
-                    }
-    
-                    .type{
+                    .item{
                         font-size: 12pt;
                         width: 90px;
                     }
@@ -164,7 +144,7 @@
 }
 
 /*--------------------*/
-#sidebarFilter{
+#sidebarServices{
     position: relative;
     z-index: 1;
     top: 0px;
@@ -172,22 +152,12 @@
     height: 100%;
     background: white;
 
-    #blakScreen{
-        position: absolute;
-        z-index: 2;
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        height: 100%;
-        background-color:rgba(0, 0, 0, 0.7);
-    }
-
-    #filter{
+    #services{
         position: relative;
         width: 85%;
         height: 80%;
 
-        #fltrTitle{
+        #servicesTitle{
             font-family: "palanquin", "arial", sans-serif;
             font-weight: bold;
             color: #CA181F;
@@ -200,65 +170,11 @@
             padding-top: 20px;
         }
 
-        #filterForm{
+        #serviceForm{
             position: relative;
-
-            .fltrSubtitle{
-                font-family: "palanquin", "arial", sans-serif;
-                font-weight: bold;
-                position: relative;
-                display: inline-flex;
-            }
-
-            mat-expansion-panel{
-                margin: 0px !important;
-                box-shadow: none;
-
-                mat-expansion-panel-header{
-                    padding: 0 2px;
-                }
-
-                mat-expansion-panel-header:hover{
-                    background: white !important;
-                }
-
-                ::ng-deep.mat-expansion-panel-body{
-                    padding: 0px !important;
-                }
-            }
+            padding-top: 60px;
     
-            #brands{
-                position: relative;
-
-                ::ng-deep.mat-pseudo-checkbox{
-                    display: none !important;
-                }
-
-                mat-list-option{
-                    width: 20%;
-                    position: relative;
-                    display: inline-block;
-                    vertical-align: middle;
-
-                    &:nth-child(4), &:nth-child(8), &:nth-child(12){
-                        margin-right: 0px;
-                    }
-                }
-
-                mat-list-option[aria-selected="true"] {
-                    background: white;
-
-                    & .brand>svg{
-                        fill: #CA181F;
-                    }
-                }
-
-                mat-list-option[aria-selected="false"] {
-                    background: white;
-                }
-            }
-
-            #types{
+            #items{
                 position: relative;
 
                 ::ng-deep.mat-pseudo-checkbox{
@@ -270,28 +186,64 @@
                     position: relative;
                     display: inline-block;
 
-                    &:nth-child(4), &:nth-child(8), &:nth-child(12){
+                    &:nth-child(3), &:nth-child(6), &:nth-child(9){
                         margin-right: 0px;
                     }
+
+                    &:nth-child(10){
+                        width: 32%;
+                        .item{
+                            width: 131px;
+                        }
+                    }
+
+                    &:nth-child(1), &:nth-child(4){
+                        .item{
+                            width: 75px;
+                        }
+                    }
+                    &:nth-child(2){
+                        .item{
+                            width: 63.5px;
+                        }
+                    }
+                    &:nth-child(5){
+                        .item{
+                            width: 80px;
+                        }
+                    }
+                    &:nth-child(6){
+                        .item{
+                            width: 66.5px;
+                        }
+                    }
+                    &:nth-child(7){
+                        .item{
+                            width: 93px;
+                        }
+                    }
+                    &:nth-child(8){
+                        .item{
+                            width: 85px;
+                        }
+                    }
+                    &:nth-child(9){
+                        .item{
+                            width: 87px;
+                        }
+                    }
+
                 }
 
                 mat-list-option[aria-selected="true"] {
                     background: white;
 
-                    & .type>svg .cls-1{
-                        fill: #ff9494;
+                    & .item>svg{
+                        fill: #CA181F;
                     }
 
-                    & .type>svg .cls-2{
-                        fill: #9f0003;
-                    }
-
-                    & .type>svg .cls-3{
-                        fill: #9f0003;
-                    }
-
-                    & .type{
-                        font-weight: bold;
+                    & .item{
+                        color: #CA181F;
                     }
                 }
 
@@ -299,17 +251,14 @@
                     background: white;
                 }
 
-                .type{
-                    text-align: center;
-                    color: #616161;
+                ::ng-deep.mat-list-text{
+                    padding: 0px;
                 }
-            }
 
-            #price{
-                color: #616161;
-
-                .priceSlider{
-                    width: 100%;
+                .item{
+                    margin: 0 auto;
+                    text-align: center;
+                    color: #000000;
                 }
             }
         }

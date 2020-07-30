@@ -12,6 +12,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSelectModule } from '@angular/material/select';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule ({
     imports: [
@@ -26,7 +29,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatCheckboxModule,
         MatMenuModule,
         MatSliderModule,
-        MatTooltipModule 
+        MatTooltipModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule 
     ],
     exports:[
         MatButtonModule,
@@ -40,7 +46,10 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatCheckboxModule,
         MatMenuModule,
         MatSliderModule,
-        MatTooltipModule 
+        MatTooltipModule,
+        MatSelectModule,
+        MatDatepickerModule,
+        MatNativeDateModule 
     ]
 })
 
