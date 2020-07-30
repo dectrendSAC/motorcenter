@@ -13,4 +13,9 @@ export class WorkshopComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  //Services methods
+  showServices(status:boolean){
+    this.displayServices = status;
+  }
+
 }

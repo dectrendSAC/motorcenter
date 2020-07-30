@@ -16,13 +16,34 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
     #workshopBooking{
-        width: 81%;
-        padding: 8% 11% 8% 8%;
+        width: 79%;
+        padding: 7% 13% 7% 8%;
 
         .booking{
             .subtitle{
                 font-size: 24px;
-                padding-bottom: 75px;
+                padding-bottom: 60px;
+            }
+
+            mat-form-field{
+                font-size: 15px;
+                line-height: 1.2;
+                width: 22.39%;
+
+                .itemTitle{
+                    top: -150%;
+                    font-size: 18px;
+                }
+            }
+
+            .buttons{
+                mat-checkbox{
+                    font-size: 15px;
+                }
+
+                button{
+                    font-size: 13px;
+                }
             }
         }
     }
@@ -39,6 +60,17 @@
             .subtitle{
                 font-size: 35px;
                 padding-bottom: 95px;
+            }
+
+            mat-form-field{
+                font-size: 20px;
+                line-height: 1.5;
+                width: 22.5%;
+
+                .itemTitle{
+                    top: -135%;
+                    font-size: 25px;
+                }
             }
 
             .buttons{
@@ -74,15 +106,16 @@
 
         mat-form-field{
             font-family: "palanquin", "arial", sans-serif;
-            font-size: 20px;
-            line-height: 1.5;
             padding-right: 3px;
-            width: 22.5%;
 
             ::ng-deep .mat-form-field-flex {
                 border-radius: 0px;
                 padding: 0em .75em .75em .75em;
                 background-color: white;
+            }
+
+            ::ng-deep .mat-form-field-suffix{
+                top: 7px;
             }
 
             ::ng-deep .mat-form-field-underline {
@@ -93,8 +126,6 @@
 
             .itemTitle{
                 position: absolute;
-                top: -135%;
-                font-size: 25px;
                 width: 100%;
                 padding: 0px auto;
                 text-align: center;
@@ -113,11 +144,19 @@
         }
 
         mat-form-field:nth-child(3){
-            width: 9%;
+            width: 10%;
 
             ::ng-deep .mat-select-arrow-wrapper{
                 transform: none;
             }
+        }
+
+        mat-form-field:nth-child(4){
+            width: 16.39%;
+        }
+
+        mat-form-field:nth-child(5){
+            width: 27.39%;
         }
 
         mat-form-field:nth-child(6){

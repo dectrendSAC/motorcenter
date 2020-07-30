@@ -3,14 +3,15 @@
         <div class="subtitle">Reserva tu cita en nuestro taller</div>
         <mat-form-field appearance="fill">
           <span class="itemTitle">Fecha de ingreso</span>
-          <input matInput [matDatepicker]="dp3" placeholder="Selecciona una fecha" disabled>
-          <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-          <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+          <input matInput [matDatepicker]="dp" [matDatepickerFilter]="dateFilter" [min]="minDate" [max]="maxDate" placeholder="Selecciona una fecha" [formControl]="date" disabled>
+          <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+          <mat-datepicker #dp disabled="false"></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <span class="itemTitle">Hora</span>
           <mat-select required>
             <mat-option value="option">8:00 am</mat-option>
+            <mat-option value="option">10:00 pm</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill">
@@ -19,7 +20,7 @@
         </mat-form-field>
         <mat-form-field appearance="fill">
           <span class="itemTitle">Servicio a solicitar</span>
-          <input matInput placeholder="Seleccione los servicios" required>
+          <input matInput placeholder="Seleccione los servicios" (click)="showServices()" required>
         </mat-form-field>
         <mat-form-field appearance="fill">
           <span class="itemTitle">Promoción</span>

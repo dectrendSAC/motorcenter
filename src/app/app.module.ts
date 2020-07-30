@@ -33,6 +33,9 @@ import { SectionsComponent } from './components/sections/sections.component';
 import { ToolbarComponent } from './components/sections/toolbar/toolbar.component';
 import { ServicesComponent } from './components/sections/workshop/services/services.component';
 
+import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +73,14 @@ import { ServicesComponent } from './components/sections/workshop/services/servi
     ReactiveFormsModule,
     OwlModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_DATE_LOCALE, useValue: 'es-Es'},
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
