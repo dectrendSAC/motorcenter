@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WorkshopComponent implements OnInit {
   displayServices:boolean = false;
+  selectedItemsText:string;
 
   constructor() { }
 
@@ -16,6 +17,12 @@ export class WorkshopComponent implements OnInit {
   //Services methods
   showServices(status:boolean){
     this.displayServices = status;
+  }
+
+  showSelectedServices(items:string){
+    this.selectedItemsText = items;
+    console.log(this.selectedItemsText);
+    
   }
 
 }

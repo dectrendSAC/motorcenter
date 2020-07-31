@@ -18,9 +18,9 @@
           <span class="itemTitle">Número de placa</span>
           <input matInput placeholder="Ingresa el número" required>
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" (click)="showServices()">
           <span class="itemTitle">Servicio a solicitar</span>
-          <input matInput placeholder="Seleccione los servicios" (click)="showServices()" required>
+          <input matInput placeholder="Seleccione los servicios" [(ngModel)]="selectedItems" disabled required [ngModelOptions]="{standalone: true}">
         </mat-form-field>
         <mat-form-field appearance="fill">
           <span class="itemTitle">Promoción</span>

@@ -1,7 +1,7 @@
 <div id="mainScreen">
     <div id="bottomCurve"></div>
 
-    <app-services *ngIf="displayServices" class="content-wrapper-services"></app-services>
+    <app-services *ngIf="displayServices" class="content-wrapper-services" (selectedOptionsItems)="showSelectedServices($event)"></app-services>
 
     <div id="image-stack">
         <div id="carWorkshop">
@@ -32,6 +32,6 @@
         <p>Reserva tu cita hoy</p>
     </div>
 
-    <app-book class="content-wrapper-book" (displayServices)="showServices($event)"></app-book>
+    <app-book class="content-wrapper-book" (displayServices)="showServices($event)" [selectedItems]="selectedItemsText"></app-book>
 
 </div>

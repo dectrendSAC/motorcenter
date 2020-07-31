@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { FormControl } from '@angular/forms';
 
@@ -31,6 +31,7 @@ export class BookComponent implements OnInit {
   minDate: Date;
   maxDate: Date;
 
+  @Input() selectedItems: string;
   @Output() displayServices = new EventEmitter<boolean>();
 
   constructor() {
@@ -45,9 +46,9 @@ export class BookComponent implements OnInit {
 
   //Disable full dates
   dateFilter = (d: Date) => {
-    const day = d.getDay();
+    var day = d.weekday();
     // Prevent Saturday and Sunday from being selected.
-    return day !== 0 && day !== 6;
+    return day !== 6;
   }
 
   //Services component methods
