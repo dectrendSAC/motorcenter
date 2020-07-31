@@ -22,12 +22,9 @@ export class FilterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onChecked(items, selection){
+  onChecked(items:any, selection:string){
     this.selectedOptionsArray = items.selectedOptions.selected.map(item => item.value);
-    if(this.selectedOptionsArray.length > 3){
-      this.selectedOptionsArray[3] = '...';
-      this.selectedOptionsArray.length = 4;
-    }
+
     if(selection == 'brands'){
       this.selectedOptionsBrands = this.selectedOptionsArray.join(',').replace(/,(?=[^\s])/g, ", ");
     } else {

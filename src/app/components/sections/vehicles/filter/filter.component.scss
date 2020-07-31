@@ -225,6 +225,13 @@
                 ::ng-deep.mat-expansion-panel-body{
                     padding: 0px !important;
                 }
+
+                mat-panel-description{
+                    display: inline;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
             }
     
             #brands{
@@ -316,7 +323,7 @@
 
         .wrapper{
             position: absolute;
-            bottom: 3%;
+            bottom: 0%;
             left: 50%;
             width: 100%;
 

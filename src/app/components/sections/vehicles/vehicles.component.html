@@ -22,8 +22,11 @@
 
     <form *ngIf="!displayRegisterFromSection" id="searchBar" name="filterForm" novalidate>
         <mat-form-field floatLabel="never">
-            <input matInput placeholder="Buscar por marca, modelo, etc">
-            <mat-icon matSuffix>search</mat-icon>
+            <input matInput placeholder="Buscar por marca, modelo, etc" [(ngModel)]="searchValue" [ngModelOptions]="{standalone: true}">
+            <button mat-button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue=''">
+              <mat-icon>close</mat-icon>
+            </button>
+            <mat-icon *ngIf="!searchValue" matSuffix>search</mat-icon>
         </mat-form-field>
     </form>
 

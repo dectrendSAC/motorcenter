@@ -15,17 +15,17 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
-    #sidebarFilter{
+    #sidebarServices{
         width: 25%;
-        -webkit-box-shadow: 5px 0px 24px -5px rgba(0,0,0,0.7);
-        -moz-box-shadow: 5px 0px 24px -5px rgba(0,0,0,0.7);
-        box-shadow: 5px 0px 24px -5px rgba(0,0,0,0.7);
+        -webkit-box-shadow: 5px 0px 34px -5px rgba(0,0,0,0.7);
+        -moz-box-shadow: 5px 0px 34px -5px rgba(0,0,0,0.7);
+        box-shadow: 5px 0px 34px -5px rgba(0,0,0,0.7);
 
-        #filter{
+        #services{
             top: 13.5%;
-            padding: 25px;
+            padding: 7% 7.5% 5%;
 
-            #fltrTitle{
+            #servicesTitle{
                 font-size: 20pt;
             }
 
@@ -34,46 +34,66 @@
                 left: -25px;
             }
 
-            #filterForm{    
-                .fltrSubtitle{
-                    font-size: 18pt;
-                    padding: 15px 0px;
-                }
+            #serviceForm{   
+                padding-top: 35px;
 
-                mat-expansion-panel{
-                    mat-panel-description{
-                        font-size: 9pt;
-                        padding: 15px 0px;
-                    }
-                }
-
-                #brands{
+                #items{
                     mat-list-option{
-                        margin-right: 19px;
-                        margin-bottom: 5px;
-        
-                        &:nth-child(9), &:nth-child(10), &:nth-child(11), &:nth-child(12){
-                            margin-bottom: 5px;
+                        width: 21%;
+                        margin-right: 45px;
+                        margin-bottom: 45px;
+                        
+                        &:nth-child(10){
+                            margin-bottom: 0px;
+                            width: 36%;
+                            .item{
+                                width: 96px;
+                            }
+                        }
+    
+                        &:nth-child(1), &:nth-child(4){
+                            .item{
+                                width: 50px;
+                            }
+                        }
+                        &:nth-child(2){
+                            .item{
+                                width: 43.5px;
+                            }
+                        }
+                        &:nth-child(5){
+                            .item{
+                                width: 55px;
+                            }
+                        }
+                        &:nth-child(6){
+                            .item{
+                                width: 46.5px;
+                            }
+                        }
+                        &:nth-child(7){
+                            .item{
+                                width: 63px;
+                            }
+                        }
+                        &:nth-child(8){
+                            .item{
+                                width: 55px;
+                            }
+                        }
+                        &:nth-child(9){
+                            .item{
+                                width: 57px;
+                            }
                         }
                     }
-    
-                    .brand{
-                        width: 50px;
-                    }
-                }
 
-                #types{
-                    mat-list-option{
-                        margin-right: 3px;
-                        margin-bottom: 15px;
-    
-                        &:nth-child(9), &:nth-child(10), &:nth-child(11), &:nth-child(12){
-                            margin-bottom: 5px;
-                        }
+                    ::ng-deep.mat-list-text{
+                        line-height: 1.4;
                     }
     
-                    .type{
-                        font-size: 10pt;
+                    .item{
+                        font-size: 8pt;
                         width: 60px;
                     }
                 }
@@ -110,20 +130,56 @@
             }
 
             #serviceForm{    
-                mat-expansion-panel{
-                    mat-panel-description{
-                        font-size: 13pt;
-                        padding: 30px 0px;
-                    }
-                }
+                padding-top: 60px;
 
                 #items{
                     mat-list-option{
+                        width: 24%;
                         margin-right: 57px;
                         margin-bottom: 100px;
-    
-                        &:nth-child(9), &:nth-child(10), &:nth-child(11), &:nth-child(12){
+                       
+                        &:nth-child(10){
                             margin-bottom: 15px;
+                            width: 32%;
+                            .item{
+                                width: 131px;
+                            }
+                        }
+    
+                        &:nth-child(1), &:nth-child(4){
+                            .item{
+                                width: 75px;
+                            }
+                        }
+                        &:nth-child(2){
+                            .item{
+                                width: 63.5px;
+                            }
+                        }
+                        &:nth-child(5){
+                            .item{
+                                width: 80px;
+                            }
+                        }
+                        &:nth-child(6){
+                            .item{
+                                width: 66.5px;
+                            }
+                        }
+                        &:nth-child(7){
+                            .item{
+                                width: 93px;
+                            }
+                        }
+                        &:nth-child(8){
+                            .item{
+                                width: 85px;
+                            }
+                        }
+                        &:nth-child(9){
+                            .item{
+                                width: 87px;
+                            }
                         }
                     }
     
@@ -143,7 +199,35 @@
     }
 }
 
+//------Animations---------
+//Arrow animation
+@keyframes arrow-anim {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    5% {
+        transform: translateX(-0.1rem);
+    }
+    100% {
+        transform: translateX(1rem);
+        opacity: 0;
+    }
+}
+
+@keyframes arrow-fixed-anim {
+    5% {
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.4;
+    }
+    100% {
+        opacity: 1;
+    }
+}
 /*--------------------*/
+
 #sidebarServices{
     position: relative;
     z-index: 1;
@@ -152,12 +236,44 @@
     height: 100%;
     background: white;
 
+    $ease: cubic-bezier(.2,1,.3,1);
+
+    .arrowWrapperBtn{
+        position: absolute;
+        top: 17%;
+        left: 9%;
+        z-index: 4;
+        
+        svg {
+            width: 30px;
+            height: auto;
+            cursor: pointer;
+            overflow: visible;
+            polygon, path {
+            transition: all 0.5s $ease;
+            }
+            &:hover polygon, &:hover path {
+            transition: all 1s $ease;
+            fill: #FF4136;
+            }
+            
+            &:hover .arrow {
+            animation: arrow-anim 2.5s $ease infinite;
+            }
+            &:hover .arrow-fixed {
+            animation: arrow-fixed-anim 2.5s $ease infinite;
+            }
+        }
+    }
+
     #services{
         position: relative;
         width: 85%;
         height: 80%;
 
         #servicesTitle{
+            position: relative;
+            left: 15%;
             font-family: "palanquin", "arial", sans-serif;
             font-weight: bold;
             color: #CA181F;
@@ -172,7 +288,6 @@
 
         #serviceForm{
             position: relative;
-            padding-top: 60px;
     
             #items{
                 position: relative;
@@ -182,57 +297,12 @@
                 }
 
                 mat-list-option{
-                    width: 24%;
                     position: relative;
                     display: inline-block;
 
                     &:nth-child(3), &:nth-child(6), &:nth-child(9){
                         margin-right: 0px;
                     }
-
-                    &:nth-child(10){
-                        width: 32%;
-                        .item{
-                            width: 131px;
-                        }
-                    }
-
-                    &:nth-child(1), &:nth-child(4){
-                        .item{
-                            width: 75px;
-                        }
-                    }
-                    &:nth-child(2){
-                        .item{
-                            width: 63.5px;
-                        }
-                    }
-                    &:nth-child(5){
-                        .item{
-                            width: 80px;
-                        }
-                    }
-                    &:nth-child(6){
-                        .item{
-                            width: 66.5px;
-                        }
-                    }
-                    &:nth-child(7){
-                        .item{
-                            width: 93px;
-                        }
-                    }
-                    &:nth-child(8){
-                        .item{
-                            width: 85px;
-                        }
-                    }
-                    &:nth-child(9){
-                        .item{
-                            width: 87px;
-                        }
-                    }
-
                 }
 
                 mat-list-option[aria-selected="true"] {
@@ -265,7 +335,7 @@
 
         .wrapper{
             position: absolute;
-            bottom: 3%;
+            bottom: 0%;
             left: 50%;
             width: 100%;
 

@@ -15,12 +15,9 @@ export class ServicesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addServices(items){
+  addServices(items:any){
     this.selectedOptionsArray = items.selectedOptions.selected.map(item => item.value);
-    if(this.selectedOptionsArray.length > 3){
-      this.selectedOptionsArray[3] = '...';
-      this.selectedOptionsArray.length = 4;
-    }
+
     this.selectedOptionsItems.emit(this.selectedOptionsArray.join(',').replace(/,(?=[^\s])/g, ", "));
   }
 

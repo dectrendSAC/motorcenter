@@ -1,30 +1,38 @@
 <div id="workshopBooking">
     <form class="booking">
         <div class="subtitle">Reserva tu cita en nuestro taller</div>
-        <mat-form-field appearance="fill">
+        <div id="itemTitles">
           <span class="itemTitle">Fecha de ingreso</span>
+          <span class="itemTitle">Hora</span>
+          <span class="itemTitle">Número de placa</span>
+          <span class="itemTitle">Servicio a solicitar</span>
+          <span class="itemTitle">Promoción</span>
+        </div>
+        <mat-form-field appearance="fill">
           <input matInput [matDatepicker]="dp" [matDatepickerFilter]="dateFilter" [min]="minDate" [max]="maxDate" placeholder="Selecciona una fecha" [formControl]="date" disabled>
           <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
           <mat-datepicker #dp disabled="false"></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <span class="itemTitle">Hora</span>
           <mat-select required>
             <mat-option value="option">8:00 am</mat-option>
             <mat-option value="option">10:00 pm</mat-option>
           </mat-select>
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <span class="itemTitle">Número de placa</span>
-          <input matInput placeholder="Ingresa el número" required>
+          <input matInput maxlength="6" placeholder="Ingresa el número" required [(ngModel)]="plateValue" [ngModelOptions]="{standalone: true}">
+          <button mat-button *ngIf="plateValue" matSuffix mat-icon-button aria-label="Clear" (click)="plateValue=''">
+            <mat-icon>close</mat-icon>
+          </button>
         </mat-form-field>
         <mat-form-field appearance="fill" (click)="showServices()">
-          <span class="itemTitle">Servicio a solicitar</span>
           <input matInput placeholder="Seleccione los servicios" [(ngModel)]="selectedItems" disabled required [ngModelOptions]="{standalone: true}">
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <span class="itemTitle">Promoción</span>
-          <input matInput placeholder="Ingrese el código" required>
+          <input matInput maxlength="8" placeholder="Ingrese el código" [(ngModel)]="promotionValue" [ngModelOptions]="{standalone: true}">
+          <button mat-button *ngIf="promotionValue" matSuffix mat-icon-button aria-label="Clear" (click)="promotionValue=''">
+            <mat-icon>close</mat-icon>
+          </button>
         </mat-form-field>
         <div class="buttons">
           <button mat-raised-button color="primary">
