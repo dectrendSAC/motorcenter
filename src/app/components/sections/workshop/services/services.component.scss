@@ -21,11 +21,16 @@
         -moz-box-shadow: 5px 0px 34px -5px rgba(0,0,0,0.7);
         box-shadow: 5px 0px 34px -5px rgba(0,0,0,0.7);
 
+        .arrowWrapperBtn{
+            top: 16.5%;
+        }
+
         #services{
             top: 13.5%;
             padding: 7% 7.5% 5%;
 
             #servicesTitle{
+                left: 15%;
                 font-size: 20pt;
             }
 
@@ -116,11 +121,16 @@
         -moz-box-shadow: 5px 0px 34px -5px rgba(0,0,0,0.7);
         box-shadow: 5px 0px 34px -5px rgba(0,0,0,0.7);
 
+        .arrowWrapperBtn{
+            top: 17.5%;
+        }
+
         #services{
             top: 14%;
             padding: 7% 7.5% 5%;
 
             #servicesTitle{
+                left: 10%;
                 font-size: 25pt;
             }
 
@@ -240,8 +250,7 @@
 
     .arrowWrapperBtn{
         position: absolute;
-        top: 17%;
-        left: 9%;
+        left: 7.5%;
         z-index: 4;
         
         svg {
@@ -254,7 +263,7 @@
             }
             &:hover polygon, &:hover path {
             transition: all 1s $ease;
-            fill: #FF4136;
+            fill: #CA181F;
             }
             
             &:hover .arrow {
@@ -273,7 +282,6 @@
 
         #servicesTitle{
             position: relative;
-            left: 15%;
             font-family: "palanquin", "arial", sans-serif;
             font-weight: bold;
             color: #CA181F;

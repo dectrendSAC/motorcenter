@@ -30,9 +30,11 @@ export class BookComponent implements OnInit {
   date = new FormControl(moment());
   minDate: Date;
   maxDate: Date;
+  plateValue:any;
+  promotionValue:any;
 
   @Input() selectedItems: string;
-  @Output() displayServices = new EventEmitter<boolean>();
+  @Output() displayServices = new EventEmitter<{status: boolean, extra: string}>();
 
   constructor() {
     const currentDate = new Date();
@@ -53,6 +55,6 @@ export class BookComponent implements OnInit {
 
   //Services component methods
   showServices(){
-    this.displayServices.emit(true);
+    this.displayServices.emit({status: true, extra: this.selectedItems});
   }
 }

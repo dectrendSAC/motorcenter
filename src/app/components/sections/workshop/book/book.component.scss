@@ -152,6 +152,10 @@
                     background-color: transparent;
                 }
             }
+
+            mat-icon{
+                width: unset;
+            }
         }
 
         mat-form-field:nth-child(3){

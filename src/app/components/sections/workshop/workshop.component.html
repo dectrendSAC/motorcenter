@@ -1,7 +1,7 @@
 <div id="mainScreen">
     <div id="bottomCurve"></div>
 
-    <app-services *ngIf="displayServices" class="content-wrapper-services" (selectedOptionsItems)="showSelectedServices($event)"></app-services>
+    <app-services *ngIf="displayServices" class="content-wrapper-services" (selectedOptionsItems)="showSelectedServices($event)" (displayServices)="hideServices($event)" [selectedItems]="selectedItemsText"></app-services>
 
     <div id="image-stack">
         <div id="carWorkshop">

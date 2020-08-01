@@ -15,14 +15,17 @@ export class WorkshopComponent implements OnInit {
   }
 
   //Services methods
-  showServices(status:boolean){
-    this.displayServices = status;
+  showServices($event:any){
+    this.displayServices = $event.status;
+    this.selectedItemsText = $event.extra;
   }
 
   showSelectedServices(items:string){
     this.selectedItemsText = items;
-    console.log(this.selectedItemsText);
-    
+  }
+
+  hideServices(status:boolean){
+    this.displayServices = status;
   }
 
 }
