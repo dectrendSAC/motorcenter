@@ -15,9 +15,12 @@ export class ServicesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    //Select services at start
     const str = this.selectedItems;
-    const array = str.split(', ');
-    array.forEach(item => this["select"+item] = true);
+    if(str){
+      const array = str.split(', ');    
+      array.forEach(item => this["select"+item.replace(/\s/g, "")] = true);
+    }
   }
 
   addServices(items:any){
