@@ -34,6 +34,7 @@ export class BookComponent implements OnInit {
   promotionValue:any;
 
   @Input() selectedItems: string;
+  @Output() verifyClient = new EventEmitter<boolean>();
   @Output() displayServices = new EventEmitter<{status: boolean, extra: string}>();
 
   constructor() {
@@ -48,13 +49,18 @@ export class BookComponent implements OnInit {
 
   //Disable full dates
   dateFilter = (d: Date) => {
-    var day = d.weekday();
+    /*var day = d.weekday();
     // Prevent Saturday and Sunday from being selected.
-    return day !== 6;
+    return day !== 6;*/
   }
 
   //Services component methods
   showServices(){
     this.displayServices.emit({status: true, extra: this.selectedItems});
+  }
+
+  //Check if is a registered client
+  isRegistered(){
+    this.verifyClient.emit(true);
   }
 }

@@ -20,7 +20,7 @@ import { QuotesComponent } from './components/clients/quotes/quotes.component';
 import { CalendarComponent } from './components/clients/calendar/calendar.component';
 import { PurchasesComponent } from './components/clients/purchases/purchases.component';
 import { PromotionsComponent } from './components/clients/promotions/promotions.component';
-import { RegisterComponent } from './components/sections/vehicles/register/register.component';
+import { RegisterComponent } from './components/sections/register/register.component';
 import { BookComponent } from './components/sections/workshop/book/book.component';
 import { LoginComponent } from './components/login/login.component';
 import { FilterComponent } from './components/sections/vehicles/filter/filter.component';

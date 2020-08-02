@@ -338,4 +338,12 @@ $email:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%
             font-size: 1.6rem;
         }
     }
+
+    
+    &.active{
+        .anotherData:nth-child(2), .anotherData:nth-child(3){
+            margin-right: 5%;
+            width: 15%;
+        }
+    }
 }

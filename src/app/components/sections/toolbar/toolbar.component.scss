@@ -32,7 +32,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
     #topLinks{
         .content{
             height: 60px;
-            padding: 25px;
+            padding: 25px 25px 0px 25px;
 
             #logoHome{
                 margin-right: 20px;
@@ -89,7 +89,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
     #topLinks{
         .content{
             height: 100px;
-            padding: 35px;
+            padding: 35px 35px 0px 35px;
     
             #logoHome{
                 margin-right: 40px;
@@ -196,7 +196,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
 
 //----------------------------------------------------------------
 #topLinks{
-    position: relative;
+    position: absolute;
     width: 25%;
 
     .content{

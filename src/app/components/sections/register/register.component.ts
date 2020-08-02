@@ -13,9 +13,14 @@ export class RegisterComponent implements OnInit {
   showSelection:boolean = true;
   type:boolean;
   name:string;
+  surname:string;
+  doc: string;
+  cellphone: string;
   email:string;
+  changeinputClass:boolean = false;
 
   @Output() showList = new EventEmitter<boolean>();
+  @Output() showBook = new EventEmitter<boolean>();
 
   constructor(private _formBuilder: FormBuilder) { }
 
@@ -26,6 +31,11 @@ export class RegisterComponent implements OnInit {
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+
+    //Change class according to section component
+    if(document.getElementById('workshop')){
+      this.changeinputClass = true;
+    }
   }
 
   //Start registration form
@@ -54,6 +64,7 @@ export class RegisterComponent implements OnInit {
   //Close register form
   closeRegister(){
     this.showList.emit(true);
+    this.showBook.emit(true);
   }
 
 }

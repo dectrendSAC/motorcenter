@@ -66,6 +66,10 @@ $bottom:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Ax
                 font-size: 62pt;
             }
         }
+
+        .content-wrapper-register{
+            top: 13%;
+        }
     }
 }
 
@@ -211,5 +215,12 @@ $bottom:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Ax
         top: 0;
         left: 0;
         width: 100%;
+    }
+
+    .content-wrapper-register{
+        position: absolute;
+        height: 45%;
+        left: 25%;
+        width: 60%;
     }
 }

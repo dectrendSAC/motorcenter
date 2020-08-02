@@ -14,18 +14,24 @@
   </div>
 </div>
 
-<mat-horizontal-stepper id="registerForm" *ngIf="showRegister" [linear]=true #stepper>
+<mat-horizontal-stepper id="registerForm" *ngIf="showRegister" [linear]=true #stepper [className]="changeinputClass ? 'active' : ''">
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup" class="register">
       <ng-template matStepLabel>{{type ? 'Razón social' : 'Nombres y apellidos'}}</ng-template>
       <div class="subtitle">{{type ? '¿Cuál es el nombre de su empresa?' : '¿Cómo te llamas?'}}</div>
       <mat-form-field>
         <mat-label>{{type ? 'Razón social' : 'Nombres completos'}}</mat-label>
-        <input matInput placeholder="{{type ? 'Ingresa tu razón social' : 'Ingresa tus nombres'}}" formControlName="firstCtrl" [(ngModel)]="name" required>
+        <input matInput formControlName="firstCtrl" placeholder="{{type ? 'Ingresa tu razón social' : 'Ingresa tus nombres'}}" [(ngModel)]="name" required>
+        <button mat-button *ngIf="name" matSuffix mat-icon-button aria-label="Clear" (click)="name=''">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
       <mat-form-field *ngIf="!type">
         <mat-label>Apellidos completos</mat-label>
-        <input matInput placeholder="Ingresa tus apellidos" formControlName="firstCtrl" required>
+        <input matInput formControlName="firstCtrl" placeholder="Ingresa tus apellidos" [(ngModel)]="surname" required>
+        <button mat-button *ngIf="surname" matSuffix mat-icon-button aria-label="Clear" (click)="surname=''">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
       <div class="buttons">
         <button mat-stroked-button color="primary" class="backBtn" (click)="choosePersonType()">
@@ -40,15 +46,19 @@
     <form [formGroup]="secondFormGroup" class="register">
       <ng-template matStepLabel>Otros datos</ng-template>
       <div class="subtitle"><p>Bienvenido {{name}},</p><p>bríndanos estos datos para poder cotizar tu auto</p></div>
-      <mat-form-field>
+      <mat-form-field class="anotherData">
         <mat-label>{{type ? 'RUC' : 'DNI'}}</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="{{type ? 'Número de RUC' : 'Número de DNI'}}"
-                required>
+        <input matInput oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="{{type ? 11 : 8}}" formControlName="secondCtrl" placeholder="{{type ? 'Número de RUC' : 'Número de DNI'}}" [(ngModel)]="doc" required>
+        <button mat-button *ngIf="doc" matSuffix mat-icon-button aria-label="Clear" (click)="doc=''">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
-      <mat-form-field>
+      <mat-form-field class="anotherData">
         <mat-label>Celular</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="Número de celular"
-                required>
+        <input matInput oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="9" formControlName="secondCtrl" placeholder="Número de celular" [(ngModel)]="cellphone" required>
+        <button mat-button *ngIf="cellphone" matSuffix mat-icon-button aria-label="Clear" (click)="cellphone=''">
+          <mat-icon>close</mat-icon>
+        </button>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Correo electrónico</mat-label>

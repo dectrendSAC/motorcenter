@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-workshop',
@@ -8,6 +8,11 @@ import { Component, OnInit } from '@angular/core';
 export class WorkshopComponent implements OnInit {
   displayServices:boolean = false;
   selectedItemsText:string;
+
+  @Input() displayRegisterFromSection: boolean;
+
+  @Output() verifyClientFromWorkshop = new EventEmitter<{status: boolean, extra: string}>();
+  @Output() hideRegisterFromWorkshop = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -26,6 +31,16 @@ export class WorkshopComponent implements OnInit {
 
   hideServices(status:boolean){
     this.displayServices = status;
+  }
+
+  //Check if client is registered
+  isClientRegistered(status:boolean){
+    this.verifyClientFromWorkshop.emit({status: status, extra: 'workshop'});
+  }
+
+  //Show book component
+  showBook(status:boolean){
+    this.hideRegisterFromWorkshop.emit(!status);
   }
 
 }

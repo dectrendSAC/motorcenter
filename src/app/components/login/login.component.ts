@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   @Output() displayRegister = new EventEmitter<boolean>();
   @Output() changeToolbarClassFromLogin = new EventEmitter<boolean>();
   @Output() displayProfile = new EventEmitter<boolean>();
+  @Output() displaySuccess = new EventEmitter<boolean>();
 
   constructor(private router: Router) { }
 
@@ -38,6 +39,9 @@ export class LoginComponent implements OnInit {
     this.displayProfile.emit(true);
     this.changeToolbarClassFromLogin.emit(false);
     this.displayRegister.emit(false);
+    if(document.getElementsByClassName('register')[0]){
+      this.displaySuccess.emit(true);
+    }
   }
 
 

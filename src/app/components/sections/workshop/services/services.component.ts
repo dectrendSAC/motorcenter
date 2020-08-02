@@ -7,6 +7,17 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 })
 export class ServicesComponent implements OnInit {
   selectedOptionsArray: string[];
+  selectGeneral: boolean;
+  selectFrenos: boolean;
+  selectLlantas: boolean;
+  selectEscaneo: boolean;
+  selectAfinamiento: boolean;
+  selectSuspension: boolean;
+  selectPlanchadoypintura: boolean;
+  selectAireacondicionado: boolean;
+  selectSistemaelectrico: boolean;
+  selectCambiodeaceite: boolean;
+
 
   @Input() selectedItems: string;
   @Output() selectedOptionsItems = new EventEmitter<string>();

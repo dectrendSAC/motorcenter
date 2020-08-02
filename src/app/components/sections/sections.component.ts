@@ -27,7 +27,7 @@ export class SectionsComponent implements OnInit {
     if(noLoginExists){
       this.displayLogin = $event.status;
       this.showProfileStatus = !$event.status;
-      if($event.extra == "vehicles"){
+      if($event.extra == "vehicles" || $event.extra == "workshop"){
         this.noRegisteredClient = $event.status;
       } else {
         this.noRegisteredClient = !$event.status;
@@ -53,12 +53,16 @@ export class SectionsComponent implements OnInit {
 
   hideRegister(status:boolean){
     this.showRegisterStatus = status;
-    this.changeTopLinksClassStatus = status;
+    if(document.getElementById('vehicles')){
+      this.changeTopLinksClassStatus = status;
+    }
   }
 
   //Toolbar methods
   changeTopLinksClass(status:boolean){
-    this.changeTopLinksClassStatus = status;
+    if(document.getElementById('vehicles')){
+      this.changeTopLinksClassStatus = status;
+    }
   }
 
   //More methods
@@ -67,7 +71,7 @@ export class SectionsComponent implements OnInit {
   }
 
   //Success methods
-  hideSuccess(status:boolean){
+  toggleSuccess(status:boolean){
     this.displaySuccess = status;
   }
 

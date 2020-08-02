@@ -4,10 +4,10 @@
 
 <app-vehicles *ngIf="displayVehicles" id="vehicles" (verifyClientFromVehicle)="showLogin($event)" (hideRegisterFromVehicle)="hideRegister($event)" (displayMoreFromVehicle)="showMore($event)" [displayRegisterFromSection]="showRegisterStatus"></app-vehicles>
 
-<app-workshop *ngIf="displayWorkshop" id="workshop"></app-workshop>
+<app-workshop *ngIf="displayWorkshop" id="workshop" (verifyClientFromWorkshop)="showLogin($event)" (hideRegisterFromWorkshop)="hideRegister($event)" [displayRegisterFromSection]="showRegisterStatus"></app-workshop>
 
-<app-login *ngIf="displayLogin" class="component-wrapper" (displayLogin)="hideLogin($event)" (displayProfile)="showProfile($event)" (displayRegister)="showRegister($event)" (changeToolbarClassFromLogin)="changeTopLinksClass($event)" [noRegisteredClient]="noRegisteredClient"></app-login>
+<app-login *ngIf="displayLogin" class="component-wrapper" (displayLogin)="hideLogin($event)" (displayProfile)="showProfile($event)" (displayRegister)="showRegister($event)" (changeToolbarClassFromLogin)="changeTopLinksClass($event)" (displaySuccess)="toggleSuccess($event)" [noRegisteredClient]="noRegisteredClient"></app-login>
 
 <app-more *ngIf="displayMore" class="component-wrapper" (displayMore)="showMore($event)" (verifyClientFromMore)="showLogin($event)"></app-more>
 
-<app-success *ngIf="displaySuccess" class="component-wrapper" (displaySuccess)="hideSuccess($event)"></app-success>
+<app-success *ngIf="displaySuccess" class="component-wrapper" (displaySuccess)="toggleSuccess($event)"></app-success>
