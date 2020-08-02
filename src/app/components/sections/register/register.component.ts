@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -7,6 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
+  editable: boolean = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   showRegister:boolean = false;
@@ -22,16 +23,17 @@ export class RegisterComponent implements OnInit {
   @Output() showList = new EventEmitter<boolean>();
   @Output() showBook = new EventEmitter<boolean>();
 
-  constructor(private _formBuilder: FormBuilder) { }
-
-  ngOnInit(): void {
+  constructor(private _formBuilder: FormBuilder) {
+    //Form inputs validators
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      nameFormControl: new FormControl('', [Validators.required])
     });
     this.secondFormGroup = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
+   }
 
+  ngOnInit(): void {
     //Change class according to section component
     if(document.getElementById('workshop')){
       this.changeinputClass = true;
@@ -51,7 +53,8 @@ export class RegisterComponent implements OnInit {
   }
 
   //Get email of client
-  passEmail(email){
+  passEmail(email:string){
+    this.editable = false;
     this.email = email;
   }
 

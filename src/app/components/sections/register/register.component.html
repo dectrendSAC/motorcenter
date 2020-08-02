@@ -14,17 +14,20 @@
   </div>
 </div>
 
-<mat-horizontal-stepper id="registerForm" *ngIf="showRegister" [linear]=true #stepper [className]="changeinputClass ? 'active' : ''">
-  <mat-step [stepControl]="firstFormGroup">
+<mat-horizontal-stepper id="registerForm" *ngIf="showRegister" linear=true #stepper [className]="changeinputClass ? 'active' : ''">
+  <mat-step [stepControl]="firstFormGroup" [editable]="editable">
     <form [formGroup]="firstFormGroup" class="register">
       <ng-template matStepLabel>{{type ? 'Razón social' : 'Nombres y apellidos'}}</ng-template>
       <div class="subtitle">{{type ? '¿Cuál es el nombre de su empresa?' : '¿Cómo te llamas?'}}</div>
       <mat-form-field>
         <mat-label>{{type ? 'Razón social' : 'Nombres completos'}}</mat-label>
-        <input matInput formControlName="firstCtrl" placeholder="{{type ? 'Ingresa tu razón social' : 'Ingresa tus nombres'}}" [(ngModel)]="name" required>
+        <input matInput formControlName="nameFormControl" placeholder="{{type ? 'Ingresa tu razón social' : 'Ingresa tus nombres'}}" [(ngModel)]="name" required>
         <button mat-button *ngIf="name" matSuffix mat-icon-button aria-label="Clear" (click)="name=''">
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error *ngIf="firstFormGroup.controls['nameFormControl'].errors?.required">
+          Campo obligatorio
+        </mat-error>
       </mat-form-field>
       <mat-form-field *ngIf="!type">
         <mat-label>Apellidos completos</mat-label>
@@ -42,7 +45,7 @@
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="secondFormGroup">
+  <mat-step [stepControl]="secondFormGroup" [editable]="editable">
     <form [formGroup]="secondFormGroup" class="register">
       <ng-template matStepLabel>Otros datos</ng-template>
       <div class="subtitle"><p>Bienvenido {{name}},</p><p>bríndanos estos datos para poder cotizar tu auto</p></div>
