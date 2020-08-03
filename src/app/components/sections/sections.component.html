@@ -10,4 +10,4 @@
 
 <app-more *ngIf="displayMore" class="component-wrapper" (displayMore)="showMore($event)" (verifyClientFromMore)="showLogin($event)"></app-more>
 
-<app-success *ngIf="displaySuccess" class="component-wrapper" (displaySuccess)="toggleSuccess($event)"></app-success>
+<app-success *ngIf="displaySuccess" class="component-wrapper" (displaySuccess)="toggleSuccess($event)" [changeSuccessContent]="changeSuccessContent"></app-success>

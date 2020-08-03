@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +13,6 @@ export class RegisterComponent implements OnInit {
   showRegister:boolean = false;
   showSelection:boolean = true;
   type:boolean;
-  name:string;
   surname:string;
   doc: string;
   cellphone: string;
@@ -26,10 +25,17 @@ export class RegisterComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {
     //Form inputs validators
     this.firstFormGroup = this._formBuilder.group({
-      nameFormControl: new FormControl('', [Validators.required])
+      nameFormControl: ['', [Validators.required]],
+      surnameFormControl: ['', [Validators.required]]
     });
+
+    this.firstFormGroup.controls['nameFormControl'].setValue('');
+
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      docFormControl: ['', [Validators.required, Validators.min(10000000)]],
+      phoneFormControl: ['', [Validators.required, Validators.min(100000000)]],
+      emailFormControl: ['', [Validators.required, Validators.email]],
+      politicsFormControl: ['', [Validators.required]]
     });
    }
 
@@ -44,18 +50,20 @@ export class RegisterComponent implements OnInit {
   startRegister(type:boolean){
     this.showSelection = false;
     this.type = type;
+    if(type){
+      this.surname=' ';
+    }
     this.showRegister = true;
-  }
-
-  //Get name of client
-  passName(name:string){
-    this.name = name;
   }
 
   //Get email of client
   passEmail(email:string){
     this.editable = false;
     this.email = email;
+    setTimeout(() => { 
+      this.showList.emit(true); 
+      this.showBook.emit(true);
+    }, 10000);
   }
 
   //Choose type of person

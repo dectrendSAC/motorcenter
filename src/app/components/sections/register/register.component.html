@@ -21,60 +21,84 @@
       <div class="subtitle">{{type ? '¿Cuál es el nombre de su empresa?' : '¿Cómo te llamas?'}}</div>
       <mat-form-field>
         <mat-label>{{type ? 'Razón social' : 'Nombres completos'}}</mat-label>
-        <input matInput formControlName="nameFormControl" placeholder="{{type ? 'Ingresa tu razón social' : 'Ingresa tus nombres'}}" [(ngModel)]="name" required>
-        <button mat-button *ngIf="name" matSuffix mat-icon-button aria-label="Clear" (click)="name=''">
+        <input matInput #name formControlName="nameFormControl" placeholder="{{type ? 'Ingrese su razón social' : 'Ingresa tus nombres'}}" required>
+        <button mat-button *ngIf="name.value" matSuffix mat-icon-button aria-label="Clear" (click)="name.value = ''">
           <mat-icon>close</mat-icon>
         </button>
-        <mat-error *ngIf="firstFormGroup.controls['nameFormControl'].errors?.required">
+        <mat-error *ngIf="firstFormGroup.get('nameFormControl').hasError('required')">
           Campo obligatorio
         </mat-error>
       </mat-form-field>
-      <mat-form-field *ngIf="!type">
+      <mat-form-field [class.active]="type">
         <mat-label>Apellidos completos</mat-label>
-        <input matInput formControlName="firstCtrl" placeholder="Ingresa tus apellidos" [(ngModel)]="surname" required>
+        <input matInput formControlName="surnameFormControl" placeholder="Ingresa tus apellidos" [(ngModel)]="surname" required>
         <button mat-button *ngIf="surname" matSuffix mat-icon-button aria-label="Clear" (click)="surname=''">
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error *ngIf="firstFormGroup.get('surnameFormControl').hasError('required')">
+          Campo obligatorio
+        </mat-error>
       </mat-form-field>
       <div class="buttons">
         <button mat-stroked-button color="primary" class="backBtn" (click)="choosePersonType()">
           <div class="bg-gradient"></div>
           <span>ATRAS</span>
         </button>
-        <button mat-raised-button color="primary" class="nextBtn" matStepperNext (click)="passName(name)">SIGUIENTE</button>
+        <button mat-raised-button color="primary" class="nextBtn" matStepperNext [disabled]="!firstFormGroup.valid">SIGUIENTE</button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup" [editable]="editable">
     <form [formGroup]="secondFormGroup" class="register">
       <ng-template matStepLabel>Otros datos</ng-template>
-      <div class="subtitle"><p>Bienvenido {{name}},</p><p>bríndanos estos datos para poder cotizar tu auto</p></div>
+      <div class="subtitle"><p>Bienvenido {{name.value}},</p><p>bríndanos estos datos para poder cotizar tu auto</p></div>
       <mat-form-field class="anotherData">
         <mat-label>{{type ? 'RUC' : 'DNI'}}</mat-label>
-        <input matInput oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="{{type ? 11 : 8}}" formControlName="secondCtrl" placeholder="{{type ? 'Número de RUC' : 'Número de DNI'}}" [(ngModel)]="doc" required>
+        <input matInput type="number" min="{{type ? 10000000000 : 10000000}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="{{type ? 11 : 8}}" formControlName="docFormControl" placeholder="{{type ? 'Número de RUC' : 'Número de DNI'}}" [(ngModel)]="doc" required>
         <button mat-button *ngIf="doc" matSuffix mat-icon-button aria-label="Clear" (click)="doc=''">
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error *ngIf="secondFormGroup.get('docFormControl').hasError('min') && !secondFormGroup.get('docFormControl').hasError('required')">
+          {{type ? 'Debe tener 11 dígitos' : 'Debe tener 8 dígitos'}}
+        </mat-error>
+        <mat-error *ngIf="secondFormGroup.get('docFormControl').hasError('required')">
+          Campo obligatorio
+        </mat-error>
       </mat-form-field>
       <mat-form-field class="anotherData">
         <mat-label>Celular</mat-label>
-        <input matInput oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" type="number" maxlength="9" formControlName="secondCtrl" placeholder="Número de celular" [(ngModel)]="cellphone" required>
+        <input matInput type="number" min="100000000" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" formControlName="phoneFormControl" placeholder="Número de celular" [(ngModel)]="cellphone" required>
         <button mat-button *ngIf="cellphone" matSuffix mat-icon-button aria-label="Clear" (click)="cellphone=''">
           <mat-icon>close</mat-icon>
         </button>
+        <mat-error *ngIf="secondFormGroup.get('phoneFormControl').hasError('min') && !secondFormGroup.get('phoneFormControl').hasError('required')">
+          Debe tener 9 dígitos
+        </mat-error>
+        <mat-error *ngIf="secondFormGroup.get('phoneFormControl').hasError('required')">
+          Campo obligatorio
+        </mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Correo electrónico</mat-label>
-        <input matInput formControlName="secondCtrl" placeholder="Correo electrónico" [(ngModel)]="email" required>
+        <input matInput formControlName="emailFormControl" placeholder="Correo electrónico" [(ngModel)]="email" required>
+        <button mat-button *ngIf="email" matSuffix mat-icon-button aria-label="Clear" (click)="email=''">
+          <mat-icon>close</mat-icon>
+        </button>
+        <mat-error *ngIf="secondFormGroup.get('emailFormControl').hasError('email') && !secondFormGroup.get('emailFormControl').hasError('required')">
+          Ingrese un correo electrónico válido
+        </mat-error>
+        <mat-error *ngIf="secondFormGroup.get('emailFormControl').hasError('required')">
+          Campo obligatorio
+        </mat-error>
       </mat-form-field>
       <div class="buttons">
         <button mat-stroked-button color="primary" class="backBtn" matStepperPrevious>
           <div class="bg-gradient"></div>
           <span>ATRAS</span>
         </button>
-        <button mat-raised-button color="primary" class="nextBtn" matStepperNext (click)="passEmail(email)">ENVIAR</button>
+        <button mat-raised-button color="primary" class="nextBtn" matStepperNext (click)="passEmail(email)" [disabled]="!secondFormGroup.valid">ENVIAR</button>
         <section class="chkBtn">
-          <mat-checkbox color="primary">He leído y acepto la <a>política de privacidad</a></mat-checkbox>
+          <mat-checkbox formControlName="politicsFormControl" color="primary" required>He leído y acepto la <a>política de privacidad</a></mat-checkbox>
         </section>
       </div>
     </form>

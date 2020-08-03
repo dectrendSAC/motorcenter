@@ -62,7 +62,7 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
             }
 
             #image-stack{
-                top: 30%;
+                top: 26%;
             }
         }
     }
@@ -79,6 +79,26 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
 	}
 	100% {
 		transform: translatey(0px);
+	}
+}
+//Stamp animation
+@keyframes stamp {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(80px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+@keyframes stampAppear {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
 	}
 }
 
@@ -108,7 +128,7 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
         width: 25%;
         min-width: 25%; 
         max-width: 25%;
-        overflow: auto;
+        overflow: hidden;
         -webkit-overflow-scrolling: touch;
         background: #fff;
         box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
@@ -151,6 +171,26 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
                 grid-row: 1;
                 z-index: 2;
                 padding-top: 0%;
+            }
+
+            #stamp{
+                grid-column: 1/10;
+                grid-row: 1;
+                z-index: 4;
+                padding-top: 0%;
+                animation: stamp 4s ease-in-out;
+            }
+    
+            #approved{
+                grid-column: 1/6;
+                grid-row: 1;
+                z-index: 2;
+                padding-right: 0%;
+                padding-top: 95%;
+                opacity: 0;
+                animation: stampAppear 2s ;
+                animation-delay: 2s;
+                animation-fill-mode: forwards;
             }
         }
 

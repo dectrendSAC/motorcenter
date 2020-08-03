@@ -15,6 +15,7 @@ export class SectionsComponent implements OnInit {
   showRegisterStatus:boolean = false;
   changeTopLinksClassStatus:boolean = false;
   noRegisteredClient: boolean;
+  changeSuccessContent:boolean;
 
   constructor() { }
 
@@ -34,6 +35,11 @@ export class SectionsComponent implements OnInit {
       }
     } else {
       this.showProfileStatus = $event.status;
+      if ($event.extra == "workshop"){
+        this.changeSuccessContent = true;
+      } else {
+        this.changeSuccessContent = false;
+      }
       this.displaySuccess = $event.status;
     }
   }

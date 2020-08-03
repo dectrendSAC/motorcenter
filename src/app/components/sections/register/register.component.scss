@@ -250,6 +250,10 @@ $email:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%
             ::ng-deep .mat-form-field-wrapper{
                 width: 100%;
             }
+
+            &.active{
+                visibility: hidden;
+            }
         }
 
         .buttons{

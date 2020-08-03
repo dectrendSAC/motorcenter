@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 import * as _moment from 'moment';
 
@@ -27,31 +27,45 @@ export const MY_FORMATS = {
   ]
 })
 export class BookComponent implements OnInit {
-  date = new FormControl(moment());
+  today: Date;
   minDate: Date;
   maxDate: Date;
   plateValue:any;
   promotionValue:any;
+  bookingFormGroup: FormGroup;
 
   @Input() selectedItems: string;
   @Output() verifyClient = new EventEmitter<boolean>();
   @Output() displayServices = new EventEmitter<{status: boolean, extra: string}>();
 
-  constructor() {
+  constructor(private _formBuilder: FormBuilder) {
+    //Form inputs validators
+    this.bookingFormGroup = this._formBuilder.group({
+      dateFormControl: new FormControl({value: '', disabled: true}),
+      servicesFormControl: new FormControl({value: '', disabled: true}),
+    });
+
+    //Calendar date validation
     const currentDate = new Date();
     const endDate = moment().add(1, 'months').calendar();
     this.minDate = currentDate;
     this.maxDate = new Date(endDate);
   }
 
-  ngOnInit(): void {   
+  ngOnInit(): void { 
+    this.today = moment().toDate();
   }
 
   //Disable full dates
-  dateFilter = (d: Date) => {
-    /*var day = d.weekday();
-    // Prevent Saturday and Sunday from being selected.
-    return day !== 6;*/
+  dateFilter = (d: Date): boolean => {
+    // Prevent Sunday from being selected
+    const date_week = moment(d).weekday();
+    // Prevent specific dates from being selected
+    const date_month = moment(d).format('MM/DD/YYYY').toString();
+    
+    const noAvailableDates:string[] = ['08/04/2020', '08/10/2020', '08/21/2020', '09/02/2020'];
+    
+    return noAvailableDates.indexOf(date_month) == -1 && date_week  !== 6;
   }
 
   //Services component methods

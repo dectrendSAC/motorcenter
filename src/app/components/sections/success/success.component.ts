@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-success',
@@ -6,6 +6,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./success.component.scss']
 })
 export class SuccessComponent implements OnInit {
+
+  @Input() changeSuccessContent: string;
 
   @Output() displaySuccess = new EventEmitter<boolean>();
 

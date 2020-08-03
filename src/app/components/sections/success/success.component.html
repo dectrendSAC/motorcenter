@@ -4,7 +4,7 @@
 
         <div id="successMessage">
             <span class="text">
-                En breve nos pondremos en contacto
+                {{changeSuccessContent ? 'Su cita se ha reservado con éxito' : 'En breve nos pondremos en contacto'}}
             </span>
             <span class="thanks">
                 GRACIAS
@@ -12,11 +12,17 @@
         </div>
 
         <div id="image-stack">
-            <div id="message">
+            <div *ngIf="!changeSuccessContent" id="message">
                 <img src="assets/images/messages.png">
             </div>
-            <div id="phone">
+            <div *ngIf="!changeSuccessContent" id="phone">
                <img src="assets/images/phone.png">
+            </div>
+            <div *ngIf="changeSuccessContent" id="stamp">
+                <img src="assets/images/stamp.png">
+            </div>
+            <div *ngIf="changeSuccessContent" id="approved">
+               <img src="assets/images/approved.png">
             </div>
         </div>
 
