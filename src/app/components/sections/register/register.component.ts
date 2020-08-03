@@ -13,9 +13,6 @@ export class RegisterComponent implements OnInit {
   showRegister:boolean = false;
   showSelection:boolean = true;
   type:boolean;
-  surname:string;
-  doc: string;
-  cellphone: string;
   email:string;
   changeinputClass:boolean = false;
 
@@ -28,8 +25,6 @@ export class RegisterComponent implements OnInit {
       nameFormControl: ['', [Validators.required]],
       surnameFormControl: ['', [Validators.required]]
     });
-
-    this.firstFormGroup.controls['nameFormControl'].setValue('');
 
     this.secondFormGroup = this._formBuilder.group({
       docFormControl: ['', [Validators.required, Validators.min(10000000)]],
@@ -51,15 +46,14 @@ export class RegisterComponent implements OnInit {
     this.showSelection = false;
     this.type = type;
     if(type){
-      this.surname=' ';
+      this.firstFormGroup.controls['surnameFormControl'].setValue(' ');
     }
     this.showRegister = true;
   }
 
   //Get email of client
-  passEmail(email:string){
+  sendForm(){
     this.editable = false;
-    this.email = email;
     setTimeout(() => { 
       this.showList.emit(true); 
       this.showBook.emit(true);

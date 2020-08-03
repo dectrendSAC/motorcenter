@@ -22,7 +22,7 @@
       <mat-form-field>
         <mat-label>{{type ? 'Razón social' : 'Nombres completos'}}</mat-label>
         <input matInput #name formControlName="nameFormControl" placeholder="{{type ? 'Ingrese su razón social' : 'Ingresa tus nombres'}}" required>
-        <button mat-button *ngIf="name.value" matSuffix mat-icon-button aria-label="Clear" (click)="name.value = ''">
+        <button mat-button *ngIf="name.value" matSuffix mat-icon-button aria-label="Clear" (click)="firstFormGroup.get('nameFormControl').reset()">
           <mat-icon>close</mat-icon>
         </button>
         <mat-error *ngIf="firstFormGroup.get('nameFormControl').hasError('required')">
@@ -31,8 +31,8 @@
       </mat-form-field>
       <mat-form-field [class.active]="type">
         <mat-label>Apellidos completos</mat-label>
-        <input matInput formControlName="surnameFormControl" placeholder="Ingresa tus apellidos" [(ngModel)]="surname" required>
-        <button mat-button *ngIf="surname" matSuffix mat-icon-button aria-label="Clear" (click)="surname=''">
+        <input matInput #surname formControlName="surnameFormControl" placeholder="Ingresa tus apellidos" required>
+        <button mat-button *ngIf="surname.value" matSuffix mat-icon-button aria-label="Clear" (click)="firstFormGroup.get('surnameFormControl').reset()">
           <mat-icon>close</mat-icon>
         </button>
         <mat-error *ngIf="firstFormGroup.get('surnameFormControl').hasError('required')">
@@ -54,8 +54,8 @@
       <div class="subtitle"><p>Bienvenido {{name.value}},</p><p>bríndanos estos datos para poder cotizar tu auto</p></div>
       <mat-form-field class="anotherData">
         <mat-label>{{type ? 'RUC' : 'DNI'}}</mat-label>
-        <input matInput type="number" min="{{type ? 10000000000 : 10000000}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="{{type ? 11 : 8}}" formControlName="docFormControl" placeholder="{{type ? 'Número de RUC' : 'Número de DNI'}}" [(ngModel)]="doc" required>
-        <button mat-button *ngIf="doc" matSuffix mat-icon-button aria-label="Clear" (click)="doc=''">
+        <input matInput #doc type="number" min="{{type ? 10000000000 : 10000000}}" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="{{type ? 11 : 8}}" formControlName="docFormControl" placeholder="{{type ? 'Número de RUC' : 'Número de DNI'}}" required>
+        <button mat-button *ngIf="doc.value" matSuffix mat-icon-button aria-label="Clear" (click)="secondFormGroup.get('docFormControl').reset()">
           <mat-icon>close</mat-icon>
         </button>
         <mat-error *ngIf="secondFormGroup.get('docFormControl').hasError('min') && !secondFormGroup.get('docFormControl').hasError('required')">
@@ -67,8 +67,8 @@
       </mat-form-field>
       <mat-form-field class="anotherData">
         <mat-label>Celular</mat-label>
-        <input matInput type="number" min="100000000" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" formControlName="phoneFormControl" placeholder="Número de celular" [(ngModel)]="cellphone" required>
-        <button mat-button *ngIf="cellphone" matSuffix mat-icon-button aria-label="Clear" (click)="cellphone=''">
+        <input matInput #cellphone type="number" min="100000000" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" formControlName="phoneFormControl" placeholder="Número de celular" required>
+        <button mat-button *ngIf="cellphone.value" matSuffix mat-icon-button aria-label="Clear" (click)="secondFormGroup.get('phoneFormControl').reset()">
           <mat-icon>close</mat-icon>
         </button>
         <mat-error *ngIf="secondFormGroup.get('phoneFormControl').hasError('min') && !secondFormGroup.get('phoneFormControl').hasError('required')">
@@ -80,8 +80,8 @@
       </mat-form-field>
       <mat-form-field>
         <mat-label>Correo electrónico</mat-label>
-        <input matInput formControlName="emailFormControl" placeholder="Correo electrónico" [(ngModel)]="email" required>
-        <button mat-button *ngIf="email" matSuffix mat-icon-button aria-label="Clear" (click)="email=''">
+        <input matInput #email formControlName="emailFormControl" placeholder="Correo electrónico" required>
+        <button mat-button *ngIf="email.value" matSuffix mat-icon-button aria-label="Clear" (click)="secondFormGroup.get('emailFormControl').reset()">
           <mat-icon>close</mat-icon>
         </button>
         <mat-error *ngIf="secondFormGroup.get('emailFormControl').hasError('email') && !secondFormGroup.get('emailFormControl').hasError('required')">
@@ -96,7 +96,7 @@
           <div class="bg-gradient"></div>
           <span>ATRAS</span>
         </button>
-        <button mat-raised-button color="primary" class="nextBtn" matStepperNext (click)="passEmail(email)" [disabled]="!secondFormGroup.valid">ENVIAR</button>
+        <button mat-raised-button color="primary" class="nextBtn" matStepperNext (click)="sendForm()" [disabled]="!secondFormGroup.valid">ENVIAR</button>
         <section class="chkBtn">
           <mat-checkbox formControlName="politicsFormControl" color="primary" required>He leído y acepto la <a>política de privacidad</a></mat-checkbox>
         </section>
@@ -108,7 +108,7 @@
     <div id="sendEmail">
       <div class="image"></div>
       <p>Se le envió un correo de confirmación a</p>
-      <p>{{email}}</p>
+      <p>{{email.value}}</p>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

@@ -1,6 +1,6 @@
-import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import * as _moment from 'moment';
 
@@ -27,11 +27,8 @@ export const MY_FORMATS = {
   ]
 })
 export class BookComponent implements OnInit {
-  today: Date;
   minDate: Date;
   maxDate: Date;
-  plateValue:any;
-  promotionValue:any;
   bookingFormGroup: FormGroup;
 
   @Input() selectedItems: string;
@@ -41,8 +38,10 @@ export class BookComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {
     //Form inputs validators
     this.bookingFormGroup = this._formBuilder.group({
-      dateFormControl: new FormControl({value: '', disabled: true}),
-      servicesFormControl: new FormControl({value: '', disabled: true}),
+      dateFormControl: new FormControl({value: '', disabled: true}, Validators.required),
+      timeFormControl: new FormControl('', Validators.required),
+      plateFormControl: ['', [Validators.required, Validators.minLength(6)]],
+      servicesFormControl: ['', {value: '', disabled: true}, Validators.required]
     });
 
     //Calendar date validation
@@ -53,7 +52,7 @@ export class BookComponent implements OnInit {
   }
 
   ngOnInit(): void { 
-    this.today = moment().toDate();
+    this.bookingFormGroup.controls['dateFormControl'].setValue(moment().toDate());
   }
 
   //Disable full dates
@@ -69,8 +68,18 @@ export class BookComponent implements OnInit {
   }
 
   //Services component methods
-  showServices(){
-    this.displayServices.emit({status: true, extra: this.selectedItems});
+  showServices(origin:string){
+    if(origin == 'btn'){
+      this.bookingFormGroup.controls['servicesFormControl'].reset();
+      this.displayServices.emit({status: true, extra: ''});
+    } else {
+      this.displayServices.emit({status: true, extra: this.bookingFormGroup.controls['servicesFormControl'].value});
+    }
+  }
+
+  //change services value on @input
+  ngOnChanges(changes: SimpleChanges) {
+    this.bookingFormGroup.controls['servicesFormControl'].setValue(changes.selectedItems.currentValue);
   }
 
   //Check if is a registered client

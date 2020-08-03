@@ -165,13 +165,13 @@
                             Precio desde
                         </mat-panel-title>
                         <mat-panel-description>
-                            {{panelOpenPriceState  ? '' : '$'+priceValue+' ó S/'+priceSoles}}
+                            {{panelOpenPriceState  ? '' : '$'+priceValue.value+' ó S/'+priceSoles}}
                         </mat-panel-description>
                     </mat-expansion-panel-header>
                     <mat-card id="price">
                         <mat-card-content>
-                            <h2>${{priceValue}} ó S/{{priceSoles}}</h2>
-                            <mat-slider class="priceSlider" thumbLabel tickInterval="2000" step="2000" min="1000" max="20000" [(ngModel)]="priceValue" [ngModelOptions]="{standalone: true}" (ngModelChange)="exchangeRate($event)"></mat-slider>
+                            <h2>${{priceValue.value}} ó S/{{priceSoles}}</h2>
+                            <mat-slider #priceValue class="priceSlider" thumbLabel tickInterval="2000" step="2000" min="1000" max="20000" (input)="exchangeRate(priceValue.value)"></mat-slider>
                         </mat-card-content>
                     </mat-card>
                 </mat-expansion-panel>   

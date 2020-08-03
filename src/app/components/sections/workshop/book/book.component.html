@@ -9,33 +9,48 @@
           <span class="itemTitle">Promoción</span>
         </div>
         <mat-form-field appearance="fill">
-          <input matInput formControlName="dateFormControl" [matDatepicker]="dp" [matDatepickerFilter]="dateFilter" [min]="minDate" [max]="maxDate" placeholder="Selecciona una fecha" [(ngModel)]="today">
+          <input matInput formControlName="dateFormControl" [matDatepicker]="dp" [matDatepickerFilter]="dateFilter" [min]="minDate" [max]="maxDate" placeholder="Selecciona una fecha" required>
           <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
           <mat-datepicker #dp disabled="false"></mat-datepicker>
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <mat-select required>
+          <mat-select formControlName="timeFormControl" required>
             <mat-option value="option">8:00 am</mat-option>
             <mat-option value="option">10:00 pm</mat-option>
           </mat-select>
+          <mat-error *ngIf="bookingFormGroup.get('timeFormControl').hasError('required')">
+            Obligatorio
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <input matInput maxlength="6" placeholder="Ingresa el número" required [(ngModel)]="plateValue" [ngModelOptions]="{standalone: true}">
-          <button mat-button *ngIf="plateValue" matSuffix mat-icon-button aria-label="Clear" (click)="plateValue=''">
+          <input matInput #plateValue formControlName="plateFormControl" maxlength="6" placeholder="Ingresa el número" required>
+          <button mat-button *ngIf="plateValue.value" matSuffix mat-icon-button aria-label="Clear" (click)="bookingFormGroup.get('plateFormControl').reset()">
             <mat-icon>close</mat-icon>
           </button>
+          <mat-error *ngIf="bookingFormGroup.get('plateFormControl').hasError('minlength') && !bookingFormGroup.get('plateFormControl').hasError('required')">
+            Debe tener 6 caracteres
+          </mat-error>
+          <mat-error *ngIf="bookingFormGroup.get('plateFormControl').hasError('required')">
+            Campo obligatorio
+          </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill" (click)="showServices()">
-          <input matInput formControlName="servicesFormControl" placeholder="Seleccione los servicios" [(ngModel)]="selectedItems" required >
+        <mat-form-field appearance="fill" (click)="showServices('input')" required>
+          <input matInput #services formControlName="servicesFormControl" placeholder="Seleccione los servicios" required >
+          <button mat-button *ngIf="services.value" matSuffix mat-icon-button aria-label="Clear" (click)="showServices('btn')">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-error *ngIf="bookingFormGroup.get('servicesFormControl').hasError('required')">
+            Campo obligatorio
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="fill">
-          <input matInput maxlength="8" placeholder="Ingrese el código" [(ngModel)]="promotionValue" [ngModelOptions]="{standalone: true}">
-          <button mat-button *ngIf="promotionValue" matSuffix mat-icon-button aria-label="Clear" (click)="promotionValue=''">
+          <input matInput #promotionValue maxlength="8" placeholder="Ingrese el código">
+          <button mat-button *ngIf="promotionValue.value" matSuffix mat-icon-button aria-label="Clear" (click)="promotionValue.value=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
         <div class="buttons">
-          <button mat-raised-button color="primary" (click)="isRegistered()">
+          <button mat-raised-button color="primary" (click)="isRegistered()" [disabled]="!bookingFormGroup.valid">
             <span>ENVIAR</span>
           </button>
           <mat-checkbox color="primary" labelPosition="before" checked=true>Incluir lavado del vehículo <a>GRATIS</a></mat-checkbox>
