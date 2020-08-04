@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 type PaneType = 'up' | 'down';
 
@@ -6,6 +7,13 @@ type PaneType = 'up' | 'down';
   selector: 'app-sections',
   templateUrl: './sections.component.html',
   styleUrls: ['./sections.component.scss'],
+  animations: [
+    trigger('slide', [
+      state('up', style({ transform: 'translatey(0)' })),
+      state('down', style({ transform: 'translatey(-50%)' })),
+      transition('* => *', animate(300))
+    ])
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SectionsComponent implements OnInit {
@@ -18,7 +26,7 @@ export class SectionsComponent implements OnInit {
   noRegisteredClient: boolean;
   changeSuccessContent:boolean;
 
-  @Input() activePane: PaneType = 'up';
+  activePane: PaneType = 'up';
 
   constructor() { }
 
@@ -82,6 +90,15 @@ export class SectionsComponent implements OnInit {
   //Success methods
   toggleSuccess(status:boolean){
     this.displaySuccess = status;
+  }
+
+  //Slide panels methods
+  changeActivePane(status:boolean){
+    if(status){
+      this.activePane = 'down';
+    } else {
+      this.activePane = 'up';
+    }
   }
 
 }

@@ -10,7 +10,7 @@
     src: url(assets/fonts/Ubuntu/Ubuntu-Regular.ttf) format("truetype");
 }
 
-html, body { height: 100%; }
+html, body { height: 100%; overflow: hidden;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .mat-selection-list .mat-list-option.zero-padding .mat-list-item-content{
@@ -19,4 +19,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .cdk-overlay-connected-position-bounding-box{
     margin-top: 10px;
+}
+
+// Workaround for angular component issue #13870
+.ng-animating div mat-accordion mat-expansion-panel mat-expansion-panel-header {
+    height: 48px;
+  }
+.ng-animating div mat-accordion mat-expansion-panel div.mat-expansion-panel-content {
+    height: 0px;
+    visibility: hidden;
 }

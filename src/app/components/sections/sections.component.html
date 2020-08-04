@@ -1,8 +1,8 @@
 <app-toolbar id="toolbar" (displayLoginFromToolbar)="showLogin($event)" [displayProfile]="showProfileStatus" [changeTopLinksClass]="changeTopLinksClassStatus"></app-toolbar>
 
-<app-side-scroll id="sideScroll"></app-side-scroll>
+<app-side-scroll id="sideScroll" (slideStatus)="changeActivePane($event)"></app-side-scroll>
 
-<div class="parent">
+<div class="parent" [@slide]="activePane">
     <app-vehicles id="vehicles" (verifyClientFromVehicle)="showLogin($event)" (hideRegisterFromVehicle)="hideRegister($event)" (displayMoreFromVehicle)="showMore($event)" [displayRegisterFromSection]="showRegisterStatus"></app-vehicles>
     
     <app-workshop id="workshop" (verifyClientFromWorkshop)="showLogin($event)" (hideRegisterFromWorkshop)="hideRegister($event)" [displayRegisterFromSection]="showRegisterStatus"></app-workshop>

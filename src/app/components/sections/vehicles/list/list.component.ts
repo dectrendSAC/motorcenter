@@ -71,7 +71,7 @@ export class ListComponent implements OnInit {
     this.verifyClient.emit(true);
   }
 
-  //Sort list by price
+  //Sort list
   sortList(method:string){
     var list = document.getElementsByClassName('owl-stage')[0];
 

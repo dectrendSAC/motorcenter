@@ -6,9 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
-  panelOpenBrandState = true;
-  panelOpenTypeState = false;
-  panelOpenPriceState = false;
+  panelOpenBrandState:boolean;
+  panelOpenTypeState:boolean;
+  panelOpenPriceState:boolean;
   selectedOptionsBrands: string;
   selectedOptionsTypes: string;
   selectedOptionsArray: string[];
