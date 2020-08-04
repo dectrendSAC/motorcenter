@@ -38,10 +38,10 @@ export class BookComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {
     //Form inputs validators
     this.bookingFormGroup = this._formBuilder.group({
-      dateFormControl: new FormControl({value: '', disabled: true}, Validators.required),
-      timeFormControl: new FormControl('', Validators.required),
+      dateFormControl: ['', [Validators.required]],
+      timeFormControl: ['', [Validators.required]],
       plateFormControl: ['', [Validators.required, Validators.minLength(6)]],
-      servicesFormControl: ['', {value: '', disabled: true}, Validators.required]
+      servicesFormControl: ['', [Validators.required]]
     });
 
     //Calendar date validation
@@ -52,6 +52,7 @@ export class BookComponent implements OnInit {
   }
 
   ngOnInit(): void { 
+    this.bookingFormGroup.reset();
     this.bookingFormGroup.controls['dateFormControl'].setValue(moment().toDate());
   }
 
@@ -68,13 +69,8 @@ export class BookComponent implements OnInit {
   }
 
   //Services component methods
-  showServices(origin:string){
-    if(origin == 'btn'){
-      this.bookingFormGroup.controls['servicesFormControl'].reset();
-      this.displayServices.emit({status: true, extra: ''});
-    } else {
-      this.displayServices.emit({status: true, extra: this.bookingFormGroup.controls['servicesFormControl'].value});
-    }
+  showServices(){
+    this.displayServices.emit({status: true, extra: this.bookingFormGroup.controls['servicesFormControl'].value});
   }
 
   //change services value on @input
@@ -84,6 +80,8 @@ export class BookComponent implements OnInit {
 
   //Check if is a registered client
   isRegistered(){
+    this.bookingFormGroup.reset();
+    this.bookingFormGroup.controls['dateFormControl'].setValue(moment().toDate());
     this.verifyClient.emit(true);
   }
 }

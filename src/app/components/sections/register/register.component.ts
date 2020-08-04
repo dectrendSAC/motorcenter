@@ -35,6 +35,8 @@ export class RegisterComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.firstFormGroup.reset();
+    this.secondFormGroup.reset();
     //Change class according to section component
     if(document.getElementById('workshop')){
       this.changeinputClass = true;
@@ -53,6 +55,8 @@ export class RegisterComponent implements OnInit {
 
   //Get email of client
   sendForm(){
+    this.firstFormGroup.reset();
+    this.secondFormGroup.reset();
     this.editable = false;
     setTimeout(() => { 
       this.showList.emit(true); 

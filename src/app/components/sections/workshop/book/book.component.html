@@ -9,7 +9,7 @@
           <span class="itemTitle">Promoción</span>
         </div>
         <mat-form-field appearance="fill">
-          <input matInput formControlName="dateFormControl" [matDatepicker]="dp" [matDatepickerFilter]="dateFilter" [min]="minDate" [max]="maxDate" placeholder="Selecciona una fecha" required>
+          <input matInput formControlName="dateFormControl" [matDatepicker]="dp" [matDatepickerFilter]="dateFilter" [min]="minDate" [max]="maxDate" placeholder="Selecciona una fecha" required readonly>
           <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
           <mat-datepicker #dp disabled="false"></mat-datepicker>
         </mat-form-field>
@@ -34,9 +34,9 @@
             Campo obligatorio
           </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill" (click)="showServices('input')" required>
-          <input matInput #services formControlName="servicesFormControl" placeholder="Seleccione los servicios" required >
-          <button mat-button *ngIf="services.value" matSuffix mat-icon-button aria-label="Clear" (click)="showServices('btn')">
+        <mat-form-field appearance="fill" required>
+          <input matInput #services formControlName="servicesFormControl" placeholder="Seleccione los servicios" (click)="showServices()" required readonly>
+          <button mat-button *ngIf="services.value" matSuffix mat-icon-button aria-label="Clear" (click)="this.bookingFormGroup.controls['servicesFormControl'].reset()">
             <mat-icon>close</mat-icon>
           </button>
           <mat-error *ngIf="bookingFormGroup.get('servicesFormControl').hasError('required')">

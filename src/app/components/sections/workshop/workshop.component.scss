@@ -108,7 +108,7 @@ $bottom:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Ax
     }
 
     #bottomCurve{
-        position: fixed;
+        position: absolute;
         z-index: 0;
         bottom: 0px;
         right: 0px;

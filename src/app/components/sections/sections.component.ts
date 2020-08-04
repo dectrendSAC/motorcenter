@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+
+type PaneType = 'up' | 'down';
 
 @Component({
   selector: 'app-sections',
   templateUrl: './sections.component.html',
-  styleUrls: ['./sections.component.scss']
+  styleUrls: ['./sections.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SectionsComponent implements OnInit {
-  displayVehicles:boolean = false;
-  displayWorkshop:boolean = true;
   displayLogin:boolean = false;
   displayMore:boolean = false;
   displaySuccess:boolean = false;
@@ -17,6 +18,8 @@ export class SectionsComponent implements OnInit {
   noRegisteredClient: boolean;
   changeSuccessContent:boolean;
 
+  @Input() activePane: PaneType = 'up';
+
   constructor() { }
 
   ngOnInit(): void {
@@ -25,6 +28,11 @@ export class SectionsComponent implements OnInit {
   //Login methods
   showLogin($event){
     var noLoginExists = document.getElementById("noLogin");
+    if ($event.extra == "workshop"){
+      this.changeSuccessContent = true;
+    } else {
+      this.changeSuccessContent = false;
+    }
     if(noLoginExists){
       this.displayLogin = $event.status;
       this.showProfileStatus = !$event.status;
@@ -35,11 +43,6 @@ export class SectionsComponent implements OnInit {
       }
     } else {
       this.showProfileStatus = $event.status;
-      if ($event.extra == "workshop"){
-        this.changeSuccessContent = true;
-      } else {
-        this.changeSuccessContent = false;
-      }
       this.displaySuccess = $event.status;
     }
   }
