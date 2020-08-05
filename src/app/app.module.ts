@@ -35,6 +35,7 @@ import { ServicesComponent } from './components/sections/workshop/services/servi
 
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_LOCALE} from '@angular/material/core';
+import { PartsComponent } from './components/sections/parts/parts.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import {DateAdapter, MAT_DATE_LOCALE} from '@angular/material/core';
     SideScrollComponent,
     SectionsComponent,
     ToolbarComponent,
-    ServicesComponent
+    ServicesComponent,
+    PartsComponent
   ],
   imports: [
     BrowserModule,

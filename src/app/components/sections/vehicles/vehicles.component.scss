@@ -20,11 +20,6 @@ $top:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D%22http%
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
     #mainScreen {
-        #topCurve{
-            width: 100%;
-            height: 40%;
-        }
-
         #image-stack{
             width: 21%;
         }
@@ -101,11 +96,6 @@ $top:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D%22http%
 /* Extra large devices (large laptops and desktops, 1900px and up) */
 @media only screen and (min-width: 119em) {
     #mainScreen {
-        #topCurve{
-            width: 100%;
-            height: 41.4%;
-        }
-
         #image-stack{
             width: 25%;
         }
@@ -250,10 +240,12 @@ $top:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D%22http%
 
     #topCurve{
         position: absolute;
+        width: 100%;
+        height: 45%;
         z-index: 0;
         top: 0px;
         left: 0px;
-        background: url("data:image/svg+xml, #{$top}") right no-repeat !important;
+        background: url("data:image/svg+xml, #{$top}") top right no-repeat !important;
     }
 
     #image-stack{

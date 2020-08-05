@@ -6,9 +6,9 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-  changeLoginClass:boolean = false;
 
   @Input() changeTopLinksClass: boolean;
+  @Input() changeLoginClass: boolean;
   @Input() displayProfile: boolean;
 
   @Output() displayLoginFromToolbar = new EventEmitter<{status: boolean, extra: string}>();
@@ -16,7 +16,6 @@ export class ToolbarComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.changeLoginClass = true;
   }
 
   //Login component

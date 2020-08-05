@@ -20,11 +20,6 @@ $bottom:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Ax
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
     #mainScreen{
-        #bottomCurve{
-            width: 100%;
-            height: 67.7%;
-        }
-
         #image-stack{
             width: 39%;
             bottom: 25px;
@@ -46,11 +41,6 @@ $bottom:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Ax
 /* Extra large devices (large laptops and desktops, 1900px and up) */
 @media only screen and (min-width: 119em) {
     #mainScreen{
-        #bottomCurve{
-            width: 100%;
-            height: 61.15%;
-        }
-
         #image-stack{
             width: 40%;
             bottom: 35px;
@@ -109,10 +99,12 @@ $bottom:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Ax
 
     #bottomCurve{
         position: absolute;
+        width: 100%;
+        height: 70%;
         z-index: 0;
         bottom: 0px;
         right: 0px;
-        background: url("data:image/svg+xml, #{$bottom}") right no-repeat !important;
+        background: url("data:image/svg+xml, #{$bottom}") bottom right no-repeat !important;
     }
 
     .content-wrapper-services{

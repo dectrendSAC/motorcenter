@@ -6,8 +6,8 @@
   </div>
 </div>
 
-<span *ngIf="!displayProfile" class="pulse" [className]="changeLoginClass ? 'pulse active' : ''"></span>
-<div class="login" (click)="showLogin()" [className]="changeLoginClass ? 'login active' : ''">
+<span *ngIf="!displayProfile" class="pulse" [class.active] ="changeLoginClass"></span>
+<div class="login" (click)="showLogin()" [class.active] ="changeLoginClass">
     <div *ngIf="!displayProfile" id="noLogin" class="no-profile" matTooltip="Iniciar sesión" matTooltipPosition="before"></div>
     <div *ngIf="displayProfile" [matMenuTriggerFor]="menu" id="Login" class="profile"></div>
     <div *ngIf="displayProfile" [matMenuTriggerFor]="menu" class="profileFrame"><div class="profileContent"></div></div>

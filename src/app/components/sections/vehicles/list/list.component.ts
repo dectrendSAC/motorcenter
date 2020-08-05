@@ -20,7 +20,24 @@ export class ListComponent implements OnInit {
   }
 
   ngAfterViewInit(){
-    $('#vehiclesList').owlCarousel({
+    var owl = $('#vehiclesList');
+    
+    owl.on('changed.owl.carousel',(e) => {
+        if (e.relatedTarget.current() === 0) {
+          this.displayLeft = false;
+        } else {
+          this.displayLeft = true;
+        }
+
+        if (e.relatedTarget.current() === e.relatedTarget.maximum()) {
+          this.displayLeft = true;
+          this.displayRight = false;
+        } else {
+          this.displayRight = true;
+        }
+    })
+    
+    owl.owlCarousel({
         loop:false,
         margin:50,
         nav:false,
@@ -34,21 +51,7 @@ export class ListComponent implements OnInit {
             1000:{
                 items:3
             }
-        },
-        onTranslated: (e) => {
-          if (e.relatedTarget.current() === 0) {
-            this.displayLeft = false;
-          } else {
-            this.displayLeft = true;
-          }
-
-          if (e.relatedTarget.current() === e.relatedTarget.maximum()) {
-            this.displayLeft = true;
-            this.displayRight = false;
-          } else {
-            this.displayRight = true;
-          }
-       }
+        }
     })
   }
   
@@ -57,7 +60,7 @@ export class ListComponent implements OnInit {
     $('#vehiclesList').trigger('prev.owl.carousel');
   }
 
-  navRight(){
+  navRight(){    
     $('#vehiclesList').trigger('next.owl.carousel');
   }
 

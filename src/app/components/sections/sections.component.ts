@@ -1,20 +1,9 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
-import { animate, state, style, transition, trigger } from '@angular/animations';
-
-type PaneType = 'up' | 'down';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-sections',
   templateUrl: './sections.component.html',
-  styleUrls: ['./sections.component.scss'],
-  animations: [
-    trigger('slide', [
-      state('up', style({ transform: 'translatey(0)' })),
-      state('down', style({ transform: 'translatey(-50%)' })),
-      transition('* => *', animate(300))
-    ])
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./sections.component.scss']
 })
 export class SectionsComponent implements OnInit {
   displayLogin:boolean = false;
@@ -23,10 +12,11 @@ export class SectionsComponent implements OnInit {
   showProfileStatus:boolean = false;
   showRegisterStatus:boolean = false;
   changeTopLinksClassStatus:boolean = false;
+  changeLoginClassStatus:boolean = false;
   noRegisteredClient: boolean;
   changeSuccessContent:boolean;
-
-  activePane: PaneType = 'up';
+  activePane: string = 'vehiclesView';
+  wheelDirection: string = '';
 
   constructor() { }
 
@@ -93,12 +83,51 @@ export class SectionsComponent implements OnInit {
   }
 
   //Slide panels methods
-  changeActivePane(status:boolean){
-    if(status){
-      this.activePane = 'down';
+  changeActivePane(status:string){
+    this.activePane = status;
+    if(status == 'vehiclesView'){
+      this.changeLoginClassStatus = false;
     } else {
-      this.activePane = 'up';
+      this.changeLoginClassStatus = true;
     }
   }
 
+  @HostListener('wheel', ['$event'])
+  onWheelScroll(evento: WheelEvent) {
+    setTimeout(() => { this.wheelDirection = ''; },1500);
+
+    var children = document.getElementsByClassName('children');
+    var parent = document.getElementsByClassName('appChild')[0].parentNode;
+
+    for(var i = 0; i < children.length;i++)
+    {
+      if(children[i] == parent)
+      {
+        var previous = children[i - 1];
+        var next = children[i + 1];
+      }
+    }
+
+    if (evento.deltaY > 0 && next) {
+      if(this.wheelDirection !== 'down'){
+        this.activePane = next.id;
+        next.scrollIntoView({ behavior: "smooth" });
+        this.wheelDirection = 'down';
+      }
+    }
+
+    if (evento.deltaY < 0 && previous) {
+      if(this.wheelDirection !== 'up'){
+        this.activePane = previous.id;
+        previous.scrollIntoView({ behavior: "smooth" });
+        this.wheelDirection = 'up';
+      }
+    }
+
+    if(this.activePane == 'vehiclesView'){
+      this.changeLoginClassStatus = false;
+    } else {
+      this.changeLoginClassStatus = true;
+    }
+  }
 }

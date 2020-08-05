@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-side-scroll',
@@ -7,19 +7,18 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class SideScrollComponent implements OnInit {
 
-  @Output() slideStatus = new EventEmitter<boolean>();
+  @Input() activeSection: string;
+
+  @Output() slideStatus = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  slide(status:string){
-    if(status == 'down'){
-      this.slideStatus.emit(true);
-    } else {
-      this.slideStatus.emit(false);
-    }
+  slide(element:any){
+    this.slideStatus.emit(element);
+    document.getElementById(element).scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
 }
