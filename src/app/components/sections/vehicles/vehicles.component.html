@@ -1,9 +1,9 @@
 <div id="mainScreen">
-    <div id="topCurve"></div>
+    <div id="topCurve" [@slideUpDown]="'down'"></div>
 
-    <app-filter [enableFilter]="displayRegisterFromSection"></app-filter>
+    <app-filter class="filter" [@slideInOut]="'in'" [enableFilter]="displayRegisterFromSection"></app-filter>
 
-    <div id="image-stack">
+    <div id="image-stack" [@slideInOut]="'in'">
         <div id="car">
             <img src="assets/images/car.png">
         </div>

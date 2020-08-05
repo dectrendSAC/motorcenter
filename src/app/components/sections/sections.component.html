@@ -4,13 +4,13 @@
 
 <div class="parent">
     <div id="vehiclesView" class="children">
-        <app-vehicles *ngIf="activePane == 'vehiclesView'" id="vehicles" class="appChild" (verifyClientFromVehicle)="showLogin($event)" (hideRegisterFromVehicle)="hideRegister($event)" (displayMoreFromVehicle)="showMore($event)" [displayRegisterFromSection]="showRegisterStatus"></app-vehicles>
+        <app-vehicles *ngIf="activePane == 'vehiclesView'" id="vehicles" class="appChild" (verifyClientFromVehicle)="showLogin($event)" (hideRegisterFromVehicle)="hideRegister($event)" (displayMoreFromVehicle)="showMore($event)" [displayRegisterFromSection]="showRegisterStatusForVehicles"></app-vehicles>
     </div>
     <div id="partsView" class="children">
         <app-parts *ngIf="activePane == 'partsView'" class="appChild"></app-parts>
     </div>
     <div id="workshopView" class="children">
-        <app-workshop *ngIf="activePane == 'workshopView'" id="workshop" class="appChild" (verifyClientFromWorkshop)="showLogin($event)" (hideRegisterFromWorkshop)="hideRegister($event)" [displayRegisterFromSection]="showRegisterStatus"></app-workshop>
+        <app-workshop *ngIf="activePane == 'workshopView'" id="workshop" class="appChild" (verifyClientFromWorkshop)="showLogin($event)" (hideRegisterFromWorkshop)="hideRegister($event)" [displayRegisterFromSection]="showRegisterStatusForWorkshop"></app-workshop>
     </div>
 </div>
 

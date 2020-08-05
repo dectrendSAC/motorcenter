@@ -10,7 +10,8 @@ export class SectionsComponent implements OnInit {
   displayMore:boolean = false;
   displaySuccess:boolean = false;
   showProfileStatus:boolean = false;
-  showRegisterStatus:boolean = false;
+  showRegisterStatusForVehicles:boolean = false;
+  showRegisterStatusForWorkshop:boolean = false;
   changeTopLinksClassStatus:boolean = false;
   changeLoginClassStatus:boolean = false;
   noRegisteredClient: boolean;
@@ -55,11 +56,21 @@ export class SectionsComponent implements OnInit {
 
   //Vehicles methods
   showRegister(status:boolean){
-    this.showRegisterStatus = status;
+    if(document.getElementById('vehicles')){
+      this.showRegisterStatusForVehicles = status;
+    }
+    if(document.getElementById('workshop')){
+      this.showRegisterStatusForWorkshop = status;
+    }
   }
 
   hideRegister(status:boolean){
-    this.showRegisterStatus = status;
+    if(document.getElementById('vehicles')){
+      this.showRegisterStatusForVehicles = status;
+    }
+    if(document.getElementById('workshop')){
+      this.showRegisterStatusForWorkshop = status;
+    }
     if(document.getElementById('vehicles')){
       this.changeTopLinksClassStatus = status;
     }
@@ -86,8 +97,11 @@ export class SectionsComponent implements OnInit {
   changeActivePane(status:string){
     this.activePane = status;
     if(status == 'vehiclesView'){
+      this.showRegisterStatusForWorkshop = false;
       this.changeLoginClassStatus = false;
     } else {
+      this.showRegisterStatusForVehicles = false;
+      this.changeTopLinksClassStatus = false;
       this.changeLoginClassStatus = true;
     }
   }
@@ -125,8 +139,11 @@ export class SectionsComponent implements OnInit {
     }
 
     if(this.activePane == 'vehiclesView'){
+      this.showRegisterStatusForWorkshop = false;
       this.changeLoginClassStatus = false;
     } else {
+      this.showRegisterStatusForVehicles = false;
+      this.changeTopLinksClassStatus = false;
       this.changeLoginClassStatus = true;
     }
   }

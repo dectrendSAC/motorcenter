@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -15,6 +15,8 @@ export class RegisterComponent implements OnInit {
   type:boolean;
   email:string;
   changeinputClass:boolean = false;
+
+  @Input() activeWorkshopRegister: string;
 
   @Output() showList = new EventEmitter<boolean>();
   @Output() showBook = new EventEmitter<boolean>();
@@ -55,10 +57,10 @@ export class RegisterComponent implements OnInit {
 
   //Get email of client
   sendForm(){
-    this.firstFormGroup.reset();
-    this.secondFormGroup.reset();
     this.editable = false;
     setTimeout(() => { 
+      this.firstFormGroup.reset();
+      this.secondFormGroup.reset();
       this.showList.emit(true); 
       this.showBook.emit(true);
     }, 10000);

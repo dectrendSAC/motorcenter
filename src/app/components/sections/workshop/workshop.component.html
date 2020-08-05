@@ -34,6 +34,6 @@
 
     <app-book *ngIf="!displayRegisterFromSection" class="content-wrapper-book" (displayServices)="showServices($event)" (verifyClient)="isClientRegistered($event)" [selectedItems]="selectedItemsText"></app-book>
 
-    <app-register *ngIf="displayRegisterFromSection" class="content-wrapper-register" (showBook)="showBook($event)"></app-register>
+    <app-register *ngIf="displayRegisterFromSection" class="content-wrapper-register" (showBook)="showBook($event)" [activeWorkshopRegister]="displayRegisterFromSection"></app-register>
 
 </div>

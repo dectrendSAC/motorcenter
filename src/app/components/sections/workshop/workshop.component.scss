@@ -35,6 +35,10 @@ $bottom:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Ax
                 font-size: 44pt;
             }
         }
+
+        .content-wrapper-register{
+            top: 17%;
+        }
     }
 }
 
@@ -100,7 +104,7 @@ $bottom:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Ax
     #bottomCurve{
         position: absolute;
         width: 100%;
-        height: 70%;
+        height: 69%;
         z-index: 0;
         bottom: 0px;
         right: 0px;

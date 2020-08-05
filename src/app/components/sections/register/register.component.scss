@@ -36,6 +36,11 @@ $email:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%
         .title{
             font-size: 2.4rem;
         }
+
+        &.workshop{
+            top: -24%;
+            position: relative;
+        }
     }
 
     #registerForm{
@@ -70,6 +75,16 @@ $email:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%
             .image{
                 width: 36%;
             }
+        }
+
+        .anotherData:nth-child(2), .anotherData:nth-child(3){
+            margin-right: 5% !important;
+            width: 15% !important;
+        }
+
+        &.workshop{
+            position: absolute;
+            top: -31%;
         }
     }
 }
@@ -259,6 +274,7 @@ $email:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%
         .buttons{
             .backBtn{
                 color: #CA181F;
+                background: #EFEFEF;
                 font-family: 'palanquin', 'arial', sans-serif;
                 font-weight: bold;
                 letter-spacing: 1px;;
@@ -302,7 +318,7 @@ $email:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20height%3D%
                 font-family: 'palanquin', 'arial', sans-serif;
                 font-weight: bold;
                 border-radius: 50px;
-                width: 13%;
+                width: 15%;
                 height: 7%;
                 margin-right: 3%;
             }
