@@ -1,12 +1,26 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  animations: [
+    trigger('fadeInOut', [ 
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('.7s .1s ease-in-out', style({ opacity: 1}))
+      ]),
+      transition(':leave', [
+        style({}),
+        animate('.5s ease-in-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class LoginComponent implements OnInit {
+  displaySignin:boolean;
 
   @Input() noRegisteredClient: boolean;
 

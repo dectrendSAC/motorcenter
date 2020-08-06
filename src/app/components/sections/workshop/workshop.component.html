@@ -4,10 +4,10 @@
     <app-services @slideInOut *ngIf="displayServices" class="content-wrapper-services" (selectedOptionsItems)="showSelectedServices($event)" (displayServices)="hideServices($event)" [selectedItems]="selectedItemsText"></app-services>
 
     <div @fadeInOut *ngIf="displayStack" id="image-stack">
-        <div id="carWorkshop">
+        <div @fadeInOut *ngIf="displayOthers" id="carWorkshop">
             <img src="assets/images/car_workshop.png">
         </div>
-        <div id="mechanic">
+        <div @fadeInOut *ngIf="displayOthers" id="mechanic">
            <img src="assets/images/mechanic.png">
         </div>
         <div id="elevatorPole">
@@ -16,7 +16,7 @@
         <div id="elevator">
             <img src="assets/images/elevator.png">
          </div>
-         <div id="carWorkshopShadow">
+         <div @fadeInOut *ngIf="displayOthers" id="carWorkshopShadow">
             <img src="assets/images/car_workshop_shadow.png">
          </div>
          <div id="workshop">

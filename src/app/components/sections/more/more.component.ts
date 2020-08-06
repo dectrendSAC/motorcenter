@@ -1,9 +1,22 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-more',
   templateUrl: './more.component.html',
-  styleUrls: ['./more.component.scss']
+  styleUrls: ['./more.component.scss'],
+  animations: [
+    trigger('fadeInOut', [ 
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('.7s .1s ease-in-out', style({ opacity: 1}))
+      ]),
+      transition(':leave', [
+        style({}),
+        animate('.5s ease-in-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class MoreComponent implements OnInit {
 

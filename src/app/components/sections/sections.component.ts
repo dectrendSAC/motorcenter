@@ -1,9 +1,18 @@
 import { Component, OnInit, HostListener } from '@angular/core';
+import { animate, style, transition, trigger, state } from '@angular/animations';
 
 @Component({
   selector: 'app-sections',
   templateUrl: './sections.component.html',
-  styleUrls: ['./sections.component.scss']
+  styleUrls: ['./sections.component.scss'],
+  animations: [
+    trigger('fadeOut', [ 
+      transition(':leave', [
+        style({}),
+        animate('.5s ease-in-out', style({ opacity: 0 }))
+      ])
+    ])
+  ]
 })
 export class SectionsComponent implements OnInit {
   displayLogin:boolean = false;
@@ -19,6 +28,7 @@ export class SectionsComponent implements OnInit {
   activePane: string = 'vehiclesView';
   wheelDirection: string = '';
   awaitAnimationOnScroll: boolean;
+  time:number;
 
   constructor() { }
 
@@ -116,6 +126,10 @@ export class SectionsComponent implements OnInit {
   onWheelScroll(evento: WheelEvent) {
     setTimeout(() => { this.wheelDirection = ''; },1500);
 
+    if (document.getElementById('vehicles')) { this.time = 3100 }
+    if (document.getElementById('parts')) { this.time = 800 }
+    if (document.getElementById('workshop')) { this.time = 2500 }
+
     var children = document.getElementsByClassName('children');
     var parent = document.getElementsByClassName('appChild')[0].parentNode;
 
@@ -130,16 +144,24 @@ export class SectionsComponent implements OnInit {
 
     if (evento.deltaY > 0 && next) {
       if(this.wheelDirection !== 'down'){
-        this.activePane = next.id;
-        next.scrollIntoView({ behavior: "smooth" });
+        this.awaitAnimationOnScroll = true;
+        setTimeout(() => {
+          this.activePane = next.id;
+          next.scrollIntoView({ behavior: "smooth" });
+        }, this.time);
+        setTimeout(() => { this.awaitAnimationOnScroll = false }, 500);
         this.wheelDirection = 'down';
       }
     }
 
     if (evento.deltaY < 0 && previous) {
       if(this.wheelDirection !== 'up'){
-        this.activePane = previous.id;
-        previous.scrollIntoView({ behavior: "smooth" });
+        this.awaitAnimationOnScroll = true;
+        setTimeout(() => {
+          this.activePane = previous.id;
+          previous.scrollIntoView({ behavior: "smooth" });
+        }, this.time);
+        setTimeout(() => { this.awaitAnimationOnScroll = false }, 500);
         this.wheelDirection = 'up';
       }
     }

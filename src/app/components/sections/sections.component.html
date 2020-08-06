@@ -14,8 +14,10 @@
     </div>
 </div>
 
-<app-login *ngIf="displayLogin" class="component-wrapper" (displayLogin)="hideLogin($event)" (displayProfile)="showProfile($event)" (displayRegister)="showRegister($event)" (changeToolbarClassFromLogin)="changeTopLinksClass($event)" (displaySuccess)="toggleSuccess($event)" [noRegisteredClient]="noRegisteredClient"></app-login>
+<div @fadeOut *ngIf="displayLogin || displayMore || displaySuccess" class="blackScreen">
+    <app-login *ngIf="displayLogin" class="component-wrapper" (displayLogin)="hideLogin($event)" (displayProfile)="showProfile($event)" (displayRegister)="showRegister($event)" (changeToolbarClassFromLogin)="changeTopLinksClass($event)" (displaySuccess)="toggleSuccess($event)" [noRegisteredClient]="noRegisteredClient"></app-login>
+    
+    <app-more *ngIf="displayMore" class="component-wrapper" (displayMore)="showMore($event)" (verifyClientFromMore)="showLogin($event)"></app-more>
 
-<app-more *ngIf="displayMore" class="component-wrapper" (displayMore)="showMore($event)" (verifyClientFromMore)="showLogin($event)"></app-more>
-
-<app-success *ngIf="displaySuccess" class="component-wrapper" (displaySuccess)="toggleSuccess($event)" [changeSuccessContent]="changeSuccessContent"></app-success>
+    <app-success *ngIf="displaySuccess" class="component-wrapper" (displaySuccess)="toggleSuccess($event)" [changeSuccessContent]="changeSuccessContent"></app-success>
+</div>

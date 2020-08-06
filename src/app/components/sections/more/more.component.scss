@@ -20,7 +20,7 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
-    #black-screen{
+    #content-screen{
         #show-more{
             #vehicleHeader{
                 .brand{
@@ -59,7 +59,7 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
 
 /* Extra large devices (large laptops and desktops, 1900px and up) */
 @media only screen and (min-width: 119em) {
-    #black-screen{
+    #content-screen{
         #show-more{
             #vehicleHeader{
                 .brand{
@@ -98,13 +98,12 @@ $close_hover: "%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20hei
 
 //------------------------------
 
-#black-screen{
+#content-screen{
     position: fixed;
     z-index: 1;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color:rgba(0, 0, 0, 0.7);
 
     img{
         width: 100%;

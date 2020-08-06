@@ -43,6 +43,8 @@ export class VehiclesComponent implements OnInit {
   displayTop:boolean;
   displayFilter:boolean;
   displayStack:boolean;
+  displayCar: boolean;
+  displayCarShadow: boolean;
   displayTitle: boolean;
   displayList: boolean;
 
@@ -61,6 +63,8 @@ export class VehiclesComponent implements OnInit {
     this.displayTop = true;
     this.displayFilter = true;
     setTimeout(() => { this.displayStack = true }, 1700);
+    setTimeout(() => { this.displayCar = true }, 2750);
+    setTimeout(() => { this.displayCarShadow = true }, 3000);
     setTimeout(() => { this.displayTitle = true }, 2800);
     setTimeout(() => { this.displayList = true }, 3200);
   }

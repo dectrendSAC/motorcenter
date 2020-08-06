@@ -1,5 +1,5 @@
 
-<div id="black-screen">
+<div @fadeInOut id="content-screen">
     <div id="login-form">
         <div id="loginBackground"></div>
 
@@ -26,7 +26,7 @@
                 </a>
             </div>
     
-            <button id="login" mat-raised-button color="primary" class="submit-button" (click)="logIn()">
+            <button type="button" id="login" mat-raised-button color="primary" class="submit-button" (click)="logIn()">
                 INICIAR SESIÓN
             </button>
         </form>

@@ -44,6 +44,7 @@ export class WorkshopComponent implements OnInit {
   displayStack:boolean;
   displayTitle:boolean;
   displayBook:boolean;
+  displayOthers: boolean;
   selectedItemsText:string;
 
   @Input() displayRegisterFromSection: boolean;
@@ -58,6 +59,7 @@ export class WorkshopComponent implements OnInit {
     //Animation sequence
     setTimeout(() => { this.displayBottom = true }, 200);
     setTimeout(() => { this.displayStack = true }, 800);
+    setTimeout(() => { this.displayOthers = true }, 1400);
     setTimeout(() => { this.displayTitle = true }, 1600);
     setTimeout(() => { this.displayBook = true }, 2300);
   }

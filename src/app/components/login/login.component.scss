@@ -21,7 +21,7 @@ $background: "%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
-    #black-screen{
+    #content-screen{
         #login-form{
             #loginBackground{
                 top: -20%;
@@ -59,7 +59,7 @@ $background: "%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x
 
 /* Extra large devices (large laptops and desktops, 1900px and up) */
 @media only screen and (min-width: 119em) {
-    #black-screen{
+    #content-screen{
         #login-form{
             #loginBackground{
                 top: -12%;
@@ -97,13 +97,12 @@ $background: "%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20x
 
 //---------------------------------------
 
-#black-screen{
+#content-screen{
     position: fixed;
     z-index: 1;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color:rgba(0, 0, 0, 0.7);
 
     img{
         width: 100%;

@@ -4,11 +4,11 @@
     <app-filter @slideInOut *ngIf="displayFilter" class="filter" [enableFilter]="displayRegisterFromSection"></app-filter>
 
     <div @slideInOut *ngIf="displayStack" id="image-stack">
-        <div id="car">
+        <div @fadeInOut *ngIf="displayCar" id="car">
             <img src="assets/images/car.png">
         </div>
 
-        <div class="carShadow"></div>
+        <div *ngIf="displayCarShadow" class="carShadow"></div>
 
         <div id="hand">
            <img src="assets/images/key.png">
