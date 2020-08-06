@@ -1,9 +1,9 @@
 <div id="mainScreen">
-    <div id="topCurve" [@slideUpDown]="'down'"></div>
+    <div @slideUpDown *ngIf="displayTop" id="topCurve"></div>
 
-    <app-filter class="filter" [@slideInOut]="'in'" [enableFilter]="displayRegisterFromSection"></app-filter>
+    <app-filter @slideInOut *ngIf="displayFilter" class="filter" [enableFilter]="displayRegisterFromSection"></app-filter>
 
-    <div id="image-stack" [@slideInOut]="'in'">
+    <div @slideInOut *ngIf="displayStack" id="image-stack">
         <div id="car">
             <img src="assets/images/car.png">
         </div>
@@ -15,24 +15,28 @@
         </div>
     </div>
 
-    <div id="title">
+    <div @fadeInOut *ngIf="displayTitle" id="title">
         <p>El auto de tus sueños</p>
         <p>Al alcance de tus manos</p>
     </div>
 
-    <form *ngIf="!displayRegisterFromSection" id="searchBar" name="filterForm" novalidate>
-        <mat-form-field floatLabel="never">
-            <input matInput #searchValue placeholder="Buscar por marca, modelo, etc">
-            <button mat-button *ngIf="searchValue.value" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue.value=''">
-              <mat-icon>close</mat-icon>
-            </button>
-            <mat-icon *ngIf="!searchValue.value" matSuffix>search</mat-icon>
-        </mat-form-field>
-    </form>
+    <div @fadeInOut *ngIf="displayList">
+        <form *ngIf="!displayRegisterFromSection" id="searchBar" name="filterForm" novalidate>
+            <mat-form-field floatLabel="never">
+                <input matInput #searchValue placeholder="Buscar por marca, modelo, etc">
+                <button mat-button *ngIf="searchValue.value" matSuffix mat-icon-button aria-label="Clear" (click)="searchValue.value=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+                <mat-icon *ngIf="!searchValue.value" matSuffix>search</mat-icon>
+            </mat-form-field>
+        </form>
+    </div>
 
-    <app-list *ngIf="!displayRegisterFromSection" class="content-wrapper-list" (displayMore)="showMore($event)" (verifyClient)="isClientRegistered($event)"></app-list>
+    <div @fadeInOut *ngIf="displayList">
+        <app-list @fadeInOut *ngIf="!displayRegisterFromSection" class="content-wrapper-list" (displayMore)="showMore($event)" (verifyClient)="isClientRegistered($event)"></app-list>
+    </div>
 
-    <app-register *ngIf="displayRegisterFromSection" class="content-wrapper-register" (showList)="showList($event)"></app-register>
+    <app-register @fadeInOut *ngIf="displayRegisterFromSection" class="content-wrapper-register" (showList)="showList($event)"></app-register>
 
 </div>
 

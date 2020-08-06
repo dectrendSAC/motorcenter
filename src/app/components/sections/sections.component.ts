@@ -18,6 +18,7 @@ export class SectionsComponent implements OnInit {
   changeSuccessContent:boolean;
   activePane: string = 'vehiclesView';
   wheelDirection: string = '';
+  awaitAnimationOnScroll: boolean;
 
   constructor() { }
 
@@ -104,6 +105,11 @@ export class SectionsComponent implements OnInit {
       this.changeTopLinksClassStatus = false;
       this.changeLoginClassStatus = true;
     }
+  }
+
+  awaitAnimation(status:boolean){
+    this.awaitAnimationOnScroll = status;
+    setTimeout(() => { this.awaitAnimationOnScroll = !status }, 500);
   }
 
   @HostListener('wheel', ['$event'])

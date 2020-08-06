@@ -1,9 +1,9 @@
 <div id="mainScreen">
-    <div id="bottomCurve"></div>
+    <div @slideUpDown *ngIf="displayBottom" id="bottomCurve"></div>
 
-    <app-services *ngIf="displayServices" class="content-wrapper-services" (selectedOptionsItems)="showSelectedServices($event)" (displayServices)="hideServices($event)" [selectedItems]="selectedItemsText"></app-services>
+    <app-services @slideInOut *ngIf="displayServices" class="content-wrapper-services" (selectedOptionsItems)="showSelectedServices($event)" (displayServices)="hideServices($event)" [selectedItems]="selectedItemsText"></app-services>
 
-    <div id="image-stack">
+    <div @fadeInOut *ngIf="displayStack" id="image-stack">
         <div id="carWorkshop">
             <img src="assets/images/car_workshop.png">
         </div>
@@ -27,13 +27,15 @@
         </div>
     </div>
 
-    <div id="title">
+    <div @fadeInOut *ngIf="displayTitle" id="title">
         <p>Servicios de mantenimiento, reparación, planchado/pintura y lavado</p>
         <p>Reserva tu cita hoy</p>
     </div>
 
-    <app-book *ngIf="!displayRegisterFromSection" class="content-wrapper-book" (displayServices)="showServices($event)" (verifyClient)="isClientRegistered($event)" [selectedItems]="selectedItemsText"></app-book>
+    <div @fadeInOut *ngIf="displayBook">
+        <app-book @fadeInOut *ngIf="!displayRegisterFromSection" class="content-wrapper-book" (displayServices)="showServices($event)" (verifyClient)="isClientRegistered($event)" [selectedItems]="selectedItemsText"></app-book>
+    </div>
 
-    <app-register *ngIf="displayRegisterFromSection" class="content-wrapper-register" (showBook)="showBook($event)" [activeWorkshopRegister]="displayRegisterFromSection"></app-register>
+    <app-register @fadeInOut *ngIf="displayRegisterFromSection" class="content-wrapper-register" (showBook)="showBook($event)" [activeWorkshopRegister]="displayRegisterFromSection"></app-register>
 
 </div>

@@ -1,16 +1,16 @@
 <app-toolbar id="toolbar" (displayLoginFromToolbar)="showLogin($event)" [displayProfile]="showProfileStatus" [changeTopLinksClass]="changeTopLinksClassStatus" [changeLoginClass]="changeLoginClassStatus"></app-toolbar>
 
-<app-side-scroll id="sideScroll" (slideStatus)="changeActivePane($event)" [activeSection]="activePane"></app-side-scroll>
+<app-side-scroll id="sideScroll" (slideStatus)="changeActivePane($event)" [activeSection]="activePane" (awaitAnimation)="awaitAnimation($event)"></app-side-scroll>
 
 <div class="parent">
     <div id="vehiclesView" class="children">
-        <app-vehicles *ngIf="activePane == 'vehiclesView'" id="vehicles" class="appChild" (verifyClientFromVehicle)="showLogin($event)" (hideRegisterFromVehicle)="hideRegister($event)" (displayMoreFromVehicle)="showMore($event)" [displayRegisterFromSection]="showRegisterStatusForVehicles"></app-vehicles>
+        <app-vehicles *ngIf="activePane == 'vehiclesView'" id="vehicles" class="appChild" (verifyClientFromVehicle)="showLogin($event)" (hideRegisterFromVehicle)="hideRegister($event)" (displayMoreFromVehicle)="showMore($event)" [displayRegisterFromSection]="showRegisterStatusForVehicles" [awaitAnimation]="awaitAnimationOnScroll"></app-vehicles>
     </div>
     <div id="partsView" class="children">
-        <app-parts *ngIf="activePane == 'partsView'" class="appChild"></app-parts>
+        <app-parts *ngIf="activePane == 'partsView'" id="parts" class="appChild"></app-parts>
     </div>
     <div id="workshopView" class="children">
-        <app-workshop *ngIf="activePane == 'workshopView'" id="workshop" class="appChild" (verifyClientFromWorkshop)="showLogin($event)" (hideRegisterFromWorkshop)="hideRegister($event)" [displayRegisterFromSection]="showRegisterStatusForWorkshop"></app-workshop>
+        <app-workshop *ngIf="activePane == 'workshopView'" id="workshop" class="appChild" (verifyClientFromWorkshop)="showLogin($event)" (hideRegisterFromWorkshop)="hideRegister($event)" [displayRegisterFromSection]="showRegisterStatusForWorkshop" [awaitAnimation]="awaitAnimationOnScroll"></app-workshop>
     </div>
 </div>
 
