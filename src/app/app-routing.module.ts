@@ -8,8 +8,8 @@ import {LoginComponent} from './components/login/login.component';
 import {SectionsRoutingModule} from './components/sections/sections-routing.module'
 
 const routes: Routes = [
-  { path: '', component: MainComponent },
-  { path: 'concesionario', component: SectionsComponent },
+  { path: '', component: MainComponent, data: {animation: 'Main'} },
+  { path: 'concesionario', component: SectionsComponent , data: {animation: 'Concesionario'} },
   { path: 'iniciar-sesion', component: LoginComponent},
   { path: 'clientes', component: ClientsComponent},
 ];

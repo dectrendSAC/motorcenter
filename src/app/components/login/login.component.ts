@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
+import { multipleAnimations } from '../../animations';
 import { Router } from '@angular/router';
 
 @Component({
@@ -7,16 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   animations: [
-    trigger('fadeInOut', [ 
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('.7s .1s ease-in-out', style({ opacity: 1}))
-      ]),
-      transition(':leave', [
-        style({}),
-        animate('.5s ease-in-out', style({ opacity: 0 }))
-      ])
-    ])
+    multipleAnimations.fadeOneTrigger
   ]
 })
 export class LoginComponent implements OnInit {

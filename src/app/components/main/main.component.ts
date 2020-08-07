@@ -1,6 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { animate, style, transition, trigger, keyframes, state } from '@angular/animations';
-import { Router } from '@angular/router';
+import { multipleAnimations } from '../../animations';
+import { Router, RoutesRecognized} from '@angular/router';
+import { filter, pairwise } from 'rxjs/operators';
 
 //JS functions
 declare function randomWord(): any;
@@ -12,70 +13,12 @@ var ranWordInterval = null;
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss'],
   animations: [
-    trigger('slideInOut', [
-      transition(':enter', [
-        style({ transform: 'translateX(-100%)' }),
-        animate('1.5s ease-in-out', style({ transform: 'translateX(0%)' }))
-      ]),
-      transition(':leave', [
-        style({}),
-        animate('1s ease-in-out', style({ transform: 'translateX(-100%)' }))
-      ])
-    ]),
-    trigger('slideUpDown', [ 
-      transition(':enter', [
-        style({ transform: 'translateY(-100%)' }),
-        animate('.5s ease-in-out', style({ transform: 'translateY(0%)' }))
-      ]),
-      transition(':leave', [
-        style({}),
-        animate('.3s ease-in-out', style({ transform: 'translateY(-100%)' }))
-      ])
-    ]),
-    trigger('slideDownUp', [ 
-      transition(':enter', [
-        style({ transform: 'translateY(100%)' }),
-        animate('.5s ease-in-out', style({ transform: 'translateY(0%)' }))
-      ]),
-      transition(':leave', [
-        style({}),
-        animate('.3s ease-in-out', style({ transform: 'translateY(100%)' }))
-      ])
-    ]),
-    trigger('fadeInOut', [ 
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('.7s ease-in-out', style({ opacity: 1}))
-      ]),
-      transition(':leave', [
-        style({}),
-        animate('.5s ease-in-out', style({ opacity: 0 }))
-      ])
-    ]),
-    trigger('fadeOut', [ 
-      transition(':leave', [
-        style({}),
-        animate('.5s ease-in-out', style({ opacity: 0 }))
-      ])
-    ]),
-    trigger('bounceIn', [
-      state('fall', style({ transform: 'inherit' })),
-      transition('* => fall', [
-        style({ transform: 'translateY(-100%)' }),
-        animate('.7s ease-in-out', style({ transform: 'inherite' }))
-      ]),
-      state('bounce', style({ transform: 'inherite' })),
-      transition('* => bounce', [
-        animate('1s', keyframes([
-          style({ transform: 'scale(1,1) translateY(0)' }),
-          style({ transform: 'scale(1.1, 0.9) translateY(0)' }),
-          style({ transform: 'scale(0.9, 1.1) translateY(-100px)' }),
-          style({ transform: 'scale(1.05, 0.95) translateY(0)' }),
-          style({ transform: 'scale(1,1) translateY(-7px)' }),
-          style({ transform: 'scale(1,1) translateY(0)' }),
-        ]))
-      ]),
-    ])
+    multipleAnimations.slideOneTrigger,
+    multipleAnimations.slideTwoTrigger,
+    multipleAnimations.slideThreeTrigger,
+    multipleAnimations.fadeOneTrigger,
+    multipleAnimations.fadeTwoTrigger,
+    multipleAnimations.bounceTrigger
   ]
 })
 export class MainComponent implements OnInit {
@@ -91,10 +34,17 @@ export class MainComponent implements OnInit {
   displayPhrase: boolean;
   displaySignIn:boolean;
   tiggerVehiclesEvent:boolean;
+  previousUrl: any;
 
   @ViewChild('videoPlayer') videoplayer: ElementRef;
 
-  constructor(private router: Router) { }
+  constructor(router: Router) {
+    router.events
+    .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
+    .subscribe((events: RoutesRecognized[]) => {
+      this.previousUrl = events[0].urlAfterRedirects;
+    });
+  }
 
   ngOnInit(): void {
     //Random word js function
@@ -112,6 +62,16 @@ export class MainComponent implements OnInit {
 
     //Animation sequence
     this.displayTerrain = 'fall';
+    if(this.previousUrl != undefined && this.previousUrl.includes('/concesionario')){
+      console.log('perro')
+      this.tiggerVehiclesEvent = false;
+      setTimeout(() => { this.displayBtns = true }, 2900);
+      setTimeout(() => { this.displaySignIn = true }, 3600);
+    } else {
+      console.log('hola')
+      setTimeout(() => { this.tiggerVehiclesEvent = true }, 4100);
+      /*setTimeout(() => { this.router.navigateByUrl('/concesionario'); }, 5000);*/
+    }
     setTimeout(() => { this.displayTerrain = 'bounce' }, 500);
     setTimeout(() => { this.displayRoad = 'fall' }, 1200);
     setTimeout(() => { this.displayRoad = 'bounce' }, 1900);
@@ -119,8 +79,6 @@ export class MainComponent implements OnInit {
     setTimeout(() => { this.displayLogo = true }, 2900);
     setTimeout(() => { this.displayPhrase= true }, 3400);
     setTimeout(() => { this.displayVehicles = true }, 3400);
-    setTimeout(() => { this.tiggerVehiclesEvent = true }, 4100);
-    setTimeout(() => { this.router.navigateByUrl('/concesionario'); }, 5000);
   }
 
   //Toggle video function

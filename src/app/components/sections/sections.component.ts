@@ -1,20 +1,22 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { animate, style, transition, trigger, state } from '@angular/animations';
+import { multipleAnimations } from '../../animations';
+import { Router, RoutesRecognized} from '@angular/router';
+import { filter, pairwise } from 'rxjs/operators';
 
 @Component({
   selector: 'app-sections',
   templateUrl: './sections.component.html',
   styleUrls: ['./sections.component.scss'],
   animations: [
-    trigger('fadeOut', [ 
-      transition(':leave', [
-        style({}),
-        animate('.5s ease-in-out', style({ opacity: 0 }))
-      ])
-    ])
+    multipleAnimations.fadeTwoTrigger,
+    multipleAnimations.fadeThreeTrigger,
+    multipleAnimations.slideThreeTrigger
   ]
 })
 export class SectionsComponent implements OnInit {
+  displayToolbar:boolean;
+  displaySideScroll:boolean;
+  displaySections:boolean;
   displayLogin:boolean = false;
   displayMore:boolean = false;
   displaySuccess:boolean = false;
@@ -29,10 +31,22 @@ export class SectionsComponent implements OnInit {
   wheelDirection: string = '';
   awaitAnimationOnScroll: boolean;
   time:number;
+  previousUrl: any;
 
-  constructor() { }
+  constructor(router: Router) {
+    router.events
+    .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
+    .subscribe((events: RoutesRecognized[]) => {
+      this.previousUrl = events[0].urlAfterRedirects;
+    });
+  }
 
   ngOnInit(): void {
+    if(this.previousUrl = '/'){
+      setTimeout(() => { this.displaySections = true }, 100);
+      setTimeout(() => { this.displayToolbar = true }, 1600);
+      setTimeout(() => { this.displaySideScroll = true }, 1600);
+    }
   }
 
   //Login methods

@@ -1,8 +1,8 @@
-<app-toolbar id="toolbar" (displayLoginFromToolbar)="showLogin($event)" [displayProfile]="showProfileStatus" [changeTopLinksClass]="changeTopLinksClassStatus" [changeLoginClass]="changeLoginClassStatus"></app-toolbar>
+<app-toolbar @fadeIn *ngIf="displayToolbar" id="toolbar" (displayLoginFromToolbar)="showLogin($event)" [displayProfile]="showProfileStatus" [changeTopLinksClass]="changeTopLinksClassStatus" [changeLoginClass]="changeLoginClassStatus"></app-toolbar>
 
-<app-side-scroll id="sideScroll" (slideStatus)="changeActivePane($event)" [activeSection]="activePane" (awaitAnimation)="awaitAnimation($event)"></app-side-scroll>
+<app-side-scroll @fadeIn *ngIf="displaySideScroll" id="sideScroll" (slideStatus)="changeActivePane($event)" [activeSection]="activePane" (awaitAnimation)="awaitAnimation($event)"></app-side-scroll>
 
-<div class="parent">
+<div @slideDownUp class="parent" *ngIf="displaySections">
     <div id="vehiclesView" class="children">
         <app-vehicles *ngIf="activePane == 'vehiclesView'" id="vehicles" class="appChild" (verifyClientFromVehicle)="showLogin($event)" (hideRegisterFromVehicle)="hideRegister($event)" (displayMoreFromVehicle)="showMore($event)" [displayRegisterFromSection]="showRegisterStatusForVehicles" [awaitAnimation]="awaitAnimationOnScroll"></app-vehicles>
     </div>

@@ -10,13 +10,13 @@ const routes: Routes = [
   {
     path: 'concesionario', component: SectionsComponent, children: [
       {
-        path: 'vehiculos', component: VehiclesComponent, data: {animation: 'vehiculos'}
+        path: 'vehiculos', component: VehiclesComponent
       },
       {
-        path: 'taller', component: WorkshopComponent, data: {animation: 'taller'}
+        path: 'taller', component: WorkshopComponent
       },
       {
-        path: 'especificaciones', component: MoreComponent, data: {animation: 'especificaciones'}
+        path: 'especificaciones', component: MoreComponent
       },
       {
         path: 'concesionario', redirectTo: 'vehiculos', pathMatch: 'full'

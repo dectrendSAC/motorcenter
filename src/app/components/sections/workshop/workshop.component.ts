@@ -1,41 +1,14 @@
 import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
-import { animate, style, transition, trigger } from '@angular/animations';
+import { multipleAnimations } from '../../../animations';
 
 @Component({
   selector: 'app-workshop',
   templateUrl: './workshop.component.html',
   styleUrls: ['./workshop.component.scss'],
   animations: [
-    trigger('slideInOut', [
-      transition(':enter', [
-        style({ transform: 'translateX(-100%)' }),
-        animate('1s ease-in-out', style({ transform: 'translateX(0%)' }))
-      ]),
-      transition(':leave', [
-        style({}),
-        animate('1s ease-in-out', style({ transform: 'translateX(-100%)' }))
-      ])
-    ]),
-    trigger('slideUpDown', [ 
-      transition(':enter', [
-        style({ transform: 'translateY(100%)' }),
-        animate('.5s ease-in-out', style({ transform: 'translateY(0%)' }))
-      ]),
-      transition(':leave', [
-        style({}),
-        animate('.3s ease-in-out', style({ transform: 'translateY(100%)' }))
-      ])
-    ]),
-    trigger('fadeInOut', [ 
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('.7s ease-in-out', style({ opacity: 1}))
-      ]),
-      transition(':leave', [
-        style({}),
-        animate('.5s ease-in-out', style({ opacity: 0 }))
-      ])
-    ])
+    multipleAnimations.slideOneTrigger,
+    multipleAnimations.slideTwoTrigger,
+    multipleAnimations.fadeOneTrigger
   ]
 })
 export class WorkshopComponent implements OnInit {
