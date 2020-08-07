@@ -161,6 +161,26 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
                 background-size: 70px !important;
                 animation: roadlines2 1s linear infinite;
             }
+
+            .truck.active{  
+                transform: translate(135px,-80px);
+                -webkit-transform: translate(135px,-80px);
+                -o-transform: translate(135px,-80px); 
+                -moz-transform: translate(135px,-80px);
+                transition: 2s;
+            }
+
+            .only-car.active{
+                transform: translate(-400px,250px);
+                -webkit-transform: translate(-400px,250px);
+                -o-transform: translate(-400px,250px); 
+                -moz-transform: translate(-400px,250px);
+                transition: 2s;
+            }
+
+            .infinite-lines.active:before{
+                animation-play-state: running;
+            }
         }
 
         .phrase{
@@ -331,8 +351,10 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
 
     .logo {
         position: relative;
+        width: 100%;
         z-index: 3;
         width: 25%;
+        height: 16%;
         margin: 32px auto;
         transition: all 0.5s;
     }
@@ -356,7 +378,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
         .truck{
             grid-column: 14/4;
             grid-row: 1;
-            z-index: 2;
+            z-index: 3;
             padding-top: 65%;
             transition: all 2s ease 600s;
         }
@@ -375,6 +397,13 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
             width: 100%;
             background: linear-gradient(90deg,#fff 0%, #fff 70%, #333333 70%, #333333 100%);
             animation-play-state: paused; 
+        }
+
+        .trees{
+            padding-top: 5%;
+            grid-column: 3/20;
+            grid-row: 1;
+            z-index: 2;
         }
 
         .road{
@@ -585,6 +614,15 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
                 background: url("data:image/svg+xml, #{$whatsapp_hover}") left center/100% 100% no-repeat !important;
             }
         }
+    }
+
+    .blackScreen{
+        position: fixed;
+        z-index: 4;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color:rgba(0, 0, 0, 0.7);
     }
 
     #login-form-wrapper{

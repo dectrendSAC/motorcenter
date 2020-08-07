@@ -216,8 +216,8 @@ $top:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D%22http%
 		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
 	}
 	50% {
-        opacity: 0;
-		box-shadow: 0 20px 15px 0px rgba(0,0,0,0.2);
+        opacity: 0.1;
+		box-shadow: 0 20px 15px 0px rgba(0,0,0,0.3);
 	}
 	100% {
         opacity: 0.4;
@@ -277,7 +277,7 @@ $top:"%3Csvg%20id%3D%22Capa_1%22%20data-name%3D%22Capa%201%22%20xmlns%3D%22http%
             z-index: 3;
             top: 34%;
             left: 36%;
-            border-radius: 15px;
+            border-radius: 25px;
             transform: rotate(32deg) skewX(-25deg);
             width: 35%;
             height: 14%;

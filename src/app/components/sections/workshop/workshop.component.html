@@ -16,9 +16,9 @@
         <div id="elevator">
             <img src="assets/images/elevator.png">
          </div>
-         <div @fadeInOut *ngIf="displayOthers" id="carWorkshopShadow">
-            <img src="assets/images/car_workshop_shadow.png">
-         </div>
+
+         <div *ngIf="displayOtherShadow" class="carShadow"></div>
+
          <div id="workshop">
             <img src="assets/images/workshop.png">
         </div>

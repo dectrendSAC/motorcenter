@@ -9,7 +9,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
     trigger('slideInOut', [
       transition(':enter', [
         style({ transform: 'translateX(-100%)' }),
-        animate('1s ease-in-out', style({ transform: 'translateX(0)' }))
+        animate('1s ease-in-out', style({ transform: 'translateX(0%)' }))
       ]),
       transition(':leave', [
         style({}),
@@ -45,6 +45,7 @@ export class WorkshopComponent implements OnInit {
   displayTitle:boolean;
   displayBook:boolean;
   displayOthers: boolean;
+  displayOtherShadow: boolean;
   selectedItemsText:string;
 
   @Input() displayRegisterFromSection: boolean;
@@ -60,6 +61,7 @@ export class WorkshopComponent implements OnInit {
     setTimeout(() => { this.displayBottom = true }, 200);
     setTimeout(() => { this.displayStack = true }, 800);
     setTimeout(() => { this.displayOthers = true }, 1400);
+    setTimeout(() => { this.displayOtherShadow = true }, 1600);
     setTimeout(() => { this.displayTitle = true }, 1600);
     setTimeout(() => { this.displayBook = true }, 2300);
   }
