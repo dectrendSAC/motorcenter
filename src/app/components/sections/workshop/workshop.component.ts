@@ -7,7 +7,7 @@ import { multipleAnimations } from '../../../animations';
   styleUrls: ['./workshop.component.scss'],
   animations: [
     multipleAnimations.slideOneTrigger,
-    multipleAnimations.slideTwoTrigger,
+    multipleAnimations.slideThreeTrigger,
     multipleAnimations.fadeOneTrigger
   ]
 })

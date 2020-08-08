@@ -1,7 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { multipleAnimations } from '../../animations';
-import { Router, RoutesRecognized} from '@angular/router';
-import { filter, pairwise } from 'rxjs/operators';
+import { RouterExtService } from 'src/app/services/previous-url.service';
 
 @Component({
   selector: 'app-sections',
@@ -31,17 +30,13 @@ export class SectionsComponent implements OnInit {
   wheelDirection: string = '';
   awaitAnimationOnScroll: boolean;
   time:number;
-  previousUrl: any;
+  previousUrl: string;
 
-  constructor(router: Router) {
-    router.events
-    .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
-    .subscribe((events: RoutesRecognized[]) => {
-      this.previousUrl = events[0].urlAfterRedirects;
-    });
-  }
+  constructor(private routerExtService: RouterExtService) { }
 
   ngOnInit(): void {
+    this.previousUrl = this.routerExtService.getPreviousUrl();
+    //Animation sequence
     if(this.previousUrl = '/'){
       setTimeout(() => { this.displaySections = true }, 100);
       setTimeout(() => { this.displayToolbar = true }, 1600);

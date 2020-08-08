@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { multipleAnimations } from '../../animations';
-import { Router, RoutesRecognized} from '@angular/router';
-import { filter, pairwise } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { RouterExtService } from 'src/app/services/previous-url.service';
 
 //JS functions
 declare function randomWord(): any;
@@ -34,17 +34,11 @@ export class MainComponent implements OnInit {
   displayPhrase: boolean;
   displaySignIn:boolean;
   tiggerVehiclesEvent:boolean;
-  previousUrl: any;
+  previousUrl: string;
 
   @ViewChild('videoPlayer') videoplayer: ElementRef;
 
-  constructor(router: Router) {
-    router.events
-    .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
-    .subscribe((events: RoutesRecognized[]) => {
-      this.previousUrl = events[0].urlAfterRedirects;
-    });
-  }
+  constructor(private routerExtService: RouterExtService, private router: Router) { }
 
   ngOnInit(): void {
     //Random word js function
@@ -60,17 +54,16 @@ export class MainComponent implements OnInit {
       this.displayLogin = true; 
     }
 
+    this.previousUrl = this.routerExtService.getPreviousUrl();
     //Animation sequence
     this.displayTerrain = 'fall';
     if(this.previousUrl != undefined && this.previousUrl.includes('/concesionario')){
-      console.log('perro')
       this.tiggerVehiclesEvent = false;
       setTimeout(() => { this.displayBtns = true }, 2900);
       setTimeout(() => { this.displaySignIn = true }, 3600);
     } else {
-      console.log('hola')
       setTimeout(() => { this.tiggerVehiclesEvent = true }, 4100);
-      /*setTimeout(() => { this.router.navigateByUrl('/concesionario'); }, 5000);*/
+      setTimeout(() => { this.router.navigateByUrl('/concesionario'); }, 5000);
     }
     setTimeout(() => { this.displayTerrain = 'bounce' }, 500);
     setTimeout(() => { this.displayRoad = 'fall' }, 1200);

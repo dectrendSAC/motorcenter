@@ -1,7 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { multipleAnimations } from '../../../animations';
-import { Router, RoutesRecognized} from '@angular/router';
-import { filter, pairwise } from 'rxjs/operators';
+import { RouterExtService } from 'src/app/services/previous-url.service';
 
 @Component({
   selector: 'app-vehicles',
@@ -22,7 +21,7 @@ export class VehiclesComponent implements OnInit {
   displayCarShadow: boolean;
   displayTitle: boolean;
   displayList: boolean;
-  previousUrl: any;
+  previousUrl: string;
 
   @Input() displayRegisterFromSection: boolean;
   @Input() awaitAnimation: boolean;
@@ -32,15 +31,10 @@ export class VehiclesComponent implements OnInit {
   @Output() displayMoreFromVehicle = new EventEmitter<boolean>();
   @Output() showSuccessFromVehicle = new EventEmitter<boolean>();
 
-  constructor(router: Router) {
-    router.events
-    .pipe(filter((evt: any) => evt instanceof RoutesRecognized), pairwise())
-    .subscribe((events: RoutesRecognized[]) => {
-      this.previousUrl = events[0].urlAfterRedirects;
-    });
-  }
+  constructor(private routerExtService: RouterExtService) { }
 
   ngOnInit(): void {
+    this.previousUrl = this.routerExtService.getPreviousUrl();
     //Animation sequence
     this.displayTop = true;
     if(this.previousUrl = '/'){

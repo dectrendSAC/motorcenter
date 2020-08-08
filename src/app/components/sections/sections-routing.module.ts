@@ -10,10 +10,10 @@ const routes: Routes = [
   {
     path: 'concesionario', component: SectionsComponent, children: [
       {
-        path: 'vehiculos', component: VehiclesComponent
+        path: 'vehiculos', component: VehiclesComponent, data: {animation: 'Vehiculos'}
       },
       {
-        path: 'taller', component: WorkshopComponent
+        path: 'taller', component: WorkshopComponent, data: {animation: 'Taller'}
       },
       {
         path: 'especificaciones', component: MoreComponent

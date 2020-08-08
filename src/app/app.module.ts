@@ -34,8 +34,9 @@ import { ToolbarComponent } from './components/sections/toolbar/toolbar.componen
 import { ServicesComponent } from './components/sections/workshop/services/services.component';
 
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
-import {DateAdapter, MAT_DATE_LOCALE} from '@angular/material/core';
+import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { PartsComponent } from './components/sections/parts/parts.component';
+import { RouterExtService } from './services/previous-url.service';
 
 @NgModule({
   declarations: [
@@ -85,4 +86,6 @@ import { PartsComponent } from './components/sections/parts/parts.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private routerExtService: RouterExtService){}
+ }

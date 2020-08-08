@@ -5,7 +5,9 @@ import {MainComponent} from './components/main/main.component';
 import {SectionsComponent} from './components/sections/sections.component';
 import {ClientsComponent} from './components/clients/clients.component';
 import {LoginComponent} from './components/login/login.component';
-import {SectionsRoutingModule} from './components/sections/sections-routing.module'
+import {SectionsRoutingModule} from './components/sections/sections-routing.module';
+
+import { RouterExtService } from './services/previous-url.service';
 
 const routes: Routes = [
   { path: '', component: MainComponent, data: {animation: 'Main'} },
@@ -17,8 +19,9 @@ const routes: Routes = [
 @NgModule({
   imports: [
     SectionsRoutingModule,
-    RouterModule.forRoot(routes,{ enableTracing: false })
+    RouterModule.forRoot(routes,{ enableTracing: true })
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [RouterExtService]
 })
 export class AppRoutingModule { }
