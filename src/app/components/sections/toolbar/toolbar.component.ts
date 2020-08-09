@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-toolbar',
@@ -13,8 +12,9 @@ export class ToolbarComponent implements OnInit {
   @Input() displayProfile: boolean;
 
   @Output() displayLoginFromToolbar = new EventEmitter<{status: boolean, extra: string}>();
+  @Output() homeBtn = new EventEmitter<boolean>();
 
-  constructor(private router: Router) { }
+  constructor() { }
 
   ngOnInit(): void {
   }
@@ -30,5 +30,10 @@ export class ToolbarComponent implements OnInit {
   //LogOut
   logOut(){
     this.displayLoginFromToolbar.emit({status: false, extra: 'toolbar'});
+  }
+
+  //Main methods
+  goToMain(){
+    this.homeBtn.emit(true);
   }
 }

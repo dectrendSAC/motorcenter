@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { multipleAnimations } from '../../../animations';
+import { DataService } from "src/app/services/pass-data.service";
 import { RouterExtService } from 'src/app/services/previous-url.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-vehicles',
@@ -22,16 +24,20 @@ export class VehiclesComponent implements OnInit {
   displayTitle: boolean;
   displayList: boolean;
   previousUrl: string;
+  displayRegisterFromSection: boolean;
 
-  @Input() displayRegisterFromSection: boolean;
   @Input() awaitAnimation: boolean;
+  @Input() goToMain:boolean;
 
-  @Output() verifyClientFromVehicle = new EventEmitter<{status: boolean, extra: string}>();
-  @Output() hideRegisterFromVehicle = new EventEmitter<boolean>();
+  @Output() verifyClient = new EventEmitter<{status: boolean, extra: string}>();
+  @Output() hideRegister = new EventEmitter<boolean>();
   @Output() displayMoreFromVehicle = new EventEmitter<boolean>();
   @Output() showSuccessFromVehicle = new EventEmitter<boolean>();
 
-  constructor(private routerExtService: RouterExtService) { }
+  constructor(private routerExtService: RouterExtService, private data: DataService, private router: Router) { 
+    this.data.currentData.subscribe(data => this.displayRegisterFromSection = data)
+    console.log(this.displayRegisterFromSection)
+  }
 
   ngOnInit(): void {
     this.previousUrl = this.routerExtService.getPreviousUrl();
@@ -56,7 +62,13 @@ export class VehiclesComponent implements OnInit {
         setTimeout(() => { this.displayTitle = false }, 500);
         setTimeout(() => { this.displayStack = false }, 900);
         setTimeout(() => { this.displayFilter = false }, 1900);
-        setTimeout(() => { this.displayTop = false }, 2900);
+        if(changes.goToMain){
+          if(changes.goToMain.currentValue){
+            setTimeout(() => { this.router.navigateByUrl('/'); }, 2800);
+          }
+        } else {
+          setTimeout(() => { this.displayTop = false }, 2900);
+        }
       }
   }
 
@@ -67,12 +79,12 @@ export class VehiclesComponent implements OnInit {
 
   //Check if client is registered
   isClientRegistered(status:boolean){
-    this.verifyClientFromVehicle.emit({status: status, extra: 'vehicles'});
+    this.verifyClient.emit({status: status, extra: 'vehicles'});
   }
 
   //Show list component
   showList(status:boolean){
-    this.hideRegisterFromVehicle.emit(!status);
+    this.hideRegister.emit(!status);
   }
 
 }

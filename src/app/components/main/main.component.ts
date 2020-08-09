@@ -33,7 +33,7 @@ export class MainComponent implements OnInit {
   displayVehicles: boolean;
   displayPhrase: boolean;
   displaySignIn:boolean;
-  tiggerVehiclesEvent:boolean;
+  triggerVehiclesEvent:boolean;
   previousUrl: string;
 
   @ViewChild('videoPlayer') videoplayer: ElementRef;
@@ -58,12 +58,12 @@ export class MainComponent implements OnInit {
     //Animation sequence
     this.displayTerrain = 'fall';
     if(this.previousUrl != undefined && this.previousUrl.includes('/concesionario')){
-      this.tiggerVehiclesEvent = false;
+      this.triggerVehiclesEvent = false;
       setTimeout(() => { this.displayBtns = true }, 2900);
       setTimeout(() => { this.displaySignIn = true }, 3600);
     } else {
-      setTimeout(() => { this.tiggerVehiclesEvent = true }, 4100);
-      setTimeout(() => { this.router.navigateByUrl('/concesionario'); }, 5000);
+      setTimeout(() => { this.triggerVehiclesEvent = true }, 4100);
+      setTimeout(() => { this.router.navigateByUrl('/concesionario/vehiculos'); }, 5000);
     }
     setTimeout(() => { this.displayTerrain = 'bounce' }, 500);
     setTimeout(() => { this.displayRoad = 'fall' }, 1200);

@@ -42,44 +42,16 @@
 .parent{
     position: absolute;
     width: 100%;
-    height: 300%;
+    height: 100%;
     background: #EFEFEF;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
 
     .children{
         position: relative;
+        z-index: 1;
+        left: 0px;
+        top: 0px;
         width: 100%;
-        height: calc(100% / 3);
-        flex: 1;
-
-        #vehicles{
-            position: absolute;
-            z-index: 1;
-            left: 0px;
-            top: 0px;
-            width: 100%;
-            height: 100%;
-        }
-    
-        #parts{
-            position: absolute;
-            z-index: 1;
-            left: 0px;
-            top: 0px;
-            width: 100%;
-            height: 100%;
-        }
-        
-        #workshop{
-            position: absolute;
-            z-index: 1;
-            left: 0px;
-            top: 0px;
-            width: 100%;
-            height: 100%;
-        }
+        height: 100%;
     }
 }
 

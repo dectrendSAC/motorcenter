@@ -3,7 +3,7 @@ import { trigger, transition, animate, style, query, group, state, keyframes } f
 //Routable animations
 export const multipleAnimations = {
     routeTrigger: trigger('routeAnimations', [
-        transition('Main => *', [
+        transition('Main <=> Vehiculos', [
             query(':enter, :leave', 
                 style({ position: 'fixed', width: '100%' }), 
                 { optional: true }),        
@@ -15,6 +15,21 @@ export const multipleAnimations = {
                 query(':leave', [
                     style({}),
                     animate('.5s ease-in-out', style({ transform: 'translateY(-100%)' }))
+                ], { optional: true }),
+            ])
+        ]),
+        transition('Main <=> Taller', [
+            query(':enter, :leave', 
+                style({ position: 'fixed', width: '100%' }), 
+                { optional: true }),        
+            group([
+                query(':enter',[
+                    style({ transform: 'translateY(100%)' }),
+                    animate('.5s ease-in-out', style({ transform: 'translateY(0%)' }))
+                ], { optional: true }),
+                query(':leave', [
+                    style({}),
+                    animate('.5s ease-in-out', style({ transform: 'translateY(100%)' }))
                 ], { optional: true }),
             ])
         ])
@@ -49,7 +64,7 @@ export const multipleAnimations = {
         ]),
         transition(':leave', [
             style({}),
-            animate('.3s ease-in-out', style({ transform: 'translateY(100%)' }))
+            animate('.5s ease-in-out', style({ transform: 'translateY(100%)' }))
         ])
     ]),
 
@@ -79,12 +94,12 @@ export const multipleAnimations = {
     ]),
 
     bounceTrigger: trigger('bounceIn', [
-        state('fall', style({ transform: 'inherit' })),
+        state('fall', style({})),
         transition('* => fall', [
             style({ transform: 'translateY(-100%)' }),
-            animate('.7s ease-in-out', style({ transform: 'inherite' }))
+            animate('.7s ease-in-out', style({}))
         ]),
-        state('bounce', style({ transform: 'inherite' })),
+        state('bounce', style({})),
         transition('* => bounce', [
             animate('1s', keyframes([
             style({ transform: 'scale(1,1) translateY(0)' }),

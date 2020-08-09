@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { multipleAnimations } from '../../../animations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-workshop',
@@ -23,11 +24,12 @@ export class WorkshopComponent implements OnInit {
 
   @Input() displayRegisterFromSection: boolean;
   @Input() awaitAnimation: boolean;
+  @Input() goToMain:boolean;
 
-  @Output() verifyClientFromWorkshop = new EventEmitter<{status: boolean, extra: string}>();
-  @Output() hideRegisterFromWorkshop = new EventEmitter<boolean>();
+  @Output() verifyClient = new EventEmitter<{status: boolean, extra: string}>();
+  @Output() hideRegister = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     //Animation sequence
@@ -45,7 +47,13 @@ export class WorkshopComponent implements OnInit {
       this.displayBook = false;
       setTimeout(() => { this.displayTitle = false }, 700);
       setTimeout(() => { this.displayStack = false }, 1400);
-      setTimeout(() => { this.displayBottom = false }, 2100);
+      if(changes.goToMain){
+        if(changes.goToMain.currentValue){
+          setTimeout(() => { this.router.navigateByUrl('/') }, 2800);
+        }
+      } else {
+        setTimeout(() => { this.displayBottom = false }, 2100);
+      }
     }
 }
 
@@ -65,12 +73,12 @@ export class WorkshopComponent implements OnInit {
 
   //Check if client is registered
   isClientRegistered(status:boolean){
-    this.verifyClientFromWorkshop.emit({status: status, extra: 'workshop'});
+    this.verifyClient.emit({status: status, extra: 'workshop'});
   }
 
   //Show book component
   showBook(status:boolean){
-    this.hideRegisterFromWorkshop.emit(!status);
+    this.hideRegister.emit(!status);
   }
 
 }

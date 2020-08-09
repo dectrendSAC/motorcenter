@@ -37,6 +37,7 @@ import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/mat
 import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { PartsComponent } from './components/sections/parts/parts.component';
 import { RouterExtService } from './services/previous-url.service';
+import { DataService } from './services/pass-data.service';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { RouterExtService } from './services/previous-url.service';
       provide: DateAdapter,
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
-    }
+    },
+    DataService
   ],
   bootstrap: [AppComponent]
 })

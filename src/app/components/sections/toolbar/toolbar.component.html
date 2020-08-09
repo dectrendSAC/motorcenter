@@ -1,6 +1,6 @@
 <div id="topLinks" [className]="changeTopLinksClass ? 'active' : ''">
   <div class="content">
-    <div id="logoHome" routerLink="/"></div>
+    <div id="logoHome" (click)="goToMain()"></div>
     <div class="line"></div>
     <div id="about">NOSOTROS</div>
   </div>
@@ -27,16 +27,16 @@
     </button>
 </mat-menu>
 <mat-menu #dealer="matMenu">
-    <button mat-menu-item [routerLink]="'../concesionario/vehiculos'">
-      <mat-icon>directions_car</mat-icon>
-      <span>Vehículos</span>
+  <button mat-menu-item routerLink="vehiculos">
+    <mat-icon>directions_car</mat-icon>
+    <span>Vehículos</span>
+  </button>
+  <button mat-menu-item routerLink="repuestos" disabled>
+      <mat-icon>miscellaneous_services</mat-icon>
+      <span>Repuestos</span>
     </button>
-    <button mat-menu-item disabled>
-        <mat-icon>miscellaneous_services</mat-icon>
-        <span>Repuestos</span>
-      </button>
-    <button mat-menu-item disabled>
-      <mat-icon>home_repair_service</mat-icon>
-      <span>Taller</span>
-    </button>
+  <button mat-menu-item routerLink="taller">
+    <mat-icon>home_repair_service</mat-icon>
+    <span>Taller</span>
+  </button>
 </mat-menu>

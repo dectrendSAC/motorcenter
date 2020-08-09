@@ -136,8 +136,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
                     transition: 2s;
                 }
                 &~.image-stack>.only-car{
-                    animation: vanish 1.5s;
-                    animation-fill-mode: forwards;
+                    opacity: 0;
                     transform: translate(-240px,150px);
                     -webkit-transform: translate(-240px,150px);
                     -o-transform: translate(-240px,150px); 
@@ -253,8 +252,8 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
         }
 
         .pulse {
-            top: 539px;
-            margin-left: 387px;
+            top: 55.2%;
+            margin-left: 20.2%;
             width: 65px;
             height: 65px;
         }
@@ -269,8 +268,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
                     transition: 2s;
                 }
                 &~.image-stack>.only-car{
-                    animation: vanish 1.5s;
-                    animation-fill-mode: forwards;
+                    opacity: 0;
                     transform: translate(-400px,250px);
                     -webkit-transform: translate(-400px,250px);
                     -o-transform: translate(-400px,250px); 

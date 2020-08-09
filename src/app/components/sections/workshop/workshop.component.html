@@ -1,4 +1,4 @@
-<div id="mainScreen">
+<div id="workshop">
     <div @slideDownUp *ngIf="displayBottom" id="bottomCurve"></div>
 
     <app-services @slideInOut *ngIf="displayServices" class="content-wrapper-services" (selectedOptionsItems)="showSelectedServices($event)" (displayServices)="hideServices($event)" [selectedItems]="selectedItemsText"></app-services>

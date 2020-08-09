@@ -1,12 +1,15 @@
 import { Component, OnInit, HostListener } from '@angular/core';
 import { multipleAnimations } from '../../animations';
 import { RouterExtService } from 'src/app/services/previous-url.service';
+import { DataService } from "src/app/services/pass-data.service";
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-sections',
   templateUrl: './sections.component.html',
   styleUrls: ['./sections.component.scss'],
   animations: [
+    multipleAnimations.routeTrigger,
     multipleAnimations.fadeTwoTrigger,
     multipleAnimations.fadeThreeTrigger,
     multipleAnimations.slideThreeTrigger
@@ -20,8 +23,6 @@ export class SectionsComponent implements OnInit {
   displayMore:boolean = false;
   displaySuccess:boolean = false;
   showProfileStatus:boolean = false;
-  showRegisterStatusForVehicles:boolean = false;
-  showRegisterStatusForWorkshop:boolean = false;
   changeTopLinksClassStatus:boolean = false;
   changeLoginClassStatus:boolean = false;
   noRegisteredClient: boolean;
@@ -31,8 +32,13 @@ export class SectionsComponent implements OnInit {
   awaitAnimationOnScroll: boolean;
   time:number;
   previousUrl: string;
+  goToMainStatus: boolean;
 
-  constructor(private routerExtService: RouterExtService) { }
+  constructor(private routerExtService: RouterExtService, private data: DataService) { }
+
+  prepareRoute(outlet: RouterOutlet) {
+    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+  }
 
   ngOnInit(): void {
     this.previousUrl = this.routerExtService.getPreviousUrl();
@@ -42,6 +48,16 @@ export class SectionsComponent implements OnInit {
       setTimeout(() => { this.displayToolbar = true }, 1600);
       setTimeout(() => { this.displaySideScroll = true }, 1600);
     }
+  }
+
+  //Main methods
+  goToMain(status:boolean){
+    this.goToMainStatus = status;
+    this.awaitAnimationOnScroll = status;
+    setTimeout(() => { this.displayToolbar = false }, 1700);
+    setTimeout(() => { this.displaySideScroll = false }, 1700);
+    setTimeout(() => { this.displaySections = false }, 2600);
+    setTimeout(() => { this.goToMainStatus = !status; this.awaitAnimationOnScroll = !status }, 500);
   }
 
   //Login methods
@@ -74,23 +90,49 @@ export class SectionsComponent implements OnInit {
     this.displayLogin = status;
   }
 
+  //Section methods
+  onActivate(elementRef) {
+    //Login methods
+    elementRef.verifyClient.subscribe($event => {
+      var noLoginExists = document.getElementById("noLogin");
+    if ($event.extra == "workshop"){
+      this.changeSuccessContent = true;
+    } else {
+      this.changeSuccessContent = false;
+    }
+    if(noLoginExists){
+      this.displayLogin = $event.status;
+      this.showProfileStatus = !$event.status;
+      if($event.extra == "vehicles" || $event.extra == "workshop"){
+        this.noRegisteredClient = $event.status;
+      } else {
+        this.noRegisteredClient = !$event.status;
+      }
+    } else {
+      this.showProfileStatus = $event.status;
+      this.displaySuccess = $event.status;
+    }
+    });
+
+    //Vehicles methods
+    elementRef.hideRegister.subscribe((status:boolean) => {
+      this.data.changeData(status);
+    });
+
+    //More methods
+    elementRef.displayMoreFromVehicle.subscribe((status:boolean) => {
+      this.displayMore = status;
+    });
+  }
+
   //Vehicles methods
   showRegister(status:boolean){
-    if(document.getElementById('vehicles')){
-      this.showRegisterStatusForVehicles = status;
-    }
-    if(document.getElementById('workshop')){
-      this.showRegisterStatusForWorkshop = status;
-    }
+    this.data.changeData(status);
   }
 
   hideRegister(status:boolean){
-    if(document.getElementById('vehicles')){
-      this.showRegisterStatusForVehicles = status;
-    }
-    if(document.getElementById('workshop')){
-      this.showRegisterStatusForWorkshop = status;
-    }
+    this.data.changeData(status);
+
     if(document.getElementById('vehicles')){
       this.changeTopLinksClassStatus = status;
     }
@@ -116,11 +158,10 @@ export class SectionsComponent implements OnInit {
   //Slide panels methods
   changeActivePane(status:string){
     this.activePane = status;
+    this.data.changeData(false);
     if(status == 'vehiclesView'){
-      this.showRegisterStatusForWorkshop = false;
       this.changeLoginClassStatus = false;
     } else {
-      this.showRegisterStatusForVehicles = false;
       this.changeTopLinksClassStatus = false;
       this.changeLoginClassStatus = true;
     }
@@ -134,6 +175,8 @@ export class SectionsComponent implements OnInit {
   @HostListener('wheel', ['$event'])
   onWheelScroll(evento: WheelEvent) {
     setTimeout(() => { this.wheelDirection = ''; },1500);
+
+    this.data.changeData(false);
 
     if (document.getElementById('vehicles')) { this.time = 3100 }
     if (document.getElementById('parts')) { this.time = 800 }
@@ -176,10 +219,8 @@ export class SectionsComponent implements OnInit {
     }
 
     if(this.activePane == 'vehiclesView'){
-      this.showRegisterStatusForWorkshop = false;
       this.changeLoginClassStatus = false;
     } else {
-      this.showRegisterStatusForVehicles = false;
       this.changeTopLinksClassStatus = false;
       this.changeLoginClassStatus = true;
     }
