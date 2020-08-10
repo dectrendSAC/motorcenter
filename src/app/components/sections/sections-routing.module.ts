@@ -8,8 +8,7 @@ import { WorkshopComponent } from './workshop/workshop.component';
 import { MoreComponent } from './more/more.component';
 
 const routes: Routes = [
-  {
-    path: 'concesionario', component: SectionsComponent, data: {animation: 'Concesionario'}, children: [
+  { path: 'concesionario', component: SectionsComponent, data: {animation: 'Concesionario'}, children: [
       {
         path: 'vehiculos', component: VehiclesComponent, data: {animation: 'Vehiculos'}
       },

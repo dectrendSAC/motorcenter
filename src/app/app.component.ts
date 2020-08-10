@@ -14,6 +14,13 @@ export class AppComponent {
   title = 'frontend';
 
   prepareRoute(outlet: RouterOutlet) {
+    /*if(outlet.isActivated){
+      if(outlet.activatedRoute.firstChild){
+        return outlet && outlet.activatedRoute.snapshot.firstChild.data['animation'];
+      } else {
+        return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
+      }
+    }*/
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 }

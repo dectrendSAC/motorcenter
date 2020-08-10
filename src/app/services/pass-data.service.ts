@@ -4,13 +4,27 @@ import { BehaviorSubject } from 'rxjs';
 @Injectable()
 export class DataService {
 
-  private dataSource = new BehaviorSubject(undefined);
-  currentData = this.dataSource.asObservable();
+  private showRegisterDataSource = new BehaviorSubject(undefined);
+  showRegisteCurrentData = this.showRegisterDataSource.asObservable();
+
+  private awaitAnimationOnScrollDataSource = new BehaviorSubject(undefined);
+  awaitAnimationOnScrollCurrentData = this.awaitAnimationOnScrollDataSource.asObservable();
+
+  private goToMainStatusDataSource = new BehaviorSubject(undefined);
+  goToMainStatusCurrentData = this.goToMainStatusDataSource.asObservable();
 
   constructor() { }
 
-  changeData(data: boolean) {
-    this.dataSource.next(data)
+  showRegisterStatus(data: boolean) {
+    this.showRegisterDataSource.next(data)
+  }
+
+  awaitAnimationOnScroll(data:boolean) {
+    this.awaitAnimationOnScrollDataSource.next(data)
+  }
+
+  goToMainStatus(data:boolean) {
+    this.goToMainStatusDataSource.next(data)
   }
 
 }

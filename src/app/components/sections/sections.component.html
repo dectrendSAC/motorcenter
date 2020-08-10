@@ -2,19 +2,7 @@
 
 <app-side-scroll @fadeIn *ngIf="displaySideScroll" id="sideScroll" (slideStatus)="changeActivePane($event)" [activeSection]="activePane" (awaitAnimation)="awaitAnimation($event)"></app-side-scroll>
 
-<!--<div @slideDownUp class="parent" *ngIf="displaySections">
-    <div id="vehiclesView" class="children">
-        <app-vehicles *ngIf="activePane == 'vehiclesView'" id="vehicles" class="appChild" (verifyClientFromVehicle)="showLogin($event)" (hideRegisterFromVehicle)="hideRegister($event)" (displayMoreFromVehicle)="showMore($event)" [displayRegisterFromSection]="showRegisterStatusForVehicles" [awaitAnimation]="awaitAnimationOnScroll" [goToMain]="goToMainStatus"></app-vehicles>
-    </div>
-    <div id="partsView" class="children">
-        <app-parts *ngIf="activePane == 'partsView'" id="parts" class="appChild"></app-parts>
-    </div>
-    <div id="workshopView" class="children">
-        <app-workshop *ngIf="activePane == 'workshopView'" id="workshop" class="appChild" (verifyClientFromWorkshop)="showLogin($event)" (hideRegisterFromWorkshop)="hideRegister($event)" [displayRegisterFromSection]="showRegisterStatusForWorkshop" [awaitAnimation]="awaitAnimationOnScroll" [goToMain]="goToMainStatus"></app-workshop>
-    </div>
-</div>-->
-
-<div class="parent" [@routeAnimations]="prepareRoute(outlet)"> 
+<div [@routeAnimations]="prepareRoute(outlet)" class="parent"> 
     <div class="children">
         <router-outlet #outlet="outlet" class="appChild" (activate)="onActivate($event)"></router-outlet>
     </div>      

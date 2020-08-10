@@ -29,10 +29,8 @@ export class SectionsComponent implements OnInit {
   changeSuccessContent:boolean;
   activePane: string = 'vehiclesView';
   wheelDirection: string = '';
-  awaitAnimationOnScroll: boolean;
   time:number;
   previousUrl: string;
-  goToMainStatus: boolean;
 
   constructor(private routerExtService: RouterExtService, private data: DataService) { }
 
@@ -44,7 +42,6 @@ export class SectionsComponent implements OnInit {
     this.previousUrl = this.routerExtService.getPreviousUrl();
     //Animation sequence
     if(this.previousUrl = '/'){
-      setTimeout(() => { this.displaySections = true }, 100);
       setTimeout(() => { this.displayToolbar = true }, 1600);
       setTimeout(() => { this.displaySideScroll = true }, 1600);
     }
@@ -52,12 +49,12 @@ export class SectionsComponent implements OnInit {
 
   //Main methods
   goToMain(status:boolean){
-    this.goToMainStatus = status;
-    this.awaitAnimationOnScroll = status;
+    this.data.goToMainStatus(status);
+    this.data.awaitAnimationOnScroll(status);
     setTimeout(() => { this.displayToolbar = false }, 1700);
     setTimeout(() => { this.displaySideScroll = false }, 1700);
     setTimeout(() => { this.displaySections = false }, 2600);
-    setTimeout(() => { this.goToMainStatus = !status; this.awaitAnimationOnScroll = !status }, 500);
+    setTimeout(() => { this.data.goToMainStatus(!status);; this.data.awaitAnimationOnScroll(!status); }, 500);
   }
 
   //Login methods
@@ -116,7 +113,11 @@ export class SectionsComponent implements OnInit {
 
     //Vehicles methods
     elementRef.hideRegister.subscribe((status:boolean) => {
-      this.data.changeData(status);
+      this.data.showRegisterStatus(status);
+
+      if(document.getElementById('vehicles')){
+        this.changeTopLinksClassStatus = status;
+      }
     });
 
     //More methods
@@ -127,11 +128,11 @@ export class SectionsComponent implements OnInit {
 
   //Vehicles methods
   showRegister(status:boolean){
-    this.data.changeData(status);
+    this.data.showRegisterStatus(status);
   }
 
   hideRegister(status:boolean){
-    this.data.changeData(status);
+    this.data.showRegisterStatus(status);
 
     if(document.getElementById('vehicles')){
       this.changeTopLinksClassStatus = status;
@@ -158,7 +159,7 @@ export class SectionsComponent implements OnInit {
   //Slide panels methods
   changeActivePane(status:string){
     this.activePane = status;
-    this.data.changeData(false);
+    this.data.showRegisterStatus(false);
     if(status == 'vehiclesView'){
       this.changeLoginClassStatus = false;
     } else {
@@ -168,15 +169,15 @@ export class SectionsComponent implements OnInit {
   }
 
   awaitAnimation(status:boolean){
-    this.awaitAnimationOnScroll = status;
-    setTimeout(() => { this.awaitAnimationOnScroll = !status }, 500);
+    this.data.awaitAnimationOnScroll(status);
+    setTimeout(() => { this.data.awaitAnimationOnScroll(!status); }, 500);
   }
 
   @HostListener('wheel', ['$event'])
   onWheelScroll(evento: WheelEvent) {
     setTimeout(() => { this.wheelDirection = ''; },1500);
 
-    this.data.changeData(false);
+    this.data.showRegisterStatus(false);
 
     if (document.getElementById('vehicles')) { this.time = 3100 }
     if (document.getElementById('parts')) { this.time = 800 }
@@ -196,24 +197,24 @@ export class SectionsComponent implements OnInit {
 
     if (evento.deltaY > 0 && next) {
       if(this.wheelDirection !== 'down'){
-        this.awaitAnimationOnScroll = true;
+        this.data.awaitAnimationOnScroll(true);
         setTimeout(() => {
           this.activePane = next.id;
           next.scrollIntoView({ behavior: "smooth" });
         }, this.time);
-        setTimeout(() => { this.awaitAnimationOnScroll = false }, 500);
+        setTimeout(() => { this.data.awaitAnimationOnScroll(false); }, 500);
         this.wheelDirection = 'down';
       }
     }
 
     if (evento.deltaY < 0 && previous) {
       if(this.wheelDirection !== 'up'){
-        this.awaitAnimationOnScroll = true;
+        this.data.awaitAnimationOnScroll(true);
         setTimeout(() => {
           this.activePane = previous.id;
           previous.scrollIntoView({ behavior: "smooth" });
         }, this.time);
-        setTimeout(() => { this.awaitAnimationOnScroll = false }, 500);
+        setTimeout(() => { this.data.awaitAnimationOnScroll(false); }, 500);
         this.wheelDirection = 'up';
       }
     }
