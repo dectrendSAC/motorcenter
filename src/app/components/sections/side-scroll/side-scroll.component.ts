@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-scroll',
@@ -12,8 +13,8 @@ export class SideScrollComponent implements OnInit {
 
   @Output() awaitAnimation = new EventEmitter<boolean>();
   @Output() slideStatus = new EventEmitter<string>();
-
-  constructor() { }
+ 
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -25,7 +26,8 @@ export class SideScrollComponent implements OnInit {
     if (document.getElementById('workshop')) { this.time = 2500 }
     setTimeout(() => {
       this.slideStatus.emit(element);
-      document.getElementById(element).scrollIntoView({ behavior: "smooth", block: "start" });
+      this.router.navigateByUrl('/concesionario/taller');
+      /*document.getElementById(element).scrollIntoView({ behavior: "smooth", block: "start" });*/
     }, this.time);
   }
 

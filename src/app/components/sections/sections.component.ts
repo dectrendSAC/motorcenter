@@ -12,7 +12,8 @@ import { RouterOutlet } from '@angular/router';
     multipleAnimations.routeTrigger,
     multipleAnimations.fadeTwoTrigger,
     multipleAnimations.fadeThreeTrigger,
-    multipleAnimations.slideThreeTrigger
+    multipleAnimations.slideThreeTrigger,
+    multipleAnimations.slideTwoTrigger
   ]
 })
 export class SectionsComponent implements OnInit {

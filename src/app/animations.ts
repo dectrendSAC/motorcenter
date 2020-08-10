@@ -4,55 +4,34 @@ import { trigger, transition, animate, style, query, group, state, keyframes, an
 export const multipleAnimations = {
     routeTrigger: trigger('routeAnimations', [
         transition('Main => Concesionario', [
-            style({ position: 'relative' }),
-            query(':enter, :leave', [
-                style({
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    width: '100%'
-                })
-            ]),
-            query(':enter', [style({ left: '-100%', opacity: 0 })]),
-            query(':leave', animateChild()),
+            query(':enter, :leave', style({ position: 'fixed', width:'100%',height:'100%' })),
+            query(':enter', style({ transform: 'translateY(100%)' })),
+            
             group([
-                query(':leave', [animate('1s ease-out', style({ left: '100%', opacity: 0 }))]),
-                query(':enter', [animate('1s ease-out', style({ left: '0%', opacity: 1 }))])
+            query(':leave', [
+                style({ transform: 'translateY(0%)' }),
+                animate('1.0s ease-in-out', style({transform: 'translateY(-100%)'}))
             ]),
-            query(':enter', animateChild())
+            query(':enter', [
+                animate('1.0s ease-in-out', style({transform: 'translateY(0%)'})),
+                animateChild()
+            ])
+            ]),
         ]),
         transition('Concesionario => Main', [
-            style({ position: 'relative' }),
-            query(':enter, :leave', [
-                style({
-                    position: 'absolute',
-                    top: 0,
-                    right: 0,
-                    width: '100%'
-                })
-            ]),
-            query(':enter', [style({ right: '-100%', opacity: 0 })]),
-            query(':leave', animateChild()),
+            query(':enter, :leave', style({ position: 'fixed', width:'100%',height:'100%' })),
+            query(':enter', style({ transform: 'translateY(0%)' })),
+            
             group([
-                query(':leave', [animate('1s ease-out', style({ right: '100%', opacity: 0 }))]),
-                query(':enter', [animate('1s ease-out', style({ right: '0%', opacity: 1 }))])
+            query(':leave', [
+                style({ transform: 'translateY(-100%)' }),
+                animate('1.0s ease-in-out', style({transform: 'translateY(0%)'}))
             ]),
-            query(':enter', animateChild())
-        ]),
-        transition('Main <=> Taller', [
-            query(':enter, :leave', 
-                style({ position: 'fixed', width: '100%' }), 
-                { optional: true }),        
-            group([
-                query(':enter',[
-                    style({ transform: 'translateY(100%)' }),
-                    animate('.5s ease-in-out', style({ transform: 'translateY(0%)' }))
-                ], { optional: true }),
-                query(':leave', [
-                    style({}),
-                    animate('.5s ease-in-out', style({ transform: 'translateY(100%)' }))
-                ], { optional: true }),
+            query(':enter', [
+                animate('1.0s ease-in-out', style({transform: 'translateY(-100%)'})),
+                animateChild()
             ])
+            ]),
         ])
     ]),
 

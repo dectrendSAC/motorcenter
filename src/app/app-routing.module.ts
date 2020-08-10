@@ -10,13 +10,10 @@ import {SectionsRoutingModule} from './components/sections/sections-routing.modu
 import { RouterExtService } from './services/previous-url.service';
 
 const routes: Routes = [
-  { path: '', children:[
-      { path: '', component: MainComponent, pathMatch: 'full', data: {animation: 'Main'}},
-      { path: 'concesionario', component: SectionsComponent , data: {animation: 'Concesionario'}},
-      { path: 'iniciar-sesion', component: LoginComponent},
-      { path: 'clientes', component: ClientsComponent},
-    ]
-  }
+  { path: '', component: MainComponent, pathMatch: 'full', data: {animation: 'Main'}},
+  { path: 'concesionario', component: SectionsComponent , data: {animation: 'Concesionario'}},
+  { path: 'iniciar-sesion', component: LoginComponent},
+  { path: 'clientes', component: ClientsComponent}
 ];
 
 @NgModule({
