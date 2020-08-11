@@ -3,33 +3,41 @@ import { trigger, transition, animate, style, query, group, state, keyframes, an
 //Routable animations
 export const multipleAnimations = {
     routeTrigger: trigger('routeAnimations', [
-        transition('Main => Concesionario', [
-            query(':enter, :leave', style({ position: 'fixed', width:'100%',height:'100%' })),
+        transition('Main => Vehiculos, Taller => Main', [
+            query(':enter, :leave', style({ position: 'absolute', width:'100%', height:'100%', paddingBottom: '{{paddingBottomSize}}%' })),
             query(':enter', style({ transform: 'translateY(100%)' })),
             
             group([
             query(':leave', [
                 style({ transform: 'translateY(0%)' }),
-                animate('1.0s ease-in-out', style({transform: 'translateY(-100%)'}))
+                animate('1s ease-in-out', style({transform: 'translateY(-100%)'}))
             ]),
             query(':enter', [
-                animate('1.0s ease-in-out', style({transform: 'translateY(0%)'})),
+                animate('1s ease-in-out', style({transform: 'translateY(0%)' })),
                 animateChild()
+            ]),
+            query(':leave *', [
+                style({}),
+                animate(1, style({}))
             ])
             ]),
         ]),
-        transition('Concesionario => Main', [
-            query(':enter, :leave', style({ position: 'fixed', width:'100%',height:'100%' })),
-            query(':enter', style({ transform: 'translateY(0%)' })),
+        transition('Vehiculos => Main, Main => Taller', [
+            query(':enter, :leave', style({ position: 'absolute', width:'100%',height:'100%' })),
+            query(':enter', style({ transform: 'translateY(-100%)' })),
             
             group([
             query(':leave', [
-                style({ transform: 'translateY(-100%)' }),
-                animate('1.0s ease-in-out', style({transform: 'translateY(0%)'}))
+                style({ transform: 'translateY(0%)' }),
+                animate('1s ease-in-out', style({transform: 'translateY(100%)'}))
             ]),
             query(':enter', [
-                animate('1.0s ease-in-out', style({transform: 'translateY(-100%)'})),
+                animate('1s ease-in-out', style({transform: 'translateY(0%)'})),
                 animateChild()
+            ]),
+            query(':leave *', [
+                style({}),
+                animate(1, style({}))
             ])
             ]),
         ])
@@ -64,7 +72,7 @@ export const multipleAnimations = {
         ]),
         transition(':leave', [
             style({}),
-            animate('.5s ease-in-out', style({ transform: 'translateY(100%)' }))
+            animate('.3s ease-in-out', style({ transform: 'translateY(100%)' }))
         ])
     ]),
 

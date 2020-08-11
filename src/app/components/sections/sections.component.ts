@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { multipleAnimations } from '../../animations';
 import { RouterExtService } from 'src/app/services/previous-url.service';
 import { DataService } from "src/app/services/pass-data.service";
-import { RouterOutlet } from '@angular/router';
+import { RouterOutlet, Router } from '@angular/router';
 
 @Component({
   selector: 'app-sections',
@@ -28,12 +28,16 @@ export class SectionsComponent implements OnInit {
   changeLoginClassStatus:boolean = false;
   noRegisteredClient: boolean;
   changeSuccessContent:boolean;
-  activePane: string = 'vehiclesView';
+  activePane: string;
   wheelDirection: string = '';
   time:number;
+  prevPane: string;
+  prevUrl: string;
+  nextPane: string;
+  nextUrl: string;
   previousUrl: string;
 
-  constructor(private routerExtService: RouterExtService, private data: DataService) { }
+  constructor(private routerExtService: RouterExtService, private data: DataService, private router: Router) { }
 
   prepareRoute(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
@@ -46,6 +50,11 @@ export class SectionsComponent implements OnInit {
       setTimeout(() => { this.displayToolbar = true }, 1600);
       setTimeout(() => { this.displaySideScroll = true }, 1600);
     }
+
+    //Check active panel
+    if (document.getElementById('vehicles')) { this.activePane = 'vehiclesView'; }
+    if (document.getElementById('parts')) { this.activePane = 'partsView'; }
+    if (document.getElementById('workshop')) { this.activePane = 'workshopView'; }
   }
 
   //Main methods
@@ -55,7 +64,7 @@ export class SectionsComponent implements OnInit {
     setTimeout(() => { this.displayToolbar = false }, 1700);
     setTimeout(() => { this.displaySideScroll = false }, 1700);
     setTimeout(() => { this.displaySections = false }, 2600);
-    setTimeout(() => { this.data.goToMainStatus(!status);; this.data.awaitAnimationOnScroll(!status); }, 500);
+    setTimeout(() => { this.data.goToMainStatus(false); this.data.awaitAnimationOnScroll(false); }, 500);
   }
 
   //Login methods
@@ -89,42 +98,48 @@ export class SectionsComponent implements OnInit {
   }
 
   //Section methods
-  onActivate(elementRef) {
+  onActivate(elementRef:any) {
     //Login methods
-    elementRef.verifyClient.subscribe($event => {
-      var noLoginExists = document.getElementById("noLogin");
-    if ($event.extra == "workshop"){
-      this.changeSuccessContent = true;
-    } else {
-      this.changeSuccessContent = false;
-    }
-    if(noLoginExists){
-      this.displayLogin = $event.status;
-      this.showProfileStatus = !$event.status;
-      if($event.extra == "vehicles" || $event.extra == "workshop"){
-        this.noRegisteredClient = $event.status;
+    if(elementRef.verifyClient){
+      elementRef.verifyClient.subscribe($event => {
+        var noLoginExists = document.getElementById("noLogin");
+      if ($event.extra == "workshop"){
+        this.changeSuccessContent = true;
       } else {
-        this.noRegisteredClient = !$event.status;
+        this.changeSuccessContent = false;
       }
-    } else {
-      this.showProfileStatus = $event.status;
-      this.displaySuccess = $event.status;
+      if(noLoginExists){
+        this.displayLogin = $event.status;
+        this.showProfileStatus = !$event.status;
+        if($event.extra == "vehicles" || $event.extra == "workshop"){
+          this.noRegisteredClient = $event.status;
+        } else {
+          this.noRegisteredClient = !$event.status;
+        }
+      } else {
+        this.showProfileStatus = $event.status;
+        this.displaySuccess = $event.status;
+      }
+      });
     }
-    });
 
     //Vehicles methods
-    elementRef.hideRegister.subscribe((status:boolean) => {
-      this.data.showRegisterStatus(status);
-
-      if(document.getElementById('vehicles')){
-        this.changeTopLinksClassStatus = status;
-      }
-    });
+    if(elementRef.hideRegister){
+      elementRef.hideRegister.subscribe((status:boolean) => {
+        this.data.showRegisterStatus(status);
+  
+        if(document.getElementById('vehicles')){
+          this.changeTopLinksClassStatus = status;
+        }
+      });
+    }
 
     //More methods
-    elementRef.displayMoreFromVehicle.subscribe((status:boolean) => {
-      this.displayMore = status;
-    });
+    if(elementRef.displayMoreFromVehicle){
+      elementRef.displayMoreFromVehicle.subscribe((status:boolean) => {
+        this.displayMore = status;
+      });
+    }
   }
 
   //Vehicles methods
@@ -180,40 +195,28 @@ export class SectionsComponent implements OnInit {
 
     this.data.showRegisterStatus(false);
 
-    if (document.getElementById('vehicles')) { this.time = 3100 }
-    if (document.getElementById('parts')) { this.time = 800 }
-    if (document.getElementById('workshop')) { this.time = 2500 }
+    if (document.getElementById('vehicles')) { this.prevPane = 'workshopView'; this.prevUrl = '/concesionario/taller'; this.nextPane='partsView'; this.nextUrl='/concesionario/repuestos'; this.time = 3100 }
+    if (document.getElementById('parts')) { this.prevPane = 'vehiclesView'; this.prevUrl = '/concesionario/vehiculos'; this.nextPane='workshopView'; this.nextUrl='/concesionario/taller'; this.time = 800 }
+    if (document.getElementById('workshop')) { this.prevPane = 'partsView'; this.prevUrl = '/concesionario/repuestos'; this.nextPane='vehiclesView'; this.nextUrl='/concesionario/vehiculos'; this.time = 2500 }
 
-    var children = document.getElementsByClassName('children');
-    var parent = document.getElementsByClassName('appChild')[0].parentNode;
-
-    for(var i = 0; i < children.length;i++)
-    {
-      if(children[i] == parent)
-      {
-        var previous = children[i - 1];
-        var next = children[i + 1];
-      }
-    }
-
-    if (evento.deltaY > 0 && next) {
+    if (evento.deltaY > 0) {
       if(this.wheelDirection !== 'down'){
         this.data.awaitAnimationOnScroll(true);
         setTimeout(() => {
-          this.activePane = next.id;
-          next.scrollIntoView({ behavior: "smooth" });
+          this.activePane = this.nextPane;
+          this.router.navigateByUrl(this.nextUrl);
         }, this.time);
         setTimeout(() => { this.data.awaitAnimationOnScroll(false); }, 500);
         this.wheelDirection = 'down';
       }
     }
 
-    if (evento.deltaY < 0 && previous) {
+    if (evento.deltaY < 0) {
       if(this.wheelDirection !== 'up'){
         this.data.awaitAnimationOnScroll(true);
         setTimeout(() => {
-          this.activePane = previous.id;
-          previous.scrollIntoView({ behavior: "smooth" });
+          this.activePane = this.prevPane;
+          this.router.navigateByUrl(this.prevUrl);
         }, this.time);
         setTimeout(() => { this.data.awaitAnimationOnScroll(false); }, 500);
         this.wheelDirection = 'up';

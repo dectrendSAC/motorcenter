@@ -19,16 +19,17 @@ export class SideScrollComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  slide(element:any){
-    this.awaitAnimation.emit(true);
-    if (document.getElementById('vehicles')) { this.time = 3100 }
-    if (document.getElementById('parts')) { this.time = 800 }
-    if (document.getElementById('workshop')) { this.time = 2500 }
-    setTimeout(() => {
-      this.slideStatus.emit(element);
-      this.router.navigateByUrl('/concesionario/taller');
-      /*document.getElementById(element).scrollIntoView({ behavior: "smooth", block: "start" });*/
-    }, this.time);
+  slide(element:string, url:string){
+    if (this.router.url.indexOf(url) < 0) {
+      this.awaitAnimation.emit(true);
+      if (document.getElementById('vehicles')) { this.time = 3100 }
+      if (document.getElementById('parts')) { this.time = 800 }
+      if (document.getElementById('workshop')) { this.time = 2500 }
+      setTimeout(() => {
+        this.slideStatus.emit(element);
+        this.router.navigateByUrl(url);
+      }, this.time);
+    }
   }
 
 }

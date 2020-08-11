@@ -1,11 +1,11 @@
 <div id="items">
-    <a class="menuItem" (click)="slide('vehiclesView')">
+    <a class="menuItem" (click)="slide('vehiclesView','/concesionario/vehiculos')">
         <span class="menuItemText" [class.active]="activeSection == 'vehiclesView'">Vehículos</span>
     </a>
-    <a class="menuItem" (click)="slide('partsView')">
+    <a class="menuItem" (click)="slide('partsView','/concesionario/repuestos')">
         <span class="menuItemText" [class.active]="activeSection == 'partsView'">Repuestos</span>
     </a>
-    <a class="menuItem" (click)="slide('workshopView')">
+    <a class="menuItem" (click)="slide('workshopView','/concesionario/taller')">
         <span class="menuItemText" [class.active]="activeSection == 'workshopView'">Taller</span>
     </a>
 </div>

@@ -1,6 +1,7 @@
-import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { multipleAnimations } from '../../../animations';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/pass-data.service';
 
 @Component({
   selector: 'app-workshop',
@@ -21,41 +22,40 @@ export class WorkshopComponent implements OnInit {
   displayOthers: boolean;
   displayOtherShadow: boolean;
   selectedItemsText:string;
-
-  @Input() displayRegisterFromSection: boolean;
-  @Input() awaitAnimation: boolean;
-  @Input() goToMain:boolean;
+  displayRegisterFromSection: boolean;
 
   @Output() verifyClient = new EventEmitter<{status: boolean, extra: string}>();
   @Output() hideRegister = new EventEmitter<boolean>();
 
-  constructor(private router: Router) { }
+  constructor(private data: DataService, private router: Router) { 
+    this.data.showRegisteCurrentData.subscribe(data1 => this.displayRegisterFromSection = data1);
+
+    //Await animation sequence
+    this.data.awaitAnimationOnScrollCurrentData.subscribe(data2 => {
+      if (data2){
+        this.displayBook = false;
+        setTimeout(() => { this.displayTitle = false }, 700);
+        setTimeout(() => { this.displayStack = false }, 1400);
+        this.data.goToMainStatusCurrentData.subscribe(data3 => {
+          if(data3){
+            setTimeout(() => { this.router.navigateByUrl('/'); }, 2800);
+          } else {
+            setTimeout(() => { this.displayBottom = false }, 2900);
+          }
+        });
+      }
+    });
+  }
 
   ngOnInit(): void {
     //Animation sequence
-    setTimeout(() => { this.displayBottom = true }, 200);
+    this.displayBottom = true
     setTimeout(() => { this.displayStack = true }, 800);
     setTimeout(() => { this.displayOthers = true }, 1400);
     setTimeout(() => { this.displayOtherShadow = true }, 1600);
     setTimeout(() => { this.displayTitle = true }, 1600);
     setTimeout(() => { this.displayBook = true }, 2300);
   }
-
-  //Await animation sequence
-  ngOnChanges(changes: SimpleChanges) {
-    if(changes.awaitAnimation.currentValue){
-      this.displayBook = false;
-      setTimeout(() => { this.displayTitle = false }, 700);
-      setTimeout(() => { this.displayStack = false }, 1400);
-      if(changes.goToMain){
-        if(changes.goToMain.currentValue){
-          setTimeout(() => { this.router.navigateByUrl('/') }, 2800);
-        }
-      } else {
-        setTimeout(() => { this.displayBottom = false }, 2100);
-      }
-    }
-}
 
   //Services methods
   showServices($event:any){

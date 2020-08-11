@@ -1,4 +1,4 @@
-<div class="origin" [@routeAnimations]="prepareRoute(outlet)">       
+<div class="origin" [@routeAnimations]="{value: prepareRoute(outlet), params: {paddingBottomSize: paddingBottom}}">       
   <router-outlet #outlet="outlet"></router-outlet>
 </div>
 

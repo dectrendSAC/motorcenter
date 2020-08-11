@@ -35,7 +35,7 @@
             <img src="assets/images/carretera.png">
         </div>
 
-        <div [@bounceIn]="displayTerrain" class="terrain">
+        <div [@bounceIn]="displayTerrain" *ngIf="displayTerrain" class="terrain">
             <img src="assets/images/terreno.png">
         </div>
     </div>
