@@ -2,10 +2,8 @@
 
 <app-side-scroll @fadeIn *ngIf="displaySideScroll" id="sideScroll" (slideStatus)="changeActivePane($event)" [activeSection]="activePane" (awaitAnimation)="awaitAnimation($event)"></app-side-scroll>
 
-<div class="parent"> 
-    <div class="children">
-        <router-outlet class="appChild" (activate)="onActivate($event)"></router-outlet>
-    </div>      
+<div [@routeAnimations]="{value: prepareRouteForSection(sectionOutlet), params: {paddingBottomSize: paddingBottom}}" class="parent"> 
+    <router-outlet #sectionOutlet="outlet" (activate)="onActivate($event)"></router-outlet>    
 </div>
 
 <div @fadeOut *ngIf="displayLogin || displayMore || displaySuccess" class="blackScreen">

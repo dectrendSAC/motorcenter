@@ -36,10 +36,11 @@ export class SectionsComponent implements OnInit {
   nextPane: string;
   nextUrl: string;
   previousUrl: string;
+  paddingBottom: number = 0;
 
   constructor(private routerExtService: RouterExtService, private data: DataService, private router: Router) { }
 
-  prepareRoute(outlet: RouterOutlet) {
+  prepareRouteForSection(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
   }
 

@@ -41,18 +41,12 @@
 
 .parent{
     position: absolute;
+    z-index: 1;
+    left: 0px;
+    top: 0px;
     width: 100%;
     height: 100%;
     background: #EFEFEF;
-
-    .children{
-        position: relative;
-        z-index: 1;
-        left: 0px;
-        top: 0px;
-        width: 100%;
-        height: 100%;
-    }
 }
 
 .blackScreen{
