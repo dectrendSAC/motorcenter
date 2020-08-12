@@ -10,8 +10,8 @@ import { RouterOutlet, Router } from '@angular/router';
   styleUrls: ['./sections.component.scss'],
   animations: [
     multipleAnimations.routeTrigger,
+    multipleAnimations.fadeOneTrigger,
     multipleAnimations.fadeTwoTrigger,
-    multipleAnimations.fadeThreeTrigger,
     multipleAnimations.slideThreeTrigger,
     multipleAnimations.slideTwoTrigger
   ]
@@ -39,10 +39,6 @@ export class SectionsComponent implements OnInit {
   paddingBottom: number = 0;
 
   constructor(private routerExtService: RouterExtService, private data: DataService, private router: Router) { }
-
-  /*prepareRouteForSection(outlet: RouterOutlet) {
-    return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
-  }*/
 
   ngOnInit(): void {
     this.previousUrl = this.routerExtService.getPreviousUrl();
@@ -210,6 +206,13 @@ export class SectionsComponent implements OnInit {
         setTimeout(() => { this.data.awaitAnimationOnScroll(false); }, 500);
         this.wheelDirection = 'down';
       }
+
+      if(this.nextPane == 'vehiclesView'){
+        setTimeout(() => { this.changeLoginClassStatus = false; }, 2500);
+      } else {
+        this.changeTopLinksClassStatus = false;
+        setTimeout(() => { this.changeLoginClassStatus = true; }, 1000);
+      }
     }
 
     if (evento.deltaY < 0) {
@@ -222,13 +225,13 @@ export class SectionsComponent implements OnInit {
         setTimeout(() => { this.data.awaitAnimationOnScroll(false); }, 500);
         this.wheelDirection = 'up';
       }
-    }
 
-    if(this.activePane == 'vehiclesView'){
-      this.changeLoginClassStatus = false;
-    } else {
-      this.changeTopLinksClassStatus = false;
-      this.changeLoginClassStatus = true;
+      if(this.prevPane == 'vehiclesView'){
+        setTimeout(() => { this.changeLoginClassStatus = false; }, 1000);
+      } else {
+        this.changeTopLinksClassStatus = false;
+        setTimeout(() => { this.changeLoginClassStatus = true; }, 2500);
+      }
     }
   }
 }

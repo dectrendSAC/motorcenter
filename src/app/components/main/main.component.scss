@@ -109,7 +109,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
 
         .socialBtns{
             left: 25px;
-            bottom: 25px;
+            top: 89vh;
             width: 195px;
             height: 40px;
     
@@ -384,6 +384,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
     }
 
     button{
+        z-index: 2;
         color: white;
         font-family: 'palanquin', 'arial', sans-serif;
         border-radius: 50px;
@@ -414,14 +415,12 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
 
         &.btnRight{
             position: absolute;
-            z-index: 1;
             right: 25px;
             top: 50vh;
         }
 
         &.btnLeft{
             position: absolute;
-            z-index: 1;
             left: 25px;
             top: 50vh;
         }

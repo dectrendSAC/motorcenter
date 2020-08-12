@@ -18,7 +18,11 @@ export class AppComponent {
     if(outlet.isActivated){
       if(outlet.activatedRoute.firstChild){
         if(outlet.activatedRoute.snapshot.firstChild.data['animation'] == 'Vehiculos'){
-          this.paddingBottom = 10;
+          if(window.innerWidth > 1800){
+            this.paddingBottom = 10;
+          } else {
+            this.paddingBottom = 14;
+          }
           return outlet && outlet.activatedRoute.snapshot.firstChild.data['animation'];
         } else {
           this.paddingBottom = 0;

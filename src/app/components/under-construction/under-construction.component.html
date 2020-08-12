@@ -1,50 +1,50 @@
 <div id="underConstruction">
     <div class="image-stack">
-        <div [@bounceIn]="displayStation4" *ngIf="displayStation4" class="station4">
+        <div [@fadeInOut]="displayStation4" *ngIf="displayStation4" class="station4">
             <img src="assets/images/station4.png">
         </div>
 
-         <div [@bounceIn]="displayFloor4" *ngIf="displayFloor4" class="station_floor4">
-            <img src="assets/images/station_floor.png">
+         <div class="station_floor4">
+            <img [@scaleInOut]="displayFloor4" *ngIf="displayFloor4" src="assets/images/station_floor.png">
         </div>
 
-        <div [@bounceIn]="displayStation3" *ngIf="displayStation3" class="station3">
+        <div [@fadeInOut]="displayStation3" *ngIf="displayStation3" class="station3">
             <img src="assets/images/station3.png">
         </div>
 
-         <div [@bounceIn]="displayFloor3" *ngIf="displayFloor3" class="station_floor3">
-            <img src="assets/images/station_floor.png">
+         <div class="station_floor3">
+            <img [@scaleInOut]="displayFloor3" *ngIf="displayFloor3" src="assets/images/station_floor.png">
         </div>
 
-        <div [@bounceIn]="displayLine3" *ngIf="displayLine3" class="station_line3">
+        <div [@fadeInOut]="displayLine3" *ngIf="displayLine3" class="station_line3">
             <img src="assets/images/station_line3.png">
         </div>
 
-        <div [@bounceIn]="displayStation2" *ngIf="displayStation2" class="station2">
+        <div [@fadeInOut]="displayStation2" *ngIf="displayStation2" class="station2">
             <img src="assets/images/station2.png">
         </div>
 
-         <div [@bounceIn]="displayFloor2" *ngIf="displayFloor2" class="station_floor2">
-            <img src="assets/images/station_floor.png">
+         <div class="station_floor2">
+            <img [@scaleInOut]="displayFloor2" *ngIf="displayFloor2" src="assets/images/station_floor.png">
         </div>
 
-        <div [@bounceIn]="displayLine2" *ngIf="displayLine2" class="station_line2">
+        <div [@fadeInOut]="displayLine2" *ngIf="displayLine2" class="station_line2">
             <img src="assets/images/station_line2.png">
         </div>
 
-        <div [@bounceIn]="displayStation1" *ngIf="displayStation1" class="station1">
+        <div [@fadeInOut]="displayStation1" *ngIf="displayStation1" class="station1">
             <img src="assets/images/station1.png">
         </div>
 
-         <div [@bounceIn]="displayFloor1" *ngIf="displayFloor1" class="station_floor1">
-            <img src="assets/images/station_floor.png">
+        <div class="station_floor1">
+            <img [@scaleInOut]="displayFloor1" *ngIf="displayFloor1" src="assets/images/station_floor.png">
         </div>
 
-        <div [@bounceIn]="displayLine1" *ngIf="displayLine1" class="station_line1">
+        <div [@fadeInOut]="displayLine1" *ngIf="displayLine1" class="station_line1" [class.one] ="station == 1">
             <img src="assets/images/station_line1.png">
         </div>
 
-        <div [@bounceIn]="displayText" *ngIf="displayText" class="construction_text">
+        <div [@fadeInOut]="displayText" *ngIf="displayText" class="construction_text">
             <img src="assets/images/construction_text.png">
         </div>
     </div>

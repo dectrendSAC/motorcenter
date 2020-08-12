@@ -7,11 +7,11 @@
 </div>
 
 <span *ngIf="!displayProfile" class="pulse" [class.active] ="changeLoginClass" [class.main] ="displayUserName"></span>
-<div class="login" (click)="showLogin()" [class.active] ="changeLoginClass" [class.main] ="displayUserName">
-    <div *ngIf="!displayProfile" id="noLogin" class="no-profile" [matTooltip]="displayUserName? '': 'Iniciar sesión'" matTooltipPosition="before"></div>
-    <div *ngIf="displayProfile" [matMenuTriggerFor]="menu" id="Login" class="profile"></div>
+<div class="login" [class.active] ="changeLoginClass" [class.main] ="displayUserName">
+    <div *ngIf="!displayProfile" (click)="showLogin()" id="noLogin" class="no-profile" [matTooltip]="displayUserName? '': 'Iniciar sesión'" matTooltipPosition="before"></div>
+    <div *ngIf="displayProfile" id="Login" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" class="profile"></div>
     <div *ngIf="displayProfile" [matMenuTriggerFor]="menu" class="profileFrame"><div class="profileContent"></div></div>
-    <span *ngIf="displayUserName">{{displayProfile ? 'Random client' : 'Iniciar sesión'}}</span> 
+    <span *ngIf="displayUserName" (click)="showLogin(); openMenu()">{{displayProfile ? 'Random client' : 'Iniciar sesión'}}</span> 
 </div>
 <mat-menu #menu="matMenu">
   <button mat-menu-item color="primary">

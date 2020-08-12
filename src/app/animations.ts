@@ -94,13 +94,6 @@ export const multipleAnimations = {
         ])
     ]),
 
-    fadeThreeTrigger: trigger('fadeIn', [ 
-        transition(':enter', [
-          style({ opacity: 0 }),
-          animate('.7s ease-in-out', style({ opacity: 1}))
-        ])
-    ]),
-
     bounceTrigger: trigger('bounceIn', [
         state('fall', style({})),
         transition('* => fall', [
@@ -118,5 +111,16 @@ export const multipleAnimations = {
             style({ transform: 'scale(1,1) translateY(0)' }),
             ]))
         ])
-    ])
+    ]),
+
+    scaleTrigger: trigger('scaleInOut', [ 
+        transition(':enter', [
+            style({ transform: 'scale(0)', transformOrigin:'center' }),
+            animate('.5s ease-in-out', style({ transform: 'scale(1)', transformOrigin:'center' }))
+        ]),
+        transition(':leave', [
+            style({}),
+            animate('.5s ease-in-out', style({ transform: 'scale(0)', transformOrigin:'center' }))
+        ])
+    ]),
 }

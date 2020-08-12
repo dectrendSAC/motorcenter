@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatMenuTrigger } from '@angular/material/menu';
 
 @Component({
   selector: 'app-toolbar',
@@ -18,6 +19,8 @@ export class ToolbarComponent implements OnInit {
   @Output() awaitAnimation = new EventEmitter<boolean>();
   @Output() slideStatus = new EventEmitter<string>();
   @Output() homeBtn = new EventEmitter<boolean>();
+
+  @ViewChild('menuTrigger') menuTrigger: MatMenuTrigger;
 
   constructor(private router: Router) { }
 
@@ -50,7 +53,11 @@ export class ToolbarComponent implements OnInit {
     }
   }
 
-  //LogOut
+  //Menu methods
+  openMenu(){
+    this.menuTrigger.openMenu();
+  }
+
   logOut(){
     this.displayLoginFromToolbar.emit({status: false, extra: 'toolbar'});
   }
