@@ -59,8 +59,13 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
             height: 50px;
         }
 
+        span{
+            font-size: 15pt;
+            line-height: 40pt;
+        }
+
         .profile{
-            left: 50px;
+            /*left: 50px;*/
             width: 50px;
             height: 50px;
         }
@@ -74,6 +79,11 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
                 height: 47px;
             }
         }
+
+        &.main{
+            top: 57vh;
+            left: 0vh;
+        }
     }
     
     .pulse {
@@ -81,6 +91,12 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
         right: 26px;
         width: 47px;
         height: 47px;
+
+        &.main{
+            top: 57.1vh;
+            left: 0vh;
+            margin-left: 274px;
+        }
     }  
 }
 
@@ -116,8 +132,13 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
             height: 70px;
         }
 
+        span{
+            font-size: 20pt;
+            line-height: 45pt;
+        }
+
         .profile{
-            left: 70px;
+            /*left: 70px;*/
             width: 70px;
             height: 70px;
         }
@@ -131,6 +152,11 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
                 height: 67px;
             }
         }
+
+        &.main{
+            top: 55vh;
+            left: 0vh;
+        }
     }
 
     .pulse {
@@ -138,6 +164,12 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
         right: 37px;
         width: 65px;
         height: 65px;
+
+        &.main{
+            top: 55.2vh;
+            left: 0vh;
+            margin-left: 20.2%;
+        }
     }
 }
 
@@ -299,6 +331,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
     }
 
     .profileFrame{
+        position: absolute;
         margin: 3px;
         overflow: hidden;
         border-radius: 100px;
@@ -309,6 +342,14 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
             z-index: 1;
             background: url("data:image/svg+xml, #{$male_profile}") center/cover no-repeat !important;
             transition: all 0.5s;
+        }
+    }
+
+    &.main{
+        padding-left: 20%;
+
+        span{
+            padding-left: 15px;
         }
     }
 }

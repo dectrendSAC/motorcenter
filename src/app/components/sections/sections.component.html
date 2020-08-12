@@ -1,9 +1,9 @@
-<app-toolbar @fadeIn *ngIf="displayToolbar" id="toolbar" (displayLoginFromToolbar)="showLogin($event)" (homeBtn)="goToMain($event)" [displayProfile]="showProfileStatus" [changeTopLinksClass]="changeTopLinksClassStatus" [changeLoginClass]="changeLoginClassStatus"></app-toolbar>
+<app-toolbar @fadeIn *ngIf="displayToolbar" id="toolbar" (slideStatus)="changeActivePane($event)" (awaitAnimation)="awaitAnimation($event)" (displayLoginFromToolbar)="showLogin($event)" (homeBtn)="goToMain($event)" [displayProfile]="showProfileStatus" [changeTopLinksClass]="changeTopLinksClassStatus" [changeLoginClass]="changeLoginClassStatus"></app-toolbar>
 
 <app-side-scroll @fadeIn *ngIf="displaySideScroll" id="sideScroll" (slideStatus)="changeActivePane($event)" [activeSection]="activePane" (awaitAnimation)="awaitAnimation($event)"></app-side-scroll>
 
-<div [@routeAnimations]="{value: prepareRouteForSection(sectionOutlet), params: {paddingBottomSize: paddingBottom}}" class="parent"> 
-    <router-outlet #sectionOutlet="outlet" (activate)="onActivate($event)"></router-outlet>    
+<div class="parent"> 
+    <router-outlet (activate)="onActivate($event)"></router-outlet>    
 </div>
 
 <div @fadeOut *ngIf="displayLogin || displayMore || displaySuccess" class="blackScreen">

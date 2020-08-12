@@ -19,12 +19,12 @@ export class SideScrollComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  slide(element:string, url:string){
+  navigateTo(element:string, url:string){
     if (this.router.url.indexOf(url) < 0) {
       this.awaitAnimation.emit(true);
-      if (document.getElementById('vehicles')) { this.time = 3100 }
-      if (document.getElementById('parts')) { this.time = 800 }
-      if (document.getElementById('workshop')) { this.time = 2500 }
+      if (document.getElementById('vehicles')) { this.time = 2500 }
+      if (document.getElementById('parts')) { this.time = 1000 }
+      if (document.getElementById('workshop')) { this.time = 1000 }
       setTimeout(() => {
         this.slideStatus.emit(element);
         this.router.navigateByUrl(url);

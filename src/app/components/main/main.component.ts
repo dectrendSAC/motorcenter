@@ -24,7 +24,6 @@ var ranWordInterval = null;
 export class MainComponent implements OnInit {
   phrase: string;
   displayLogin:boolean=false;
-  displayProfile:boolean = false;
   displayLogo:boolean;
   displayBtns:boolean;
   displayTerrain:string;
@@ -33,6 +32,8 @@ export class MainComponent implements OnInit {
   displayVehicles: boolean;
   displayPhrase: boolean;
   displaySignIn:boolean;
+  showProfileStatus:boolean;
+  noRegisteredClient:boolean;
   triggerVehiclesEvent:boolean;
   previousUrl: string;
 
@@ -93,12 +94,20 @@ export class MainComponent implements OnInit {
     video.pause();
   }
 
-  //Show login component
-  showLogin(){
-    var nologin = document.getElementById("noLogin");
-    if(nologin){
-      this.displayLogin = true;
+  //Login methods
+  showLogin($event){
+    var noLoginExists = document.getElementById("noLogin");
+    if(noLoginExists){
+      this.displayLogin = $event.status;
+      this.showProfileStatus = !$event.status;
+      this.noRegisteredClient = !$event.status;
+    } else {
+      this.showProfileStatus = $event.status;
     }
+  }
+
+  showProfile(status:boolean){
+    this.showProfileStatus = status;
   }
 
   hideLogin(status:boolean) {
@@ -108,17 +117,4 @@ export class MainComponent implements OnInit {
     }, 300);
     this.displayLogin = status;
   }
-
-  //LogOut
-  logOut(){
-    this.displayProfile = false;
-  }
-
-  onOpenMenu(): void {}
-
-  //Show profile
-  showProfile(status:boolean){
-    this.displayProfile = status;
-  }
-
 }

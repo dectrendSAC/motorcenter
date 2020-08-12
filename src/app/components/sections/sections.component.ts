@@ -40,9 +40,9 @@ export class SectionsComponent implements OnInit {
 
   constructor(private routerExtService: RouterExtService, private data: DataService, private router: Router) { }
 
-  prepareRouteForSection(outlet: RouterOutlet) {
+  /*prepareRouteForSection(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation'];
-  }
+  }*/
 
   ngOnInit(): void {
     this.previousUrl = this.routerExtService.getPreviousUrl();
@@ -53,9 +53,9 @@ export class SectionsComponent implements OnInit {
     }
 
     //Check active panel
-    if (document.getElementById('vehicles')) { this.activePane = 'vehiclesView'; }
-    if (document.getElementById('parts')) { this.activePane = 'partsView'; }
-    if (document.getElementById('workshop')) { this.activePane = 'workshopView'; }
+    if (document.getElementById('vehicles')) { this.activePane = 'vehiclesView'; this.changeLoginClassStatus = false; }
+    if (document.getElementById('parts')) { this.activePane = 'partsView'; this.changeLoginClassStatus = true; }
+    if (document.getElementById('workshop')) { this.activePane = 'workshopView'; this.changeLoginClassStatus = true; }
   }
 
   //Main methods

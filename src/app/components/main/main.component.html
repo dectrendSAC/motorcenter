@@ -46,43 +46,7 @@
     </div>
 
     <div @fadeInOut *ngIf="displaySignIn">
-        <span *ngIf="!displayProfile" class="pulse"></span>
-        <div class="login" (click)="showLogin(); displayProfile && menuTrigger.openMenu()">
-            <div *ngIf="!displayProfile" id="noLogin" class="no-profile"></div>
-            <div id="Login" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu">
-                <div *ngIf="displayProfile" class="profile"></div>
-                <div *ngIf="displayProfile" class="profileFrame"><div class="profileContent"></div></div>
-            </div>
-            <span>{{displayProfile ? 'Random client' : 'Iniciar sesión'}}</span> 
-        </div>
-        <mat-menu #menu="matMenu">
-            <button mat-menu-item color="primary">
-              <mat-icon>account_circle</mat-icon>
-              <span>Perfil</span>
-            </button>
-            <button mat-menu-item [matMenuTriggerFor]="dealer">
-              <mat-icon>emoji_transportation</mat-icon>
-              <span>Concesionario</span>
-            </button>
-            <button mat-menu-item (click)="logOut()">
-                <mat-icon>exit_to_app</mat-icon>
-                <span>Salir</span>
-            </button>
-        </mat-menu>
-        <mat-menu #dealer="matMenu">
-            <button mat-menu-item routerLink="concesionario/vehiculos">
-              <mat-icon>directions_car</mat-icon>
-              <span>Vehículos</span>
-            </button>
-            <button mat-menu-item routerLink="concesionario/repuestos" disabled>
-                <mat-icon>miscellaneous_services</mat-icon>
-                <span>Repuestos</span>
-              </button>
-            <button mat-menu-item routerLink="concesionario/taller">
-              <mat-icon>home_repair_service</mat-icon>
-              <span>Taller</span>
-            </button>
-        </mat-menu>
+        <app-toolbar (displayLoginFromToolbar)="showLogin($event)" [displayProfile]="showProfileStatus"></app-toolbar>
     </div>
 
     <div @slideDownUp *ngIf="displayLogo" class="socialBtns">
@@ -92,7 +56,7 @@
     </div>
 
     <div @fadeOut *ngIf="displayLogin" class="blackScreen">
-        <app-login *ngIf="displayLogin" id="login-form-wrapper" (displayLogin)="hideLogin($event)" (displayProfile)="showProfile($event)"></app-login>
+        <app-login *ngIf="displayLogin" id="login-form-wrapper" (displayLogin)="hideLogin($event)" (displayProfile)="showProfile($event)" [noRegisteredClient]="noRegisteredClient"></app-login>
     </div>
 
 </div>

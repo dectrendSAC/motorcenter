@@ -1,0 +1,138 @@
+/* Extra small devices (phones, 688px and down) */
+@media only screen and (max-width: 43em) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 688px and up) */
+@media only screen and (min-width: 43em) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 48em) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 62em) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 119em) {
+    #underConstruction{
+        .image-stack{
+            width: 45%;
+        }
+    }
+}
+
+//--------------------------
+
+#underConstruction {
+    position: relative;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    
+    img{
+        width: 100%;
+        height: auto;
+    }
+
+    .image-stack{
+        display: grid;
+        grid-template-columns: repeat(20, 1fr);
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        transition: all 0.5s;
+
+        .station4{
+            grid-column: 14/21;
+            grid-row: 1;
+            z-index: 3;
+            padding-right: 5%;
+            padding-top: 92%;
+        }
+
+        .station_floor4{
+            grid-column: 13/21;
+            grid-row: 1;
+            z-index: 2;
+            padding-top: 90%;
+        }
+
+        .station3{
+            grid-column: 7/14;
+            grid-row: 1;
+            z-index: 3;
+            padding-top: 140%;
+            padding-right: 1%;
+        }
+
+        .station_floor3{
+            grid-column: 6/14;
+            grid-row: 1;
+            z-index: 2;
+            padding-top: 153%;
+        }
+
+        .station_line3{
+            grid-column: 10/16;
+            grid-row: 1;
+            z-index: 1;
+            padding-top: 120%;
+        }
+
+        .station2{
+            grid-column: 2/8;
+            grid-row: 1;
+            z-index: 3;
+            padding-top: 55%;
+        }
+
+        .station_floor2{
+            grid-column: 1/9;
+            grid-row: 1;
+            z-index: 2;
+            padding-top: 80%;
+        }
+
+        .station_line2{
+            grid-column: 2/9;
+            grid-row: 1;
+            z-index: 1;
+            padding-top: 136%;
+        }
+
+        .station1{
+            grid-column: 9/15;
+            grid-row: 1;
+            z-index: 3;
+        }
+
+        .station_floor1{
+            grid-column: 8/16;
+            grid-row: 1;
+            z-index: 2;
+            padding-top: 22%;
+        }
+
+        .station_line1{
+            grid-column: 6/15;
+            grid-row: 1;
+            z-index: 1;
+            padding-top: 58%;
+        }
+
+        .construction_text {
+            grid-column: 13/-1;
+            grid-row: 1;
+            padding-top: 167%;
+        }
+    
+    }
+}

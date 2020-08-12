@@ -30,7 +30,7 @@ import { MoreComponent } from './components/sections/more/more.component';
 import { SuccessComponent } from './components/sections/success/success.component';
 import { SideScrollComponent } from './components/sections/side-scroll/side-scroll.component';
 import { SectionsComponent } from './components/sections/sections.component';
-import { ToolbarComponent } from './components/sections/toolbar/toolbar.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { ServicesComponent } from './components/sections/workshop/services/services.component';
 
 import { MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS } from '@angular/material-moment-adapter';
@@ -38,6 +38,7 @@ import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { PartsComponent } from './components/sections/parts/parts.component';
 import { RouterExtService } from './services/previous-url.service';
 import { DataService } from './services/pass-data.service';
+import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { DataService } from './services/pass-data.service';
     SectionsComponent,
     ToolbarComponent,
     ServicesComponent,
-    PartsComponent
+    PartsComponent,
+    UnderConstructionComponent
   ],
   imports: [
     BrowserModule,
