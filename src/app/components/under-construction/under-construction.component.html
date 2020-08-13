@@ -1,18 +1,18 @@
 <div id="underConstruction">
     <div class="image-stack">
-        <div [@fadeInOut]="displayStation4" *ngIf="displayStation4" class="station4">
+        <div [@fadeInOut]="displayStation4" *ngIf="displayStation4" [className]="'station '+station4">
             <img src="assets/images/station4.png">
         </div>
 
-         <div class="station_floor4">
+         <div [className]="'station_floor '+station4">
             <img [@scaleInOut]="displayFloor4" *ngIf="displayFloor4" src="assets/images/station_floor.png">
         </div>
 
-        <div [@fadeInOut]="displayStation3" *ngIf="displayStation3" class="station3">
+        <div [@fadeInOut]="displayStation3" *ngIf="displayStation3" [className]="'station '+station3">
             <img src="assets/images/station3.png">
         </div>
 
-         <div class="station_floor3">
+         <div [className]="'station_floor '+station3">
             <img [@scaleInOut]="displayFloor3" *ngIf="displayFloor3" src="assets/images/station_floor.png">
         </div>
 
@@ -20,11 +20,11 @@
             <img src="assets/images/station_line3.png">
         </div>
 
-        <div [@fadeInOut]="displayStation2" *ngIf="displayStation2" class="station2">
+        <div [@fadeInOut]="displayStation2" *ngIf="displayStation2" [className]="'station '+station2">
             <img src="assets/images/station2.png">
         </div>
 
-         <div class="station_floor2">
+         <div [className]="'station_floor '+station2">
             <img [@scaleInOut]="displayFloor2" *ngIf="displayFloor2" src="assets/images/station_floor.png">
         </div>
 
@@ -32,15 +32,15 @@
             <img src="assets/images/station_line2.png">
         </div>
 
-        <div [@fadeInOut]="displayStation1" *ngIf="displayStation1" class="station1">
+        <div [@fadeInOut]="displayStation1" *ngIf="displayStation1" [className]="'station '+station1">
             <img src="assets/images/station1.png">
         </div>
 
-        <div class="station_floor1">
+        <div [className]="'station_floor '+station1">
             <img [@scaleInOut]="displayFloor1" *ngIf="displayFloor1" src="assets/images/station_floor.png">
         </div>
 
-        <div [@fadeInOut]="displayLine1" *ngIf="displayLine1" class="station_line1" [class.one] ="station == 1">
+        <div [@fadeInOut]="displayLine1" *ngIf="displayLine1" class="station_line1">
             <img src="assets/images/station_line1.png">
         </div>
 

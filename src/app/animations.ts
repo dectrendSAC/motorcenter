@@ -20,7 +20,7 @@ export const multipleAnimations = {
                 style({}),
                 animate(1, style({}))
             ])
-            ]),
+            ])
         ]),
         transition('Vehiculos => Main, Main => Taller, Taller => Repuestos, Repuestos => Vehiculos, Taller => Vehiculos', [
             query(':enter, :leave', style({ position: 'absolute', width:'100%',height:'100%' })),
@@ -39,7 +39,26 @@ export const multipleAnimations = {
                 style({}),
                 animate(1, style({}))
             ])
+            ])
+        ]),
+        transition('Repuestos <=> Main', [
+            query(':enter, :leave', style({ position: 'absolute', width:'100%', height:'100%', paddingBottom: '{{paddingBottomSize}}%' })),
+            query(':enter', style({ opacity: 0 })),
+            
+            group([
+            query(':leave', [
+                style({ opacity: 1 }),
+                animate('1s ease-in-out', style({opacity: 0}))
             ]),
+            query(':enter', [
+                animate('1s ease-in-out', style({opacity: 1})),
+                animateChild()
+            ]),
+            query(':leave *', [
+                style({}),
+                animate(1, style({}))
+            ])
+            ])
         ])
     ]),
 
