@@ -114,6 +114,11 @@ export const multipleAnimations = {
     ]),
 
     bounceTrigger: trigger('bounceIn', [
+        state('fadeIn', style({})),
+        transition('* => fadeIn', [
+            style({ opacity: 0 }),
+            animate('.7s ease-in-out', style({ opacity: 1}))
+        ]),
         state('fall', style({})),
         transition('* => fall', [
             style({ transform: 'translateY(-100%)' }),

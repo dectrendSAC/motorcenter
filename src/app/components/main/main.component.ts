@@ -53,28 +53,38 @@ export class MainComponent implements OnInit {
       clearInterval(ranWordInterval);
       this.phrase = 'RESPONSABLES';
       this.displayLogin = true; 
+      this.displayBtns = true;
+      this.displaySignIn = true;
+      this.displayTerrain = 'fadeIn';
+      this.displayRoad = 'fadeIn';
+      this.displayLines = true;
+      this.displayLogo = true;
+      this.displayPhrase= true;
+      this.displayVehicles = true;
     }
 
     this.previousUrl = this.routerExtService.getPreviousUrl();
     //Animation sequence
-    if(this.previousUrl != undefined && this.previousUrl.includes('/concesionario')){
-      this.triggerVehiclesEvent = false;
-      setTimeout(() => { this.displayTerrain = 'fall' }, 500);
-      setTimeout(() => { this.displayTerrain = 'bounce' }, 1000);
-      setTimeout(() => { this.displayBtns = true }, 2900);
-      setTimeout(() => { this.displaySignIn = true }, 3600);
-    } else {
-      this.displayTerrain = 'fall';
-      setTimeout(() => { this.displayTerrain = 'bounce' }, 500);
-      setTimeout(() => { this.triggerVehiclesEvent = true }, 4100);
-      setTimeout(() => { this.router.navigateByUrl('/concesionario/vehiculos'); }, 5000);
+    if(!history.state.data){
+      if(this.previousUrl != undefined && this.previousUrl.includes('/concesionario')){
+        this.triggerVehiclesEvent = false;
+        setTimeout(() => { this.displayTerrain = 'fall' }, 500);
+        setTimeout(() => { this.displayTerrain = 'bounce' }, 1000);
+        setTimeout(() => { this.displayBtns = true }, 2900);
+        setTimeout(() => { this.displaySignIn = true }, 3600);
+      } else {
+        this.displayTerrain = 'fall';
+        setTimeout(() => { this.displayTerrain = 'bounce' }, 500);
+        setTimeout(() => { this.triggerVehiclesEvent = true }, 4100);
+        setTimeout(() => { this.router.navigateByUrl('/concesionario/vehiculos'); }, 5000);
+      }
+      setTimeout(() => { this.displayRoad = 'fall' }, 1200);
+      setTimeout(() => { this.displayRoad = 'bounce' }, 1900);
+      setTimeout(() => { this.displayLines = true }, 2900);
+      setTimeout(() => { this.displayLogo = true }, 2900);
+      setTimeout(() => { this.displayPhrase= true }, 3400);
+      setTimeout(() => { this.displayVehicles = true }, 3400);
     }
-    setTimeout(() => { this.displayRoad = 'fall' }, 1200);
-    setTimeout(() => { this.displayRoad = 'bounce' }, 1900);
-    setTimeout(() => { this.displayLines = true }, 2900);
-    setTimeout(() => { this.displayLogo = true }, 2900);
-    setTimeout(() => { this.displayPhrase= true }, 3400);
-    setTimeout(() => { this.displayVehicles = true }, 3400);
   }
 
   //Toggle video function

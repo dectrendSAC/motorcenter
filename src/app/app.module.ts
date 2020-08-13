@@ -13,13 +13,16 @@ import { WorkshopComponent } from './components/sections/workshop/workshop.compo
 import { AboutUsComponent } from './components/main/about-us/about-us.component';
 import { EmployeesComponent } from './components/employees/employees.component';
 import { ClientsComponent } from './components/clients/clients.component';
-import { ProfileComponent } from './components/clients/profile/profile.component';
-import { NotificationsComponent } from './components/clients/notifications/notifications.component';
+import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
+import { ClientVehiclesComponent } from './components/clients/client-vehicles/client-vehicles.component';
+import { ClientWorkshopComponent } from './components/clients/client-workshop/client-workshop.component';
+import { ClientCalendarComponent } from './components/clients/client-calendar/client-calendar.component';
+import { ClientNotificationsComponent } from './components/clients/client-notifications/client-notifications.component';
+import { ClientProfileComponent } from './components/clients/client-profile/client-profile.component';
+import { ClientPromotionsComponent } from './components/clients/client-promotions/client-promotions.component';
 import { MotorPointsComponent } from './components/clients/motor-points/motor-points.component';
 import { QuotesComponent } from './components/clients/quotes/quotes.component';
-import { CalendarComponent } from './components/clients/calendar/calendar.component';
 import { PurchasesComponent } from './components/clients/purchases/purchases.component';
-import { PromotionsComponent } from './components/clients/promotions/promotions.component';
 import { RegisterComponent } from './components/sections/register/register.component';
 import { BookComponent } from './components/sections/workshop/book/book.component';
 import { LoginComponent } from './components/login/login.component';
@@ -38,7 +41,7 @@ import { DateAdapter, MAT_DATE_LOCALE } from '@angular/material/core';
 import { PartsComponent } from './components/sections/parts/parts.component';
 import { RouterExtService } from './services/previous-url.service';
 import { DataService } from './services/pass-data.service';
-import { UnderConstructionComponent } from './components/under-construction/under-construction.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -49,13 +52,9 @@ import { UnderConstructionComponent } from './components/under-construction/unde
     AboutUsComponent,
     EmployeesComponent,
     ClientsComponent,
-    ProfileComponent,
-    NotificationsComponent,
     MotorPointsComponent,
     QuotesComponent,
-    CalendarComponent,
     PurchasesComponent,
-    PromotionsComponent,
     RegisterComponent,
     BookComponent,
     LoginComponent,
@@ -68,7 +67,14 @@ import { UnderConstructionComponent } from './components/under-construction/unde
     ToolbarComponent,
     ServicesComponent,
     PartsComponent,
-    UnderConstructionComponent
+    UnderConstructionComponent,
+    ClientVehiclesComponent,
+    ClientWorkshopComponent,
+    ClientCalendarComponent,
+    ClientNotificationsComponent,
+    ClientProfileComponent,
+    ClientPromotionsComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
