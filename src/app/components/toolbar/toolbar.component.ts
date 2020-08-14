@@ -35,6 +35,7 @@ export class ToolbarComponent implements OnInit {
     if(document.getElementById('clientScreen')){
       this.displayProfile = true;
       this.displayForUserScreen = true;
+      this.displayForMainScreen = false;
     } else {
       this.displayForUserScreen = false;
     }

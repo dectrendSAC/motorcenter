@@ -38,6 +38,10 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
                     font-size: 13pt;
                     line-height: 60px;
                 }
+
+                #sidebarBtn{    
+                    transform: scale(1.2);
+                }
             }
         }
 
@@ -50,7 +54,23 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
     
             .line{
                 width: calc(100% + 52px);
+                padding-top: 15px;
                 left: -25px;
+
+                &.last{
+                    padding-top: 7px;
+                }
+            }
+
+            .optContent{
+                .item{
+                    transform: scale(1);
+                    margin-top: 0px;
+    
+                    &.last{
+                        margin-bottom:15px;
+                    }
+                }
             }
         }
     }
@@ -76,6 +96,10 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
                     font-size: 20pt;
                     line-height: 100px;
                 }
+
+                #sidebarBtn{    
+                    transform: scale(1.5);
+                }
             }
         }
 
@@ -87,8 +111,24 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
             }
 
             .line{
+                padding-top: 20px;
                 width: calc(100% + 72px);
                 left: -35px;
+
+                &.last{
+                    padding-top: 110px;
+                }
+            }
+
+            .optContent{
+                .item{
+                    transform: scale(1.5);
+                    margin-top: 15px;
+    
+                    &.last{
+                        margin-bottom:30px;
+                    }
+                }
             }
         }
     }
@@ -138,8 +178,8 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
 
             #sidebarBtn{    
                 position: absolute;
+                top: 40%;
                 right: 16%;
-                transform: scale(1.5);
             }
         }
     }
@@ -160,18 +200,11 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
             position: relative;
             height: 1px;
             border-bottom: 1px solid #C6CCD6;
-            padding-top: 20px;
-
-            &.last{
-                padding-top: 110px;
-            }
         }
 
         .optContent{
             .item{
                 display: block;
-                transform: scale(1.5);
-                margin-top: 15px;
 
                 mat-icon{
                     padding-left: 7.5px;
@@ -179,10 +212,6 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
 
                 span{
                     padding-left: 7.5px;
-                }
-
-                &.last{
-                    margin-bottom:30px;
                 }
             }
         }

@@ -83,6 +83,36 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
             top: 55vh;
             left: 0vh;
         }
+
+        &.user{
+            top: 0px;
+            right: 0px;
+    
+            .no-profile{
+                width: 90px;
+                height: 90px;
+            }
+    
+            span{
+                font-size: 25pt;
+                line-height: 65pt;
+            }
+    
+            .profile{
+                width: 90px;
+                height: 90px;
+            }
+    
+            .profileFrame{
+                width: 84px;
+                height: 84px;
+    
+                .profileContent{
+                    width: 87px;
+                    height: 87px;
+                }
+            }
+        }
     }
     
     .pulse {
