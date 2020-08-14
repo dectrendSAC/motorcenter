@@ -8,7 +8,8 @@ import { MatMenuTrigger } from '@angular/material/menu';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-  displayUserName: boolean;
+  displayForMainScreen: boolean;
+  displayForUserScreen: boolean;
   time:number = 0;
 
   @Input() changeTopLinksClass: boolean;
@@ -26,9 +27,16 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     if(document.getElementById('mainScreen')){
-      this.displayUserName = true;
+      this.displayForMainScreen = true;
     } else {
-      this.displayUserName = false;
+      this.displayForMainScreen = false;
+    }
+
+    if(document.getElementById('clientScreen')){
+      this.displayProfile = true;
+      this.displayForUserScreen = true;
+    } else {
+      this.displayForUserScreen = false;
     }
   }
 

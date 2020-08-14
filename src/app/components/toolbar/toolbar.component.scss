@@ -137,7 +137,6 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
         }
 
         .profile{
-            /*left: 70px;*/
             width: 70px;
             height: 70px;
         }
@@ -155,6 +154,36 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
         &.main{
             top: 55vh;
             left: 0vh;
+        }
+
+        &.user{
+            top: 0px;
+            right: 0px;
+    
+            .no-profile{
+                width: 110px;
+                height: 110px;
+            }
+    
+            span{
+                font-size: 35pt;
+                line-height: 80pt;
+            }
+    
+            .profile{
+                width: 110px;
+                height: 110px;
+            }
+    
+            .profileFrame{
+                width: 104px;
+                height: 104px;
+    
+                .profileContent{
+                    width: 107px;
+                    height: 107px;
+                }
+            }
         }
     }
 
@@ -352,6 +381,18 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
         span{
             cursor: pointer;
             padding-left: 15px;
+        }
+    }
+
+    &.user{
+        top: 0px;
+        right: 0px;
+        left: 0px;
+        padding-left: 10%;
+
+        span{
+            cursor: pointer;
+            padding-left: 25px;
         }
     }
 }

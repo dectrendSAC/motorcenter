@@ -1,4 +1,4 @@
-<div *ngIf="!displayUserName" id="topLinks" [className]="changeTopLinksClass ? 'active' : ''">
+<div *ngIf="!displayForMainScreen && !displayForUserScreen" id="topLinks" [className]="changeTopLinksClass ? 'active' : ''">
   <div class="content">
     <div id="logoHome" (click)="goToMain()"></div>
     <div class="line"></div>
@@ -6,12 +6,13 @@
   </div>
 </div>
 
-<span *ngIf="!displayProfile" class="pulse" [class.active] ="changeLoginClass" [class.main] ="displayUserName"></span>
-<div class="login" [class.active] ="changeLoginClass" [class.main] ="displayUserName">
-    <div *ngIf="!displayProfile" (click)="showLogin()" id="noLogin" class="no-profile" [matTooltip]="displayUserName? '': 'Iniciar sesión'" matTooltipPosition="before"></div>
+<span *ngIf="!displayProfile" class="pulse" [class.active] ="changeLoginClass" [class.main] ="displayForMainScreen"></span>
+<div class="login" [class.active] ="changeLoginClass" [class.main] ="displayForMainScreen" [class.user] ="displayForUserScreen">
+    <div *ngIf="!displayProfile" (click)="showLogin()" id="noLogin" class="no-profile" [matTooltip]="displayForMainScreen? '': 'Iniciar sesión'" matTooltipPosition="before"></div>
     <div *ngIf="displayProfile" id="Login" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" class="profile"></div>
     <div *ngIf="displayProfile" [matMenuTriggerFor]="menu" class="profileFrame"><div class="profileContent"></div></div>
-    <span *ngIf="displayUserName" (click)="showLogin(); openMenu()">{{displayProfile ? 'Random client' : 'Iniciar sesión'}}</span> 
+    <span *ngIf="displayForMainScreen" (click)="showLogin(); openMenu()">{{displayProfile ? 'Random client' : 'Iniciar sesión'}}</span> 
+    <span *ngIf="displayForUserScreen" (click)="openMenu()">Random client</span> 
 </div>
 <mat-menu #menu="matMenu">
   <button mat-menu-item [matMenuTriggerFor]="user">
