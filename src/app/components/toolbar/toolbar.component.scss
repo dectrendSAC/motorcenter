@@ -418,7 +418,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
         top: 0px;
         right: 0px;
         left: 0px;
-        padding-left: 10%;
+        padding-left: 5%;
 
         span{
             cursor: pointer;
@@ -444,4 +444,27 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
 
 .pulse:hover {
     animation: none;
+}
+
+.itemName{
+    position: absolute;
+    display: inline-flex;
+    right: 0px;
+    padding-right: 50px;;
+    color: white;
+
+
+    mat-icon{
+        font-size: 48px;
+        height: 48px;
+        width: 48px;
+    }
+
+    span{
+        padding-left: 15px;
+        font-family: "palanquin", "arial", sans-serif;
+        font-weight: bold;
+        font-size: 30px;
+        line-height: 45px;
+    }
 }

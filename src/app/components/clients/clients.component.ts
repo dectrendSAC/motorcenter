@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./clients.component.scss']
 })
 export class ClientsComponent implements OnInit {
+  changeItemDescriptionStatus:boolean;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  changeItemDescription(status:boolean){
+    this.changeItemDescriptionStatus = status;
+    setTimeout(() => { this.changeItemDescriptionStatus = !status }, 100);
   }
 
 }

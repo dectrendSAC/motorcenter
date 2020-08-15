@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { MatMenuTrigger } from '@angular/material/menu';
 
@@ -10,11 +10,14 @@ import { MatMenuTrigger } from '@angular/material/menu';
 export class ToolbarComponent implements OnInit {
   displayForMainScreen: boolean;
   displayForUserScreen: boolean;
+  itemIcon: string;
+  itemName: string;
   time:number = 0;
 
   @Input() changeTopLinksClass: boolean;
   @Input() changeLoginClass: boolean;
   @Input() displayProfile: boolean;
+  @Input() changeItemDescriptionStatus: boolean;
 
   @Output() displayLoginFromToolbar = new EventEmitter<{status: boolean, extra: string}>();
   @Output() awaitAnimation = new EventEmitter<boolean>();
@@ -36,6 +39,17 @@ export class ToolbarComponent implements OnInit {
       this.displayProfile = true;
       this.displayForUserScreen = true;
       this.displayForMainScreen = false;
+
+      setTimeout(() => { 
+        const item = document.getElementsByClassName('item')
+        for(var i = 0 ; i < item.length ; i++){
+          if(item[i].classList.contains('clicked')){
+            this.itemIcon = item[i].firstChild.childNodes[0].textContent; 
+            this.itemName = item[i].firstChild.childNodes[1].textContent;
+          }
+        }
+      }, 100);
+
     } else {
       this.displayForUserScreen = false;
     }
@@ -74,5 +88,18 @@ export class ToolbarComponent implements OnInit {
   //Main methods
   goToMain(){
     this.homeBtn.emit(true);
+  }
+
+  //Client methods
+  ngOnChanges(changes: SimpleChanges) {  
+    if(changes.changeItemDescriptionStatus.currentValue){
+      const item = document.getElementsByClassName('item')
+        for(var i = 0 ; i < item.length ; i++){
+          if(item[i].classList.contains('clicked')){
+            this.itemIcon = item[i].firstChild.childNodes[0].textContent; 
+            this.itemName = item[i].firstChild.childNodes[1].textContent;
+          }
+        }
+    }    
   }
 }

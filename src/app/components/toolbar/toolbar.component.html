@@ -61,6 +61,7 @@
   </button>
 </mat-menu>
 
-<div class="itemName">
-
+<div *ngIf="displayForUserScreen" class="itemName">
+  <mat-icon>{{itemIcon}}</mat-icon>
+  <span>{{itemName}}</span>
 </div>

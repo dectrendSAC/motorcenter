@@ -13,19 +13,19 @@
         <span class="optTitle">Usuario</span>
         <div class="line"></div>
         <div class="optContent">
-            <button class="item" mat-icon-button color="accent">
+            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event)" [class.clicked]="clickedItem">
                 <mat-icon>account_circle</mat-icon>
                 <span>Perfil</span>
             </button>
-            <button class="item" mat-icon-button color="accent">
+            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event)">
                 <mat-icon>directions_car</mat-icon> 
                 <span>Vehículos</span>
             </button>
-            <button class="item" mat-icon-button color="accent">
+            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event)">
                 <mat-icon>notifications_none</mat-icon> 
                 <span>Notificaciones</span>
             </button>
-            <button class="item last" mat-icon-button color="accent" disabled>
+            <button class="item last" mat-icon-button color="accent" (click)="toggleClass($event)" disabled>
                 <mat-icon>money</mat-icon> 
                 <span>Motor Puntos</span>
             </button>
@@ -33,30 +33,30 @@
         <span class="optTitle">Concesionario</span>
         <div class="line"></div>
         <div class="optContent">
-            <button class="item" mat-icon-button color="accent">
+            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event)">
                 <mat-icon>description</mat-icon>
                 <span>Cotizaciones</span>
             </button>
-            <button class="item" mat-icon-button color="accent">
+            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event)">
                 <mat-icon>event</mat-icon> 
                 <span>Calendario</span>
             </button>
-            <button class="item" mat-icon-button color="accent">
+            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event)">
                 <mat-icon>shopping_cart</mat-icon> 
                 <span>Compras</span>
             </button>
-            <button class="item" mat-icon-button color="accent">
+            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event)">
                 <mat-icon>local_offer</mat-icon> 
                 <span>Promociones</span>
             </button>
-            <button class="item" mat-icon-button color="accent">
+            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event)">
                 <mat-icon>home_repair_service</mat-icon> 
                 <span>Taller mecánico</span>
             </button>
         </div>
         <div class="line last"></div>
         <div class="optContent">
-            <button class="item" mat-icon-button color="accent">
+            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event)">
                 <mat-icon>exit_to_app</mat-icon>
                 <span>Cerrar Sesión</span>
             </button>
