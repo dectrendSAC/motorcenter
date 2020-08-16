@@ -53,16 +53,16 @@ $top:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlin
         transition: .6s all ease-in-out;
 
         &.active{
-            width: 6.2%;
+            width: 5.7%;
         }
     }
     
     .toolbar{
         position: relative;
         display: inline-block;
-        top: -68.5%;
+        top: 3%;
         width: 25%;
-        height: 110px;
+        height: 100%;
     }
 
 }

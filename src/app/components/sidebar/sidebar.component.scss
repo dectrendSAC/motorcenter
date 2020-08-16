@@ -138,19 +138,23 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
 //Animations-----------------
 @keyframes fade-in {
     from {
+        opacity: 0%;
         width: 0px;
     }
     to {
-        width: 264px;
+        opacity: 1;
+        width: 700%;
     }
 }
   
 @keyframes fade-out {
     from {
-        width: 264px;
+        opacity: 1;
+        width: 700%;
     }
     to {
-        width: 0px;
+        opacity: 0;
+        width: 0%;
     }
 }
 
@@ -158,6 +162,7 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
 
 #sidebar{
     position: relative;
+    overflow: hidden;
     z-index: 1;
     top: 0px;
     left: 0px;
@@ -267,6 +272,7 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
         }
 
         #options{
+            width: 36%;
             
             .optTitle{
                 display: none;
@@ -279,9 +285,10 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
                 margin-bottom: 20px;
                 width: 100%;
                 border-bottom: 2.8px solid #C6CCD6;
+                transition: .7s all ease-in-out;
 
                 &.last{
-                    padding-top: 160px;
+                    padding-top: 110px;
                 }
             }
 
@@ -301,6 +308,15 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
     }
 
     &.inactive{
+        .optTitle{
+            animation: fade-in 2.5s;
+            animation-fill-mode: forwards;
+        }
+
+        .line{
+            transition: .7s all ease-in-out;
+        }
+
         span{
             animation: fade-in 1.4s;
             animation-fill-mode: forwards;
