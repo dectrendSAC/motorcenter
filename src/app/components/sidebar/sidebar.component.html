@@ -1,9 +1,9 @@
-<div id="sidebar">
+<div id="sidebar"  [className]="displaySidebar ? 'active' : clickedItem ? '' : 'inactive'" (mouseover)="toggleDisplay(false)" (mouseout)="toggleDisplay(false)" >
     <div id="topLinks">
         <div class="content">
           <div id="logoHome"></div>
           <div id="logoText">MOTORCENTER</div>
-          <button id="sidebarBtn" mat-icon-button color="primary">
+          <button id="sidebarBtn" mat-icon-button color="primary" (click)="toggleDisplay(true)">
             <mat-icon>menu</mat-icon>
           </button>
         </div>
@@ -13,7 +13,7 @@
         <span class="optTitle">Usuario</span>
         <div class="line"></div>
         <div class="optContent">
-            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event)" [class.clicked]="clickedItem">
+            <button class="item clicked" mat-icon-button color="accent" (click)="toggleClass($event)">
                 <mat-icon>account_circle</mat-icon>
                 <span>Perfil</span>
             </button>
@@ -30,7 +30,7 @@
                 <span>Motor Puntos</span>
             </button>
         </div>
-        <span class="optTitle">Concesionario</span>
+        <span class="optTitle" [class.active]="displaySidebar">Concesionario</span>
         <div class="line"></div>
         <div class="optContent">
             <button class="item" mat-icon-button color="accent" (click)="toggleClass($event)">

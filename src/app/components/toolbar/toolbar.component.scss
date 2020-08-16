@@ -418,7 +418,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
         top: 0px;
         right: 0px;
         left: 0px;
-        padding-left: 5%;
+        padding-left: 10%;
 
         span{
             cursor: pointer;
@@ -447,7 +447,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
 }
 
 .itemName{
-    position: absolute;
+    position: fixed;
     display: inline-flex;
     right: 0px;
     padding-right: 50px;;

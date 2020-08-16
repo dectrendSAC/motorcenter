@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { multipleAnimations } from '../../animations';
 import { RouterExtService } from 'src/app/services/previous-url.service';
 import { DataService } from "src/app/services/pass-data.service";
-import { RouterOutlet, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sections',

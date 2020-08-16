@@ -46,7 +46,7 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
         }
 
         #options{
-            padding: 25px;
+            padding: 25px 25px 0px 25px;
     
             .optTitle{
                 font-size: 20pt;
@@ -104,7 +104,7 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
         }
 
         #options{
-            padding: 30px 35px 35px;
+            padding: 30px 35px 0px 35px;
 
             .optTitle{
                 font-size: 25pt;
@@ -135,6 +135,25 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
 
 }
 
+//Animations-----------------
+@keyframes fade-in {
+    from {
+        width: 0px;
+    }
+    to {
+        width: 264px;
+    }
+}
+  
+@keyframes fade-out {
+    from {
+        width: 264px;
+    }
+    to {
+        width: 0px;
+    }
+}
+
 //---------------------------------------------------
 
 #sidebar{
@@ -153,7 +172,7 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
         .content{
             position: relative;
             display: inline-flex;
-            width: 100%;
+            width: 85%;
     
             #logoHome{
                 position: relative;
@@ -168,7 +187,10 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
             #logoText{
                 font-family: "palanquin", "arial", sans-serif;
                 font-weight: bolder;
-                position: relative;
+                position: absolute;
+                padding-left: 22%;
+                width: 40%;
+                overflow: hidden;
                 cursor: pointer;
         
                 &:hover{
@@ -178,8 +200,8 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
 
             #sidebarBtn{    
                 position: absolute;
-                top: 40%;
-                right: 16%;
+                top: 50%;
+                right: 5%;
             }
         }
     }
@@ -188,9 +210,9 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
         position: relative;
         top: 14%;
         width: 85%;
-        height: 80%;
 
         .optTitle{
+            display: initial;
             font-family: "palanquin", "arial", sans-serif;
             font-weight: bold;
             color: #CA181F;
@@ -206,18 +228,82 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
             .item{
                 display: block;
 
-                mat-icon{
-                    padding-left: 7.5px;
-                }
-
                 span{
+                    position: absolute;
+                    text-align: left;
                     padding-left: 7.5px;
+                    overflow: hidden;
                 }
 
                 &.clicked{
                     color: black;
                 }
             }
+        }
+    }
+
+    &.active{
+                
+        #topLinks{        
+            .content{   
+                padding: 20px 20px 0px 20px;
+                width: 66%;
+
+                #logoHome{
+                    margin-right: 0px;
+                    width: 100%;
+                }
+            
+                #logoText{
+                    padding-left: 22%;
+                    animation: fade-out .7s;
+                    animation-fill-mode: forwards;
+                }
+    
+                #sidebarBtn{    
+                    display: none;
+                }
+            }
+        }
+
+        #options{
+            
+            .optTitle{
+                display: none;
+            }
+
+            .line{
+                left: 0px;
+                padding-top: 0px;
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+                width: 100%;
+                border-bottom: 2.8px solid #C6CCD6;
+
+                &.last{
+                    padding-top: 160px;
+                }
+            }
+
+            .optContent{
+                .item{
+                    span{
+                        animation: fade-out .7s;
+                        animation-fill-mode: forwards;
+                    }
+
+                    &.last{
+                        margin-bottom:0px;
+                    }
+                }
+            }
+        }
+    }
+
+    &.inactive{
+        span{
+            animation: fade-in 1.4s;
+            animation-fill-mode: forwards;
         }
     }
 }

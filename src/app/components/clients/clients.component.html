@@ -1,7 +1,7 @@
 <div id="clientScreen">
     <div id="topCurve"></div>
 
-    <app-sidebar class="sidebar" (changeItemDescription)="changeItemDescription($event)"></app-sidebar>    
+    <app-sidebar id="sidebarComponent" (changeItemDescription)="changeItemDescription($event)"></app-sidebar>    
 
     <app-toolbar class="toolbar" [changeItemDescriptionStatus]="changeItemDescriptionStatus"></app-toolbar>
     

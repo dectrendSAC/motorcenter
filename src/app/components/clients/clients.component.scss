@@ -44,20 +44,25 @@ $top:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlin
         background: url("data:image/svg+xml, #{$top}") top left no-repeat !important;
     }
     
-    .sidebar{
+    #sidebarComponent{
         position: relative;
-        display: inline-flex;
+        display: inline-block;
         width: 25%;
         height: 100%;
         z-index: 2;
+        transition: .6s all ease-in-out;
+
+        &.active{
+            width: 6.2%;
+        }
     }
     
     .toolbar{
         position: relative;
-        display: inline-flex;
-        top: 0px;
-        width: 75%;
-        height: 25px;
+        display: inline-block;
+        top: -68.5%;
+        width: 25%;
+        height: 110px;
     }
 
 }
