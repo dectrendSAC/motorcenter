@@ -66,10 +66,6 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
                 .item{
                     transform: scale(1);
                     margin-top: 0px;
-    
-                    &.last{
-                        margin-bottom:15px;
-                    }
                 }
             }
         }
@@ -114,10 +110,6 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
                 padding-top: 20px;
                 width: calc(100% + 72px);
                 left: -35px;
-
-                &.last{
-                    padding-top: 110px;
-                }
             }
 
             .optContent{
@@ -215,6 +207,7 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
         position: relative;
         top: 14%;
         width: 85%;
+        height: 81%;
 
         .optTitle{
             display: initial;
@@ -227,6 +220,11 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
             position: relative;
             height: 1px;
             border-bottom: 1px solid #C6CCD6;
+
+            &.last{
+                position: absolute;
+                bottom: 7%;
+            }
         }
 
         .optContent{
@@ -244,11 +242,15 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
                     color: black;
                 }
             }
+
+            &.last{
+                position: absolute;
+                bottom: 0px;
+            }
         }
     }
 
-    &.active{
-                
+    &.active{    
         #topLinks{        
             .content{   
                 padding: 20px 20px 0px 20px;
@@ -260,7 +262,7 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
                 }
             
                 #logoText{
-                    padding-left: 22%;
+                    padding-left: 80%;
                     animation: fade-out .7s;
                     animation-fill-mode: forwards;
                 }
@@ -288,7 +290,11 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
                 transition: .7s all ease-in-out;
 
                 &.last{
-                    padding-top: 110px;
+                    width: 36%;
+                    left: 35px;
+                    padding-top: 0px;
+                    padding-bottom: 0px;
+                    margin-bottom: 0px;
                 }
             }
 

@@ -1,8 +1,13 @@
 <div id="clientScreen">
     <div id="topCurve"></div>
 
-    <app-sidebar id="sidebarComponent" (changeItemDescription)="changeItemDescription($event)"></app-sidebar>    
-
-    <app-toolbar class="toolbar" [changeItemDescriptionStatus]="changeItemDescriptionStatus"></app-toolbar>
+    <app-sidebar id="sidebarComponent" (changeItemDescription)="changeItemDescription($event)"></app-sidebar>
     
+    <div class="parent">
+        <app-toolbar class="toolbar" [changeItemDescriptionStatus]="changeItemDescriptionStatus"></app-toolbar>
+
+        <div class="itemContent"> 
+            <router-outlet></router-outlet>    
+        </div>
+    </div>    
 </div>

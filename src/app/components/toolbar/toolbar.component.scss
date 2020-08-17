@@ -345,7 +345,6 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
     position: absolute;
     z-index: 1;
     display: flex;
-    transition: all 0.5s;
 
     &.active{
         .no-profile{
@@ -418,7 +417,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
         top: 0px;
         right: 0px;
         left: 0px;
-        padding-left: 10%;
+        padding-left: 5%;
 
         span{
             cursor: pointer;
