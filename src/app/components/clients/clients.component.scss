@@ -19,12 +19,24 @@ $top:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlin
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
-
+    #clientScreen{
+        #sidebarComponent{
+            &.active{
+                width: 6.7%;
+            }
+        }
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1900px and up) */
 @media only screen and (min-width: 119em) {
-
+    #clientScreen{
+        #sidebarComponent{
+            &.active{
+                width: 5.7%;
+            }
+        }
+    }
 }
 
 //---------------------------------------------------
@@ -51,24 +63,17 @@ $top:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlin
         height: 100%;
         z-index: 2;
         transition: .6s all ease-in-out;
-
-        &.active{
-            width: 5.7%;
-        }
     }
 
     .parent{
         position: relative;
         display: block;
-        top: 3%;
-        min-width: 75%;
-        max-width: 100%;
-        flex-basis: 100%;
+        flex-basis: 75%;
+        flex-grow: 2;
 
         .toolbar{
             position: relative;
             display: inline-block;
-            top: 3%;
             width: 100%;
             height: 35%;
         }
