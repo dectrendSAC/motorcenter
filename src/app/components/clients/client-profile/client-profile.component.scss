@@ -1,0 +1,68 @@
+/* Extra small devices (phones, 688px and down) */
+@media only screen and (max-width: 43em) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 688px and up) */
+@media only screen and (min-width: 43em) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 48em) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 62em) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 119em) {
+
+}
+
+//---------------------------------------------------
+
+#clientProfile{
+    position: relative;
+    width: 100%;
+    display: inline-flex;
+
+    .profileCard{
+        width: 40%;
+        padding: 30px;
+        border-radius: 25px;
+        margin: 0 2.5%;
+    
+        mat-card-header{
+            position: relative;
+            top: -30px;
+            left: -30px;
+            width: calc(100% + 46px);
+            height: 70px;
+            color: white;
+            background-color: #CA181F;
+            border-radius: 20px 20px 0px 0px;
+            align-items: center;
+            padding-left: 14px;
+    
+            mat-card-title{
+                font-size: 25pt;
+            }
+        }
+    
+        mat-card-content{
+            mat-form-field{
+                width: 50%;
+                margin-right: 50%;
+                font-size: 18pt;
+    
+                ::ng-deep .mat-form-field-underline{
+                    display: none;
+                }
+            }
+        }
+    }
+}
