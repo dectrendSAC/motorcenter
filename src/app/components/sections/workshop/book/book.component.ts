@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
-import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import * as _moment from 'moment';
 
@@ -51,7 +51,7 @@ export class BookComponent implements OnInit {
     this.maxDate = new Date(endDate);
   }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.bookingFormGroup.reset();
     this.bookingFormGroup.controls['dateFormControl'].setValue(moment().toDate());
   }
@@ -62,9 +62,9 @@ export class BookComponent implements OnInit {
     const date_week = moment(d).weekday();
     // Prevent specific dates from being selected
     const date_month = moment(d).format('MM/DD/YYYY').toString();
-    
+
     const noAvailableDates:string[] = ['08/04/2020', '08/10/2020', '08/21/2020', '09/02/2020'];
-    
+
     return noAvailableDates.indexOf(date_month) == -1 && date_week  !== 6;
   }
 
