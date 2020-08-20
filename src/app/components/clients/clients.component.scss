@@ -56,7 +56,7 @@ $top:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlin
         left: 0px;
         background: url("data:image/svg+xml, #{$top}") top left no-repeat !important;
     }
-    
+
     #sidebarComponent{
         position: relative;
         width: 25%;
@@ -80,7 +80,7 @@ $top:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlin
 
         .itemContent{
             position: relative;
-            height: 75%;
+            height: 65%;
             width: 100%;
         }
     }

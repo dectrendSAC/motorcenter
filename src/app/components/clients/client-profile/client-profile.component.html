@@ -2,16 +2,20 @@
     <mat-card class="profileCard">
         <mat-card-header>
           <mat-card-title>Información General</mat-card-title>
-          <mat-icon aria-hidden="false" aria-label="Example home icon">edit</mat-icon>
+          <mat-icon aria-label="Editar información">edit</mat-icon>
         </mat-card-header>
         <mat-card-content>
             <mat-form-field>
                 <mat-label>Documento de Identidad</mat-label>
                 <input matInput #doc placeholder="Documento de identidad" value="12345678" readonly>
             </mat-form-field>
-            <mat-form-field>
-                <mat-label>Género</mat-label>
-                <input matInput #gender placeholder="Género" value="Masculino" readonly>
+            <mat-form-field class="gender">
+              <mat-label>Género</mat-label>
+              <mat-select [(value)]="gender" [class.readonly]="selectReadonly" [disabled]="selectReadonly">
+                <mat-option value="default" style="display: none;">Seleccione</mat-option>
+                <mat-option value="Masculino">Masculino</mat-option>
+                <mat-option value="Femenino">Femenino</mat-option>
+              </mat-select>
             </mat-form-field>
             <mat-form-field class="calendar">
                 <mat-label>Cumpleaños</mat-label>
@@ -20,8 +24,9 @@
                 <mat-datepicker #dp disabled="false"></mat-datepicker>
             </mat-form-field>
             <mat-form-field class="points">
+              <mat-icon aria-label="Más información sobre motorpuntos">help_outline</mat-icon>
               <mat-label>Puntos acumulados</mat-label>
-              <input matInput #points placeholder="Motor Puntos" value="50" readonly>
+              <input matInput #points placeholder="Motor Puntos" value="10" readonly>
           </mat-form-field>
         </mat-card-content>
     </mat-card>
@@ -29,19 +34,44 @@
     <mat-card class="profileCard">
         <mat-card-header>
           <mat-card-title>Contacto</mat-card-title>
+          <mat-icon aria-label="Editar información">edit</mat-icon>
         </mat-card-header>
         <mat-card-content>
             <mat-form-field>
                 <mat-label>Dirección</mat-label>
-                <input matInput #surname placeholder="Documento de identidad" value="12345678" readonly>
+                <input matInput #address placeholder="Ingrese su dirección" value="Ingrese su dirección" readonly>
+            </mat-form-field>
+            <mat-form-field class="address">
+              <mat-label>Departamento</mat-label>
+              <mat-select [(value)]="gender" [class.readonly]="selectReadonly">
+                <mat-option value="default" style="display: none;">-</mat-option>
+                <mat-option value="Masculino">Masculino</mat-option>
+                <mat-option value="Femenino">Femenino</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="address">
+              <mat-label>Provincia</mat-label>
+              <mat-select [(value)]="gender" [class.readonly]="selectReadonly">
+                <mat-option value="default" style="display: none;">-</mat-option>
+                <mat-option value="Masculino">Masculino</mat-option>
+                <mat-option value="Femenino">Femenino</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="address">
+              <mat-label>Distrito</mat-label>
+              <mat-select [(value)]="gender" [class.readonly]="selectReadonly">
+                <mat-option value="default" style="display: none;">-</mat-option>
+                <mat-option value="Masculino">Masculino</mat-option>
+                <mat-option value="Femenino">Femenino</mat-option>
+              </mat-select>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Teléfono</mat-label>
-                <input matInput #surname placeholder="Documento de identidad" value="Masculino" readonly>
+                <input type="tel" matInput #surname placeholder="Documento de identidad" value="123456789" readonly>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Correo electrónico</mat-label>
-                <input matInput #surname placeholder="Documento de identidad" value="12345678" readonly>
+                <input type="email" matInput #surname placeholder="Documento de identidad" value="mail@mail.com" readonly>
             </mat-form-field>
         </mat-card-content>
     </mat-card>

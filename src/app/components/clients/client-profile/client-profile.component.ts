@@ -27,12 +27,16 @@ export const MY_FORMATS = {
   ]
 })
 export class ClientProfileComponent implements OnInit {
+  selectReadonly:boolean;
+  gender:string;
   date:any;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.date = new FormControl(moment());
+    this.selectReadonly = true;
+    this.gender = "default";
+    this.date = new FormControl(moment('1991-01-01'));
   }
 
 }
