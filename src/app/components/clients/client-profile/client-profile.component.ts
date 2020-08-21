@@ -3,6 +3,7 @@ import { FormControl } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 
 import * as _moment from 'moment';
+import * as _ubigeo from 'ubigeo-peru';
 
 const moment = _moment;
 
@@ -27,6 +28,7 @@ export const MY_FORMATS = {
   ]
 })
 export class ClientProfileComponent implements OnInit {
+  addresses = _ubigeo['reniec'];
   selectReadonly:boolean;
   gender:string;
   date:any;
