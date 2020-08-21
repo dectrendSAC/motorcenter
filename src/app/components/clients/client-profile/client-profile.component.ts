@@ -28,7 +28,10 @@ export const MY_FORMATS = {
   ]
 })
 export class ClientProfileComponent implements OnInit {
-  addresses = _ubigeo['reniec'];
+  states: any[] = this.getUnique(_ubigeo['reniec'], 'departamento');
+  countiesInitial: any[];
+  counties: any[];
+  districts: any[];
   selectReadonly:boolean;
   gender:string;
   date:any;
@@ -39,6 +42,35 @@ export class ClientProfileComponent implements OnInit {
     this.selectReadonly = true;
     this.gender = "default";
     this.date = new FormControl(moment('1991-01-01'));
+  }
+
+  //Get unique items in the array
+  getUnique(arr: any[], comp: string) {
+    const unique =  arr.map(e => e[comp])
+    .map((e, i, final) => final.indexOf(e) === i && i)
+    .filter((e) => arr[e]).map(e => arr[e]);
+
+    return unique;
+  }
+
+  //Fill county select
+  changeState(data:any){
+    this.countiesInitial = _ubigeo['reniec'].filter(function( obj ) {
+      return obj.departamento == data;
+    });
+
+    this.counties = this.getUnique(this.countiesInitial, 'provincia');
+    this.counties.shift();
+  }
+
+  //Fill district select
+  changeDistrict(data:any){
+    this.districts = this.countiesInitial.filter(function( obj ) {
+      return obj.provincia == data;
+    });
+
+    this.districts  = this.getUnique(this.districts, 'distrito');
+    this.districts.shift();
   }
 
 }

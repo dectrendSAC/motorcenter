@@ -43,25 +43,23 @@
             </mat-form-field>
             <mat-form-field class="address">
               <mat-label>Departamento</mat-label>
-              <mat-select [(value)]="gender" [class.readonly]="selectReadonly">
+              <mat-select [class.readonly]="selectReadonly" (selectionChange)="changeState($event.value)">
                 <mat-option value="default" style="display: none;">-</mat-option>
-                <mat-option *ngFor="let address of addresses; let i = index" [value]="address.departamento !== address[i - 1].departamento ? address.departamento : ''">{{address.nombre}}</mat-option>
+                <mat-option *ngFor="let state of states" [value]="state.departamento">{{state.nombre}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field class="address">
               <mat-label>Provincia</mat-label>
-              <mat-select [(value)]="gender" [class.readonly]="selectReadonly">
+              <mat-select [class.readonly]="selectReadonly" (selectionChange)="changeDistrict($event.value)">
                 <mat-option value="default" style="display: none;">-</mat-option>
-                <mat-option value="Masculino">Masculino</mat-option>
-                <mat-option value="Femenino">Femenino</mat-option>
+                <mat-option *ngFor="let county of counties" [value]="county.provincia">{{county.nombre}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field class="address">
               <mat-label>Distrito</mat-label>
-              <mat-select [(value)]="gender" [class.readonly]="selectReadonly">
+              <mat-select [class.readonly]="selectReadonly">
                 <mat-option value="default" style="display: none;">-</mat-option>
-                <mat-option value="Masculino">Masculino</mat-option>
-                <mat-option value="Femenino">Femenino</mat-option>
+                <mat-option *ngFor="let district of districts" [value]="district.distrito">{{district.nombre}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field>
