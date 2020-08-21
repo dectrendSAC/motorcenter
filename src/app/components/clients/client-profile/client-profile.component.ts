@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import * as _moment from 'moment';
 import * as _ubigeo from 'ubigeo-peru';
@@ -28,19 +29,32 @@ export const MY_FORMATS = {
   ]
 })
 export class ClientProfileComponent implements OnInit {
+  InfoFormGroup: FormGroup;
+  ContactFormGroup: FormGroup;
   states: any[] = this.getUnique(_ubigeo['reniec'], 'departamento');
   countiesInitial: any[];
   counties: any[];
   districts: any[];
   selectReadonly:boolean;
-  gender:string;
   date:any;
 
-  constructor() { }
+  constructor(private _formBuilder: FormBuilder) { 
+    //Form validators
+    this.InfoFormGroup = this._formBuilder.group({
+      genderFormControl: [{value: 'default', disabled: true}, [Validators.required]]
+    });
+
+    this.ContactFormGroup = this._formBuilder.group({
+      addressFormControl: ['Ingrese su dirección', [Validators.required]],
+      stateFormControl: [{value: 'default', disabled: true}, [Validators.required]],
+      countyFormControl: [{value: 'default', disabled: true}, [Validators.required]],
+      districtFormControl: [{value: 'default', disabled: true}, [Validators.required]],
+      phoneFormControl: ['962785689', [Validators.required, Validators.min(100000000)]]
+    });
+  }
 
   ngOnInit(): void {
     this.selectReadonly = true;
-    this.gender = "default";
     this.date = new FormControl(moment('1991-01-01'));
   }
 
