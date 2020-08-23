@@ -67,7 +67,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Teléfono</mat-label>
-                <input matInput #cellphone type="number" min="100000000" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="9" formControlName="phoneFormControl" placeholder="Número de celular">
+                <input matInput #cellphone type="tel" (keypress)="onlyNumber($event)" maxlength="9" formControlName="phoneFormControl" placeholder="Número de celular">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Correo electrónico</mat-label>

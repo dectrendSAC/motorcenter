@@ -38,7 +38,7 @@ export class ClientProfileComponent implements OnInit {
   selectReadonly:boolean;
   date:any;
 
-  constructor(private _formBuilder: FormBuilder) { 
+  constructor(private _formBuilder: FormBuilder) {
     //Form validators
     this.InfoFormGroup = this._formBuilder.group({
       genderFormControl: [{value: 'default', disabled: true}, [Validators.required]]
@@ -85,6 +85,15 @@ export class ClientProfileComponent implements OnInit {
 
     this.districts  = this.getUnique(this.districts, 'distrito');
     this.districts.shift();
+  }
+
+  //Input permit only numbers
+  onlyNumber(evt){
+    // Only ASCII charactar in that range allowed
+    var ASCIICode = (evt.which) ? evt.which : evt.keyCode
+    if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+        return false;
+    return true;
   }
 
 }
