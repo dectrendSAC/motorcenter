@@ -2,7 +2,8 @@
     <mat-card class="profileCard">
         <mat-card-header>
           <mat-card-title>Información General</mat-card-title>
-          <mat-icon aria-label="Editar información">edit</mat-icon>
+          <mat-icon aria-label="Guardar información" *ngIf="enableEditingForInfo" [class.save]="enableEditingForInfo">save</mat-icon>
+          <mat-icon aria-label="Editar información" (click)="enableInfoEditing()">{{formButton}}</mat-icon>
         </mat-card-header>
         <mat-card-content>
           <form [formGroup]="InfoFormGroup">
@@ -20,8 +21,8 @@
             </mat-form-field>
             <mat-form-field class="calendar">
                 <mat-label>Cumpleaños</mat-label>
-                <input matInput [formControl]="date" [matDatepicker]="dp" placeholder="Cumpleaños" readonly>
-                <mat-datepicker-toggle matSuffix [for]="dp" disabled></mat-datepicker-toggle>
+                <input matInput [formControl]="date" [matDatepicker]="dp" placeholder="Cumpleaños" [readonly]="!enableEditingForInfo">
+                <mat-datepicker-toggle matSuffix [for]="dp" [disabled]="!enableEditingForInfo"></mat-datepicker-toggle>
                 <mat-datepicker #dp disabled="false"></mat-datepicker>
             </mat-form-field>
             <mat-form-field class="points">
@@ -67,11 +68,11 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Teléfono</mat-label>
-                <input matInput #cellphone type="tel" (keypress)="onlyNumber($event)" maxlength="9" formControlName="phoneFormControl" placeholder="Número de celular">
+                <input matInput #cellphone type="tel" (keypress)="onlyNumber($event)" maxlength="9" formControlName="phoneFormControl" placeholder="Número de celular" readonly>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Correo electrónico</mat-label>
-                <input matInput type="email" placeholder="Ingrese su correo electrónico" value="mail@mail.com" readonly>
+                <input matInput type="email" formControlName="emailFormControl" placeholder="Ingrese su correo electrónico" readonly>
             </mat-form-field>
           </form>
         </mat-card-content>

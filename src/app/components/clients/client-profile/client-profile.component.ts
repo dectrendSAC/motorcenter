@@ -37,6 +37,9 @@ export class ClientProfileComponent implements OnInit {
   districts: any[];
   selectReadonly:boolean;
   date:any;
+  formButton:string = 'edit';
+  enableEditingForInfo: boolean = false;
+  enableEditingForContact: boolean = false;
 
   constructor(private _formBuilder: FormBuilder) {
     //Form validators
@@ -49,7 +52,8 @@ export class ClientProfileComponent implements OnInit {
       stateFormControl: [{value: 'default', disabled: true}, [Validators.required]],
       countyFormControl: [{value: 'default', disabled: true}, [Validators.required]],
       districtFormControl: [{value: 'default', disabled: true}, [Validators.required]],
-      phoneFormControl: ['962785689', [Validators.required, Validators.min(100000000)]]
+      phoneFormControl: ['962785689', [Validators.required, Validators.min(100000000)]],
+      emailFormControl: ['mail@mail.com', [Validators.required, Validators.email]]
     });
   }
 
@@ -94,6 +98,14 @@ export class ClientProfileComponent implements OnInit {
     if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
         return false;
     return true;
+  }
+
+  //Enable info form field editing
+  enableInfoEditing(){
+    this.selectReadonly = false;
+    this.InfoFormGroup.controls['genderFormControl'].enable();
+    this.enableEditingForInfo = true;
+    this.formButton = 'restore';
   }
 
 }

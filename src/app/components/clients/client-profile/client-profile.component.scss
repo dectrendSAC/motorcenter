@@ -31,7 +31,7 @@
 
         mat-card-content{
           margin-top: -10px;
-          
+
           mat-form-field{
               font-size: 14pt;
 
@@ -150,6 +150,10 @@
               cursor: pointer;
               float: inline-end;
               right: 30px;
+
+              &.save{
+                right: 90px;
+              }
             }
         }
 
