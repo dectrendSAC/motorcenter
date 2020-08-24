@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {pairwise, startWith} from 'rxjs/operators';
 
 import * as _moment from 'moment';
 import * as _ubigeo from 'ubigeo-peru';
 
 const moment = _moment;
+let count = 0;
 
 export const MY_FORMATS = {
   parse: {
@@ -36,15 +37,16 @@ export class ClientProfileComponent implements OnInit {
   counties: any[];
   districts: any[];
   selectReadonly:boolean;
-  date:any;
   formButton:string = 'edit';
+  displaySaveBtnForInfo: boolean = false;
   enableEditingForInfo: boolean = false;
   enableEditingForContact: boolean = false;
 
   constructor(private _formBuilder: FormBuilder) {
     //Form validators
     this.InfoFormGroup = this._formBuilder.group({
-      genderFormControl: [{value: 'default', disabled: true}, [Validators.required]]
+      genderFormControl: [{value: 'default', disabled: true}, [Validators.required]],
+      birthdayFormControl: [{value: moment('1991-01-01'), disabled: false}, [Validators.required]]
     });
 
     this.ContactFormGroup = this._formBuilder.group({
@@ -55,11 +57,21 @@ export class ClientProfileComponent implements OnInit {
       phoneFormControl: ['962785689', [Validators.required, Validators.min(100000000)]],
       emailFormControl: ['mail@mail.com', [Validators.required, Validators.email]]
     });
+
+    //Change form inputs changes
+    this.InfoFormGroup.valueChanges
+    .pipe(pairwise())
+    .subscribe(([prev, next]: [any, any]) =>
+    {
+      console.log(next.genderFormControl)
+        if(prev.genderFormControl !== next.genderFormControl){
+          this.displaySaveBtnForInfo = true;
+      }
+    });
   }
 
   ngOnInit(): void {
     this.selectReadonly = true;
-    this.date = new FormControl(moment('1991-01-01'));
   }
 
   //Get unique items in the array
@@ -100,12 +112,21 @@ export class ClientProfileComponent implements OnInit {
     return true;
   }
 
-  //Enable info form field editing
+  //Enable info form fields editing
   enableInfoEditing(){
     this.selectReadonly = false;
     this.InfoFormGroup.controls['genderFormControl'].enable();
     this.enableEditingForInfo = true;
     this.formButton = 'restore';
-  }
+    count = count+1;
 
+    if(document.getElementById('saveIconBtn')){
+      console.log('hola');
+    } else {
+      if(count > 1){
+        this.formButton = 'edit';
+        count = 0;
+      }
+    }
+  }
 }

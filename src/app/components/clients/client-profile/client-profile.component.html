@@ -2,7 +2,7 @@
     <mat-card class="profileCard">
         <mat-card-header>
           <mat-card-title>Información General</mat-card-title>
-          <mat-icon aria-label="Guardar información" *ngIf="enableEditingForInfo" [class.save]="enableEditingForInfo">save</mat-icon>
+          <mat-icon id="saveIconBtn" aria-label="Guardar información" *ngIf="displaySaveBtnForInfo" [class.save]="displaySaveBtnForInfo">save</mat-icon>
           <mat-icon aria-label="Editar información" (click)="enableInfoEditing()">{{formButton}}</mat-icon>
         </mat-card-header>
         <mat-card-content>
@@ -21,7 +21,7 @@
             </mat-form-field>
             <mat-form-field class="calendar">
                 <mat-label>Cumpleaños</mat-label>
-                <input matInput [formControl]="date" [matDatepicker]="dp" placeholder="Cumpleaños" [readonly]="!enableEditingForInfo">
+                <input matInput formControlName="birthdayFormControl" [matDatepicker]="dp" placeholder="Cumpleaños" readonly>
                 <mat-datepicker-toggle matSuffix [for]="dp" [disabled]="!enableEditingForInfo"></mat-datepicker-toggle>
                 <mat-datepicker #dp disabled="false"></mat-datepicker>
             </mat-form-field>
