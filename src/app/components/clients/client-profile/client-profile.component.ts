@@ -75,6 +75,18 @@ export class ClientProfileComponent implements OnInit {
           }
       }
     });
+
+    this.ContactFormGroup.valueChanges
+    .pipe(pairwise())
+    .subscribe(([prev, next]: [any, any]) =>
+    {
+      for(var propertyName in prev) {
+          if(prev[propertyName] !== next[propertyName]) {
+            this.displaySaveBtnForContact = true;
+            break;
+          }
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -175,6 +187,24 @@ export class ClientProfileComponent implements OnInit {
     this.enableEditingForContact = true;
     this.formContactButton = 'restore';
     count = count+1;
+
+    if(document.getElementById('saveContactIconBtn')){
+      const dialogRef = this.dialog.open(ClientDialogComponent, {
+        data: {tittle: '¿Seguro que desea deshacer los cambios?', content: 'Todos los cambios se perderán'}
+      });
+    } else {
+      if(count > 1){
+        this.formContactButton = 'edit';
+        sessionStorage.removeItem("ContactForm");
+        this.selectContactReadonly = true;
+        this.ContactFormGroup.controls['stateFormControl'].disable();
+        this.ContactFormGroup.controls['countyFormControl'].disable();
+        this.ContactFormGroup.controls['districtFormControl'].disable();
+        this.enableEditingForContact = false;
+        this.displaySaveBtnForContact = false;
+        count = 0;
+      }
+    }
   }
 
   //Save edited form fields
