@@ -22,6 +22,10 @@
 
             mat-icon{
               transform: scale(1.3);
+
+              &.save{
+                right: 75px;
+              }
             }
 
             mat-card-title{
@@ -72,6 +76,10 @@
 
             mat-icon{
               transform: scale(1.5);
+
+              &.save{
+                right: 90px;
+              }
             }
 
             mat-card-title{
@@ -150,10 +158,6 @@
               cursor: pointer;
               float: inline-end;
               right: 30px;
-
-              &.save{
-                right: 75px;
-              }
             }
         }
 

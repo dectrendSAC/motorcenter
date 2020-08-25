@@ -42,6 +42,7 @@ import { PartsComponent } from './components/sections/parts/parts.component';
 import { RouterExtService } from './services/previous-url.service';
 import { DataService } from './services/pass-data.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ClientDialogComponent } from './components/clients/client-dialog/client-dialog.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     ClientNotificationsComponent,
     ClientProfileComponent,
     ClientPromotionsComponent,
-    SidebarComponent
+    SidebarComponent,
+    ClientDialogComponent
   ],
   imports: [
     BrowserModule,

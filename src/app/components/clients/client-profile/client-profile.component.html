@@ -2,8 +2,8 @@
     <mat-card class="profileCard">
         <mat-card-header>
           <mat-card-title>Información General</mat-card-title>
-          <mat-icon id="saveIconBtn" aria-label="Guardar información" *ngIf="displaySaveBtnForInfo" [class.save]="displaySaveBtnForInfo">save</mat-icon>
-          <mat-icon aria-label="Editar información" (click)="enableInfoEditing()">{{formButton}}</mat-icon>
+          <mat-icon id="saveInfoIconBtn" aria-label="Guardar información" *ngIf="displaySaveBtnForInfo" [class.save]="displaySaveBtnForInfo" (click)="saveEditedFields()">save</mat-icon>
+          <mat-icon aria-label="Editar información" (click)="enableInfoEditing()">{{formInfoButton}}</mat-icon>
         </mat-card-header>
         <mat-card-content>
           <form [formGroup]="InfoFormGroup">
@@ -13,7 +13,7 @@
             </mat-form-field>
             <mat-form-field class="gender">
               <mat-label>Género</mat-label>
-              <mat-select formControlName="genderFormControl" [class.readonly]="selectReadonly">
+              <mat-select formControlName="genderFormControl" [class.readonly]="selectInfoReadonly">
                 <mat-option value="default" style="display: none;">Seleccione</mat-option>
                 <mat-option value="Masculino">Masculino</mat-option>
                 <mat-option value="Femenino">Femenino</mat-option>
@@ -37,7 +37,8 @@
     <mat-card class="profileCard">
         <mat-card-header>
           <mat-card-title>Contacto</mat-card-title>
-          <mat-icon aria-label="Editar información">edit</mat-icon>
+          <mat-icon id="saveContactIconBtn" aria-label="Guardar información" *ngIf="displaySaveBtnForContact" [class.save]="displaySaveBtnForContact" (click)="saveEditedFields()">save</mat-icon>
+          <mat-icon aria-label="Editar información" (click)="enableContactEditing()">{{formContactButton}}</mat-icon>
         </mat-card-header>
         <mat-card-content>
           <form [formGroup]="ContactFormGroup">
@@ -47,32 +48,32 @@
             </mat-form-field>
             <mat-form-field class="address">
               <mat-label>Departamento</mat-label>
-              <mat-select formControlName="stateFormControl" [class.readonly]="selectReadonly" (selectionChange)="changeState($event.value)">
+              <mat-select formControlName="stateFormControl" [class.readonly]="selectContactReadonly" (selectionChange)="changeState($event.value)">
                 <mat-option value="default" style="display: none;">-</mat-option>
                 <mat-option *ngFor="let state of states" [value]="state.departamento">{{state.nombre}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field class="address">
               <mat-label>Provincia</mat-label>
-              <mat-select formControlName="countyFormControl" [class.readonly]="selectReadonly" (selectionChange)="changeDistrict($event.value)">
+              <mat-select formControlName="countyFormControl" [class.readonly]="selectContactReadonly" (selectionChange)="changeDistrict($event.value)">
                 <mat-option value="default" style="display: none;">-</mat-option>
                 <mat-option *ngFor="let county of counties" [value]="county.provincia">{{county.nombre}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field class="address">
               <mat-label>Distrito</mat-label>
-              <mat-select formControlName="districtFormControl" [class.readonly]="selectReadonly">
+              <mat-select formControlName="districtFormControl" [class.readonly]="selectContactReadonly">
                 <mat-option value="default" style="display: none;">-</mat-option>
                 <mat-option *ngFor="let district of districts" [value]="district.distrito">{{district.nombre}}</mat-option>
               </mat-select>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Teléfono</mat-label>
-                <input matInput #cellphone type="tel" (keypress)="onlyNumber($event)" maxlength="9" formControlName="phoneFormControl" placeholder="Número de celular" readonly>
+                <input matInput #cellphone type="tel" (keypress)="onlyNumber($event)" maxlength="9" formControlName="phoneFormControl" placeholder="Número de celular" [readonly]="selectContactReadonly">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Correo electrónico</mat-label>
-                <input matInput type="email" formControlName="emailFormControl" placeholder="Ingrese su correo electrónico" readonly>
+                <input matInput type="email" formControlName="emailFormControl" placeholder="Ingrese su correo electrónico" [readonly]="selectContactReadonly">
             </mat-form-field>
           </form>
         </mat-card-content>

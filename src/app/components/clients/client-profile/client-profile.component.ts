@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import {pairwise, startWith} from 'rxjs/operators';
+import { pairwise } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { ClientDialogComponent } from '../client-dialog/client-dialog.component';
 
 import * as _moment from 'moment';
 import * as _ubigeo from 'ubigeo-peru';
@@ -36,13 +38,16 @@ export class ClientProfileComponent implements OnInit {
   countiesInitial: any[];
   counties: any[];
   districts: any[];
-  selectReadonly:boolean;
-  formButton:string = 'edit';
+  selectInfoReadonly: boolean = true;
+  formInfoButton: string = 'edit';
   displaySaveBtnForInfo: boolean = false;
   enableEditingForInfo: boolean = false;
+  selectContactReadonly: boolean = true;
+  formContactButton: string = 'edit';
+  displaySaveBtnForContact: boolean = false;
   enableEditingForContact: boolean = false;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, private dialog: MatDialog) {
     //Form validators
     this.InfoFormGroup = this._formBuilder.group({
       genderFormControl: [{value: 'default', disabled: true}, [Validators.required]],
@@ -63,15 +68,16 @@ export class ClientProfileComponent implements OnInit {
     .pipe(pairwise())
     .subscribe(([prev, next]: [any, any]) =>
     {
-      console.log(next.genderFormControl)
-        if(prev.genderFormControl !== next.genderFormControl){
-          this.displaySaveBtnForInfo = true;
+      for(var propertyName in prev) {
+          if(prev[propertyName] !== next[propertyName]) {
+            this.displaySaveBtnForInfo = true;
+            break;
+          }
       }
     });
   }
 
   ngOnInit(): void {
-    this.selectReadonly = true;
   }
 
   //Get unique items in the array
@@ -114,19 +120,74 @@ export class ClientProfileComponent implements OnInit {
 
   //Enable info form fields editing
   enableInfoEditing(){
-    this.selectReadonly = false;
+    if (count == 0){
+      var items = [{'gender':this.InfoFormGroup.controls['genderFormControl'].value, 'date':this.InfoFormGroup.controls['birthdayFormControl'].value}];
+      sessionStorage.setItem("InfoForm", JSON.stringify(items));
+    }
+    this.selectInfoReadonly = false;
     this.InfoFormGroup.controls['genderFormControl'].enable();
     this.enableEditingForInfo = true;
-    this.formButton = 'restore';
+    this.formInfoButton = 'restore';
     count = count+1;
 
-    if(document.getElementById('saveIconBtn')){
-      console.log('hola');
+    if(document.getElementById('saveInfoIconBtn')){
+      const dialogRef = this.dialog.open(ClientDialogComponent, {
+        data: {tittle: '¿Seguro que desea deshacer los cambios?', content: 'Todos los cambios se perderán'}
+      });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if(result.data){
+          var formValues = JSON.parse(sessionStorage.getItem("InfoForm"));
+          this.InfoFormGroup.controls['genderFormControl'].setValue(formValues[0].gender);
+          this.InfoFormGroup.controls['birthdayFormControl'].setValue(formValues[0].date);
+          sessionStorage.removeItem("InfoForm");
+          this.selectInfoReadonly = true;
+          this.InfoFormGroup.controls['genderFormControl'].disable();
+          this.enableEditingForInfo = false;
+          this.displaySaveBtnForInfo = false;
+          this.formInfoButton = 'edit';
+          count = 0;
+        }
+      });
     } else {
       if(count > 1){
-        this.formButton = 'edit';
+        this.formInfoButton = 'edit';
+        sessionStorage.removeItem("InfoForm");
+        this.selectInfoReadonly = true;
+        this.InfoFormGroup.controls['genderFormControl'].disable();
+        this.enableEditingForInfo = false;
+        this.displaySaveBtnForInfo = false;
         count = 0;
       }
     }
+  }
+
+  //Enable contact form fields editing
+  enableContactEditing(){
+    if (count == 0){
+      var items = [{'address':this.ContactFormGroup.controls['addressFormControl'].value, 'state':this.ContactFormGroup.controls['stateFormControl'].value, 'county':this.ContactFormGroup.controls['countyFormControl'].value, 'district':this.ContactFormGroup.controls['districtFormControl'].value, 'phone':this.ContactFormGroup.controls['phoneFormControl'].value, 'email':this.ContactFormGroup.controls['emailFormControl'].value}];
+      sessionStorage.setItem("ContactForm", JSON.stringify(items));
+    }
+    this.selectContactReadonly = false;
+    this.ContactFormGroup.controls['stateFormControl'].enable();
+    this.ContactFormGroup.controls['countyFormControl'].enable();
+    this.ContactFormGroup.controls['districtFormControl'].enable();
+    this.enableEditingForContact = true;
+    this.formContactButton = 'restore';
+    count = count+1;
+  }
+
+  //Save edited form fields
+  saveEditedFields(){
+    const dialogRef = this.dialog.open(ClientDialogComponent, {
+      data: {tittle: '¿Seguro que desea guardar los cambios?', content: 'Esta decisión no se puede modificar luego'}
+    });
+    sessionStorage.removeItem("InfoForm");
+    this.selectInfoReadonly = true;
+    this.InfoFormGroup.controls['genderFormControl'].disable();
+    this.enableEditingForInfo = false;
+    this.displaySaveBtnForInfo = false;
+    this.formInfoButton = 'edit';
+    count = 0;
   }
 }

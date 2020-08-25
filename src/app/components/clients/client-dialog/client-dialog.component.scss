@@ -1,0 +1,43 @@
+/* Extra small devices (phones, 688px and down) */
+@media only screen and (max-width: 43em) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 688px and up) */
+@media only screen and (min-width: 43em) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 48em) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 62em) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 119em) {
+
+}
+
+//---------------------------------------------------
+
+.mat-dialog-content{
+  text-align: center;
+}
+
+.mat-dialog-actions{
+  display: block;
+  text-align: center;
+
+  button{
+    width: 20%;
+
+    &:nth-child(2){
+      margin-left: 30px;
+    }
+  }
+}
