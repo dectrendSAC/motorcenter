@@ -33,7 +33,7 @@ export const MY_FORMATS = {
 })
 export class ClientProfileComponent implements OnInit {
   InfoFormGroup: FormGroup;
-  ContactFormGroup: FormGroup;
+  contactFormGroup: FormGroup;
   states: any[] = this.getUnique(_ubigeo['reniec'], 'departamento');
   countiesInitial: any[];
   counties: any[];
@@ -54,7 +54,7 @@ export class ClientProfileComponent implements OnInit {
       birthdayFormControl: [{value: moment('1991-01-01'), disabled: false}, [Validators.required]]
     });
 
-    this.ContactFormGroup = this._formBuilder.group({
+    this.contactFormGroup = this._formBuilder.group({
       addressFormControl: ['Ingrese su dirección', [Validators.required]],
       stateFormControl: [{value: 'default', disabled: true}, [Validators.required]],
       countyFormControl: [{value: 'default', disabled: true}, [Validators.required]],
@@ -76,7 +76,7 @@ export class ClientProfileComponent implements OnInit {
       }
     });
 
-    this.ContactFormGroup.valueChanges
+    this.contactFormGroup.valueChanges
     .pipe(pairwise())
     .subscribe(([prev, next]: [any, any]) =>
     {
@@ -177,13 +177,13 @@ export class ClientProfileComponent implements OnInit {
   //Enable contact form fields editing
   enableContactEditing(){
     if (count == 0){
-      var items = [{'address':this.ContactFormGroup.controls['addressFormControl'].value, 'state':this.ContactFormGroup.controls['stateFormControl'].value, 'county':this.ContactFormGroup.controls['countyFormControl'].value, 'district':this.ContactFormGroup.controls['districtFormControl'].value, 'phone':this.ContactFormGroup.controls['phoneFormControl'].value, 'email':this.ContactFormGroup.controls['emailFormControl'].value}];
+      var items = [{'address':this.contactFormGroup.controls['addressFormControl'].value, 'state':this.contactFormGroup.controls['stateFormControl'].value, 'county':this.contactFormGroup.controls['countyFormControl'].value, 'district':this.contactFormGroup.controls['districtFormControl'].value, 'phone':this.contactFormGroup.controls['phoneFormControl'].value, 'email':this.contactFormGroup.controls['emailFormControl'].value}];
       sessionStorage.setItem("ContactForm", JSON.stringify(items));
     }
     this.selectContactReadonly = false;
-    this.ContactFormGroup.controls['stateFormControl'].enable();
-    this.ContactFormGroup.controls['countyFormControl'].enable();
-    this.ContactFormGroup.controls['districtFormControl'].enable();
+    this.contactFormGroup.controls['stateFormControl'].enable();
+    this.contactFormGroup.controls['countyFormControl'].enable();
+    this.contactFormGroup.controls['districtFormControl'].enable();
     this.enableEditingForContact = true;
     this.formContactButton = 'restore';
     count = count+1;
@@ -192,14 +192,35 @@ export class ClientProfileComponent implements OnInit {
       const dialogRef = this.dialog.open(ClientDialogComponent, {
         data: {tittle: '¿Seguro que desea deshacer los cambios?', content: 'Todos los cambios se perderán'}
       });
+
+      dialogRef.afterClosed().subscribe(result => {
+        if(result.data){
+          var formValues = JSON.parse(sessionStorage.getItem("ContactForm"));
+          this.contactFormGroup.controls['addressFormControl'].setValue(formValues[0].address);
+          this.contactFormGroup.controls['stateFormControl'].setValue(formValues[0].state);
+          this.contactFormGroup.controls['countyFormControl'].setValue(formValues[0].county);
+          this.contactFormGroup.controls['districtFormControl'].setValue(formValues[0].district);
+          this.contactFormGroup.controls['phoneFormControl'].setValue(formValues[0].phone);
+          this.contactFormGroup.controls['emailFormControl'].setValue(formValues[0].email);
+          sessionStorage.removeItem("ContactForm");
+          this.selectContactReadonly = true;
+          this.contactFormGroup.controls['stateFormControl'].disable();
+          this.contactFormGroup.controls['countyFormControl'].disable();
+          this.contactFormGroup.controls['districtFormControl'].disable();
+          this.enableEditingForContact = false;
+          this.displaySaveBtnForContact = false;
+          this.formContactButton = 'edit';
+          count = 0;
+        }
+      });
     } else {
       if(count > 1){
         this.formContactButton = 'edit';
         sessionStorage.removeItem("ContactForm");
         this.selectContactReadonly = true;
-        this.ContactFormGroup.controls['stateFormControl'].disable();
-        this.ContactFormGroup.controls['countyFormControl'].disable();
-        this.ContactFormGroup.controls['districtFormControl'].disable();
+        this.contactFormGroup.controls['stateFormControl'].disable();
+        this.contactFormGroup.controls['countyFormControl'].disable();
+        this.contactFormGroup.controls['districtFormControl'].disable();
         this.enableEditingForContact = false;
         this.displaySaveBtnForContact = false;
         count = 0;
@@ -207,8 +228,8 @@ export class ClientProfileComponent implements OnInit {
     }
   }
 
-  //Save edited form fields
-  saveEditedFields(){
+  //Save info edited form fields
+  saveEditedInfoFields(){
     const dialogRef = this.dialog.open(ClientDialogComponent, {
       data: {tittle: '¿Seguro que desea guardar los cambios?', content: 'Esta decisión no se puede modificar luego'}
     });
@@ -218,6 +239,22 @@ export class ClientProfileComponent implements OnInit {
     this.enableEditingForInfo = false;
     this.displaySaveBtnForInfo = false;
     this.formInfoButton = 'edit';
+    count = 0;
+  }
+
+  //Save contact edited form fields
+  saveEditedContactFields(){
+    const dialogRef = this.dialog.open(ClientDialogComponent, {
+      data: {tittle: '¿Seguro que desea guardar los cambios?', content: 'Esta decisión no se puede modificar luego'}
+    });
+    sessionStorage.removeItem("ContactForm");
+    this.selectContactReadonly = true;
+    this.contactFormGroup.controls['stateFormControl'].disable();
+    this.contactFormGroup.controls['countyFormControl'].disable();
+    this.contactFormGroup.controls['districtFormControl'].disable();
+    this.enableEditingForContact = false;
+    this.displaySaveBtnForContact = false;
+    this.formContactButton = 'edit';
     count = 0;
   }
 }
