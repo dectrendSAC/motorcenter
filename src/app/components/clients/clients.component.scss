@@ -80,8 +80,30 @@ $top:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlin
 
         .itemContent{
             position: relative;
+            overflow-y: scroll;
             height: 60%;
             width: 100%;
+
+            /* customize scroll bar */
+            &::-webkit-scrollbar {
+                background-color:#EFEFEF;
+                width:16px
+            }
+
+            &::-webkit-scrollbar-track {
+                background-color:#EFEFEF
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color:#CA181F;
+                border-radius:16px;
+                border:5px solid #EFEFEF;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background-color:#9f0003;
+                border:4px solid #EFEFEF;
+            }
         }
     }
 

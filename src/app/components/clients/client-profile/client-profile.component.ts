@@ -1,9 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import { MAT_DATE_FORMATS } from '@angular/material/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { pairwise } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientDialogComponent } from '../client-dialog/client-dialog.component';
+import { ErrorStateMatcher } from '@angular/material/core';
+
+export class MyErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+
+    return (invalidCtrl || invalidParent);
+  }
+}
 
 import * as _moment from 'moment';
 import * as _ubigeo from 'ubigeo-peru';
@@ -34,10 +44,14 @@ export const MY_FORMATS = {
 export class ClientProfileComponent implements OnInit {
   InfoFormGroup: FormGroup;
   contactFormGroup: FormGroup;
+  passwordFormGroup: FormGroup;
   states: any[] = this.getUnique(_ubigeo['reniec'], 'departamento');
   countiesInitial: any[];
   counties: any[];
   districts: any[];
+  hide1:boolean = true;
+  hide2:boolean = true;
+  hide3:boolean = true;
   selectInfoReadonly: boolean = true;
   formInfoButton: string = 'edit';
   displaySaveBtnForInfo: boolean = false;
@@ -46,6 +60,7 @@ export class ClientProfileComponent implements OnInit {
   formContactButton: string = 'edit';
   displaySaveBtnForContact: boolean = false;
   enableEditingForContact: boolean = false;
+  matcher = new MyErrorStateMatcher();
 
   constructor(private _formBuilder: FormBuilder, private dialog: MatDialog) {
     //Form validators
@@ -55,13 +70,19 @@ export class ClientProfileComponent implements OnInit {
     });
 
     this.contactFormGroup = this._formBuilder.group({
-      addressFormControl: ['Ingrese su dirección', [Validators.required]],
+      addressFormControl: ['', [Validators.required]],
       stateFormControl: [{value: 'default', disabled: true}, [Validators.required]],
       countyFormControl: [{value: 'default', disabled: true}, [Validators.required]],
       districtFormControl: [{value: 'default', disabled: true}, [Validators.required]],
       phoneFormControl: ['962785689', [Validators.required, Validators.min(100000000)]],
       emailFormControl: ['mail@mail.com', [Validators.required, Validators.email]]
     });
+
+    this.passwordFormGroup = this._formBuilder.group({
+      passwordFormControl: ['', [Validators.required]],
+      newPasswordFormControl: ['', [Validators.required]],
+      passwordConfirmFormControl: ['', [Validators.required]]
+    }, {validator: this.checkPasswords });
 
     //Change form inputs changes
     this.InfoFormGroup.valueChanges
@@ -90,6 +111,14 @@ export class ClientProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  //Confirm password validation
+  checkPasswords(group: FormGroup) { 
+    let pass = group.controls.newPasswordFormControl.value;
+    let confirmPass = group.controls.passwordConfirmFormControl.value;
+
+    return pass === confirmPass ? null : { notSame: true } 
   }
 
   //Get unique items in the array
