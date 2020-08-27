@@ -1,17 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { MAT_DATE_FORMATS } from '@angular/material/core';
-import { FormGroup, FormBuilder, Validators, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { pairwise } from 'rxjs/operators';
+import { MAT_DATE_FORMATS, ErrorStateMatcher } from '@angular/material/core';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, NgForm, FormGroupDirective, FormControl } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { pairwise, takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientDialogComponent } from '../client-dialog/client-dialog.component';
-import { ErrorStateMatcher } from '@angular/material/core';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
-    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
-
-    return (invalidCtrl || invalidParent);
+    const invalidCtrl = !!(control && control.invalid && control.dirty);
+    return (invalidCtrl);
   }
 }
 
@@ -62,6 +60,8 @@ export class ClientProfileComponent implements OnInit {
   enableEditingForContact: boolean = false;
   matcher = new MyErrorStateMatcher();
 
+  private _unsubscribeAll: Subject<any>;
+
   constructor(private _formBuilder: FormBuilder, private dialog: MatDialog) {
     //Form validators
     this.InfoFormGroup = this._formBuilder.group({
@@ -81,10 +81,10 @@ export class ClientProfileComponent implements OnInit {
     this.passwordFormGroup = this._formBuilder.group({
       passwordFormControl: ['', [Validators.required]],
       newPasswordFormControl: ['', [Validators.required]],
-      passwordConfirmFormControl: ['', [Validators.required]]
-    }, {validator: this.checkPasswords });
+      passwordConfirmFormControl: ['', [Validators.required, confirmPasswordValidator]]
+    });
 
-    //Change form inputs changes
+    //Detect form inputs changes
     this.InfoFormGroup.valueChanges
     .pipe(pairwise())
     .subscribe(([prev, next]: [any, any]) =>
@@ -108,17 +108,31 @@ export class ClientProfileComponent implements OnInit {
           }
       }
     });
+
+    // Set the private defaults
+    this._unsubscribeAll = new Subject();
+
+    // Update the validity of the 'passwordConfirm' field when the 'password' field changes
+    this.passwordFormGroup.get('newPasswordFormControl').valueChanges
+      .pipe(takeUntil(this._unsubscribeAll))
+      .subscribe(() => {
+          this.passwordFormGroup.get('passwordConfirmFormControl').updateValueAndValidity();
+    });
+
+    //Detect password form changes
+    this.passwordFormGroup.valueChanges
+    .subscribe(() =>
+    {
+      if(this.passwordFormGroup.controls['passwordFormControl'].value == '' && this.passwordFormGroup.controls['newPasswordFormControl'].value == '' && this.passwordFormGroup.controls['passwordConfirmFormControl'].value == ''){
+        document.getElementById('updatePass').setAttribute("disabled","disabled");
+        for (let control in this.passwordFormGroup.controls) {
+          this.passwordFormGroup.controls[control].setErrors(null);
+        }
+      }
+    });
   }
 
   ngOnInit(): void {
-  }
-
-  //Confirm password validation
-  checkPasswords(group: FormGroup) { 
-    let pass = group.controls.newPasswordFormControl.value;
-    let confirmPass = group.controls.passwordConfirmFormControl.value;
-
-    return pass === confirmPass ? null : { notSame: true } 
   }
 
   //Get unique items in the array
@@ -287,3 +301,37 @@ export class ClientProfileComponent implements OnInit {
     count = 0;
   }
 }
+
+/**
+* Confirm password validation
+*
+* @param {AbstractControl} control
+* @returns {ValidationErrors | null}
+*/
+export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+
+  if ( !control.parent || !control )
+  {
+      return null;
+  }
+
+  const password = control.parent.get('newPasswordFormControl');
+  const passwordConfirm = control.parent.get('passwordConfirmFormControl');
+
+  if ( !password || !passwordConfirm )
+  {
+      return null;
+  }
+
+  if ( passwordConfirm.value === '' )
+  {
+      return null;
+  }
+
+  if ( password.value === passwordConfirm.value )
+  {
+      return null;
+  }
+
+  return {passwordsNotMatching: true};
+};

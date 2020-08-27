@@ -114,7 +114,7 @@
     <mat-card class="profileCard">
       <mat-card-header>
         <mat-card-title>Cambiar Contraseña</mat-card-title>
-        <button mat-icon-button aria-label="Guardar nueva contraseña" (click)="saveEditedContactFields()" [disabled]="!passwordFormGroup.valid">
+        <button id="updatePass" mat-icon-button aria-label="Guardar nueva contraseña" (click)="saveEditedContactFields()" [disabled]="!passwordFormGroup.valid">
           <mat-icon>save</mat-icon>
         </button>
       </mat-card-header>
@@ -126,12 +126,6 @@
             <button mat-icon-button matSuffix (click)="hide1 = !hide1" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hide1">
               <mat-icon>{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <button mat-button *ngIf="password.value" matSuffix mat-icon-button aria-label="Clear" (click)="passwordFormGroup.get('passwordFormControl').reset()">
-              <mat-icon>close</mat-icon>
-            </button>
-            <mat-error *ngIf="passwordFormGroup.get('passwordFormControl').hasError('required')">
-              Campo obligatorio
-            </mat-error>
           </mat-form-field>
           <mat-form-field floatLabel="always">
             <mat-label>Nueva contraseña</mat-label>
@@ -139,30 +133,18 @@
             <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hide2">
               <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <button mat-button *ngIf="newpassword.value" matSuffix mat-icon-button aria-label="Clear" (click)="passwordFormGroup.get('newPasswordFormControl').reset()">
-              <mat-icon>close</mat-icon>
-            </button>
-            <mat-error *ngIf="passwordFormGroup.get('newPasswordFormControl').hasError('required')">
-              Campo obligatorio
-            </mat-error>
           </mat-form-field>
-          <mat-form-field floatLabel="always"> 
+          <mat-form-field floatLabel="always">
             <mat-label>Repetir contraseña</mat-label>
             <input matInput [type]="hide3 ? 'password' : 'text'" #repeatpassword formControlName="passwordConfirmFormControl" placeholder="Vuelva a ingresar su nueva contraseña" [errorStateMatcher]="matcher">
             <button mat-icon-button matSuffix (click)="hide3 = !hide3" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hide3">
               <mat-icon>{{hide3 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
-            <button mat-button *ngIf="repeatpassword.value" matSuffix mat-icon-button aria-label="Clear" (click)="passwordFormGroup.get('passwordConfirmFormControl').reset()">
-              <mat-icon>close</mat-icon>
-            </button>
-            <mat-error *ngIf="passwordFormGroup.get('passwordConfirmFormControl').hasError('required')">
-              Campo obligatorio
+            <mat-error *ngIf="passwordFormGroup.get('passwordConfirmFormControl').hasError('passwordsNotMatching')">
+              Las contraseñas deben coincidir
             </mat-error>
-            <mat-error *ngIf="passwordFormGroup.hasError('notSame')">
-              Passwords do not match
-            </mat-error>  
           </mat-form-field>
         </form>
       </mat-card-content>
-    </mat-card>  
+    </mat-card>
 </div>
