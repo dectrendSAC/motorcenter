@@ -30,7 +30,11 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     if(document.getElementById('mainScreen')){
-      this.displayForMainScreen = true;
+      if (this.router.url.indexOf('/concesionario') > -1) {
+        this.displayForMainScreen = false;
+      } else {
+        this.displayForMainScreen = true;
+      }
     } else {
       this.displayForMainScreen = false;
     }
@@ -91,15 +95,17 @@ export class ToolbarComponent implements OnInit {
   }
 
   //Client methods
-  ngOnChanges(changes: SimpleChanges) {  
-    if(changes.changeItemDescriptionStatus.currentValue){
-      const item = document.getElementsByClassName('item')
-        for(var i = 0 ; i < item.length ; i++){
-          if(item[i].classList.contains('clicked')){
-            this.itemIcon = item[i].firstChild.childNodes[0].textContent; 
-            this.itemName = item[i].firstChild.childNodes[1].textContent;
+  ngOnChanges(changes: SimpleChanges) { 
+    if(document.getElementById('clientScreen')){
+      if(changes.changeItemDescriptionStatus.currentValue){
+        const item = document.getElementsByClassName('item')
+          for(var i = 0 ; i < item.length ; i++){
+            if(item[i].classList.contains('clicked')){
+              this.itemIcon = item[i].firstChild.childNodes[0].textContent; 
+              this.itemName = item[i].firstChild.childNodes[1].textContent;
+            }
           }
-        }
-    }    
+      }    
+    } 
   }
 }

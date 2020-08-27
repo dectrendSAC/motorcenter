@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { pairwise, takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientDialogComponent } from '../client-dialog/client-dialog.component';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -124,7 +125,6 @@ export class ClientProfileComponent implements OnInit {
     .subscribe(() =>
     {
       if(this.passwordFormGroup.controls['passwordFormControl'].value == '' && this.passwordFormGroup.controls['newPasswordFormControl'].value == '' && this.passwordFormGroup.controls['passwordConfirmFormControl'].value == ''){
-        document.getElementById('updatePass').setAttribute("disabled","disabled");
         for (let control in this.passwordFormGroup.controls) {
           this.passwordFormGroup.controls[control].setErrors(null);
         }
