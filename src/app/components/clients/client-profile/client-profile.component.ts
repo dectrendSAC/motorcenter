@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MAT_DATE_FORMATS, ErrorStateMatcher } from '@angular/material/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, NgForm, FormGroupDirective, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -66,7 +67,7 @@ export class ClientProfileComponent implements OnInit {
 
   private _unsubscribeAll: Subject<any>;
 
-  constructor(private _formBuilder: FormBuilder, private dialog: MatDialog) {
+  constructor(private _formBuilder: FormBuilder, private dialog: MatDialog, private router: Router) {
     //Form validators
     this.InfoFormGroup = this._formBuilder.group({
       genderFormControl: [{value: 'default', disabled: true}, [Validators.required]],
@@ -132,7 +133,7 @@ export class ClientProfileComponent implements OnInit {
       } else {
         this.showPasswordInfo = false;
       }
-      if(this.passwordFormGroup.controls['passwordFormControl'].value == '' && this.passwordFormGroup.controls['newPasswordFormControl'].value == '' && this.passwordFormGroup.controls['passwordConfirmFormControl'].value == ''){
+     if(this.passwordFormGroup.controls['passwordFormControl'].value == '' && this.passwordFormGroup.controls['newPasswordFormControl'].value == '' && this.passwordFormGroup.controls['passwordConfirmFormControl'].value == ''){
         for (let control in this.passwordFormGroup.controls) {
           this.passwordFormGroup.controls[control].setErrors(null);
         }
@@ -284,13 +285,17 @@ export class ClientProfileComponent implements OnInit {
     const dialogRef = this.dialog.open(ClientDialogComponent, {
       data: {tittle: '¿Seguro que desea guardar los cambios?', content: 'Esta decisión no se puede modificar luego'}
     });
-    sessionStorage.removeItem("InfoForm");
-    this.selectInfoReadonly = true;
-    this.InfoFormGroup.controls['genderFormControl'].disable();
-    this.enableEditingForInfo = false;
-    this.displaySaveBtnForInfo = false;
-    this.formInfoButton = 'edit';
-    count = 0;
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.data){
+        sessionStorage.removeItem("InfoForm");
+        this.selectInfoReadonly = true;
+        this.InfoFormGroup.controls['genderFormControl'].disable();
+        this.enableEditingForInfo = false;
+        this.displaySaveBtnForInfo = false;
+        this.formInfoButton = 'edit';
+        count = 0;
+      }
+    });
   }
 
   //Save contact edited form fields
@@ -298,26 +303,41 @@ export class ClientProfileComponent implements OnInit {
     const dialogRef = this.dialog.open(ClientDialogComponent, {
       data: {tittle: '¿Seguro que desea guardar los cambios?', content: 'Esta decisión no se puede modificar luego'}
     });
-    sessionStorage.removeItem("ContactForm");
-    this.selectContactReadonly = true;
-    this.contactFormGroup.controls['stateFormControl'].disable();
-    this.contactFormGroup.controls['countyFormControl'].disable();
-    this.contactFormGroup.controls['districtFormControl'].disable();
-    this.enableEditingForContact = false;
-    this.displaySaveBtnForContact = false;
-    this.formContactButton = 'edit';
-    count = 0;
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.data){
+        sessionStorage.removeItem("ContactForm");
+        this.selectContactReadonly = true;
+        this.contactFormGroup.controls['stateFormControl'].disable();
+        this.contactFormGroup.controls['countyFormControl'].disable();
+        this.contactFormGroup.controls['districtFormControl'].disable();
+        this.enableEditingForContact = false;
+        this.displaySaveBtnForContact = false;
+        this.formContactButton = 'edit';
+        count = 0;
+      }
+    });
   }
 
   //Validate password pattern
   onStrengthChanged(strength: number){
-    console.log(strength)
     if (strength == 100){
       passowrdValidStrength = true;
     } else {
       passowrdValidStrength = false;
     }
     this.passwordFormGroup.controls['newPasswordFormControl'].updateValueAndValidity();
+  }
+
+  //Save new password
+  saveNewPassword(){
+    const dialogRef = this.dialog.open(ClientDialogComponent, {
+      data: {tittle: '¿Seguro que desea actualizar su contraseña?', content: 'Una vez actualizada debe volver a iniciar sesión'}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.data){
+        this.router.navigate(['../iniciar-sesion']);
+      }
+    });
   }
 }
 

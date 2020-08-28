@@ -67,6 +67,12 @@
           }
         }
     }
+    
+    .passwordStrength{
+      ::ng-deep mat-progress-bar{
+        top: -24px;
+      }
+    }
   }
 }
 
@@ -123,6 +129,12 @@
               }
           }
         }
+    }
+
+    .passwordStrength{
+      ::ng-deep mat-progress-bar{
+        top: -31px;
+      }
     }
   }
 }
@@ -241,12 +253,6 @@
                     width: 30%;
                   }
                 }
-            }
-
-            .passwordStrength{
-              ::ng-deep mat-progress-bar{
-                top: -31px;
-              }
             }
 
             .passwordStrengthInfo{
