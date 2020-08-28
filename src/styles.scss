@@ -29,3 +29,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     height: 0px;
     visibility: hidden;
 }
+
+/* Password strength component material bar colors change */
+
+.mat-warn .mat-progress-bar-buffer {
+  background-color: #E4E8EB!important;
+}
+.mat-warn .mat-progress-bar-fill::after {
+  background-color: #ff6859!important;
+}
+
+.mat-accent .mat-progress-bar-buffer {
+  background-color: #fff8e5!important;
+}
+.mat-accent .mat-progress-bar-fill::after {
+  background-color: #ffcf44!important;
+}
+
+.mat-primary .mat-progress-bar-buffer {
+  background-color: #b6fff2!important;
+}
+
+.mat-primary .mat-progress-bar-fill::after {
+  background-color: #1eb980!important;
+}

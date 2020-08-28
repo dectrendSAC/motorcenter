@@ -17,6 +17,8 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 import * as _moment from 'moment';
 import * as _ubigeo from 'ubigeo-peru';
 
+let passowrdValidStrength: boolean;
+
 const moment = _moment;
 let count = 0;
 
@@ -60,6 +62,7 @@ export class ClientProfileComponent implements OnInit {
   displaySaveBtnForContact: boolean = false;
   enableEditingForContact: boolean = false;
   matcher = new MyErrorStateMatcher();
+  showPasswordInfo: boolean = false;
 
   private _unsubscribeAll: Subject<any>;
 
@@ -81,7 +84,7 @@ export class ClientProfileComponent implements OnInit {
 
     this.passwordFormGroup = this._formBuilder.group({
       passwordFormControl: ['', [Validators.required]],
-      newPasswordFormControl: ['', [Validators.required]],
+      newPasswordFormControl: ['', [Validators.required, validatePasswordPattern]],
       passwordConfirmFormControl: ['', [Validators.required, confirmPasswordValidator]]
     });
 
@@ -124,6 +127,11 @@ export class ClientProfileComponent implements OnInit {
     this.passwordFormGroup.valueChanges
     .subscribe(() =>
     {
+      if(this.passwordFormGroup.controls['newPasswordFormControl'].value != ''){
+        this.showPasswordInfo = true;
+      } else {
+        this.showPasswordInfo = false;
+      }
       if(this.passwordFormGroup.controls['passwordFormControl'].value == '' && this.passwordFormGroup.controls['newPasswordFormControl'].value == '' && this.passwordFormGroup.controls['passwordConfirmFormControl'].value == ''){
         for (let control in this.passwordFormGroup.controls) {
           this.passwordFormGroup.controls[control].setErrors(null);
@@ -300,6 +308,17 @@ export class ClientProfileComponent implements OnInit {
     this.formContactButton = 'edit';
     count = 0;
   }
+
+  //Validate password pattern
+  onStrengthChanged(strength: number){
+    console.log(strength)
+    if (strength == 100){
+      passowrdValidStrength = true;
+    } else {
+      passowrdValidStrength = false;
+    }
+    this.passwordFormGroup.controls['newPasswordFormControl'].updateValueAndValidity();
+  }
 }
 
 /**
@@ -308,6 +327,32 @@ export class ClientProfileComponent implements OnInit {
 * @param {AbstractControl} control
 * @returns {ValidationErrors | null}
 */
+export const validatePasswordPattern: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+
+  if ( !control.parent || !control )
+  {
+      return null;
+  }
+
+  const new_password = control.parent.get('newPasswordFormControl');
+
+  if ( !new_password )
+  {
+      return null;
+  }
+
+  if ( new_password.value === '')
+  {
+      return null;
+  }
+
+  if(passowrdValidStrength === true){
+    return null;
+  }
+
+  return {passwordNotValid: true};
+};
+
 export const confirmPasswordValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
 
   if ( !control.parent || !control )

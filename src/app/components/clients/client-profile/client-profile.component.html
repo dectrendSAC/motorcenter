@@ -114,13 +114,15 @@
     <mat-card class="profileCard">
       <mat-card-header>
         <mat-card-title>Cambiar Contraseña</mat-card-title>
-        <button id="updatePass" mat-icon-button aria-label="Guardar nueva contraseña" (click)="saveEditedContactFields()" [disabled]="password.value && newpassword.value && repeatpassword.value ? !passwordFormGroup.valid : true">
+        <button mat-icon-button class="save" aria-label="Mostrar validación de contraseña" (click)="showPasswordInfo = !showPasswordInfo">
+          <mat-icon>fact_check</mat-icon>
+        </button>
+        <button id="updatePass" mat-icon-button aria-label="Guardar nueva contraseña" (click)="saveEditedContactFields()" [disabled]="password.value && newpassword.value && repeatpassword.value ? passwordFormGroup.invalid : true">
           <mat-icon>save</mat-icon>
         </button>
       </mat-card-header>
       <mat-card-content>
         <form [formGroup]="passwordFormGroup">
-          <mat-password-strength [password]="password.value"> </mat-password-strength>
           <mat-form-field floatLabel="always">
             <mat-label>Contraseña actual</mat-label>
             <input matInput [type]="hide1 ? 'password' : 'text'" #password formControlName="passwordFormControl" placeholder="Ingrese su contraseña actual">
@@ -130,11 +132,16 @@
           </mat-form-field>
           <mat-form-field floatLabel="always">
             <mat-label>Nueva contraseña</mat-label>
-            <input matInput [type]="hide2 ? 'password' : 'text'" #newpassword formControlName="newPasswordFormControl" placeholder="Ingrese su nueva contraseña">
+            <input matInput [type]="hide2 ? 'password' : 'text'" #newpassword formControlName="newPasswordFormControl" placeholder="Ingrese su nueva contraseña" [errorStateMatcher]="matcher">
             <button mat-icon-button matSuffix (click)="hide2 = !hide2" [attr.aria-label]="'Ocultar contraseña'" [attr.aria-pressed]="hide2">
               <mat-icon>{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
+            <mat-error *ngIf="passwordFormGroup.get('newPasswordFormControl').hasError('passwordNotValid')">
+              Las contraseña no es válida
+            </mat-error>
           </mat-form-field>
+          <mat-password-strength class="passwordStrength" #passwordValidation [password]="newpassword.value" (onStrengthChanged)="onStrengthChanged($event)"> </mat-password-strength>
+          <mat-password-strength-info lowerCaseCriteriaMsg="Contiene al menos una letra minúscula" upperCaseCriteriaMsg="Contiene al menos una letra mayúscula" digitsCriteriaMsg="Contiene al menos un número" specialCharsCriteriaMsg="Contiene al menos un caracter especial" minCharsCriteriaMsg="Contiene al menos 8 caracteres" class="passwordStrengthInfo" *ngIf="showPasswordInfo" [passwordComponent]="passwordValidation"> </mat-password-strength-info>
           <mat-form-field floatLabel="always">
             <mat-label>Repetir contraseña</mat-label>
             <input matInput [type]="hide3 ? 'password' : 'text'" #repeatpassword formControlName="passwordConfirmFormControl" placeholder="Vuelva a ingresar su nueva contraseña" [errorStateMatcher]="matcher">
