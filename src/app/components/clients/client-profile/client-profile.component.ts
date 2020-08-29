@@ -6,7 +6,6 @@ import { Subject } from 'rxjs';
 import { pairwise, takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientDialogComponent } from '../client-dialog/client-dialog.component';
-import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -17,8 +16,6 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 
 import * as _moment from 'moment';
 import * as _ubigeo from 'ubigeo-peru';
-
-let passowrdValidStrength: boolean;
 
 const moment = _moment;
 let count = 0;
@@ -318,16 +315,6 @@ export class ClientProfileComponent implements OnInit {
     });
   }
 
-  //Validate password pattern
-  onStrengthChanged(strength: number){
-    if (strength == 100){
-      passowrdValidStrength = true;
-    } else {
-      passowrdValidStrength = false;
-    }
-    this.passwordFormGroup.controls['newPasswordFormControl'].updateValueAndValidity();
-  }
-
   //Save new password
   saveNewPassword(){
     const dialogRef = this.dialog.open(ClientDialogComponent, {
@@ -361,12 +348,12 @@ export const validatePasswordPattern: ValidatorFn = (control: AbstractControl): 
       return null;
   }
 
-  if ( new_password.value === '')
+  if ( new_password.value == '')
   {
       return null;
   }
 
-  if(passowrdValidStrength === true){
+  if(new_password.value.match(/^.{8,63}$/) && new_password.value.match(/^(?=.*?[a-z])/) && new_password.value.match(/^(?=.*?[A-Z])/) && new_password.value.match(/^(?=.*?[0-9])/) && new_password.value.match(/^(?=.*?[" !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~"])/)){
     return null;
   }
 

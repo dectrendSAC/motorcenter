@@ -140,7 +140,7 @@
               Las contraseña no es válida
             </mat-error>
           </mat-form-field>
-          <mat-password-strength class="passwordStrength" #passwordValidation [password]="newpassword.value" (onStrengthChanged)="onStrengthChanged($event)"> </mat-password-strength>
+          <mat-password-strength class="passwordStrength" #passwordValidation [password]="newpassword.value"></mat-password-strength>
           <mat-password-strength-info lowerCaseCriteriaMsg="Contiene al menos una letra minúscula" upperCaseCriteriaMsg="Contiene al menos una letra mayúscula" digitsCriteriaMsg="Contiene al menos un número" specialCharsCriteriaMsg="Contiene al menos un caracter especial" minCharsCriteriaMsg="Contiene al menos 8 caracteres" class="passwordStrengthInfo" *ngIf="showPasswordInfo" [passwordComponent]="passwordValidation"> </mat-password-strength-info>
           <mat-form-field floatLabel="always">
             <mat-label>Repetir contraseña</mat-label>
