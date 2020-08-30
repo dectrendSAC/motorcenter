@@ -1,1 +1,33 @@
-<p>client-vehicles works!</p>
+<div id="clientVehicles">
+  <mat-card class="vehicleCard">
+    <mat-card-header>
+      <mat-card-title>{{vehicleName}} <span class="vehicleRelation">({{vehicleRelation}})</span></mat-card-title>
+      <button mat-icon-button id="saveInfoIconBtn" aria-label="Guardar información" *ngIf="displaySaveBtn" [class.save]="displaySaveBtn" (click)="saveEditedVehicle()">
+        <mat-icon>save</mat-icon>
+      </button>
+      <button mat-icon-button aria-label="Editar información" (click)="enableEditing()">
+        <mat-icon>{{formVehicleButton}}</mat-icon>
+      </button>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="VehicleFormGroup">
+        <mat-form-field>
+          <mat-label>Placa</mat-label>
+          <input matInput #plate placeholder="Número de placa" value="{{vehiclePlate}}" readonly>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>VIN</mat-label>
+          <input matInput #vin placeholder="Código VIN" value="{{vehicleVIN}}" readonly>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Año</mat-label>
+          <input matInput #year placeholder="Año de fabricación" value="{{verhicleYear}}" readonly>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Kilometraje</mat-label>
+          <input matInput #km placeholder="Kilometraje recorrido" readonly>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

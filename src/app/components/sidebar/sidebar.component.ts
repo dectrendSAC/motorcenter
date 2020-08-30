@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 import { multipleAnimations } from 'src/app/animations';
 
 @Component({
@@ -14,10 +15,11 @@ export class SidebarComponent implements OnInit {
   displaySidebarState: boolean = false;
   clickedCount: boolean = true;
   clickedItem: boolean;
+  time:number = 0;
 
   @Output() changeItemDescription = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.clickedItem = true;
@@ -29,10 +31,10 @@ export class SidebarComponent implements OnInit {
     const item = document.getElementsByClassName('item')
     const classList = e.currentTarget.classList;
     for(var i = 0 ; i < item.length ; i++){
-      item[i].classList.remove('clicked'); 
+      item[i].classList.remove('clicked');
     }
     classList.add('clicked');
-    this.changeItemDescription.emit(true); 
+    this.changeItemDescription.emit(true);
   }
 
   //Changesidebar display status
@@ -59,7 +61,21 @@ export class SidebarComponent implements OnInit {
           document.getElementById('sidebarComponent').classList.add('active');
           this.displaySidebar = true;
         }
-      } 
+      }
+    }
+  }
+
+  //Navigate to client section
+  navigateTo(element:string, url:string){
+    if (this.router.url.indexOf(url.replace('..','')) < 0) {
+      /*this.awaitAnimation.emit(true);*/
+      if (document.getElementById('vehicles')) { this.time = 2500 }
+      if (document.getElementById('parts')) { this.time = 1000 }
+      if (document.getElementById('workshop')) { this.time = 1000 }
+      setTimeout(() => {
+        /*this.slideStatus.emit(element);*/
+        this.router.navigate([url]);
+      }, this.time);
     }
   }
 }
