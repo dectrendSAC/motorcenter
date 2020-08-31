@@ -72,7 +72,7 @@ export class ClientProfileComponent implements OnInit {
     });
 
     this.contactFormGroup = this._formBuilder.group({
-      addressFormControl: ['', [Validators.required]],
+      addressFormControl: ['-', [Validators.required]],
       stateFormControl: [{value: 'default', disabled: true}, [Validators.required]],
       countyFormControl: [{value: 'default', disabled: true}, [Validators.required]],
       districtFormControl: [{value: 'default', disabled: true}, [Validators.required]],
@@ -93,6 +93,7 @@ export class ClientProfileComponent implements OnInit {
     {
       for(var propertyName in prev) {
           if(prev[propertyName] !== next[propertyName]) {
+            this.formInfoButton = 'restore';
             this.displaySaveBtnForInfo = true;
             break;
           }
@@ -105,6 +106,7 @@ export class ClientProfileComponent implements OnInit {
     {
       for(var propertyName in prev) {
           if(prev[propertyName] !== next[propertyName]) {
+            this.formContactButton = 'restore';
             this.displaySaveBtnForContact = true;
             break;
           }
@@ -188,7 +190,6 @@ export class ClientProfileComponent implements OnInit {
     this.selectInfoReadonly = false;
     this.InfoFormGroup.controls['genderFormControl'].enable();
     this.enableEditingForInfo = true;
-    this.formInfoButton = 'restore';
     count = count+1;
 
     if(document.getElementById('saveInfoIconBtn')){
@@ -208,16 +209,19 @@ export class ClientProfileComponent implements OnInit {
           this.displaySaveBtnForInfo = false;
           this.formInfoButton = 'edit';
           count = 0;
+        } else {
+          this.formInfoButton = 'restore';
         }
       });
     } else {
+      this.formInfoButton = 'undo';
       if(count > 1){
-        this.formInfoButton = 'edit';
         sessionStorage.removeItem("InfoForm");
         this.selectInfoReadonly = true;
         this.InfoFormGroup.controls['genderFormControl'].disable();
         this.enableEditingForInfo = false;
         this.displaySaveBtnForInfo = false;
+        this.formInfoButton = 'edit';
         count = 0;
       }
     }
@@ -234,7 +238,6 @@ export class ClientProfileComponent implements OnInit {
     this.contactFormGroup.controls['countyFormControl'].enable();
     this.contactFormGroup.controls['districtFormControl'].enable();
     this.enableEditingForContact = true;
-    this.formContactButton = 'restore';
     count = count+1;
 
     if(document.getElementById('saveContactIconBtn')){
@@ -244,6 +247,7 @@ export class ClientProfileComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(result => {
         if(result.data){
+          this.counties = [], this.districts = [];
           var formValues = JSON.parse(sessionStorage.getItem("ContactForm"));
           this.contactFormGroup.controls['addressFormControl'].setValue(formValues[0].address);
           this.contactFormGroup.controls['stateFormControl'].setValue(formValues[0].state);
@@ -260,11 +264,13 @@ export class ClientProfileComponent implements OnInit {
           this.displaySaveBtnForContact = false;
           this.formContactButton = 'edit';
           count = 0;
+        } else {
+          this.formContactButton = 'restore';
         }
       });
     } else {
+      this.formContactButton = 'undo';
       if(count > 1){
-        this.formContactButton = 'edit';
         sessionStorage.removeItem("ContactForm");
         this.selectContactReadonly = true;
         this.contactFormGroup.controls['stateFormControl'].disable();
@@ -272,6 +278,7 @@ export class ClientProfileComponent implements OnInit {
         this.contactFormGroup.controls['districtFormControl'].disable();
         this.enableEditingForContact = false;
         this.displaySaveBtnForContact = false;
+        this.formContactButton = 'edit';
         count = 0;
       }
     }

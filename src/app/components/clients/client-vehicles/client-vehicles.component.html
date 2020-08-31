@@ -1,8 +1,9 @@
 <div id="clientVehicles">
   <mat-card class="vehicleCard">
     <mat-card-header>
-      <mat-card-title>{{vehicleName}} <span class="vehicleRelation">({{vehicleRelation}})</span></mat-card-title>
-      <button mat-icon-button id="saveInfoIconBtn" aria-label="Guardar información" *ngIf="displaySaveBtn" [class.save]="displaySaveBtn" (click)="saveEditedVehicle()">
+      <mat-card-title>{{vehicleName}}</mat-card-title>
+      <mat-card-subtitle>{{vehicleRelation}}</mat-card-subtitle>
+      <button mat-icon-button id="saveIconBtn" aria-label="Guardar información" *ngIf="displaySaveBtn" [class.save]="displaySaveBtn" (click)="saveEditedVehicle()">
         <mat-icon>save</mat-icon>
       </button>
       <button mat-icon-button aria-label="Editar información" (click)="enableEditing()">
@@ -13,19 +14,27 @@
       <form [formGroup]="VehicleFormGroup">
         <mat-form-field>
           <mat-label>Placa</mat-label>
-          <input matInput #plate placeholder="Número de placa" value="{{vehiclePlate}}" readonly>
+          <input matInput placeholder="Número de placa" value="{{vehiclePlate}}" readonly>
         </mat-form-field>
         <mat-form-field>
           <mat-label>VIN</mat-label>
-          <input matInput #vin placeholder="Código VIN" value="{{vehicleVIN}}" readonly>
+          <input matInput placeholder="Código VIN" value="{{vehicleVIN}}" readonly>
         </mat-form-field>
         <mat-form-field>
           <mat-label>Año</mat-label>
-          <input matInput #year placeholder="Año de fabricación" value="{{verhicleYear}}" readonly>
+          <input matInput placeholder="Año de fabricación" value="{{verhicleYear}}" readonly>
         </mat-form-field>
         <mat-form-field>
+          <mat-label>Color</mat-label>
+          <input matInput formControlName="colorFormControl" placeholder="Color del vehículo" [readonly]="enableReadonly">
+        </mat-form-field>
+        <mat-form-field class="km" floatLabel="always">
           <mat-label>Kilometraje</mat-label>
-          <input matInput #km placeholder="Kilometraje recorrido" readonly>
+          <mat-icon aria-label="Más información sobre el kilometraje">help_outline</mat-icon>
+          <input matInput type="number" (keypress)="onlyNumber($event)" formControlName="kmFormControl" placeholder="Kilometraje recorrido" [readonly]="enableReadonly">
+          <mat-error *ngIf="VehicleFormGroup.get('kmFormControl').hasError('required')">
+            Campo obligatorio
+          </mat-error>
         </mat-form-field>
       </form>
     </mat-card-content>

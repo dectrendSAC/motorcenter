@@ -43,35 +43,14 @@
                 font-size: 9pt;
               }
 
-              &.gender{
-                width: 31%;
-              }
-
-              &.calendar{
-                ::ng-deep .mat-form-field-suffix{
-                  left: 80px;
-                  top: -7px;
-                }
-              }
-
-              &.points{
-                input{
-                  font-size: 40px;
-                }
-
+              &.km{
                 mat-icon{
-                  left: 132px;
+                  left: 62px;
                   top: -20px;
                 }
               }
           }
         }
-    }
-
-    .passwordStrength{
-      ::ng-deep mat-progress-bar{
-        top: -24px;
-      }
     }
   }
 }
@@ -105,36 +84,14 @@
                 font-size: 11pt;
               }
 
-
-              &.gender{
-                width: 25%;
-              }
-
-              &.calendar{
-                ::ng-deep .mat-form-field-suffix{
-                  left: 105px;
-                  top: -9px;
-                }
-              }
-
-              &.points{
-                input{
-                  font-size: 50px;
-                }
-
+              &.km{
                 mat-icon{
-                  left: 170px;
+                  left: 100px;
                   top: -22px;
                 }
               }
           }
         }
-    }
-
-    .passwordStrength{
-      ::ng-deep mat-progress-bar{
-        top: -31px;
-      }
     }
   }
 }
@@ -153,11 +110,11 @@
         border-radius: 25px;
         box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
-        &:nth-child(1), &:nth-child(3){
+        &:nth-child(odd){
           margin: 0 2.5% 5% 5%;
         }
 
-        &:nth-child(2){
+        &:nth-child(even){
           margin: 0 2.5% 5% 2.5%;
         }
 
@@ -173,6 +130,17 @@
             padding-left: 14px;
 
             mat-card-title{
+              width: 80%;
+              white-space: nowrap;
+              margin-bottom: 0px;
+              line-height: 50px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            mat-card-subtitle{
+              color: white;
+              line-height: 20px;
               margin-bottom: 0px;
             }
 
@@ -201,74 +169,12 @@
                   display: none;
                 }
 
-                &.password{
-                  ::ng-deep .mat-form-field-underline{
-                    display: block;
-                  }
-                }
-
-                mat-select{
-                  &.readonly{
-                    ::ng-deep .mat-select-value{
-                      color: black;
-                    }
-                  }
-                }
-
-                &.calendar{
-                  ::ng-deep .mat-form-field-suffix{
-                    position: absolute;
-                  }
-                }
-
-                &.points{
-                  ::ng-deep .mat-form-field-wrapper{
-                    padding-bottom: 0em;
-                  }
-
-                  input{
-                    color: #CA181F;
-                  }
-
+                &.km{
                   mat-icon{
                     position: absolute;
                     cursor: pointer;
                   }
                 }
-
-                &.address{
-                  display: inline-block;
-                  padding-right: 5%;
-
-                  &:nth-child(2){
-                    width: 30%;
-                  }
-
-                  &:nth-child(3){
-                    width: 30%;
-                  }
-
-                  &:nth-child(4){
-                    padding-right: 0%;
-                    width: 30%;
-                  }
-                }
-            }
-
-            .passwordStrengthInfo{
-              ::ng-deep mat-card{
-                padding: 0px 0px 20px 0px;
-                place-content: stretch;
-                box-shadow: none;
-              }
-
-              ::ng-deep mat-icon.mat-warn{
-                color: #ff6859!important;
-              }
-
-              ::ng-deep mat-icon.mat-primary{
-                color: #1eb980!important;
-              }
             }
         }
     }

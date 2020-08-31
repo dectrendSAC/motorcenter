@@ -89,7 +89,7 @@
             </mat-form-field>
             <mat-form-field floatLabel="always">
                 <mat-label>Teléfono</mat-label>
-                <input matInput #cellphone type="tel" (keypress)="onlyNumber($event)" maxlength="9" formControlName="phoneFormControl" placeholder="Número de celular" [readonly]="selectContactReadonly">
+                <input matInput #cellphone type="tel" (keypress)="onlyNumber($event)" maxlength="9" formControlName="phoneFormControl" placeholder="Número de celular" [errorStateMatcher]="matcher" [readonly]="selectContactReadonly">
                 <mat-error *ngIf="contactFormGroup.get('phoneFormControl').hasError('min') && !contactFormGroup.get('phoneFormControl').hasError('required')">
                   Debe tener 9 dígitos
                 </mat-error>
@@ -99,7 +99,7 @@
             </mat-form-field>
             <mat-form-field floatLabel="always">
                 <mat-label>Correo electrónico</mat-label>
-                <input matInput type="email" formControlName="emailFormControl" placeholder="Ingrese su correo electrónico" [readonly]="selectContactReadonly">
+                <input matInput type="email" formControlName="emailFormControl" placeholder="Ingrese su correo electrónico" [errorStateMatcher]="matcher" [readonly]="selectContactReadonly">
                 <mat-error *ngIf="contactFormGroup.get('emailFormControl').hasError('email') && !contactFormGroup.get('emailFormControl').hasError('required')">
                   Ingrese un correo electrónico válido
                 </mat-error>
