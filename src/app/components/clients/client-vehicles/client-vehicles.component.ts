@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { pairwise } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientDialogComponent } from '../client-dialog/client-dialog.component';
 
@@ -31,15 +30,18 @@ export class ClientVehiclesComponent implements OnInit {
 
     //Detect form inputs changes
     this.VehicleFormGroup.valueChanges
-    .pipe(pairwise())
-    .subscribe(([prev, next]: [any, any]) =>
+    .subscribe(() =>
     {
-      for(var propertyName in prev) {
-          if(prev[propertyName] !== next[propertyName]) {
-            this.formVehicleButton = 'restore';
-            this.displaySaveBtn = true;
-            break;
-          }
+      var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
+      if(this.VehicleFormGroup.controls['kmFormControl'].value == formValues[0].km && this.VehicleFormGroup.controls['colorFormControl'].value == formValues[0].color){
+        sessionStorage.removeItem("VehicleForm");
+        this.enableReadonly = true;
+        this.displaySaveBtn = false;
+        this.formVehicleButton = 'edit';
+        count = 0;
+      } else {
+        this.formVehicleButton = 'restore';
+        this.displaySaveBtn = true;
       }
     });
   }
@@ -65,6 +67,7 @@ export class ClientVehiclesComponent implements OnInit {
         if(result.data){
           var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
           this.VehicleFormGroup.controls['kmFormControl'].setValue(formValues[0].km);
+          this.VehicleFormGroup.controls['colorFormControl'].setValue(formValues[0].color);
           sessionStorage.removeItem("VehicleForm");
           this.enableReadonly = true;
           this.displaySaveBtn = false;
