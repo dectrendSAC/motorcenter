@@ -33,6 +33,7 @@ export class ClientVehiclesComponent implements OnInit {
     .subscribe(() =>
     {
       var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
+      console.log(formValues)
       if(this.VehicleFormGroup.controls['kmFormControl'].value == formValues[0].km && this.VehicleFormGroup.controls['colorFormControl'].value == formValues[0].color){
         sessionStorage.removeItem("VehicleForm");
         this.enableReadonly = true;
