@@ -27,6 +27,7 @@
         <mat-form-field>
           <mat-label>Color</mat-label>
           <input matInput formControlName="colorFormControl" placeholder="Color del vehículo" [readonly]="enableReadonly">
+          <app-color-picker [heading]="'Background'" [color]="'#FFFFFF'"></app-color-picker>
         </mat-form-field>
         <mat-form-field class="km" floatLabel="always">
           <mat-label>Kilometraje</mat-label>

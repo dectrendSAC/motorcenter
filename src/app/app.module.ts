@@ -44,6 +44,7 @@ import { DataService } from './services/pass-data.service';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ClientDialogComponent } from './components/clients/client-dialog/client-dialog.component';
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+import { ColorPickerComponent } from './components/color-picker/color-picker.component';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { MatPasswordStrengthModule } from '@angular-material-extensions/password
     ClientProfileComponent,
     ClientPromotionsComponent,
     SidebarComponent,
-    ClientDialogComponent
+    ClientDialogComponent,
+    ColorPickerComponent
   ],
   imports: [
     BrowserModule,

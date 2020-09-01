@@ -33,15 +33,20 @@ export class ClientVehiclesComponent implements OnInit {
     .subscribe(() =>
     {
       var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
-      if(this.VehicleFormGroup.controls['kmFormControl'].value == formValues[0].km && this.VehicleFormGroup.controls['colorFormControl'].value == formValues[0].color){
-        sessionStorage.removeItem("VehicleForm");
-        this.enableReadonly = true;
-        this.displaySaveBtn = false;
-        this.formVehicleButton = 'edit';
-        count = 0;
-      } else {
-        this.formVehicleButton = 'restore';
-        this.displaySaveBtn = true;
+
+      var formGroup = {};
+      Object.keys(this.VehicleFormGroup.controls).forEach(key => {
+        formGroup[key] = this.VehicleFormGroup.controls[key].value
+      })
+
+      if (formValues){
+        if(JSON.stringify(formGroup) === JSON.stringify(formValues)){
+          this.displaySaveBtn = false;
+          this.formVehicleButton = 'undo';
+        } else {
+          this.formVehicleButton = 'restore';
+          this.displaySaveBtn = true;
+        }
       }
     });
   }
@@ -52,7 +57,7 @@ export class ClientVehiclesComponent implements OnInit {
   //Enable vehicle form fields editing
   enableEditing(){
     if (count == 0){
-      var items = [{'km':this.VehicleFormGroup.controls['kmFormControl'].value, 'color':this.VehicleFormGroup.controls['colorFormControl'].value}];
+      var items = {'kmFormControl':this.VehicleFormGroup.controls['kmFormControl'].value, 'colorFormControl':this.VehicleFormGroup.controls['colorFormControl'].value};
       sessionStorage.setItem("VehicleForm", JSON.stringify(items));
     }
     this.enableReadonly = false;
@@ -66,8 +71,8 @@ export class ClientVehiclesComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if(result.data){
           var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
-          this.VehicleFormGroup.controls['kmFormControl'].setValue(formValues[0].km);
-          this.VehicleFormGroup.controls['colorFormControl'].setValue(formValues[0].color);
+          this.VehicleFormGroup.controls['kmFormControl'].setValue(formValues.kmFormControl);
+          this.VehicleFormGroup.controls['colorFormControl'].setValue(formValues.colorFormControl);
           sessionStorage.removeItem("VehicleForm");
           this.enableReadonly = true;
           this.displaySaveBtn = false;
