@@ -49,20 +49,6 @@ export class ColorPickerComponent implements OnInit {
     this.show = false;
   }
 
-
-  /**
-   * Change color from input
-   * @param {string} color
-   */
-  public changeColorManual(color: string): void {
-    const isValid = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(color);
-
-    if (isValid) {
-      this.color = color;
-      this.event.emit(this.color);
-    }
-  }
-
   /**
    * Change status of visibility to color picker
    */

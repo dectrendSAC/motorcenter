@@ -36,21 +36,15 @@
   }
 
   .opened {
-    box-shadow: 0 7px 13px 0 rgba(86, 95, 102, 0.07);
+    position: absolute;
+    bottom: 80px;
+    z-index: 3;
+    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
     background: #fff;
     max-width: 240px;
     padding: 15px;
     border-radius: $radius;
-    position: relative;
     margin-top: 15px;
-    &:after {
-      border: 10px solid transparent;
-      border-bottom: 10px solid #fff;
-      content: '';
-      right: 10px;
-      position: absolute;
-      top: -20px;
-    }
 
     .colors {
       display: flex;
@@ -68,40 +62,20 @@
     }
 
     .hex-code {
-      $height: 45px;
+      $height: 20px;
       display: flex;
-      margin-top: 20px;
+      margin-top: 10px;
+      color: rgba(0, 0, 0, 0.87);
 
       p {
-        width: 50%;
+        width: 100%;
         text-align: center;
-        font-size: 10px;
+        font-size: 14px;
+        font-weight: 500;
         letter-spacing: 1.5px;
         text-transform: uppercase;
         line-height: $height;
       }
-
-      .g-input {
-        border: 1px solid #e8ebed;
-        height: $height;
-        border-radius: $radius;
-        width: 120px;
-
-        input {
-          border: none;
-          width: 100%;
-          text-transform: uppercase;
-          outline: none;
-          text-align: center;
-          letter-spacing: 1.5px;
-          color: #595b65;
-          height: 100%;
-          border-radius: $radius;
-          margin: 0;
-          padding: 0;
-        }
-      }
-
     }
   }
 }
