@@ -30,6 +30,8 @@
 
             mat-card-title{
                 font-size: 20pt;
+                width: 70%;
+                line-height: 40px;
             }
         }
 
@@ -45,8 +47,9 @@
 
               &.km{
                 mat-icon{
-                  left: 62px;
+                  left: 75px;
                   top: -20px;
+                  transform: scale(0.9);
                 }
               }
           }
@@ -73,6 +76,8 @@
 
             mat-card-title{
                 font-size: 25pt;
+                width: 80%;
+                line-height: 50px;
             }
         }
 
@@ -130,10 +135,8 @@
             padding-left: 14px;
 
             mat-card-title{
-              width: 80%;
               white-space: nowrap;
               margin-bottom: 0px;
-              line-height: 50px;
               overflow: hidden;
               text-overflow: ellipsis;
             }
@@ -157,7 +160,7 @@
                 display: block;
 
                 ::ng-deep .mat-form-field-wrapper{
-                  padding-bottom: 1em;
+                  padding-bottom: 0.3em;
                 }
 
                 ::ng-deep .mat-form-field-subscript-wrapper{
@@ -170,6 +173,10 @@
                 }
 
                 &.km{
+                  ::ng-deep .mat-form-field-wrapper{
+                    padding-bottom: 1em;
+                  }
+
                   mat-icon{
                     position: absolute;
                     cursor: pointer;
