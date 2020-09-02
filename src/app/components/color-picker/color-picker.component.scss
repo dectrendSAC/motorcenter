@@ -1,81 +1,76 @@
-.color-picker {
-  $radius: 5px;
-  .summary-info {
-    box-shadow: 0 7px 13px 0 rgba(86, 95, 102, 0.07);
-    background: #fff;
-    max-width: 240px;
-    padding: 15px;
-    border-radius: $radius;
-    display: flex;
-    cursor: pointer;
+.cdk-overlay-connected-position-bounding-box{
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  margin-top: 0;
 
-    .info {
-      width: calc(100% - 40px); //40px is $size
-      p.style {
-        color: #000;
-        margin-bottom: 5px;
-      }
-      p.style-value {
-        color: #595b65;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        font-size: 10px;
-      }
+  .color-picker {
+    .circle {
+      $size: 40px;
+      height: $size;
+      width: $size;
+      box-sizing: border-box;
+      border-radius: 100%;
+      cursor: pointer;
+      border: 1px solid #dadada;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14);
     }
-  }
 
-  .circle {
-    $size: 40px;
-    height: $size;
-    width: $size;
-    box-sizing: border-box;
-    border-radius: 100%;
-    cursor: pointer;
-    border: 1px solid #dadada;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14);
-  }
+    .opened {
+      box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+      background: #fff;
+      max-width: 240px;
+      padding: 15px;
+      border-radius: 4px;
 
-  .opened {
-    position: absolute;
-    bottom: 80px;
-    z-index: 3;
-    box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-    background: #fff;
-    max-width: 240px;
-    padding: 15px;
-    border-radius: $radius;
-    margin-top: 15px;
+      .title{
+        text-align: center;
+        color: rgba(0,0,0,.87);
+        font-size: 16px;
+        font-weight: 500;
+      }
 
-    .colors {
-      display: flex;
-      flex-wrap: wrap;
+      .line{
+        position: relative;
+        height: 1px;
+        width: 270px;
+        left: -15px;
+        margin-bottom: 25px;
+        background: rgba(0, 0, 0, 0.12);
+      }
 
-      .circle {
-        flex: 40px 0 0;
-        margin-right: 10px;
-        margin-bottom: 10px;
+      .colors {
+        display: flex;
+        flex-wrap: wrap;
 
-        &:nth-child(5n) {
-          margin-right: 0;
+        .circle {
+          flex: 40px 0 0;
+          margin-right: 10px;
+          margin-bottom: 10px;
+
+          &:nth-child(5n) {
+            margin-right: 0;
+          }
         }
       }
-    }
 
-    .hex-code {
-      $height: 20px;
-      display: flex;
-      margin-top: 10px;
-      color: rgba(0, 0, 0, 0.87);
+      .hex-code {
+        $height: 20px;
+        display: flex;
+        margin-top: 10px;
+        color: rgba(0, 0, 0, 0.87);
 
-      p {
-        width: 100%;
-        text-align: center;
-        font-size: 14px;
-        font-weight: 500;
-        letter-spacing: 1.5px;
-        text-transform: uppercase;
-        line-height: $height;
+        p {
+          width: 100%;
+          text-align: center;
+          font-size: 14px;
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+          line-height: $height;
+        }
       }
     }
   }
 }
+

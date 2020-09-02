@@ -6,14 +6,15 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
   styleUrls: ['./color-picker.component.scss']
 })
 export class ColorPickerComponent implements OnInit {
-  colorHex:string[];
-  colorName:string;
+  colorHex: string[];
+  colorName: string;
+  topPosition: number;
 
-  @Input() heading: string;
   @Input() color: string;
+  @Input() position: { top: number; left: number; };
+  @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() event: EventEmitter<string> = new EventEmitter<string>();
 
-  public show = false;
   public defaultColors = [
     {"hex": "#ffffff", "name": "Blanco"},
     {"hex": "#808080", "name": "Gris"},
@@ -35,6 +36,12 @@ export class ColorPickerComponent implements OnInit {
       colorHex.push(element.hex)
     });
     this.colorHex = colorHex;
+
+    this.topPosition = this.position.top - 235;
+  }
+
+  closePicker(){
+    this.close.emit(true);
   }
 
    /**
@@ -45,15 +52,8 @@ export class ColorPickerComponent implements OnInit {
     var index = this.defaultColors.findIndex(x => x.hex === color);
     this.color = color;
     this.colorName = this.defaultColors[index].name;
-    this.event.emit(this.color);
-    this.show = false;
-  }
-
-  /**
-   * Change status of visibility to color picker
-   */
-  public toggleColors(): void {
-    this.show = !this.show;
+    this.event.emit(this.colorName);
+    this.close.emit(true);
   }
 
 }

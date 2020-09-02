@@ -1,25 +1,22 @@
-<div class="color-picker">
-  <div *ngIf="show" class="opened">
-    <div class="title">
-      <p>SELECCIONE UN COLOR</p>
+<div class="cdk-overlay-backdrop mat-overlay-transparent-backdrop cdk-overlay-backdrop-showing" (click)="closePicker()"></div>
+<div class="cdk-overlay-connected-position-bounding-box">
+  <div id="colorPicker" class="color-picker cdk-overlay-pane" [ngStyle]="{'top.px': topPosition, 'left.px': position.left}">
+    <div class="opened">
+      <div class="title">
+        <p>SELECCIONE UN COLOR</p>
+      </div>
+
+      <div class="line"></div>
+
+      <div class="colors">
+        <div (click)="changeColor(paint)" *ngFor="let paint of colorHex" class="circle"
+             [ngStyle]="{'background': paint}"></div>
+      </div>
+
+      <div class="hex-code">
+        <p>{{ colorName }}</p>
+      </div>
     </div>
 
-    <div class="colors">
-      <div (click)="changeColor(paint)" *ngFor="let paint of colorHex" class="circle"
-           [ngStyle]="{'background': paint}"></div>
-    </div>
-
-    <div class="hex-code">
-      <p>{{ colorName }}</p>
-    </div>
-  </div>
-  
-  <div class="summary-info" (click)="toggleColors()">
-    <div class="info">
-      <p class="style">{{ heading }}</p>
-      <p class="style-value">{{ colorName }}</p>
-    </div>
-
-    <div class="circle" [ngStyle]="{'background': color}"></div>
   </div>
 </div>

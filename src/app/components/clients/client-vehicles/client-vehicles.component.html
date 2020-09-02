@@ -24,10 +24,11 @@
           <mat-label>Año</mat-label>
           <input matInput placeholder="Año de fabricación" value="{{verhicleYear}}" readonly>
         </mat-form-field>
-        <mat-form-field>
+        <app-color-picker *ngIf="showColorPalette" class="cdk-overlay-container" [position]="colorPickerPosition" [color]="'#FFFFFF'" (event)="setColor($event)" (close)="closeColorPicker($event)"></app-color-picker>
+        <mat-form-field class="color" floatLabel="always">
           <mat-label>Color</mat-label>
-          <input matInput formControlName="colorFormControl" placeholder="Color del vehículo" [readonly]="enableReadonly">
-          <app-color-picker [heading]="'Background'" [color]="'#FFFFFF'"></app-color-picker>
+          <mat-icon aria-label="Mostrar selección de color" (click)="openColorPicker()">palette</mat-icon>
+          <input matInput id="colorPickerInput" formControlName="colorFormControl" placeholder="Color del vehículo" readonly>
         </mat-form-field>
         <mat-form-field class="km" floatLabel="always">
           <mat-label>Kilometraje</mat-label>

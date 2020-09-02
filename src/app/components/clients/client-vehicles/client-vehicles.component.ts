@@ -17,6 +17,8 @@ export class ClientVehiclesComponent implements OnInit {
   vehiclePlate: string = 'A5T-3RD';
   vehicleVIN: string = 'LJCPCBLCX11000237';
   verhicleYear: number = 2000;
+  showColorPalette: boolean = false;
+  colorPickerPosition: any;
   displaySaveBtn: boolean = false;
   formVehicleButton: string = 'edit';
   enableReadonly: boolean = true;
@@ -25,7 +27,7 @@ export class ClientVehiclesComponent implements OnInit {
     //Form validators
     this.VehicleFormGroup = this._formBuilder.group({
       kmFormControl: [{value: 15000, disabled: false}, [Validators.required]],
-      colorFormControl: [{value: 'negro', disabled: false}, [Validators.required]]
+      colorFormControl: [{value: 'Negro', disabled: false}, [Validators.required]]
     });
 
     //Detect form inputs changes
@@ -106,6 +108,24 @@ export class ClientVehiclesComponent implements OnInit {
     if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
         return false;
     return true;
+  }
+
+  //Color picker methods
+  openColorPicker(){
+    this.showColorPalette = true;
+    let viewportOffset = document.getElementById('colorPickerInput').getBoundingClientRect();
+    const { top, left } = viewportOffset;
+    this.colorPickerPosition = { top: top, left: left };
+  }
+
+  //Set vehicle and input color
+  setColor(colorName:string){
+    this.VehicleFormGroup.controls['colorFormControl'].setValue(colorName);
+  }
+
+  //Close color picker
+  closeColorPicker(status:boolean){
+    this.showColorPalette = !status;
   }
 
 }
