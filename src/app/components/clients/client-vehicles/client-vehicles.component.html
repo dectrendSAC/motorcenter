@@ -24,7 +24,7 @@
           <mat-label>Año</mat-label>
           <input matInput placeholder="Año de fabricación" value="{{verhicleYear}}" readonly>
         </mat-form-field>
-        <app-color-picker *ngIf="showColorPalette" class="cdk-overlay-container" [position]="colorPickerPosition" [color]="'#FFFFFF'" (event)="setColor($event)" (close)="closeColorPicker($event)"></app-color-picker>
+        <app-color-picker *ngIf="showColorPalette" class="cdk-overlay-container" [position]="colorPickerPosition" [color]="colorHex" (colorData)="setColor($event)" (close)="closeColorPicker($event)"></app-color-picker>
         <mat-form-field class="color" floatLabel="always">
           <mat-label>Color</mat-label>
           <mat-icon aria-label="Mostrar selección de color" (click)="openColorPicker()">palette</mat-icon>

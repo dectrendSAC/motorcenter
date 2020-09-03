@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-color-picker',
@@ -7,13 +7,15 @@ import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 })
 export class ColorPickerComponent implements OnInit {
   colorHex: string[];
+  colorCode: string;
   colorName: string;
+  colorIndex: number;
   topPosition: number;
 
   @Input() color: string;
   @Input() position: { top: number; left: number; };
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
-  @Output() event: EventEmitter<string> = new EventEmitter<string>();
+  @Output() colorData = new EventEmitter<{event: string, extra: string}>();
 
   public defaultColors = [
     {"hex": "#ffffff", "name": "Blanco"},
@@ -28,7 +30,7 @@ export class ColorPickerComponent implements OnInit {
     {"hex": "#ffd700", "name": "Amarillo"}
   ];
 
-  constructor() { }
+  constructor(private cdRef:ChangeDetectorRef) { }
 
   ngOnInit(): void {
     var colorHex = [];
@@ -36,12 +38,30 @@ export class ColorPickerComponent implements OnInit {
       colorHex.push(element.hex)
     });
     this.colorHex = colorHex;
+  }
 
-    this.topPosition = this.position.top - 235;
+  ngAfterViewInit() {
+    let height = document.getElementById('colorPicker').getBoundingClientRect().height
+    this.topPosition = this.position.top - (height + 30);
+
+    this.colorIndex = this.colorHex.findIndex(x => x === this.color);
+    this.colorName = this.defaultColors[this.colorIndex].name;
+    console.log(this.colorIndex)
+
+    this.cdRef.detectChanges();
   }
 
   closePicker(){
     this.close.emit(true);
+  }
+
+  changeColorName(code:string){
+    if(code.length > 0){
+      let index = this.defaultColors.findIndex(x => x.hex === code);
+      this.colorName = this.defaultColors[index].name;
+    } else {
+      console.log('desde aqui')
+    }
   }
 
    /**
@@ -49,10 +69,10 @@ export class ColorPickerComponent implements OnInit {
    * @param {string} color
    */
   public changeColor(color: string): void {
-    var index = this.defaultColors.findIndex(x => x.hex === color);
-    this.color = color;
+    let index = this.defaultColors.findIndex(x => x.hex === color);
     this.colorName = this.defaultColors[index].name;
-    this.event.emit(this.colorName);
+    this.colorCode = this.defaultColors[index].hex;
+    this.colorData.emit({event: this.colorName, extra: this.colorCode});
     this.close.emit(true);
   }
 

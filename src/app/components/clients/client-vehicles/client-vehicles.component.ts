@@ -19,6 +19,7 @@ export class ClientVehiclesComponent implements OnInit {
   verhicleYear: number = 2000;
   showColorPalette: boolean = false;
   colorPickerPosition: any;
+  colorHex: string = '#FFFFFF';
   displaySaveBtn: boolean = false;
   formVehicleButton: string = 'edit';
   enableReadonly: boolean = true;
@@ -119,8 +120,9 @@ export class ClientVehiclesComponent implements OnInit {
   }
 
   //Set vehicle and input color
-  setColor(colorName:string){
-    this.VehicleFormGroup.controls['colorFormControl'].setValue(colorName);
+  setColor($event: any){
+    this.VehicleFormGroup.controls['colorFormControl'].setValue($event.event);
+    this.colorHex = $event.extra;
   }
 
   //Close color picker
