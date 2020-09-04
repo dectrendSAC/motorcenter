@@ -27,7 +27,9 @@
         <app-color-picker *ngIf="showColorPalette" class="cdk-overlay-container" [position]="colorPickerPosition" [color]="colorHex" (colorData)="setColor($event)" (close)="closeColorPicker($event)"></app-color-picker>
         <mat-form-field class="color" floatLabel="always">
           <mat-label>Color</mat-label>
-          <mat-icon aria-label="Mostrar selección de color" (click)="openColorPicker()">palette</mat-icon>
+          <button mat-icon-button aria-label="Mostrar selección de color" (click)="openColorPicker()" [disabled]="enableReadonly">
+            <mat-icon>palette</mat-icon>
+          </button>
           <input matInput id="colorPickerInput" formControlName="colorFormControl" placeholder="Color del vehículo" readonly>
         </mat-form-field>
         <mat-form-field class="km" floatLabel="always">

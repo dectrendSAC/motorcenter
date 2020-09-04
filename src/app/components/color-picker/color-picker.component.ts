@@ -38,6 +38,8 @@ export class ColorPickerComponent implements OnInit {
       colorHex.push(element.hex)
     });
     this.colorHex = colorHex;
+
+    this.colorName = (<HTMLInputElement>document.getElementById("colorPickerInput")).value;
   }
 
   ngAfterViewInit() {
@@ -45,8 +47,12 @@ export class ColorPickerComponent implements OnInit {
     this.topPosition = this.position.top - (height + 30);
 
     this.colorIndex = this.colorHex.findIndex(x => x === this.color);
-    this.colorName = this.defaultColors[this.colorIndex].name;
-    console.log(this.colorIndex)
+    if(this.colorIndex > -1){
+      this.colorName = this.defaultColors[this.colorIndex].name;
+    }
+
+    this.colorName = (<HTMLInputElement>document.getElementById("colorPickerInput")).value;
+    this.colorIndex = this.defaultColors.findIndex(x => x.name === this.colorName);
 
     this.cdRef.detectChanges();
   }
@@ -56,11 +62,11 @@ export class ColorPickerComponent implements OnInit {
   }
 
   changeColorName(code:string){
-    if(code.length > 0){
+     if(code.length > 0){
       let index = this.defaultColors.findIndex(x => x.hex === code);
       this.colorName = this.defaultColors[index].name;
     } else {
-      console.log('desde aqui')
+      this.colorName = (<HTMLInputElement>document.getElementById("colorPickerInput")).value;
     }
   }
 
@@ -70,6 +76,7 @@ export class ColorPickerComponent implements OnInit {
    */
   public changeColor(color: string): void {
     let index = this.defaultColors.findIndex(x => x.hex === color);
+    this.colorIndex = index;
     this.colorName = this.defaultColors[index].name;
     this.colorCode = this.defaultColors[index].hex;
     this.colorData.emit({event: this.colorName, extra: this.colorCode});

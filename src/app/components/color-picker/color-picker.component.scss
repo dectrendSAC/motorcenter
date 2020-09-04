@@ -14,7 +14,6 @@
       border-radius: 100%;
       cursor: pointer;
       border: 1px solid #dadada;
-      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.14);
     }
 
     .opened {
@@ -49,13 +48,37 @@
           margin-right: 10px;
           margin-bottom: 10px;
 
+          &:hover{
+            opacity:.9;
+            box-shadow:inset 0 0 2px rgba(0,0,0,.75);
+            outline:none;
+          }
+
           &:nth-child(5n) {
             margin-right: 0;
           }
         }
 
-        .colorSelected{
-          box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.9);
+        .selectedColor_wrapper{
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .selectedColor_check_circle{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 21px;
+            height: 21px;
+            border-radius: 50%;
+            background-color: rgba(0,0,0,.15);
+
+            path{
+              fill: #fff;
+            }
+          }
         }
       }
 
