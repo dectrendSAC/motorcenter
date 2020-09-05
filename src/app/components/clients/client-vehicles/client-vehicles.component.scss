@@ -210,9 +210,29 @@ $camion:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBo
             }
 
             .vehiclePic{
-              background-color: green;
-              -webkit-mask: url(camion.svg) no-repeat center;
-              mask: url(camion.svg) no-repeat center;
+              position: absolute;
+              width: 45%;
+              height: 45%;
+              right: 30px;
+              top: 25%;
+
+              .circleBackground{
+                position: absolute;
+                background: #EFEFEF;
+                border-radius: 100%;
+                top: 2.5%;
+                left: 10%;
+                width: 80%;
+                height: 95%;
+                z-index: 1;
+              }
+
+              svg{
+                position: relative;
+                height: 100%;
+                width: 100%;
+                z-index: 2;
+              }
             }
         }
     }

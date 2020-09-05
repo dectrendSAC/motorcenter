@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientDialogComponent } from '../client-dialog/client-dialog.component';
 
-let count = 0;
+let count = 0, color;
 
 @Component({
   selector: 'app-client-vehicles',
@@ -13,13 +13,15 @@ let count = 0;
 export class ClientVehiclesComponent implements OnInit {
   VehicleFormGroup: FormGroup;
   vehicleName: string = 'Random Vehicle brand and model';
+  vehicleType: string = 'camioneta';
   vehicleRelation: string  = 'Propietario';
   vehiclePlate: string = 'A5T-3RD';
   vehicleVIN: string = 'LJCPCBLCX11000237';
   verhicleYear: number = 2000;
+  vehicleColor: string = 'Negro';
   showColorPalette: boolean = false;
   colorPickerPosition: any;
-  colorHex: string = '#FFFFFF';
+  colorHex: string = '#212121';
   displaySaveBtn: boolean = false;
   formVehicleButton: string = 'edit';
   enableReadonly: boolean = true;
@@ -28,7 +30,7 @@ export class ClientVehiclesComponent implements OnInit {
     //Form validators
     this.VehicleFormGroup = this._formBuilder.group({
       kmFormControl: [{value: 15000, disabled: false}, [Validators.required]],
-      colorFormControl: [{value: 'Negro', disabled: false}, [Validators.required]]
+      colorFormControl: [{value: this.vehicleColor, disabled: false}, [Validators.required]]
     });
 
     //Detect form inputs changes
@@ -60,8 +62,9 @@ export class ClientVehiclesComponent implements OnInit {
   //Enable vehicle form fields editing
   enableEditing(){
     if (count == 0){
-      var items = {'kmFormControl':this.VehicleFormGroup.controls['kmFormControl'].value, 'colorFormControl':this.VehicleFormGroup.controls['colorFormControl'].value};
+      let items = {'kmFormControl':this.VehicleFormGroup.controls['kmFormControl'].value, 'colorFormControl':this.VehicleFormGroup.controls['colorFormControl'].value};
       sessionStorage.setItem("VehicleForm", JSON.stringify(items));
+      color = this.colorHex;
     }
     this.enableReadonly = false;
     count = count+1;
@@ -77,6 +80,7 @@ export class ClientVehiclesComponent implements OnInit {
           this.VehicleFormGroup.controls['kmFormControl'].setValue(formValues.kmFormControl);
           this.VehicleFormGroup.controls['colorFormControl'].setValue(formValues.colorFormControl);
           sessionStorage.removeItem("VehicleForm");
+          this.colorHex = color;
           this.enableReadonly = true;
           this.displaySaveBtn = false;
           this.formVehicleButton = 'edit';

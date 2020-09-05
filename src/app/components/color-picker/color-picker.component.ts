@@ -21,7 +21,7 @@ export class ColorPickerComponent implements OnInit {
     {"hex": "#ffffff", "name": "Blanco"},
     {"hex": "#808080", "name": "Gris"},
     {"hex": "#C0C0C0", "name": "Plateado"},
-    {"hex": "#000000", "name": "Negro"},
+    {"hex": "#212121", "name": "Negro"},
     {"hex": "#4682b4", "name": "Azul metalico"},
     {"hex": "#cd2626", "name": "Rojo"},
     {"hex": "#2e8b57", "name": "Verde"},
