@@ -58,7 +58,18 @@ export class ClientVehiclesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //Vehicle details variables
     this.vehicleDetails = { type: this.vehicleType, color: this.colorHex };
+
+    switch (this.vehicleType) {
+      case 'moto':
+          alert("Selected Case Number is 1");
+          break;
+      case 'camioneta':
+          alert("Selected Case Number is 2");
+          break;
+      default:
+    }
   }
 
   //Enable vehicle form fields editing

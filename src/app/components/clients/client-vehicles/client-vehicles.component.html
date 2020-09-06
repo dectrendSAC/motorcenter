@@ -43,7 +43,7 @@
       </form>
       <div class="vehiclePic">
         <div class="circleBackground"></div>
-        <div class="vehicleContainer">
+        <div class="vehicleContainer" [ngStyle]="{'top.px': topPosition, 'left.px': position.left}">
           <app-vehicles-types class="vehicleSVG" [vehicleDetails]="vehicleDetails"></app-vehicles-types>
         </div>
       </div>
