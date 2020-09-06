@@ -81,7 +81,6 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
 
         .editProfilePic{
             transform: scale(1.1);
-            left: 135px;
         }
 
         &.main{
@@ -201,7 +200,6 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
 
         .editProfilePic{
             transform: scale(1.4);
-            left: 175px;
         }
 
         &.main{
@@ -441,8 +439,9 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
     }
 
     .editProfilePic{
-      position: absolute;
+      position: relative;
       top: -10px;
+      left: 0%;
     }
 
     &.main{

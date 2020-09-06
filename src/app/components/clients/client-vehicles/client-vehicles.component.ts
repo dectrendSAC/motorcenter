@@ -13,7 +13,7 @@ let count = 0, color;
 export class ClientVehiclesComponent implements OnInit {
   VehicleFormGroup: FormGroup;
   vehicleName: string = 'Random Vehicle brand and model';
-  vehicleType: string = 'camioneta';
+  vehicleType: string = 'moto';
   vehicleRelation: string  = 'Propietario';
   vehiclePlate: string = 'A5T-3RD';
   vehicleVIN: string = 'LJCPCBLCX11000237';
@@ -21,6 +21,7 @@ export class ClientVehiclesComponent implements OnInit {
   vehicleColor: string = 'Negro';
   showColorPalette: boolean = false;
   colorPickerPosition: any;
+  vehicleDetails: any;
   colorHex: string = '#212121';
   displaySaveBtn: boolean = false;
   formVehicleButton: string = 'edit';
@@ -57,6 +58,7 @@ export class ClientVehiclesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.vehicleDetails = { type: this.vehicleType, color: this.colorHex };
   }
 
   //Enable vehicle form fields editing
@@ -81,6 +83,7 @@ export class ClientVehiclesComponent implements OnInit {
           this.VehicleFormGroup.controls['colorFormControl'].setValue(formValues.colorFormControl);
           sessionStorage.removeItem("VehicleForm");
           this.colorHex = color;
+          this.vehicleDetails = { type: this.vehicleType, color: this.colorHex };
           this.enableReadonly = true;
           this.displaySaveBtn = false;
           this.formVehicleButton = 'edit';
@@ -127,6 +130,7 @@ export class ClientVehiclesComponent implements OnInit {
   setColor($event: any){
     this.VehicleFormGroup.controls['colorFormControl'].setValue($event.event);
     this.colorHex = $event.extra;
+    this.vehicleDetails = { type: this.vehicleType, color: this.colorHex };
   }
 
   //Close color picker
