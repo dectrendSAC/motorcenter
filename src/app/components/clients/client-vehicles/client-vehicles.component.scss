@@ -212,83 +212,87 @@
                 }
             }
 
-            .vehiclePic{
+            .vehicleExtras{
               position: absolute;
-              width: 45%;
+              text-align: center;
+              width: 40%;
               right: 30px;
               top: 20%;
-
-              .circleBackground{
-                position: absolute;
-                background: #EFEFEF;
-                border-radius: 100%;
-                left: 10%;
-                width: 80%;
-                padding-top: 80%;
-                z-index: 1;
-              }
-
-              .vehicleContainer{
+          
+              .vehiclePic{
                 position: relative;
-                margin: auto;
-                z-index: 2;
-                width: 100%;
-                padding-top: 70%;
-                margin-top: 5%;
-
-                .vehicleSVG{
+  
+                .circleBackground{
                   position: absolute;
+                  background: #EFEFEF;
+                  border-radius: 100%;
+                  left: 10%;
+                  width: 80%;
+                  padding-top: 80%;
+                  box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+                  z-index: 1;
+                }
+  
+                .vehicleContainer{
+                  position: relative;
+                  margin: auto;
+                  z-index: 2;
                   width: 100%;
-                  height: 100%;
-                  top: 0;
-                  left: 0;
+                  padding-top: 70%;
+                  margin-top: 5%;
+  
+                  .vehicleSVG{
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                  }
+                }
+              }
+  
+              .storyBtn{
+                position: relative;
+                margin-top: 50px;
+                width: 70%;
+                font-size: 1.2em;
+                color: #CA181F;
+                font-family: "palanquin", "arial", sans-serif;
+                font-weight: bold;
+                letter-spacing: 1px;
+                border-radius: 50px;
+                border: 2px solid #CA181F;
+  
+                .bg-gradient{
+                    background: rgb(202,24,31);
+                    border: 0px solid;
+                    border-radius: 50px;
+                    z-index: 0;
+                    display:block;
+                    top:0;
+                    left:0;
+                    position:absolute;
+                    width:100%;
+                    height: 100%;
+                    opacity: 0;
+                    transition: opacity 0.5s;
+                }
+  
+                span{
+                    z-index: 5;
+                    position: relative;
+                    vertical-align: inherit;
+                }
+  
+                &:hover{
+                    color: white !important;
+  
+                    .bg-gradient{
+                        opacity: 1;
+                    }
                 }
               }
             }
-
-            .storyBtn{
-              position: absolute;
-              width: 36%;
-              right: 60px;
-              top: 80%;
-              font-size: 18px;
-              color: #CA181F;
-              font-family: 'palanquin', 'arial', sans-serif;
-              font-weight: bold;
-              letter-spacing: 1px;;
-              border-radius: 50px;
-              border: 3px solid #CA181F;
-              height: 8%;
-
-              .bg-gradient{
-                  background: rgb(202,24,31);
-                  border: 0px solid;
-                  border-radius: 50px;
-                  z-index: 0;
-                  display:block;
-                  top:0;
-                  left:0;
-                  position:absolute;
-                  width:100%;
-                  height: 100%;
-                  opacity: 0;
-                  transition: opacity 0.5s;
-              }
-
-              span{
-                  z-index: 5;
-                  position: relative;
-                  vertical-align: inherit;
-              }
-
-              &:hover{
-                  color: white !important;
-
-                  .bg-gradient{
-                      opacity: 1;
-                  }
-              }
-          }
         }
     }
 }

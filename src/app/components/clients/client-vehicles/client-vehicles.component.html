@@ -41,16 +41,18 @@
           </mat-error>
         </mat-form-field>
       </form>
-      <div class="vehiclePic">
-        <div class="circleBackground"></div>
-        <div class="vehicleContainer" [ngStyle]="{'width.%': vehicleWidth, 'margin-top.%': vehicleTop}">
-          <app-vehicles-types class="vehicleSVG" [vehicleDetails]="vehicleDetails"></app-vehicles-types>
+      <div class="vehicleExtras">
+        <div class="vehiclePic">
+          <div class="circleBackground"></div>
+          <div class="vehicleContainer" [ngStyle]="{'width.%': vehicleWidth, 'margin-top.%': vehicleTop}">
+            <app-vehicles-types class="vehicleSVG" [vehicleDetails]="vehicleDetails"></app-vehicles-types>
+          </div>
         </div>
+        <button mat-stroked-button class="storyBtn" (click)="showStory()">
+          <div class="bg-gradient"></div>
+          <span>HISTORIAL</span>
+        </button>
       </div>
-      <button mat-stroked-button class="storyBtn" (click)="showStory()">
-        <div class="bg-gradient"></div>
-        <span>HISTORIAL</span>
-      </button>
     </mat-card-content>
   </mat-card>
 </div>

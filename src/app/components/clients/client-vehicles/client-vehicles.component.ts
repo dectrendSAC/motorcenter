@@ -13,7 +13,7 @@ let count = 0, color;
 export class ClientVehiclesComponent implements OnInit {
   VehicleFormGroup: FormGroup;
   vehicleName: string = 'Random Vehicle brand and model';
-  vehicleType: string = 'trimovil';
+  vehicleType: string = 'bus';
   vehicleRelation: string  = 'Propietario';
   vehiclePlate: string = 'A5T-3RD';
   vehicleVIN: string = 'LJCPCBLCX11000237';
