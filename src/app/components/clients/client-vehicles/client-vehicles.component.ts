@@ -13,12 +13,14 @@ let count = 0, color;
 export class ClientVehiclesComponent implements OnInit {
   VehicleFormGroup: FormGroup;
   vehicleName: string = 'Random Vehicle brand and model';
-  vehicleType: string = 'moto';
+  vehicleType: string = 'trimovil';
   vehicleRelation: string  = 'Propietario';
   vehiclePlate: string = 'A5T-3RD';
   vehicleVIN: string = 'LJCPCBLCX11000237';
   verhicleYear: number = 2000;
   vehicleColor: string = 'Negro';
+  vehicleWidth: number;
+  vehicleTop: number;
   showColorPalette: boolean = false;
   colorPickerPosition: any;
   vehicleDetails: any;
@@ -62,11 +64,41 @@ export class ClientVehiclesComponent implements OnInit {
     this.vehicleDetails = { type: this.vehicleType, color: this.colorHex };
 
     switch (this.vehicleType) {
-      case 'moto':
-          alert("Selected Case Number is 1");
+      case 'ambulancia':
+          this.vehicleWidth = 80;
+          this.vehicleTop = 4;
+          break;
+      case 'bus':
+          this.vehicleWidth = 100;
+          this.vehicleTop = 0;
+          break;
+      case 'camion':
+          this.vehicleWidth = 90;
+          this.vehicleTop = 0;
           break;
       case 'camioneta':
-          alert("Selected Case Number is 2");
+          this.vehicleWidth = 80;
+          this.vehicleTop = 10;
+          break;
+      case 'moto':
+          this.vehicleWidth = 50;
+          this.vehicleTop = 20;
+          break;
+      case 'otros':
+          this.vehicleWidth = 95;
+          this.vehicleTop = 2;
+          break;
+      case 'sedan':
+          this.vehicleWidth = 70;
+          this.vehicleTop = 15;
+          break;
+      case 'suv':
+          this.vehicleWidth = 75;
+          this.vehicleTop = 10;
+          break;
+      case 'trimovil':
+          this.vehicleWidth = 45;
+          this.vehicleTop = 15;
           break;
       default:
     }
@@ -147,6 +179,11 @@ export class ClientVehiclesComponent implements OnInit {
   //Close color picker
   closeColorPicker(status:boolean){
     this.showColorPalette = !status;
+  }
+
+  //Show vehicle story
+  showStory(){
+
   }
 
 }

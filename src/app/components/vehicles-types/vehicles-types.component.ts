@@ -6,7 +6,6 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./vehicles-types.component.scss']
 })
 export class VehiclesTypesComponent implements OnInit {
-  colorHex: string;
 
   @Input() vehicleDetails: { type: string; color: string; };
 
