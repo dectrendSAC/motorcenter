@@ -133,7 +133,7 @@
         box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
         &:nth-child(odd){
-          margin: 0 2.5% 5% 5%;
+          margin: 0 2.5% 4.5% 5%;
         }
 
         &:nth-child(even){
@@ -218,10 +218,10 @@
               width: 40%;
               right: 30px;
               top: 20%;
-          
+
               .vehiclePic{
                 position: relative;
-  
+
                 .circleBackground{
                   position: absolute;
                   background: #EFEFEF;
@@ -232,7 +232,7 @@
                   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
                   z-index: 1;
                 }
-  
+
                 .vehicleContainer{
                   position: relative;
                   margin: auto;
@@ -240,7 +240,7 @@
                   width: 100%;
                   padding-top: 70%;
                   margin-top: 5%;
-  
+
                   .vehicleSVG{
                     position: absolute;
                     width: 100%;
@@ -250,7 +250,7 @@
                   }
                 }
               }
-  
+
               .storyBtn{
                 position: relative;
                 margin-top: 50px;
@@ -262,7 +262,7 @@
                 letter-spacing: 1px;
                 border-radius: 50px;
                 border: 2px solid #CA181F;
-  
+
                 .bg-gradient{
                     background: rgb(202,24,31);
                     border: 0px solid;
@@ -277,16 +277,16 @@
                     opacity: 0;
                     transition: opacity 0.5s;
                 }
-  
+
                 span{
                     z-index: 5;
                     position: relative;
                     vertical-align: inherit;
                 }
-  
+
                 &:hover{
                     color: white !important;
-  
+
                     .bg-gradient{
                         opacity: 1;
                     }
