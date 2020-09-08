@@ -28,6 +28,7 @@ export class ClientVehiclesComponent implements OnInit {
   displaySaveBtn: boolean = false;
   formVehicleButton: string = 'edit';
   enableReadonly: boolean = true;
+  dialogContent: string;
 
   constructor(private _formBuilder: FormBuilder, private dialog: MatDialog) {
     //Form validators
@@ -116,7 +117,7 @@ export class ClientVehiclesComponent implements OnInit {
 
     if(document.getElementById('saveIconBtn')){
       const dialogRef = this.dialog.open(ClientDialogComponent, {
-        data: {tittle: '¿Seguro que desea deshacer los cambios?', content: 'Todos los cambios se perderán'}
+        data: {tittle: '¿Seguro que desea deshacer los cambios?', format:'simple', content: 'Todos los cambios se perderán'}
       });
 
       dialogRef.afterClosed().subscribe(result => {
@@ -149,7 +150,25 @@ export class ClientVehiclesComponent implements OnInit {
 
   //Save vehicle info
   saveEditedVehicle(){
+    let formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
+    if(this.VehicleFormGroup.controls['colorFormControl'].value !== formValues.colorFormControl){
+      this.dialogContent = 'No olvide registrar el cambio en la SUNARP para que podamos validarlo';
+    } else {
+      this.dialogContent = 'Esta decisión no se puede modificar luego';
+    }
 
+    const dialogRef = this.dialog.open(ClientDialogComponent, {
+      data: {tittle: '¿Seguro que desea guardar los cambios?', format:'simple', content: this.dialogContent}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.data){
+        sessionStorage.removeItem("VehicleForm");
+        this.enableReadonly = true;
+        this.displaySaveBtn = false;
+        this.formVehicleButton = 'edit';
+        count = 0;
+      }
+    });
   }
 
   //Input permit only numbers
@@ -183,7 +202,13 @@ export class ClientVehiclesComponent implements OnInit {
 
   //Show vehicle story
   showStory(){
-
+    const dialogRef = this.dialog.open(ClientDialogComponent, {
+      data: {tittle: 'Historial del vehículo', format:'stepper', content: this.dialogContent}
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.data){
+      }
+    });
   }
 
 }
