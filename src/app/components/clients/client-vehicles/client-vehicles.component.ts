@@ -12,12 +12,14 @@ let count = 0, color;
 })
 export class ClientVehiclesComponent implements OnInit {
   VehicleFormGroup: FormGroup;
+  vehicles = [];
+  vehicleIndex: number;
   vehicleName: string = 'Random Vehicle brand and model';
   vehicleType: string = 'bus';
   vehicleRelation: string  = 'Propietario';
   vehiclePlate: string = 'A5T-3RD';
   vehicleVIN: string = 'LJCPCBLCX11000237';
-  verhicleYear: number = 2000;
+  vehicleYear: number = 2000;
   vehicleColor: string = 'Negro';
   vehicleWidth: number;
   vehicleTop: number;
@@ -29,6 +31,12 @@ export class ClientVehiclesComponent implements OnInit {
   formVehicleButton: string = 'edit';
   enableReadonly: boolean = true;
   dialogContent: string;
+
+  clientVehicles = [
+    {name: 'Hyundai Atos', type:'sedan', relation:'Propietario', plate:'A5T-3RD', vin:'LJCPCBLCX11000237', year:2000, color:'Negro', km:15000},
+    {name: 'Foton Aumark', type:'camion', relation:'Conductor', plate:'A2X-3LR', vin:'LXC6CMLCX11200237', year:2010, color:'Rojo', km:50000},
+    {name: 'TVS king', type:'trimovil', relation:'Propietario', plate:'L5M-12P', vin:'LJC952LCXFGA00210', year:2005, color:'Verde', km:1800}
+  ];
 
   constructor(private _formBuilder: FormBuilder, private dialog: MatDialog) {
     //Form validators
@@ -61,8 +69,15 @@ export class ClientVehiclesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    //Array of vehicles
+    for(let i=0; i<this.clientVehicles.length; i++){
+      this.vehicles.push(i);
+
+    }
+
     //Vehicle details variables
-    this.vehicleDetails = { type: this.vehicleType, color: this.colorHex };
+    /*this.vehicleDetails = { type: this.vehicleType, color: this.colorHex };
+    console.log(this.vehicleDetails)*/
 
     switch (this.vehicleType) {
       case 'ambulancia':
@@ -106,7 +121,9 @@ export class ClientVehiclesComponent implements OnInit {
   }
 
   //Enable vehicle form fields editing
-  enableEditing(){
+  enableEditing(i:any){
+    this.vehicleIndex = i;
+
     if (count == 0){
       let items = {'kmFormControl':this.VehicleFormGroup.controls['kmFormControl'].value, 'colorFormControl':this.VehicleFormGroup.controls['colorFormControl'].value};
       sessionStorage.setItem("VehicleForm", JSON.stringify(items));
