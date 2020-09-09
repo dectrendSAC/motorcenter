@@ -28,6 +28,6 @@
   </div>
 </div>
 <div mat-dialog-actions>
-  <button mat-raised-button color="primary" (click)="restoreChanges()" cdkFocusInitial>SI</button>
-  <button mat-stroked-button color="primary" mat-dialog-close>{{data.tittle === 'simple' ? 'NO' : 'SALIR'}}</button>
+  <button mat-raised-button color="primary" (click)="restoreChanges()" cdkFocusInitial>{{data.format === 'simple' ? 'SI' : 'REVISAR'}}</button>
+  <button mat-stroked-button color="primary" mat-dialog-close>{{data.format === 'simple' ? 'NO' : 'SALIR'}}</button>
 </div>
