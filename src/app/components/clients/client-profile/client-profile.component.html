@@ -115,7 +115,7 @@
       <mat-card-header>
         <mat-card-title>Cambiar Contraseña</mat-card-title>
         <button mat-icon-button class="save" aria-label="Mostrar validación de contraseña" (click)="showPasswordInfo = !showPasswordInfo">
-          <mat-icon>fact_check</mat-icon>
+          <mat-icon>rule</mat-icon>
         </button>
         <button id="updatePass" mat-icon-button aria-label="Guardar nueva contraseña" (click)="saveNewPassword()" [disabled]="password.value && newpassword.value && repeatpassword.value ? passwordFormGroup.invalid : true">
           <mat-icon>save</mat-icon>

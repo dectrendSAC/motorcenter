@@ -1,58 +1,62 @@
 <div id="clientVehicles">
-  <mat-card class="vehicleCard" *ngFor="let vehicle of clientVehicles; let i = index">
-    <mat-card-header>
-      <mat-card-title>{{vehicle.name}}</mat-card-title>
-      <mat-card-subtitle>{{vehicle.relation}}</mat-card-subtitle>
-      <button mat-icon-button id="saveIconBtn" aria-label="Guardar información" class="save" *ngIf="vehicleIndex === i? displaySaveBtn : false" (click)="saveEditedVehicle()">
-        <mat-icon>save</mat-icon>
-      </button>
-      <button mat-icon-button aria-label="Editar información" (click)="enableEditing(i)">
-        <mat-icon>{{vehicleIndex === i? formVehicleButton : 'edit'}}</mat-icon>
-      </button>
-    </mat-card-header>
-    <mat-card-content>
-      <form [formGroup]="VehicleFormGroup">
-        <mat-form-field>
-          <mat-label>Placa</mat-label>
-          <input matInput placeholder="Número de placa" value="{{vehicle.plate}}" readonly>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>VIN</mat-label>
-          <input matInput placeholder="Código VIN" value="{{vehicle.vin}}" readonly>
-        </mat-form-field>
-        <mat-form-field>
-          <mat-label>Año</mat-label>
-          <input matInput placeholder="Año de fabricación" value="{{vehicle.year}}" readonly>
-        </mat-form-field>
-        <app-color-picker *ngIf="showColorPalette" class="cdk-overlay-container" [position]="colorPickerPosition" [color]="colorHex" (colorData)="setColor($event)" (close)="closeColorPicker($event)"></app-color-picker>
-        <mat-form-field class="color" floatLabel="always">
-          <mat-label>Color</mat-label>
-          <button mat-icon-button aria-label="Mostrar selección de color" (click)="openColorPicker()" [disabled]="vehicleIndex === i? enableReadonly : true">
-            <mat-icon>palette</mat-icon>
+  <form [formGroup]="VehicleFormGroup">
+    <div class="formContainer" [formArrayName]="'formArrayName'">
+      <mat-card class="vehicleCard" *ngFor="let vehicle of clientVehicles; let i = index">
+        <mat-card-header>
+          <mat-card-title>{{vehicle.name}}</mat-card-title>
+          <mat-card-subtitle>{{vehicle.relation}}</mat-card-subtitle>
+          <button mat-icon-button id="{{'saveIconBtn-' + i}}" aria-label="Guardar información" class="save" *ngIf="vehicleIndex === i? displaySaveBtn : false" (click)="saveEditedVehicle(i)">
+            <mat-icon>save</mat-icon>
           </button>
-          <input matInput id="colorPickerInput" formControlName="colorFormControl" placeholder="Color del vehículo" readonly>
-        </mat-form-field>
-        <mat-form-field class="km" floatLabel="always">
-          <mat-label>Kilometraje</mat-label>
-          <mat-icon aria-label="Más información sobre el kilometraje">help_outline</mat-icon>
-          <input matInput type="number" (keypress)="onlyNumber($event)" formControlName="kmFormControl" placeholder="Kilometraje recorrido" [readonly]="vehicleIndex === i? enableReadonly : true">
-          <mat-error *ngIf="VehicleFormGroup.get('kmFormControl').hasError('required')">
-            Campo obligatorio
-          </mat-error>
-        </mat-form-field>
-      </form>
-      <div class="vehicleExtras">
-        <div class="vehiclePic">
-          <div class="circleBackground"></div>
-          <div class="vehicleContainer" [ngStyle]="{'width.%': vehicleWidth, 'margin-top.%': vehicleTop}">
-            <app-vehicles-types class="vehicleSVG" [vehicleDetails]="{type: vehicle.type, color: vehicle.color}"></app-vehicles-types>
+          <button mat-icon-button aria-label="Editar información" (click)="enableEditing(i)">
+            <mat-icon>{{vehicleIndex === i? formVehicleButton : 'edit'}}</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-card-content>
+          <div [formGroupName]="i">
+            <mat-form-field>
+              <mat-label>Placa</mat-label>
+              <input matInput placeholder="Número de placa" value="{{vehicle.plate}}" readonly>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>VIN</mat-label>
+              <input matInput placeholder="Código VIN" value="{{vehicle.vin}}" readonly>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Año</mat-label>
+              <input matInput placeholder="Año de fabricación" value="{{vehicle.year}}" readonly>
+            </mat-form-field>
+            <app-color-picker *ngIf="vehicleIndex === i? showColorPalette : false" class="cdk-overlay-container" [position]="colorPickerPosition" [color]="colorDetails" (colorData)="setColor($event, i)" (close)="closeColorPicker($event)"></app-color-picker>
+            <mat-form-field class="color" floatLabel="always">
+              <mat-label>Color</mat-label>
+              <button mat-icon-button aria-label="Mostrar selección de color" (click)="openColorPicker(i)" [disabled]="vehicleIndex === i? enableReadonly : true">
+                <mat-icon>palette</mat-icon>
+              </button>
+              <input matInput id="{{'colorPickerInput-' + i}}" formControlName="colorFormControl" placeholder="Color del vehículo" readonly>
+            </mat-form-field>
+            <mat-form-field class="km" floatLabel="always">
+              <mat-label>Kilometraje</mat-label>
+              <mat-icon aria-label="Más información sobre el kilometraje">help_outline</mat-icon>
+              <input matInput type="number" (keypress)="onlyNumber($event)" formControlName="kmFormControl" placeholder="Kilometraje recorrido" [readonly]="vehicleIndex === i? enableReadonly : true">
+              <mat-error *ngIf="controlArray.controls[i].get('kmFormControl').hasError('required')">
+                Campo obligatorio
+              </mat-error>
+            </mat-form-field>
           </div>
-        </div>
-        <button mat-stroked-button class="storyBtn" (click)="showStory()">
-          <div class="bg-gradient"></div>
-          <span>HISTORIAL</span>
-        </button>
-      </div>
-    </mat-card-content>
-  </mat-card>
+          <div class="vehicleExtras">
+            <div class="vehiclePic">
+              <div class="circleBackground"></div>
+              <div class="vehicleContainer">
+                <app-vehicles-types class="vehicleSVG" [vehicleDetails]="{type: vehicle.type, color: vehicleIndex === i ? colorHex : vehicle.colorCode}"></app-vehicles-types>
+              </div>
+            </div>
+            <button mat-stroked-button class="storyBtn" (click)="showStory(i)">
+              <div class="bg-gradient"></div>
+              <span>HISTORIAL</span>
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </form>
 </div>

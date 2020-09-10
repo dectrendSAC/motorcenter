@@ -12,7 +12,7 @@ export class ColorPickerComponent implements OnInit {
   colorIndex: number;
   topPosition: number;
 
-  @Input() color: string;
+  @Input() color: { name: string; hex: string; };
   @Input() position: { top: number; left: number; };
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() colorData = new EventEmitter<{event: string, extra: string}>();
@@ -22,6 +22,7 @@ export class ColorPickerComponent implements OnInit {
     {"hex": "#808080", "name": "Gris"},
     {"hex": "#C0C0C0", "name": "Plateado"},
     {"hex": "#212121", "name": "Negro"},
+    {"hex": "#87CEEB", "name": "Celeste"},
     {"hex": "#4682b4", "name": "Azul metalico"},
     {"hex": "#cd2626", "name": "Rojo"},
     {"hex": "#2e8b57", "name": "Verde"},
@@ -39,19 +40,19 @@ export class ColorPickerComponent implements OnInit {
     });
     this.colorHex = colorHex;
 
-    this.colorName = (<HTMLInputElement>document.getElementById("colorPickerInput")).value;
+    this.colorName = this.color.name;
   }
 
   ngAfterViewInit() {
     let height = document.getElementById('colorPicker').getBoundingClientRect().height
     this.topPosition = this.position.top - (height + 30);
 
-    this.colorIndex = this.colorHex.findIndex(x => x === this.color);
+    this.colorIndex = this.colorHex.findIndex(x => x === this.color.hex);
     if(this.colorIndex > -1){
       this.colorName = this.defaultColors[this.colorIndex].name;
     }
 
-    this.colorName = (<HTMLInputElement>document.getElementById("colorPickerInput")).value;
+    this.colorName = this.color.name;
     this.colorIndex = this.defaultColors.findIndex(x => x.name === this.colorName);
 
     this.cdRef.detectChanges();
@@ -66,7 +67,7 @@ export class ColorPickerComponent implements OnInit {
       let index = this.defaultColors.findIndex(x => x.hex === code);
       this.colorName = this.defaultColors[index].name;
     } else {
-      this.colorName = (<HTMLInputElement>document.getElementById("colorPickerInput")).value;
+      this.colorName = this.color.name;
     }
   }
 

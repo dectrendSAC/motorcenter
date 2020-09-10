@@ -3,28 +3,28 @@
   <div *ngSwitchCase="'simple'">
     <p>{{data.content}}</p>
   </div>
-  <div *ngSwitchCase="'stepper'">
-    <mat-vertical-stepper linear #stepper>
-      <mat-step>
-        <form [formGroup]="firstFormGroup">
-          <ng-template matStepLabel>Fill out your name</ng-template>
-          <mat-form-field>
-            <mat-label>Descripción</mat-label>
-            <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-          </mat-form-field>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="secondFormGroup">
-        <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Fill out your address</ng-template>
-          <mat-form-field>
-            <mat-label>Address</mat-label>
-            <input matInput formControlName="secondCtrl" placeholder="Ex. 1 Main St, New York, NY"
-                   required>
-          </mat-form-field>
-        </form>
-      </mat-step>
-    </mat-vertical-stepper>
+  <div *ngSwitchCase="'accordion'">
+    <mat-accordion class="example-headers-align">
+      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Personal data
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your name and age
+            <mat-icon>check_circle_outline</mat-icon>
+            <mat-icon>schedule</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <p>This is the primary content of the panel.</p>
+
+        <div class="panelBtns">
+          <button mat-button color="warn" (click)="prevStep()">Previous</button>
+          <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
   </div>
 </div>
 <div mat-dialog-actions>

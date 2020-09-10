@@ -126,6 +126,14 @@
     display: inline-flex;
     flex-wrap: wrap;
 
+    form{
+      display: contents;
+
+      .formContainer{
+        display: contents;
+      }
+    }
+
     .vehicleCard{
         width: 37.5%;
         padding: 30px 30px 10px 30px;
@@ -235,11 +243,8 @@
 
                 .vehicleContainer{
                   position: relative;
-                  margin: auto;
                   z-index: 2;
-                  width: 100%;
                   padding-top: 70%;
-                  margin-top: 5%;
 
                   .vehicleSVG{
                     position: absolute;

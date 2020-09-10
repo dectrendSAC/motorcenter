@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientDialogComponent } from '../client-dialog/client-dialog.component';
 
-let count = 0, color;
+let count = 0, color: string, index:number;
 
 @Component({
   selector: 'app-client-vehicles',
@@ -12,38 +12,31 @@ let count = 0, color;
 })
 export class ClientVehiclesComponent implements OnInit {
   VehicleFormGroup: FormGroup;
+  controlArray: FormArray;
   vehicles = [];
   vehicleIndex: number;
-  vehicleName: string = 'Random Vehicle brand and model';
-  vehicleType: string = 'bus';
-  vehicleRelation: string  = 'Propietario';
-  vehiclePlate: string = 'A5T-3RD';
-  vehicleVIN: string = 'LJCPCBLCX11000237';
-  vehicleYear: number = 2000;
-  vehicleColor: string = 'Negro';
-  vehicleWidth: number;
-  vehicleTop: number;
   showColorPalette: boolean = false;
+  colorDetails: any;
   colorPickerPosition: any;
-  vehicleDetails: any;
-  colorHex: string = '#212121';
+  colorHex: string;
   displaySaveBtn: boolean = false;
   formVehicleButton: string = 'edit';
   enableReadonly: boolean = true;
   dialogContent: string;
 
   clientVehicles = [
-    {name: 'Hyundai Atos', type:'sedan', relation:'Propietario', plate:'A5T-3RD', vin:'LJCPCBLCX11000237', year:2000, color:'Negro', km:15000},
-    {name: 'Foton Aumark', type:'camion', relation:'Conductor', plate:'A2X-3LR', vin:'LXC6CMLCX11200237', year:2010, color:'Rojo', km:50000},
-    {name: 'TVS king', type:'trimovil', relation:'Propietario', plate:'L5M-12P', vin:'LJC952LCXFGA00210', year:2005, color:'Verde', km:1800}
+    {name: 'Hyundai Atos', type:'sedan', relation:'Propietario', plate:'A5T-3RD', vin:'LJCPCBLCX11000237', year:2000, colorCode:'#212121', colorName:'Negro', km:15000},
+    {name: 'Foton Aumark', type:'camion', relation:'Conductor', plate:'A2X-3LR', vin:'LXC6CMLCX11200237', year:2010, colorCode:'#cd2626', colorName:'Rojo', km:50000},
+    {name: 'TVS king', type:'trimovil', relation:'Propietario', plate:'L5M-12P', vin:'LJC952LCXFGA00210', year:2005, colorCode:'#87CEFA', colorName:'Celeste', km:1800}
   ];
 
   constructor(private _formBuilder: FormBuilder, private dialog: MatDialog) {
-    //Form validators
-    this.VehicleFormGroup = this._formBuilder.group({
-      kmFormControl: [{value: 15000, disabled: false}, [Validators.required]],
-      colorFormControl: [{value: this.vehicleColor, disabled: false}, [Validators.required]]
-    });
+    //Form array
+    this.VehicleFormGroup = new FormGroup({
+      formArrayName: this._formBuilder.array([])
+    })
+
+    this.buildForm();
 
     //Detect form inputs changes
     this.VehicleFormGroup.valueChanges
@@ -68,71 +61,43 @@ export class ClientVehiclesComponent implements OnInit {
     });
   }
 
+  buildForm(){
+    this.controlArray = this.VehicleFormGroup.get('formArrayName') as FormArray;
+
+    Object.keys(this.clientVehicles).forEach((i) => {
+      this.controlArray.push(
+        this._formBuilder.group({
+          kmFormControl: [{value: this.clientVehicles[i].km, disabled: false}, [Validators.required]],
+          colorFormControl: [{value: this.clientVehicles[i].colorName, disabled: false}, [Validators.required]]
+        })
+      )
+    })
+  }
+
   ngOnInit(): void {
     //Array of vehicles
     for(let i=0; i<this.clientVehicles.length; i++){
       this.vehicles.push(i);
-
-    }
-
-    //Vehicle details variables
-    /*this.vehicleDetails = { type: this.vehicleType, color: this.colorHex };
-    console.log(this.vehicleDetails)*/
-
-    switch (this.vehicleType) {
-      case 'ambulancia':
-          this.vehicleWidth = 80;
-          this.vehicleTop = 4;
-          break;
-      case 'bus':
-          this.vehicleWidth = 100;
-          this.vehicleTop = 0;
-          break;
-      case 'camion':
-          this.vehicleWidth = 90;
-          this.vehicleTop = 0;
-          break;
-      case 'camioneta':
-          this.vehicleWidth = 80;
-          this.vehicleTop = 10;
-          break;
-      case 'moto':
-          this.vehicleWidth = 50;
-          this.vehicleTop = 20;
-          break;
-      case 'otros':
-          this.vehicleWidth = 95;
-          this.vehicleTop = 2;
-          break;
-      case 'sedan':
-          this.vehicleWidth = 70;
-          this.vehicleTop = 15;
-          break;
-      case 'suv':
-          this.vehicleWidth = 75;
-          this.vehicleTop = 10;
-          break;
-      case 'trimovil':
-          this.vehicleWidth = 45;
-          this.vehicleTop = 15;
-          break;
-      default:
     }
   }
 
   //Enable vehicle form fields editing
   enableEditing(i:any){
-    this.vehicleIndex = i;
 
     if (count == 0){
-      let items = {'kmFormControl':this.VehicleFormGroup.controls['kmFormControl'].value, 'colorFormControl':this.VehicleFormGroup.controls['colorFormControl'].value};
+      let items = {'kmFormControl':this.controlArray.controls[i].get('kmFormControl').value, 'colorFormControl':this.controlArray.controls[i].get('colorFormControl').value};
       sessionStorage.setItem("VehicleForm", JSON.stringify(items));
+      this.colorHex = this.clientVehicles[i].colorCode;
       color = this.colorHex;
+      index = i;
     }
-    this.enableReadonly = false;
-    count = count+1;
 
-    if(document.getElementById('saveIconBtn')){
+    if(index === i) {
+      this.vehicleIndex = i;
+      this.enableReadonly = false;
+      count = count+1;
+
+    if(document.getElementById('saveIconBtn-'+i)){
       const dialogRef = this.dialog.open(ClientDialogComponent, {
         data: {tittle: '¿Seguro que desea deshacer los cambios?', format:'simple', content: 'Todos los cambios se perderán'}
       });
@@ -140,11 +105,10 @@ export class ClientVehiclesComponent implements OnInit {
       dialogRef.afterClosed().subscribe(result => {
         if(result.data){
           var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
-          this.VehicleFormGroup.controls['kmFormControl'].setValue(formValues.kmFormControl);
-          this.VehicleFormGroup.controls['colorFormControl'].setValue(formValues.colorFormControl);
+          this.controlArray.controls[i].get('kmFormControl').setValue(formValues.kmFormControl);
+          this.controlArray.controls[i].get('colorFormControl').setValue(formValues.colorFormControl);
           sessionStorage.removeItem("VehicleForm");
           this.colorHex = color;
-          this.vehicleDetails = { type: this.vehicleType, color: this.colorHex };
           this.enableReadonly = true;
           this.displaySaveBtn = false;
           this.formVehicleButton = 'edit';
@@ -163,12 +127,21 @@ export class ClientVehiclesComponent implements OnInit {
         count = 0;
       }
     }
+    }else{
+      count = 0;
+      var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
+      this.controlArray.controls[index].get('kmFormControl').setValue(formValues.kmFormControl);
+      this.controlArray.controls[index].get('colorFormControl').setValue(formValues.colorFormControl);
+      this.displaySaveBtn = false;
+      this.enableEditing(i);
+    }
   }
 
   //Save vehicle info
-  saveEditedVehicle(){
+  saveEditedVehicle(i: any){
+    this.vehicleIndex = i;
     let formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
-    if(this.VehicleFormGroup.controls['colorFormControl'].value !== formValues.colorFormControl){
+    if(this.controlArray.controls[i].get('colorFormControl').value !== formValues.colorFormControl){
       this.dialogContent = 'No olvide registrar el cambio en la SUNARP para que podamos validarlo';
     } else {
       this.dialogContent = 'Esta decisión no se puede modificar luego';
@@ -198,18 +171,19 @@ export class ClientVehiclesComponent implements OnInit {
   }
 
   //Color picker methods
-  openColorPicker(){
+  openColorPicker(i: any){
+    this.vehicleIndex = i;
     this.showColorPalette = true;
-    let viewportOffset = document.getElementById('colorPickerInput').getBoundingClientRect();
+    let viewportOffset = document.getElementById('colorPickerInput-'+i).getBoundingClientRect();
     const { top, left } = viewportOffset;
     this.colorPickerPosition = { top: top, left: left };
+    this.colorDetails = { name: this.controlArray.controls[i].get('colorFormControl').value, hex: this.colorHex };
   }
 
   //Set vehicle and input color
-  setColor($event: any){
-    this.VehicleFormGroup.controls['colorFormControl'].setValue($event.event);
+  setColor($event: any, i: any){
+    this.controlArray.controls[i].get('colorFormControl').setValue($event.event);
     this.colorHex = $event.extra;
-    this.vehicleDetails = { type: this.vehicleType, color: this.colorHex };
   }
 
   //Close color picker
@@ -218,9 +192,9 @@ export class ClientVehiclesComponent implements OnInit {
   }
 
   //Show vehicle story
-  showStory(){
+  showStory(i){
     const dialogRef = this.dialog.open(ClientDialogComponent, {
-      data: {tittle: 'Historial del vehículo', format:'stepper', content: this.dialogContent}
+      data: {tittle: 'Historial del vehículo', format:'accordion', content: this.dialogContent}
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result.data){

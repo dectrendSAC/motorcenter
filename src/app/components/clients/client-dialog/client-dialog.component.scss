@@ -31,11 +31,31 @@
 
 .mat-dialog-content{
   text-align: center;
+
+  mat-expansion-panel{
+    box-shadow: none;
+    border-bottom: 1px solid #EFEFEF;
+
+    mat-panel-description{
+      margin-right: 0px;
+
+      mat-icon{
+        margin-left: 16px;
+      }
+    }
+
+    p{
+      text-align: left;
+    }
+
+    .panelBtns{
+      text-align: right;
+    }
+  }
 }
 
 .mat-dialog-actions{
-  display: block;
-  text-align: center;
+  justify-content: center;
 
   button{
     &:nth-child(2){
