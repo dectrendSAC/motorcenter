@@ -22,11 +22,11 @@ export class ClientVehiclesComponent implements OnInit {
   displaySaveBtn: boolean = false;
   formVehicleButton: string = 'edit';
   enableReadonly: boolean = true;
-  dialogContent: string;
+  dialogContent: any;
 
   clientVehicles = [
-    {name: 'Hyundai Atos', type:'sedan', relation:'Propietario', plate:'A5T-3RD', vin:'LJCPCBLCX11000237', year:2000, colorCode:'#212121', colorName:'Negro', km:15000},
-    {name: 'Foton Aumark', type:'camion', relation:'Conductor', plate:'A2X-3LR', vin:'LXC6CMLCX11200237', year:2010, colorCode:'#cd2626', colorName:'Rojo', km:50000},
+    {name: 'Hyundai Atos', type:'sedan', relation:'Propietario', plate:'A5T-3RD', vin:'LJCPCBLCX11000237', year:2000, colorCode:'#212121', colorName:'Negro', km:15000, records: [{area: 'Comercial', description:'Compra del vehículo', date:'2020-02-12T12:47:55Z', status:true}, {area: 'Taller', description:'Mantenimiento 10000 kilometros', date:'2020-07-27T19:03:24Z', status:true}]},
+    {name: 'Foton Aumark', type:'camion', relation:'Conductor', plate:'A2X-3LR', vin:'LXC6CMLCX11200237', year:2010, colorCode:'#cd2626', colorName:'Rojo', km:50000, records: [{area: 'Taller', description:'Mantenimiento 25000 kilometros', date:'2020-03-16T09:45:52Z', status:true}, {area: 'Taller', description:'Cambio de aceite', date:'', status:false}]},
     {name: 'TVS king', type:'trimovil', relation:'Propietario', plate:'L5M-12P', vin:'LJC952LCXFGA00210', year:2005, colorCode:'#87CEFA', colorName:'Celeste', km:1800}
   ];
 
@@ -42,6 +42,7 @@ export class ClientVehiclesComponent implements OnInit {
     this.VehicleFormGroup.valueChanges
     .subscribe(() =>
     {
+      console.log('desde aqui', this.VehicleFormGroup);
       var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
 
       var formGroup = {};
@@ -191,8 +192,10 @@ export class ClientVehiclesComponent implements OnInit {
     this.showColorPalette = !status;
   }
 
-  //Show vehicle story
-  showStory(i){
+  //Show vehicle records
+  showRecords(i: any){
+    this.dialogContent = this.clientVehicles[i].records
+
     const dialogRef = this.dialog.open(ClientDialogComponent, {
       data: {tittle: 'Historial del vehículo', format:'accordion', content: this.dialogContent}
     });

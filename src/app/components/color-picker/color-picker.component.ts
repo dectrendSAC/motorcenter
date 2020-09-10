@@ -24,11 +24,11 @@ export class ColorPickerComponent implements OnInit {
     {"hex": "#212121", "name": "Negro"},
     {"hex": "#87CEEB", "name": "Celeste"},
     {"hex": "#4682b4", "name": "Azul metalico"},
-    {"hex": "#cd2626", "name": "Rojo"},
-    {"hex": "#2e8b57", "name": "Verde"},
     {"hex": "#ff7f00", "name": "Naranja"},
     {"hex": "#cd7f32", "name": "Bronce"},
-    {"hex": "#ffd700", "name": "Amarillo"}
+    {"hex": "#ffd700", "name": "Amarillo"},
+    {"hex": "#cd2626", "name": "Rojo"},
+    {"hex": "#2e8b57", "name": "Verde"}
   ];
 
   constructor(private cdRef:ChangeDetectorRef) { }

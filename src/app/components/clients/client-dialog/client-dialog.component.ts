@@ -1,6 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import * as _moment from 'moment';
+
+const moment = _moment;
 
 @Component({
   selector: 'app-client-dialog',
@@ -8,19 +11,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./client-dialog.component.scss']
 })
 export class ClientDialogComponent implements OnInit {
-  firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  records = [];
+  recordDates= [];
   step = 0;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>, private _formBuilder: FormBuilder) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>) { }
 
   ngOnInit(): void {
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
+    if (this.data.format == 'accordion'){
+      this.records = this.data.content;
+    }
+
+    //Format record dates
+    for(let i=0; i<this.data.content.length; i++){
+      this.recordDates.push(moment(this.data.content[i].date).lang("es").format('LL h:mm A'));
+    }
   }
 
   //Restore profile data
@@ -28,6 +33,7 @@ export class ClientDialogComponent implements OnInit {
     this.dialogRef.close({data:true});
   }
 
+  //Accordion methods
   setStep(index: number) {
     this.step = index;
   }

@@ -72,10 +72,10 @@ export class ClientProfileComponent implements OnInit {
     });
 
     this.contactFormGroup = this._formBuilder.group({
-      addressFormControl: ['-', [Validators.required]],
-      stateFormControl: [{value: 'default', disabled: true}, [Validators.required]],
-      countyFormControl: [{value: 'default', disabled: true}, [Validators.required]],
-      districtFormControl: [{value: 'default', disabled: true}, [Validators.required]],
+      addressFormControl: [{value: '', disabled: false}],
+      stateFormControl: [{value: 'default', disabled: true}],
+      countyFormControl: [{value: 'default', disabled: true}],
+      districtFormControl: [{value: 'default', disabled: true}],
       phoneFormControl: ['962785689', [Validators.required, Validators.min(100000000)]],
       emailFormControl: ['mail@mail.com', [Validators.required, Validators.email]]
     });
@@ -88,28 +88,44 @@ export class ClientProfileComponent implements OnInit {
 
     //Detect form inputs changes
     this.InfoFormGroup.valueChanges
-    .pipe(pairwise())
-    .subscribe(([prev, next]: [any, any]) =>
+    .subscribe(() =>
     {
-      for(var propertyName in prev) {
-          if(prev[propertyName] !== next[propertyName]) {
-            this.formInfoButton = 'restore';
-            this.displaySaveBtnForInfo = true;
-            break;
-          }
+      var formValues = JSON.parse(sessionStorage.getItem("InfoForm"));
+
+      var formGroup = {};
+      Object.keys(this.InfoFormGroup.controls).forEach(key => {
+        formGroup[key] = this.InfoFormGroup.controls[key].value
+      })
+
+      if (formValues){
+        if(JSON.stringify(formGroup) === JSON.stringify(formValues)){
+          this.displaySaveBtnForInfo = false;
+          this.formInfoButton = 'undo';
+        } else {
+          this.formInfoButton = 'restore';
+          this.displaySaveBtnForInfo = true;
+        }
       }
     });
 
     this.contactFormGroup.valueChanges
-    .pipe(pairwise())
-    .subscribe(([prev, next]: [any, any]) =>
+    .subscribe(() =>
     {
-      for(var propertyName in prev) {
-          if(prev[propertyName] !== next[propertyName]) {
-            this.formContactButton = 'restore';
-            this.displaySaveBtnForContact = true;
-            break;
-          }
+      var formValues = JSON.parse(sessionStorage.getItem("ContactForm"));
+
+      var formGroup = {};
+      Object.keys(this.contactFormGroup.controls).forEach(key => {
+        formGroup[key] = this.contactFormGroup.controls[key].value
+      })
+
+      if (formValues){
+        if(JSON.stringify(formGroup) === JSON.stringify(formValues)){
+          this.displaySaveBtnForContact = false;
+          this.formContactButton = 'undo';
+        } else {
+          this.formContactButton = 'restore';
+          this.displaySaveBtnForContact = true;
+        }
       }
     });
 
@@ -184,7 +200,7 @@ export class ClientProfileComponent implements OnInit {
   //Enable info form fields editing
   enableInfoEditing(){
     if (count == 0){
-      var items = [{'gender':this.InfoFormGroup.controls['genderFormControl'].value, 'date':this.InfoFormGroup.controls['birthdayFormControl'].value}];
+      var items = {'genderFormControl':this.InfoFormGroup.controls['genderFormControl'].value, 'birthdayFormControl':this.InfoFormGroup.controls['birthdayFormControl'].value};
       sessionStorage.setItem("InfoForm", JSON.stringify(items));
     }
     this.selectInfoReadonly = false;
@@ -194,14 +210,14 @@ export class ClientProfileComponent implements OnInit {
 
     if(document.getElementById('saveInfoIconBtn')){
       const dialogRef = this.dialog.open(ClientDialogComponent, {
-        data: {tittle: '¿Seguro que desea deshacer los cambios?', content: 'Todos los cambios se perderán'}
+        data: {tittle: '¿Seguro que desea deshacer los cambios?', format:'simple', content: 'Todos los cambios se perderán'}
       });
 
       dialogRef.afterClosed().subscribe(result => {
         if(result.data){
           var formValues = JSON.parse(sessionStorage.getItem("InfoForm"));
-          this.InfoFormGroup.controls['genderFormControl'].setValue(formValues[0].gender);
-          this.InfoFormGroup.controls['birthdayFormControl'].setValue(formValues[0].date);
+          this.InfoFormGroup.controls['genderFormControl'].setValue(formValues.genderFormControl);
+          this.InfoFormGroup.controls['birthdayFormControl'].setValue(formValues.birthdayFormControl);
           sessionStorage.removeItem("InfoForm");
           this.selectInfoReadonly = true;
           this.InfoFormGroup.controls['genderFormControl'].disable();
@@ -230,7 +246,7 @@ export class ClientProfileComponent implements OnInit {
   //Enable contact form fields editing
   enableContactEditing(){
     if (count == 0){
-      var items = [{'address':this.contactFormGroup.controls['addressFormControl'].value, 'state':this.contactFormGroup.controls['stateFormControl'].value, 'county':this.contactFormGroup.controls['countyFormControl'].value, 'district':this.contactFormGroup.controls['districtFormControl'].value, 'phone':this.contactFormGroup.controls['phoneFormControl'].value, 'email':this.contactFormGroup.controls['emailFormControl'].value}];
+      var items = {'addressFormControl':this.contactFormGroup.controls['addressFormControl'].value, 'stateFormControl':this.contactFormGroup.controls['stateFormControl'].value, 'countyFormControl':this.contactFormGroup.controls['countyFormControl'].value, 'districtFormControl':this.contactFormGroup.controls['districtFormControl'].value, 'phoneFormControl':this.contactFormGroup.controls['phoneFormControl'].value, 'emailFormControl':this.contactFormGroup.controls['emailFormControl'].value};
       sessionStorage.setItem("ContactForm", JSON.stringify(items));
     }
     this.selectContactReadonly = false;
@@ -242,19 +258,19 @@ export class ClientProfileComponent implements OnInit {
 
     if(document.getElementById('saveContactIconBtn')){
       const dialogRef = this.dialog.open(ClientDialogComponent, {
-        data: {tittle: '¿Seguro que desea deshacer los cambios?', content: 'Todos los cambios se perderán'}
+        data: {tittle: '¿Seguro que desea deshacer los cambios?', format:'simple', content: 'Todos los cambios se perderán'}
       });
 
       dialogRef.afterClosed().subscribe(result => {
         if(result.data){
           this.counties = [], this.districts = [];
           var formValues = JSON.parse(sessionStorage.getItem("ContactForm"));
-          this.contactFormGroup.controls['addressFormControl'].setValue(formValues[0].address);
-          this.contactFormGroup.controls['stateFormControl'].setValue(formValues[0].state);
-          this.contactFormGroup.controls['countyFormControl'].setValue(formValues[0].county);
-          this.contactFormGroup.controls['districtFormControl'].setValue(formValues[0].district);
-          this.contactFormGroup.controls['phoneFormControl'].setValue(formValues[0].phone);
-          this.contactFormGroup.controls['emailFormControl'].setValue(formValues[0].email);
+          this.contactFormGroup.controls['addressFormControl'].setValue(formValues.addressFormControl);
+          this.contactFormGroup.controls['stateFormControl'].setValue(formValues.stateFormControl);
+          this.contactFormGroup.controls['countyFormControl'].setValue(formValues.countyFormControl);
+          this.contactFormGroup.controls['districtFormControl'].setValue(formValues.districtFormControl);
+          this.contactFormGroup.controls['phoneFormControl'].setValue(formValues.phoneFormControl);
+          this.contactFormGroup.controls['emailFormControl'].setValue(formValues.emailFormControl);
           sessionStorage.removeItem("ContactForm");
           this.selectContactReadonly = true;
           this.contactFormGroup.controls['stateFormControl'].disable();
@@ -287,7 +303,7 @@ export class ClientProfileComponent implements OnInit {
   //Save info edited form fields
   saveEditedInfoFields(){
     const dialogRef = this.dialog.open(ClientDialogComponent, {
-      data: {tittle: '¿Seguro que desea guardar los cambios?', content: 'Esta decisión no se puede modificar luego'}
+      data: {tittle: '¿Seguro que desea guardar los cambios?', format:'simple', content: 'Esta decisión no se puede modificar luego'}
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result.data){
@@ -305,7 +321,7 @@ export class ClientProfileComponent implements OnInit {
   //Save contact edited form fields
   saveEditedContactFields(){
     const dialogRef = this.dialog.open(ClientDialogComponent, {
-      data: {tittle: '¿Seguro que desea guardar los cambios?', content: 'Esta decisión no se puede modificar luego'}
+      data: {tittle: '¿Seguro que desea guardar los cambios?', format:'simple', content: 'Esta decisión no se puede modificar luego'}
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result.data){
@@ -325,7 +341,7 @@ export class ClientProfileComponent implements OnInit {
   //Save new password
   saveNewPassword(){
     const dialogRef = this.dialog.open(ClientDialogComponent, {
-      data: {tittle: '¿Seguro que desea actualizar su contraseña?', content: 'Una vez actualizada debe volver a iniciar sesión'}
+      data: {tittle: '¿Seguro que desea actualizar su contraseña?', format:'simple', content: 'Una vez actualizada debe volver a iniciar sesión'}
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result.data){
