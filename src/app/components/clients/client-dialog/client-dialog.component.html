@@ -4,7 +4,19 @@
   <div *ngSwitchCase="'simple'">
     <p *ngIf="!data.info else info">{{data.content}}</p>
     <ng-template #info>
-      <p *ngFor="let content of data.content; let first = first; let last = last; let i = index">{{data.content[i]}}</p>
+      <div mat-dialog-content [ngSwitch]="data.description">
+        <div *ngSwitchCase="'kilometraje'">
+          <div class="infoImage"></div>
+          <div class="odometer">
+            <div class="digit"><div class="digit-container digit-tenthousand">0 9 8 7 6 5 4 3 2 1 0</div></div>
+            <div class="digit"><div class="digit-container digit-thousand">0 9 8 7 6 5 4 3 2 1 0</div></div>
+            <div class="digit"><div class="digit-container digit-hundred">0 9 8 7 6 5 4 3 2 1 0</div></div>
+            <div class="digit"><div class="digit-container digit-ten">0 9 8 7 6 5 4 3 2 1 0</div></div>
+            <div class="digit"><div class="digit-container digit-one">0 9 8 7 6 5 4 3 2 1 0</div></div>
+          </div>
+        </div>
+      </div>
+      <p [className]="'infoText index'+i" *ngFor="let content of data.content; let first = first; let last = last; let i = index">{{data.content[i]}}</p>
     </ng-template>
   </div>
   <div *ngSwitchCase="'accordion'">
@@ -29,7 +41,7 @@
     </mat-accordion>
     <ng-template #norecords>
       <div>
-        Hola
+        hola
       </div>
     </ng-template>
   </div>

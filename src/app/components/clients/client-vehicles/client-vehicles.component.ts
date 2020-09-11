@@ -212,7 +212,7 @@ export class ClientVehiclesComponent implements OnInit {
   //Show km information
   moreInfo(){
     const dialogRef = this.dialog.open(ClientDialogComponent, {
-      data: {tittle: '', format:'simple', content: ['Mantenga actualizado el kilometraje de su vehículo', 'Puede obtener mantenimientos con descuento, Motorpuntos y mucho más', '¡QUE ESPERA!'], info: true}
+      data: {tittle: '', description:'kilometraje', format:'simple', content: ['Mantenga actualizado el kilometraje de su vehículo', 'Puede obtener mantenimientos con descuento, Motor puntos y mucho más', '¡QUE ESPERAS!'], info: true}
     });
   }
 
