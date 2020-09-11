@@ -1,10 +1,14 @@
-<h1 mat-dialog-title>{{data.tittle}}</h1>
+<div *ngIf="data.info" class="closeBtn" mat-dialog-close></div>
+<h1 [class.no-record]="!records" mat-dialog-title>{{data.tittle}}&nbsp;</h1>
 <div mat-dialog-content [ngSwitch]="data.format">
   <div *ngSwitchCase="'simple'">
-    <p>{{data.content}}</p>
+    <p *ngIf="!data.info else info">{{data.content}}</p>
+    <ng-template #info>
+      <p *ngFor="let content of data.content; let first = first; let last = last; let i = index">{{data.content[i]}}</p>
+    </ng-template>
   </div>
   <div *ngSwitchCase="'accordion'">
-    <mat-accordion >
+    <mat-accordion *ngIf="records else norecords">
       <mat-expansion-panel *ngFor="let record of records; let first = first; let last = last; let i = index" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>
@@ -23,9 +27,14 @@
         </div>
       </mat-expansion-panel>
     </mat-accordion>
+    <ng-template #norecords>
+      <div>
+        Hola
+      </div>
+    </ng-template>
   </div>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions *ngIf="!data.info">
   <button mat-raised-button color="primary" (click)="restoreChanges()" cdkFocusInitial>{{data.format === 'simple' ? 'SI' : 'REVISAR'}}</button>
   <button mat-stroked-button color="primary" mat-dialog-close>{{data.format === 'simple' ? 'NO' : 'SALIR'}}</button>
 </div>

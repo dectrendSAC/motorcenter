@@ -18,13 +18,19 @@ export class ClientDialogComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>) { }
 
   ngOnInit(): void {
+    moment.locale('es');
+
     if (this.data.format == 'accordion'){
       this.records = this.data.content;
-    }
 
-    //Format record dates
-    for(let i=0; i<this.data.content.length; i++){
-      this.recordDates.push(moment(this.data.content[i].date).lang("es").format('LL h:mm A'));
+      //Format record dates
+      if (this.data.content){
+        for(let i=0; i<this.data.content.length; i++){
+          this.recordDates.push(moment(this.data.content[i].date).format('LL h:mm A'));
+        }
+      } else {
+        this.data.info = true;
+      }
     }
   }
 

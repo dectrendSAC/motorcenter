@@ -32,11 +32,11 @@
               <button mat-icon-button aria-label="Mostrar selección de color" (click)="openColorPicker(i)" [disabled]="vehicleIndex === i? enableReadonly : true">
                 <mat-icon>palette</mat-icon>
               </button>
-              <input matInput id="{{'colorPickerInput-' + i}}" formControlName="colorFormControl" placeholder="Color del vehículo" readonly>
+              <input matInput id="{{'colorPickerInput-' + i}}" formControlName="colorFormControl" placeholder="Color del vehículo" (click)="openColorPicker(i)" readonly>
             </mat-form-field>
             <mat-form-field class="km" floatLabel="always">
               <mat-label>Kilometraje</mat-label>
-              <mat-icon aria-label="Más información sobre el kilometraje">help_outline</mat-icon>
+              <mat-icon matTooltip="Más información sobre el kilometraje" matTooltipPosition="after" aria-label="Más información sobre el kilometraje" (click)="moreInfo()">help_outline</mat-icon>
               <input matInput type="number" (keypress)="onlyNumber($event)" formControlName="kmFormControl" placeholder="Kilometraje recorrido" [readonly]="vehicleIndex === i? enableReadonly : true">
               <mat-error *ngIf="controlArray.controls[i].get('kmFormControl').hasError('required')">
                 Campo obligatorio

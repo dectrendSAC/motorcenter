@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientDialogComponent } from '../client-dialog/client-dialog.component';
+import { merge } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 let count = 0, color: string, index:number;
 
@@ -39,27 +41,26 @@ export class ClientVehiclesComponent implements OnInit {
     this.buildForm();
 
     //Detect form inputs changes
-    this.VehicleFormGroup.valueChanges
-    .subscribe(() =>
-    {
-      console.log('desde aqui', this.VehicleFormGroup);
-      var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
+    merge(...this.controlArray.controls.map((control: AbstractControl, index: number) =>
+        control.valueChanges.pipe(map(value => ({ rowIndex: index, value })))))
+      .subscribe(changes => {
+        var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
 
-      var formGroup = {};
-      Object.keys(this.VehicleFormGroup.controls).forEach(key => {
-        formGroup[key] = this.VehicleFormGroup.controls[key].value
-      })
+        var formGroup = {};
+        Object.keys(this.controlArray.controls[changes.rowIndex].value).forEach(key => {
+          formGroup[key] = this.controlArray.controls[changes.rowIndex].get(key).value
+        })
 
-      if (formValues){
-        if(JSON.stringify(formGroup) === JSON.stringify(formValues)){
-          this.displaySaveBtn = false;
-          this.formVehicleButton = 'undo';
-        } else {
-          this.formVehicleButton = 'restore';
-          this.displaySaveBtn = true;
+        if (formValues){
+          if(JSON.stringify(formGroup) === JSON.stringify(formValues)){
+            this.displaySaveBtn = false;
+            this.formVehicleButton = 'undo';
+          } else {
+            this.formVehicleButton = 'restore';
+            this.displaySaveBtn = true;
+          }
         }
-      }
-    });
+      });
   }
 
   buildForm(){
@@ -98,41 +99,42 @@ export class ClientVehiclesComponent implements OnInit {
       this.enableReadonly = false;
       count = count+1;
 
-    if(document.getElementById('saveIconBtn-'+i)){
-      const dialogRef = this.dialog.open(ClientDialogComponent, {
-        data: {tittle: '¿Seguro que desea deshacer los cambios?', format:'simple', content: 'Todos los cambios se perderán'}
-      });
+      if(document.getElementById('saveIconBtn-'+i)){
+        const dialogRef = this.dialog.open(ClientDialogComponent, {
+          data: {tittle: '¿Seguro que desea deshacer los cambios?', format:'simple', content: 'Todos los cambios se perderán'}
+        });
 
-      dialogRef.afterClosed().subscribe(result => {
-        if(result.data){
-          var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
-          this.controlArray.controls[i].get('kmFormControl').setValue(formValues.kmFormControl);
-          this.controlArray.controls[i].get('colorFormControl').setValue(formValues.colorFormControl);
+        dialogRef.afterClosed().subscribe(result => {
+          if(result.data){
+            var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
+            this.controlArray.controls[i].get('kmFormControl').setValue(formValues.kmFormControl);
+            this.controlArray.controls[i].get('colorFormControl').setValue(formValues.colorFormControl);
+            sessionStorage.removeItem("VehicleForm");
+            this.colorHex = color;
+            this.enableReadonly = true;
+            this.displaySaveBtn = false;
+            this.formVehicleButton = 'edit';
+            count = 0;
+          } else {
+            this.formVehicleButton = 'restore';
+          }
+        });
+      } else {
+        this.formVehicleButton = 'undo';
+        if(count > 1){
           sessionStorage.removeItem("VehicleForm");
-          this.colorHex = color;
           this.enableReadonly = true;
           this.displaySaveBtn = false;
           this.formVehicleButton = 'edit';
           count = 0;
-        } else {
-          this.formVehicleButton = 'restore';
         }
-      });
-    } else {
-      this.formVehicleButton = 'undo';
-      if(count > 1){
-        sessionStorage.removeItem("VehicleForm");
-        this.enableReadonly = true;
-        this.displaySaveBtn = false;
-        this.formVehicleButton = 'edit';
-        count = 0;
       }
-    }
     }else{
       count = 0;
       var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
       this.controlArray.controls[index].get('kmFormControl').setValue(formValues.kmFormControl);
       this.controlArray.controls[index].get('colorFormControl').setValue(formValues.colorFormControl);
+      sessionStorage.removeItem("VehicleForm");
       this.displaySaveBtn = false;
       this.enableEditing(i);
     }
@@ -173,12 +175,14 @@ export class ClientVehiclesComponent implements OnInit {
 
   //Color picker methods
   openColorPicker(i: any){
-    this.vehicleIndex = i;
-    this.showColorPalette = true;
-    let viewportOffset = document.getElementById('colorPickerInput-'+i).getBoundingClientRect();
-    const { top, left } = viewportOffset;
-    this.colorPickerPosition = { top: top, left: left };
-    this.colorDetails = { name: this.controlArray.controls[i].get('colorFormControl').value, hex: this.colorHex };
+    if(!this.enableReadonly){
+      this.vehicleIndex = i;
+      this.showColorPalette = true;
+      let viewportOffset = document.getElementById('colorPickerInput-'+i).getBoundingClientRect();
+      const { top, left } = viewportOffset;
+      this.colorPickerPosition = { top: top, left: left };
+      this.colorDetails = { name: this.controlArray.controls[i].get('colorFormControl').value, hex: this.colorHex };
+    }
   }
 
   //Set vehicle and input color
@@ -200,8 +204,15 @@ export class ClientVehiclesComponent implements OnInit {
       data: {tittle: 'Historial del vehículo', format:'accordion', content: this.dialogContent}
     });
     dialogRef.afterClosed().subscribe(result => {
-      if(result.data){
+      if(result){
       }
+    });
+  }
+
+  //Show km information
+  moreInfo(){
+    const dialogRef = this.dialog.open(ClientDialogComponent, {
+      data: {tittle: '', format:'simple', content: ['Mantenga actualizado el kilometraje de su vehículo', 'Puede obtener mantenimientos con descuento, Motorpuntos y mucho más', '¡QUE ESPERA!'], info: true}
     });
   }
 
