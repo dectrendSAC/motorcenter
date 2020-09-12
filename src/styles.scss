@@ -22,8 +22,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 //Mat dialog after close bug
-.mat-button-focus-overlay { 
+.mat-button-focus-overlay {
   background-color: transparent!important;
+ }
+
+ //Mat tooltip style
+ .mat-tooltip{
+   background:rgba(0, 0, 0, 0.6) !important;
  }
 
 // Workaround for angular component issue #13870

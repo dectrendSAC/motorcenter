@@ -30,7 +30,7 @@
                 <mat-datepicker #dp disabled="false"></mat-datepicker>
             </mat-form-field>
             <mat-form-field class="points">
-              <mat-icon aria-label="Más información sobre motorpuntos">help_outline</mat-icon>
+              <mat-icon matTooltip="Más información sobre los Motor puntos" matTooltipPosition="after" aria-label="Más información sobre motorpuntos" (click)="moreInfo()">help_outline</mat-icon>
               <mat-label>Puntos acumulados</mat-label>
               <input matInput #points placeholder="Motor Puntos" value="10" readonly>
             </mat-form-field>

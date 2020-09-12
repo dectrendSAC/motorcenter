@@ -5,7 +5,7 @@
     <p *ngIf="!data.info else info">{{data.content}}</p>
     <ng-template #info>
       <div mat-dialog-content [ngSwitch]="data.description">
-        <div *ngSwitchCase="'kilometraje'">
+        <div class="km" *ngSwitchCase="'kilometraje'">
           <div class="infoImage"></div>
           <div class="odometer">
             <div class="digit"><div class="digit-container digit-tenthousand">0 9 8 7 6 5 4 3 2 1 0</div></div>
@@ -13,6 +13,12 @@
             <div class="digit"><div class="digit-container digit-hundred">0 9 8 7 6 5 4 3 2 1 0</div></div>
             <div class="digit"><div class="digit-container digit-ten">0 9 8 7 6 5 4 3 2 1 0</div></div>
             <div class="digit"><div class="digit-container digit-one">0 9 8 7 6 5 4 3 2 1 0</div></div>
+          </div>
+        </div>
+        <div class="points" *ngSwitchCase="'motorpuntos'">
+          <div class="pointsImage">
+            <div class="infoImage1 shake"></div>
+            <div class="infoImage2 shake"></div>
           </div>
         </div>
       </div>
@@ -40,9 +46,8 @@
       </mat-expansion-panel>
     </mat-accordion>
     <ng-template #norecords>
-      <div>
-        hola
-      </div>
+      <div class="noRecordsImage"></div>
+      <p class="infoText index2">Nada que ver por aquí</p>
     </ng-template>
   </div>
 </div>

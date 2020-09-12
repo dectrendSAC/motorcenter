@@ -349,6 +349,14 @@ export class ClientProfileComponent implements OnInit {
       }
     });
   }
+
+  //Show motor puntos information
+  moreInfo(){
+    this.dialog.open(ClientDialogComponent, {
+      data: {tittle: '', description:'motorpuntos', format:'simple', content: ['Por la compra de vehículos y repuestos o servicios en nuestro Taller Multimarca', 'Canjealos por descuentos en vehículos, repuestos o servicios de nuestro taller', '¡A MÁS PUNTOS MEJORES BENEFICIOS!'], info: true}
+    });
+  }
+
 }
 
 /**
