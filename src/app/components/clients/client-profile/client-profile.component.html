@@ -52,35 +52,32 @@
           <form [formGroup]="contactFormGroup">
             <mat-form-field floatLabel="always">
                 <mat-label>Dirección</mat-label>
-                <input matInput #address formControlName="addressFormControl" placeholder="Ingrese su dirección" [readonly]="selectContactReadonly">
+                <input matInput #address formControlName="addressFormControl" placeholder="Ingrese su dirección" [errorStateMatcher]="matcher" [readonly]="selectContactReadonly">
                 <mat-error *ngIf="contactFormGroup.get('addressFormControl').hasError('required')">
                   Campo obligatorio
                 </mat-error>
             </mat-form-field>
-            <mat-form-field class="address">
+            <mat-form-field class="address" floatLabel="always">
               <mat-label>Departamento</mat-label>
               <mat-select formControlName="stateFormControl" [class.readonly]="selectContactReadonly" (selectionChange)="changeState($event.value)">
-                <mat-option value="default" style="display: none;">-</mat-option>
                 <mat-option *ngFor="let state of states" [value]="state.departamento">{{state.nombre}}</mat-option>
               </mat-select>
               <mat-error *ngIf="contactFormGroup.get('stateFormControl').hasError('required')">
                 Obligatorio
               </mat-error>
             </mat-form-field>
-            <mat-form-field class="address">
+            <mat-form-field class="address" floatLabel="always">
               <mat-label>Provincia</mat-label>
               <mat-select formControlName="countyFormControl" [class.readonly]="selectContactReadonly" (selectionChange)="changeDistrict($event.value)">
-                <mat-option value="default" style="display: none;">-</mat-option>
                 <mat-option *ngFor="let county of counties" [value]="county.provincia">{{county.nombre}}</mat-option>
               </mat-select>
               <mat-error *ngIf="contactFormGroup.get('countyFormControl').hasError('required')">
                 Obligatorio
               </mat-error>
             </mat-form-field>
-            <mat-form-field class="address">
+            <mat-form-field class="address" floatLabel="always">
               <mat-label>Distrito</mat-label>
               <mat-select formControlName="districtFormControl" [class.readonly]="selectContactReadonly">
-                <mat-option value="default" style="display: none;">-</mat-option>
                 <mat-option *ngFor="let district of districts" [value]="district.distrito">{{district.nombre}}</mat-option>
               </mat-select>
               <mat-error *ngIf="contactFormGroup.get('districtFormControl').hasError('required')">

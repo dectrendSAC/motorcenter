@@ -6,7 +6,10 @@
     <ng-template #info>
       <div mat-dialog-content [ngSwitch]="data.description">
         <div class="km" *ngSwitchCase="'kilometraje'">
-          <div class="infoImage"></div>
+          <div class="kmImage">
+            <div class="offerImage1"></div>
+            <div class="infoImage"></div>
+          </div>
           <div class="odometer">
             <div class="digit"><div class="digit-container digit-tenthousand">0 9 8 7 6 5 4 3 2 1 0</div></div>
             <div class="digit"><div class="digit-container digit-thousand">0 9 8 7 6 5 4 3 2 1 0</div></div>
@@ -17,6 +20,8 @@
         </div>
         <div class="points" *ngSwitchCase="'motorpuntos'">
           <div class="pointsImage">
+            <div class="offerImage1"></div>
+            <div class="offerImage2"></div>
             <div class="infoImage1 shake"></div>
             <div class="infoImage2 shake"></div>
           </div>

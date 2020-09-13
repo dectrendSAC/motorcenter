@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { MAT_DATE_FORMATS, ErrorStateMatcher } from '@angular/material/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, NgForm, FormGroupDirective, FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { pairwise, takeUntil } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientDialogComponent } from '../client-dialog/client-dialog.component';
+import { map, takeUntil } from 'rxjs/operators';
 
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -73,9 +73,9 @@ export class ClientProfileComponent implements OnInit {
 
     this.contactFormGroup = this._formBuilder.group({
       addressFormControl: [{value: '', disabled: false}],
-      stateFormControl: [{value: 'default', disabled: true}],
-      countyFormControl: [{value: 'default', disabled: true}],
-      districtFormControl: [{value: 'default', disabled: true}],
+      stateFormControl: [{value: '', disabled: true}],
+      countyFormControl: [{value: '', disabled: true}],
+      districtFormControl: [{value: '', disabled: true}],
       phoneFormControl: ['962785689', [Validators.required, Validators.min(100000000)]],
       emailFormControl: ['mail@mail.com', [Validators.required, Validators.email]]
     });
@@ -108,8 +108,8 @@ export class ClientProfileComponent implements OnInit {
       }
     });
 
-    this.contactFormGroup.valueChanges
-    .subscribe(() =>
+    this.contactFormGroup.valueChanges.pipe(map(value => ({ value })))
+    .subscribe(changes =>
     {
       var formValues = JSON.parse(sessionStorage.getItem("ContactForm"));
 
@@ -123,6 +123,16 @@ export class ClientProfileComponent implements OnInit {
           this.displaySaveBtnForContact = false;
           this.formContactButton = 'undo';
         } else {
+          if(changes.value.addressFormControl.length > 0 || changes.value.stateFormControl != 'default'){
+            this.contactFormGroup.controls['addressFormControl'].setValidators([Validators.required]);
+            this.contactFormGroup.controls['stateFormControl'].setValidators([Validators.required]);
+            this.contactFormGroup.controls['countyFormControl'].setValidators([Validators.required]);
+            this.contactFormGroup.controls['districtFormControl'].setValidators([Validators.required]);
+            this.contactFormGroup.controls['addressFormControl'].updateValueAndValidity();
+            this.contactFormGroup.controls['stateFormControl'].updateValueAndValidity();
+            this.contactFormGroup.controls['countyFormControl'].updateValueAndValidity();
+            this.contactFormGroup.controls['districtFormControl'].updateValueAndValidity();
+          }
           this.formContactButton = 'restore';
           this.displaySaveBtnForContact = true;
         }
