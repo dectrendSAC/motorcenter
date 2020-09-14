@@ -1,22 +1,106 @@
 <mat-card id="clientNotfications">
   <mat-card-header>
-    <mat-card-title>Información General</mat-card-title>
+    <mat-checkbox color="primary" class="headerActions"></mat-checkbox>
+    <button mat-icon-button color="primary" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <span>Mostrar leídos</span>
+      </button>
+      <button mat-menu-item disabled>
+        <span>Mostrar no leídos</span>
+      </button>
+      <button mat-menu-item>
+        <span>Mostrar favoritos</span>
+      </button>
+    </mat-menu>
+    <mat-divider vertical></mat-divider>
+    <button mat-icon-button class="headerActions actionBtn" aria-label="Más información">
+      <mat-icon>mark_chat_read</mat-icon>
+    </button>
+    <button mat-icon-button class="headerActions actionBtn" aria-label="Más información">
+      <mat-icon>mark_chat_unread</mat-icon>
+    </button>
+    <button mat-icon-button class="headerActions actionBtn" aria-label="Más información">
+      <mat-icon>delete_outline</mat-icon>
+    </button>
   </mat-card-header>
   <mat-card-content>
     <div class="notification">
       <div class="notifChk inline">
-        <mat-checkbox></mat-checkbox>
+        <mat-checkbox color="primary"></mat-checkbox>
       </div>
       <div class="notifContent inline">
-        <p>Ya puede recoger su vehículo de placa 456-YT8</p>
+        <p><b>Ya puede recoger su vehículo de placa 456-YT8</b></p>
         <p>Se realizaron los trabajos de planchado y pintura por un costo de S/580</p>
         <p>20/05/2020 18:43</p>
       </div>
       <div class="notifBtns inline">
-        <button mat-icon-button id="saveInfoIconBtn" aria-label="Guardar información">
+        <button mat-icon-button class="optionBtn" aria-label="Más información">
           <mat-icon>read_more</mat-icon>
         </button>
-        <button mat-icon-button id="saveInfoIconBtn" aria-label="Guardar información">
+        <button mat-icon-button class="optionBtn" aria-label="Colocar en favoritos">
+          <mat-icon>star_border</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-content>
+    <div class="notification">
+      <div class="notifChk inline">
+        <mat-checkbox color="primary"></mat-checkbox>
+      </div>
+      <div class="notifContent inline">
+        <p><b>Ya puede recoger su vehículo de placa 456-YT8</b></p>
+        <p>Se realizaron los trabajos de planchado y pintura por un costo de S/580</p>
+        <p>20/05/2020 18:43</p>
+      </div>
+      <div class="notifBtns inline">
+        <button mat-icon-button class="optionBtn" aria-label="Más información">
+          <mat-icon>read_more</mat-icon>
+        </button>
+        <button mat-icon-button class="optionBtn" aria-label="Colocar en favoritos">
+          <mat-icon>star_border</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-content>
+    <div class="notification">
+      <div class="notifChk inline">
+        <mat-checkbox color="primary"></mat-checkbox>
+      </div>
+      <div class="notifContent inline">
+        <p><b>Ya puede recoger su vehículo de placa 456-YT8</b></p>
+        <p>Se realizaron los trabajos de planchado y pintura por un costo de S/580</p>
+        <p>20/05/2020 18:43</p>
+      </div>
+      <div class="notifBtns inline">
+        <button mat-icon-button class="optionBtn" aria-label="Más información">
+          <mat-icon>read_more</mat-icon>
+        </button>
+        <button mat-icon-button class="optionBtn" aria-label="Colocar en favoritos">
+          <mat-icon>star_border</mat-icon>
+        </button>
+      </div>
+    </div>
+  </mat-card-content>
+  <mat-card-content>
+    <div class="notification">
+      <div class="notifChk inline">
+        <mat-checkbox color="primary"></mat-checkbox>
+      </div>
+      <div class="notifContent inline">
+        <p><b>Ya puede recoger su vehículo de placa 456-YT8</b></p>
+        <p>Se realizaron los trabajos de planchado y pintura por un costo de S/580</p>
+        <p>20/05/2020 18:43</p>
+      </div>
+      <div class="notifBtns inline">
+        <button mat-icon-button class="optionBtn" aria-label="Más información">
+          <mat-icon>read_more</mat-icon>
+        </button>
+        <button mat-icon-button class="optionBtn" aria-label="Colocar en favoritos">
           <mat-icon>star_border</mat-icon>
         </button>
       </div>

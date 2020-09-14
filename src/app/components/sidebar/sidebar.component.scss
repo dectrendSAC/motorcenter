@@ -29,18 +29,18 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
             .content{
                 height: 60px;
                 padding: 25px 25px 0px 25px;
-    
+
                 #logoHome{
                     margin-right: 20px;
                 }
-    
+
                 #logoText{
                     font-size: 13pt;
                     line-height: 60px;
                 }
 
-                #sidebarBtn{   
-                    top: 42%; 
+                #sidebarBtn{
+                    top: 42%;
                     transform: scale(1.2);
                 }
             }
@@ -48,11 +48,11 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
 
         #options{
             padding: 25px 25px 0px 25px;
-    
+
             .optTitle{
                 font-size: 20pt;
             }
-    
+
             .line{
                 width: calc(100% + 52px);
                 padding-top: 15px;
@@ -75,11 +75,11 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
             }
         }
 
-        &.active{  
-            #topLinks{        
-                .content{   
+        &.active{
+            #topLinks{
+                .content{
                     width: 56%;
-                
+
                     #logoText{
                         padding-left: 70%;
                     }
@@ -111,17 +111,17 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
             .content{
                 height: 100px;
                 padding: 35px 35px 0px 35px;
-        
+
                 #logoHome{
                     margin-right: 25px;
                 }
-        
+
                 #logoText{
                     font-size: 20pt;
                     line-height: 100px;
                 }
 
-                #sidebarBtn{ 
+                #sidebarBtn{
                     top: 50%;
                     transform: scale(1.5);
                 }
@@ -145,7 +145,7 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
                 .item{
                     transform: scale(1.5);
                     margin-top: 15px;
-    
+
                     &.last{
                         margin-bottom:30px;
                     }
@@ -153,11 +153,11 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
             }
         }
 
-        &.active{  
-            #topLinks{        
-                .content{   
+        &.active{
+            #topLinks{
+                .content{
                     width: 66%;
-                
+
                     #logoText{
                         padding-left: 80%;
                     }
@@ -189,7 +189,7 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
         width: 700%;
     }
 }
-  
+
 @keyframes fade-out {
     from {
         opacity: 1;
@@ -216,12 +216,12 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
     #topLinks{
         position: absolute;
         width: 100%;
-    
+
         .content{
             position: relative;
             display: inline-flex;
             width: 85%;
-    
+
             #logoHome{
                 position: relative;
                 outline: none;
@@ -231,7 +231,7 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
                 cursor: pointer;
                 background: url("data:image/svg+xml, #{$logoMini}") left center/100% 100% no-repeat !important;
             }
-        
+
             #logoText{
                 font-family: "palanquin", "arial", sans-serif;
                 font-weight: bolder;
@@ -240,13 +240,13 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
                 width: 40%;
                 overflow: hidden;
                 cursor: pointer;
-        
+
                 &:hover{
                     color: #CA181F;
                 }
             }
 
-            #sidebarBtn{    
+            #sidebarBtn{
                 position: absolute;
                 right: 5%;
             }
@@ -282,6 +282,8 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
                 display: block;
 
                 span{
+                    font-weight: bold;
+                    font-size: 13pt;
                     position: absolute;
                     text-align: left;
                     padding-left: 7.5px;
@@ -300,28 +302,28 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
         }
     }
 
-    &.active{    
-        #topLinks{        
-            .content{   
+    &.active{
+        #topLinks{
+            .content{
                 padding: 20px 20px 0px 20px;
 
                 #logoHome{
                     margin-right: 0px;
                     width: 100%;
                 }
-            
+
                 #logoText{
                     animation: fade-out .7s;
                     animation-fill-mode: forwards;
                 }
-    
-                #sidebarBtn{    
+
+                #sidebarBtn{
                     display: none;
                 }
             }
         }
 
-        #options{            
+        #options{
             .optTitle{
                 display: none;
             }

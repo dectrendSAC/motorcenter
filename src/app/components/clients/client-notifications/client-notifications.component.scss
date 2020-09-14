@@ -30,46 +30,93 @@
   padding: 0px;;
 
   mat-card-header{
-    padding: 2%;
-    width: 96%;
-  }
-
-  .notification{
-    position: relative;
-    display: flex;
     align-items: center;
     padding: 2%;
     width: 96%;
-    border-top: 2px solid #C6CCD6;
 
-    .inline{
-      display: inline-block;
+    .mat-checkbox-frame,
+    .mat-checkbox-background,
+    .mat-checkbox-anim-unchecked-checked
+    .mat-checkbox-anim-checked-unchecked {
+      transform: scale(1.5);
     }
 
-    .notifChk{
-      width: 15%;
-      text-align: center;
+    .mat-checkbox-checked .mat-checkbox-background {
+      transform: scale(1.5);
+    }
 
-      .mat-checkbox-frame,
-      .mat-checkbox-background,
-      .mat-checkbox-anim-unchecked-checked
-      .mat-checkbox-anim-checked-unchecked {
-        transform: scale(1.5);
-      }
+    .headerActions{
+      margin-right: 10px;
 
-      .mat-checkbox-checked .mat-checkbox-background {
-        transform: scale(1.5);
+      &.actionBtn{
+        transform: scale(1.3);
       }
     }
 
-    .notifContent{
-      width: 60%;
-      text-align: left;
+    mat-divider{
+      padding-top: 6%;
+      margin: 0px 15px;
+      border: solid 1px #C6CCD6;
     }
+  }
 
-    .notifBtns{
-      width: 25%;
-      text-align: center;
+  mat-card-content{
+    margin-bottom: 0px;
+
+    .notification{
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 2%;
+      width: 96%;
+      border-top: 2px solid #C6CCD6;
+
+      .inline{
+        display: inline-block;
+      }
+
+      .notifChk{
+        width: 15%;
+        text-align: center;
+
+        .mat-checkbox-frame,
+        .mat-checkbox-background,
+        .mat-checkbox-anim-unchecked-checked
+        .mat-checkbox-anim-checked-unchecked {
+          transform: scale(1.5);
+        }
+
+        .mat-checkbox-checked .mat-checkbox-background {
+          transform: scale(1.5);
+        }
+      }
+
+      .notifContent{
+        width: 60%;
+        text-align: left;
+
+        p:nth-child(1){
+          font-size: 13pt;
+        }
+
+        p:nth-child(2){
+          font-size: 11pt;
+        }
+
+        p:nth-child(3){
+          color: rgba(0, 0, 0, 0.54);
+        }
+      }
+
+      .notifBtns{
+        width: 25%;
+        text-align: right;
+
+        .optionBtn{
+          transform: scale(1.3);
+          margin-right: 15px;
+        }
+      }
     }
   }
 }

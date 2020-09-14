@@ -59,6 +59,20 @@ $offer2:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%
       }
     }
 
+    .km{
+      .kmImage{
+        width: 100%;
+        padding-top: 35%;
+      }
+    }
+
+    .points{
+      .pointsImage{
+        width: 80%;
+        padding-top: 35%;
+      }
+    }
+
     .infoText{
       &.index0{
         font-size: 1.5em;
@@ -84,6 +98,20 @@ $offer2:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%
 
       .digit{
         font-size: 2em;
+      }
+    }
+
+    .km{
+      .kmImage{
+        width: 100%;
+        padding-top: 42%;
+      }
+    }
+
+    .points{
+      .pointsImage{
+        width: 100%;
+        padding-top: 40%;
       }
     }
 
@@ -136,8 +164,7 @@ $offer2:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%
   .km{
     .kmImage{
       position: relative;
-      width: 100%;
-      padding-top: 42%;
+      margin: 0 auto;
       overflow: hidden;
 
       .offerImage1{
@@ -252,8 +279,7 @@ $offer2:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%
   .points{
     .pointsImage{
       position: relative;
-      width: 100%;
-      padding-top: 40%;
+      margin: 0 auto;
       overflow: hidden;
 
       .offerImage1{
