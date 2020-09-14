@@ -1,0 +1,76 @@
+/* Extra small devices (phones, 688px and down) */
+@media only screen and (max-width: 43em) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 688px and up) */
+@media only screen and (min-width: 43em) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 48em) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 62em) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 119em) {
+
+}
+
+//---------------------------------------------------
+
+#clientNotfications{
+  margin: 0% 15%;
+  padding: 0px;;
+
+  mat-card-header{
+    padding: 2%;
+    width: 96%;
+  }
+
+  .notification{
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 2%;
+    width: 96%;
+    border-top: 2px solid #C6CCD6;
+
+    .inline{
+      display: inline-block;
+    }
+
+    .notifChk{
+      width: 15%;
+      text-align: center;
+
+      .mat-checkbox-frame,
+      .mat-checkbox-background,
+      .mat-checkbox-anim-unchecked-checked
+      .mat-checkbox-anim-checked-unchecked {
+        transform: scale(1.5);
+      }
+
+      .mat-checkbox-checked .mat-checkbox-background {
+        transform: scale(1.5);
+      }
+    }
+
+    .notifContent{
+      width: 60%;
+      text-align: left;
+    }
+
+    .notifBtns{
+      width: 25%;
+      text-align: center;
+    }
+  }
+}
+
