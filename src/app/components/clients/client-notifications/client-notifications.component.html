@@ -1,5 +1,5 @@
 <mat-toolbar id="notifyHeader">
-  <mat-checkbox color="primary" class="headerActions"></mat-checkbox>
+  <mat-checkbox color="primary" class="headerActions" (change)="$event ? toggleAll($event) : null"></mat-checkbox>
   <button mat-icon-button class="dropBtn" color="primary" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
     <mat-icon>arrow_drop_down</mat-icon>
   </button>
@@ -15,7 +15,7 @@
     </button>
   </mat-menu>
   <mat-divider vertical></mat-divider>
-  <button mat-icon-button class="headerActions actionBtn" aria-label="Más información">
+  <button mat-icon-button *ngIf="" class="headerActions actionBtn" aria-label="Más información">
     <mat-icon>mark_chat_read</mat-icon>
   </button>
   <button mat-icon-button class="headerActions actionBtn" aria-label="Más información">
@@ -26,102 +26,23 @@
   </button>
 </mat-toolbar>
 <mat-card id="clientNotfications">
-  <mat-card-content>
-    <div class="notification">
+  <mat-card-content *ngFor="let notification of clientNotifications; let first = first; let i = index">
+    <div *ngIf="notification.status == 'read'" class="read"></div>
+    <div class="notification" [class.first]="first">
       <div class="notifChk inline">
-        <mat-checkbox color="primary"></mat-checkbox>
+        <mat-checkbox color="primary" [checked]="exists(notification)"></mat-checkbox>
       </div>
-      <div class="notifContent inline">
-        <p><b>Ya puede recoger su vehículo de placa 456-YT8</b></p>
-        <p>Se realizaron los trabajos de planchado y pintura por un costo de S/580</p>
-        <p>20/05/2020 18:43</p>
+      <div class="notifContent inline" [class.disabled]="notification.status == 'read'">
+        <p><b>{{notification.tittle}}</b></p>
+        <p>{{notification.content}}</p>
+        <p>{{notification.date}}</p>
       </div>
       <div class="notifBtns inline">
-        <button mat-icon-button class="optionBtn" aria-label="Más información">
+        <button mat-icon-button *ngIf="notification.status == 'unread'" class="optionBtn" aria-label="Más información">
           <mat-icon>read_more</mat-icon>
         </button>
-        <button mat-icon-button class="optionBtn" aria-label="Colocar en favoritos">
-          <mat-icon>star_border</mat-icon>
-        </button>
-      </div>
-    </div>
-  </mat-card-content>
-  <mat-card-content>
-    <div class="notification">
-      <div class="notifChk inline">
-        <mat-checkbox color="primary"></mat-checkbox>
-      </div>
-      <div class="notifContent inline">
-        <p><b>Ya puede recoger su vehículo de placa 456-YT8</b></p>
-        <p>Se realizaron los trabajos de planchado y pintura por un costo de S/580</p>
-        <p>20/05/2020 18:43</p>
-      </div>
-      <div class="notifBtns inline">
-        <button mat-icon-button class="optionBtn" aria-label="Más información">
-          <mat-icon>read_more</mat-icon>
-        </button>
-        <button mat-icon-button class="optionBtn" aria-label="Colocar en favoritos">
-          <mat-icon>star_border</mat-icon>
-        </button>
-      </div>
-    </div>
-  </mat-card-content>
-  <mat-card-content>
-    <div class="notification">
-      <div class="notifChk inline">
-        <mat-checkbox color="primary"></mat-checkbox>
-      </div>
-      <div class="notifContent inline">
-        <p><b>Ya puede recoger su vehículo de placa 456-YT8</b></p>
-        <p>Se realizaron los trabajos de planchado y pintura por un costo de S/580</p>
-        <p>20/05/2020 18:43</p>
-      </div>
-      <div class="notifBtns inline">
-        <button mat-icon-button class="optionBtn" aria-label="Más información">
-          <mat-icon>read_more</mat-icon>
-        </button>
-        <button mat-icon-button class="optionBtn" aria-label="Colocar en favoritos">
-          <mat-icon>star_border</mat-icon>
-        </button>
-      </div>
-    </div>
-  </mat-card-content>
-  <mat-card-content>
-    <div class="notification">
-      <div class="notifChk inline">
-        <mat-checkbox color="primary"></mat-checkbox>
-      </div>
-      <div class="notifContent inline">
-        <p><b>Ya puede recoger su vehículo de placa 456-YT8</b></p>
-        <p>Se realizaron los trabajos de planchado y pintura por un costo de S/580</p>
-        <p>20/05/2020 18:43</p>
-      </div>
-      <div class="notifBtns inline">
-        <button mat-icon-button class="optionBtn" aria-label="Más información">
-          <mat-icon>read_more</mat-icon>
-        </button>
-        <button mat-icon-button class="optionBtn" aria-label="Colocar en favoritos">
-          <mat-icon>star_border</mat-icon>
-        </button>
-      </div>
-    </div>
-  </mat-card-content>
-  <mat-card-content>
-    <div class="notification">
-      <div class="notifChk inline">
-        <mat-checkbox color="primary"></mat-checkbox>
-      </div>
-      <div class="notifContent inline">
-        <p><b>Ya puede recoger su vehículo de placa 456-YT8</b></p>
-        <p>Se realizaron los trabajos de planchado y pintura por un costo de S/580</p>
-        <p>20/05/2020 18:43</p>
-      </div>
-      <div class="notifBtns inline">
-        <button mat-icon-button class="optionBtn" aria-label="Más información">
-          <mat-icon>read_more</mat-icon>
-        </button>
-        <button mat-icon-button class="optionBtn" aria-label="Colocar en favoritos">
-          <mat-icon>star_border</mat-icon>
+        <button mat-icon-button class="optionBtn" [class.disabled]="notification.status == 'read'" [class.star]="notification.favorite && notification.status == 'unread'" aria-label="Colocar en favoritos">
+          <mat-icon>{{notification.status == 'read'? 'star_border' : notification.favorite? 'star' : 'star_border'}}</mat-icon>
         </button>
       </div>
     </div>

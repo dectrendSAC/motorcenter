@@ -15,12 +15,24 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
+  #notifyHeader{
+    height: 20%;
+  }
 
+  #clientNotfications{
+    max-height: 80%;
+  }
 }
 
 /* Extra large devices (large laptops and desktops, 1900px and up) */
 @media only screen and (min-width: 119em) {
+  #notifyHeader{
+    height: 15%;
+  }
 
+  #clientNotfications{
+    max-height: 85%;
+  }
 }
 
 //---------------------------------------------------
@@ -30,7 +42,6 @@
   background: white;
   padding: 0% 3%;
   width: 70%;
-  height: 15%;
   margin: 0% 15%;
   border-radius: 25px 25px 0 0;
   border-bottom: 2px solid #C6CCD6;
@@ -68,7 +79,6 @@
 
 #clientNotfications{
   overflow-y: overlay;
-  max-height: 85%;
   margin: 0% 15%;
   padding: 0px;
 
@@ -96,6 +106,14 @@
   mat-card-content{
     margin-bottom: 0px;
 
+    .read{
+      position: absolute;
+      background: rgba(0, 0, 0, 0.05);
+      width: 100%;
+      height: 48%;
+      z-index: 2;
+    }
+
     .notification{
       position: relative;
       display: flex;
@@ -104,6 +122,10 @@
       width: 96%;
       border-top: 2px solid #C6CCD6;
 
+      &.first{
+        border-top: unset;
+      }
+
       .inline{
         display: inline-block;
       }
@@ -111,6 +133,7 @@
       .notifChk{
         width: 15%;
         text-align: center;
+        z-index: 3;
 
         .mat-checkbox-frame,
         .mat-checkbox-background,
@@ -127,6 +150,10 @@
       .notifContent{
         width: 60%;
         text-align: left;
+
+        &.disabled{
+          color: #bababa;
+        }
 
         p:nth-child(1){
           font-size: 13pt;
@@ -148,6 +175,14 @@
         .optionBtn{
           transform: scale(1.3);
           margin-right: 15px;
+        }
+
+        .disabled{
+          color: #bababa;
+        }
+
+        .star{
+          color: #FFD500;
         }
       }
     }

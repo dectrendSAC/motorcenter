@@ -27,7 +27,7 @@
           </div>
         </div>
       </div>
-      <p [className]="'infoText index'+i" *ngFor="let content of data.content; let first = first; let last = last; let i = index">{{data.content[i]}}</p>
+      <p [className]="'infoText index'+i" *ngFor="let content of data.content; let i = index">{{data.content[i]}}</p>
     </ng-template>
   </div>
   <div *ngSwitchCase="'accordion'">
