@@ -1,5 +1,7 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatAccordion } from '@angular/material/expansion';
+
 
 import * as _moment from 'moment';
 
@@ -13,12 +15,17 @@ const moment = _moment;
 export class ClientDialogComponent implements OnInit {
   records = [];
   recordDates= [];
-  step = 0;
+  step: number;
+
+  @ViewChild('accordion',{static:false}) Accordion: MatAccordion;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>) { }
 
   ngOnInit(): void {
     moment.locale('es');
+    setTimeout(()=>{
+      this.step = 0;
+    },250);
 
     if (this.data.format == 'accordion'){
       this.records = this.data.content;
@@ -50,6 +57,18 @@ export class ClientDialogComponent implements OnInit {
 
   prevStep() {
     this.step--;
+  }
+
+  //Close dialog
+  closeDialog(){
+    if(this.Accordion){
+      this.Accordion.closeAll();
+      setTimeout(()=>{
+        this.dialogRef.close();
+      },300);
+    } else {
+      this.dialogRef.close();
+    }
   }
 
 }

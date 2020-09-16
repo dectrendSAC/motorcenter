@@ -260,9 +260,9 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
         height: 81%;
 
         .optTitle{
-            display: initial;
             font-family: "palanquin", "arial", sans-serif;
             font-weight: bold;
+            display: initial;
             color: #CA181F;
         }
 
@@ -282,7 +282,6 @@ $logoMini:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox
                 display: block;
 
                 span{
-                    font-weight: bold;
                     font-size: 13pt;
                     position: absolute;
                     text-align: left;

@@ -164,7 +164,6 @@
             }
 
             mat-card-title{
-              font-weight: bold;
               white-space: nowrap;
               margin-bottom: 5px;
               overflow: hidden;
@@ -186,14 +185,6 @@
         }
 
         mat-card-content{
-            mat-label{
-              font-family: Roboto, "Helvetica Neue", sans-serif;
-            }
-
-            input{
-              font-family: Roboto, "Helvetica Neue", sans-serif;
-            }
-
             mat-form-field{
                 display: block;
 

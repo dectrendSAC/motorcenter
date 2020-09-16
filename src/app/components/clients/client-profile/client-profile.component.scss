@@ -144,7 +144,6 @@
 
 #clientProfile{
     position: relative;
-    font-family: "palanquin", "arial", sans-serif  !important;
     width: 100%;
     display: inline-flex;
     flex-wrap: wrap;
@@ -175,7 +174,6 @@
             padding-left: 14px;
 
             mat-card-title{
-              font-weight: bold;
               margin-bottom: 0px;
             }
 
