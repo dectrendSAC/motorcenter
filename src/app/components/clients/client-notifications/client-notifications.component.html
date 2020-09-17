@@ -27,8 +27,8 @@
 </mat-toolbar>
 <mat-card id="clientNotfications">
   <mat-card-content *ngFor="let notification of clientNotifications; let first = first; let i = index">
-    <div *ngIf="notification.status == 'read'" class="read"></div>
     <div class="notification" [class.first]="first">
+      <div *ngIf="notification.status == 'read'" class="read"></div>
       <div class="notifChk inline">
         <mat-checkbox color="primary" [checked]="exists(notification)"></mat-checkbox>
       </div>
