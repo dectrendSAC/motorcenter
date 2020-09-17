@@ -9,6 +9,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 })
 export class ClientNotificationsComponent implements OnInit {
   allchecked = [];
+  showMainBtns: boolean = false;
 
   clientNotifications = [
     {tittle: 'Ya puede recoger su vehículo de placa 456-YT8', content:'Se realizaron los trabajos de planchado y pintura por un costo de S/580', date:'20/05/2020 18:43', status:'read', favorite:true},
@@ -26,9 +27,11 @@ export class ClientNotificationsComponent implements OnInit {
     if ( event.checked ) {
        this.clientNotifications.forEach(row => {
           this.allchecked.push(row)
-          });
+        });
+        this.showMainBtns = true;
     } else {
        this.allchecked.length = 0 ;
+       this.showMainBtns = false;
     }
   }
 

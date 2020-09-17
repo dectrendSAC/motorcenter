@@ -15,13 +15,13 @@
     </button>
   </mat-menu>
   <mat-divider vertical></mat-divider>
-  <button mat-icon-button *ngIf="" class="headerActions actionBtn" aria-label="Más información">
+  <button mat-icon-button *ngIf="showMainBtns" class="headerActions actionBtn" aria-label="Más información">
     <mat-icon>mark_chat_read</mat-icon>
   </button>
-  <button mat-icon-button class="headerActions actionBtn" aria-label="Más información">
+  <button mat-icon-button *ngIf="showMainBtns" class="headerActions actionBtn" aria-label="Más información">
     <mat-icon>mark_chat_unread</mat-icon>
   </button>
-  <button mat-icon-button class="headerActions actionBtn" aria-label="Más información">
+  <button mat-icon-button *ngIf="showMainBtns" class="headerActions actionBtn" aria-label="Más información">
     <mat-icon>delete_outline</mat-icon>
   </button>
 </mat-toolbar>
