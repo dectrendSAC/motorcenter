@@ -38,6 +38,8 @@ export class ClientNotificationsComponent implements OnInit {
   }
 
   exists(item:any) {
+    //Show actions buttons
+    /*console.log(index)*/
     return this.allchecked.indexOf(item) > -1;
   };
 
@@ -59,4 +61,15 @@ export class ClientNotificationsComponent implements OnInit {
     });
   }
 
+  //Show only favorites notifications
+  showOnlyFavorites(){
+    this.notifications = this.clientNotifications.filter(function( obj ) {
+      return obj.favorite !== false && obj.status !== 'read';
+    });
+  }
+
+  //Show all notifications
+  showAll(){
+    return this.notifications = this.clientNotifications;
+  }
 }

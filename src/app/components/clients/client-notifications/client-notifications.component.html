@@ -10,8 +10,11 @@
     <button mat-menu-item (click)="showOnlyUnread()">
       <span>Mostrar no leídos</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="showOnlyFavorites()">
       <span>Mostrar favoritos</span>
+    </button>
+    <button mat-menu-item (click)="showAll()">
+      <span>Mostrar todo</span>
     </button>
   </mat-menu>
   <mat-divider vertical></mat-divider>
