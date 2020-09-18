@@ -112,10 +112,10 @@
       align-items: center;
       padding: 2%;
       width: 96%;
-      border-top: 2px solid #C6CCD6;
+      border-bottom: 2px solid #C6CCD6;
 
-      &.first{
-        border-top: unset;
+      &.last{
+        border-bottom: unset;
       }
 
       .inline{

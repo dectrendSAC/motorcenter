@@ -4,10 +4,10 @@
     <mat-icon>arrow_drop_down</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="showOnlyRead()">
       <span>Mostrar leídos</span>
     </button>
-    <button mat-menu-item>
+    <button mat-menu-item (click)="showOnlyUnread()">
       <span>Mostrar no leídos</span>
     </button>
     <button mat-menu-item>
@@ -26,8 +26,8 @@
   </button>
 </mat-toolbar>
 <mat-card id="clientNotfications">
-  <mat-card-content *ngFor="let notification of clientNotifications; let first = first; let i = index">
-    <div class="notification" [class.first]="first">
+  <mat-card-content #notify *ngFor="let notification of notifications; let last = last; let i = index" [className] = "notification.favorite ? notification.status == 'read' ? 'read' : 'unread favorite' : 'unread'" >
+    <div class="notification" [class.last]="last">
       <div *ngIf="notification.status == 'read'" class="read"></div>
       <div class="notifChk inline">
         <mat-checkbox color="primary" [checked]="exists(notification)"></mat-checkbox>

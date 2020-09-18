@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
@@ -8,6 +8,7 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   encapsulation: ViewEncapsulation.None
 })
 export class ClientNotificationsComponent implements OnInit {
+  notifications = [];
   allchecked = [];
   showMainBtns: boolean = false;
 
@@ -20,6 +21,7 @@ export class ClientNotificationsComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.notifications = this.clientNotifications;
   }
 
   //select all checkboxes method
@@ -42,5 +44,19 @@ export class ClientNotificationsComponent implements OnInit {
   isChecked() {
     return this.allchecked.length === this.clientNotifications.length;
   };
+
+  //Show only read notifications
+  showOnlyRead(){
+    this.notifications = this.clientNotifications.filter(function( obj ) {
+      return obj.status !== 'unread';
+    });
+  }
+
+  //Show only unread notifications
+  showOnlyUnread(){
+    this.notifications = this.clientNotifications.filter(function( obj ) {
+      return obj.status !== 'read';
+    });
+  }
 
 }
