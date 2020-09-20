@@ -18,13 +18,13 @@
     </button>
   </mat-menu>
   <mat-divider vertical></mat-divider>
-  <button mat-icon-button *ngIf="showMainBtns" class="headerActions actionBtn" aria-label="Más información">
+  <button mat-icon-button *ngIf="showReadBtn" class="headerActions actionBtn" aria-label="Más información">
     <mat-icon>mark_chat_read</mat-icon>
   </button>
-  <button mat-icon-button *ngIf="showMainBtns" class="headerActions actionBtn" aria-label="Más información">
+  <button mat-icon-button *ngIf="showUnreadBtn" class="headerActions actionBtn" aria-label="Más información">
     <mat-icon>mark_chat_unread</mat-icon>
   </button>
-  <button mat-icon-button *ngIf="showMainBtns" class="headerActions actionBtn" aria-label="Más información">
+  <button mat-icon-button *ngIf="showDeleteBtn" class="headerActions actionBtn" aria-label="Más información">
     <mat-icon>delete_outline</mat-icon>
   </button>
 </mat-toolbar>
@@ -33,7 +33,7 @@
     <div class="notification" [class.last]="last">
       <div *ngIf="notification.status == 'read'" class="read"></div>
       <div class="notifChk inline">
-        <mat-checkbox color="primary" [checked]="exists(notification)"></mat-checkbox>
+        <mat-checkbox color="primary" [checked]="exists(notification)" (change)="ShowActionBtn(i,$event)"></mat-checkbox>
       </div>
       <div class="notifContent inline" [class.disabled]="notification.status == 'read'">
         <p><b>{{notification.tittle}}</b></p>

@@ -1,5 +1,7 @@
-import { Component, OnInit, QueryList, ViewChildren, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
+
+let notifyIndex = 0;
 
 @Component({
   selector: 'app-client-notifications',
@@ -7,10 +9,13 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
   styleUrls: ['./client-notifications.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class ClientNotificationsComponent implements OnInit {
   notifications = [];
   allchecked = [];
-  showMainBtns: boolean = false;
+  showReadBtn: boolean = false;
+  showUnreadBtn: boolean = false;
+  showDeleteBtn: boolean = false;
 
   clientNotifications = [
     {tittle: 'Ya puede recoger su vehículo de placa 456-YT8', content:'Se realizaron los trabajos de planchado y pintura por un costo de S/580', date:'20/05/2020 18:43', status:'read', favorite:true},
@@ -30,10 +35,14 @@ export class ClientNotificationsComponent implements OnInit {
        this.clientNotifications.forEach(row => {
           this.allchecked.push(row)
         });
-        this.showMainBtns = true;
+        this.showReadBtn = true;
+        this.showUnreadBtn = true;
+        this.showDeleteBtn = true;
     } else {
        this.allchecked.length = 0 ;
-       this.showMainBtns = false;
+       this.showReadBtn = false;
+       this.showUnreadBtn = false;
+       this.showDeleteBtn = false;
     }
   }
 
@@ -71,5 +80,28 @@ export class ClientNotificationsComponent implements OnInit {
   //Show all notifications
   showAll(){
     return this.notifications = this.clientNotifications;
+  }
+
+  ShowActionBtn(index:number, event:any){
+    if (event.checked){
+      if ( this.notifications[index].status == 'read' ) {
+        this.showUnreadBtn = true;
+      } else {
+        this.showReadBtn = true;
+      }
+      if (notifyIndex == index){
+        notifyIndex = index;
+      }
+      this.showDeleteBtn = true;
+    } else {
+      if (notifyIndex != index){
+        this.ShowActionBtn(notifyIndex, event)
+      } else {
+        this.showReadBtn = false;
+        this.showUnreadBtn = false;
+        this.showDeleteBtn = false;
+      }
+    }
+    console.log(notifyIndex)
   }
 }
