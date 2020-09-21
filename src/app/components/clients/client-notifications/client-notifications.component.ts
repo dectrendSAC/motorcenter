@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
-let notifyIndex = 0;
-
 @Component({
   selector: 'app-client-notifications',
   templateUrl: './client-notifications.component.html',
@@ -82,26 +80,36 @@ export class ClientNotificationsComponent implements OnInit {
     return this.notifications = this.clientNotifications;
   }
 
-  ShowActionBtn(index:number, event:any){
+  ShowActionBtn(index:number, event:MatCheckboxChange){
     if (event.checked){
       if ( this.notifications[index].status == 'read' ) {
         this.showUnreadBtn = true;
       } else {
         this.showReadBtn = true;
       }
-      if (notifyIndex == index){
-        notifyIndex = index;
-      }
       this.showDeleteBtn = true;
+      if(this.allchecked.findIndex(x => x.id==index) === -1){
+        this.allchecked.push({'id': index, 'status': this.clientNotifications[index].status});
+      }
     } else {
-      if (notifyIndex != index){
-        this.ShowActionBtn(notifyIndex, event)
+      let checkstatus = [];
+      this.allchecked = this.allchecked.filter( obj => obj.id !== index);
+      if (this.allchecked.length >= 1){
+        this.allchecked.forEach((row) => {
+          row.status == 'read' ? checkstatus.push('read') : checkstatus.push('unread');
+        });
+        if(checkstatus.every( (val) => val === 'read' ) ){
+          this.showReadBtn = false;
+          this.showUnreadBtn = true;
+        } else if (checkstatus.every( (val) => val === 'unread' )){
+          this.showUnreadBtn = false;
+          this.showReadBtn = true;
+        }
       } else {
         this.showReadBtn = false;
         this.showUnreadBtn = false;
         this.showDeleteBtn = false;
       }
     }
-    console.log(notifyIndex)
   }
 }
