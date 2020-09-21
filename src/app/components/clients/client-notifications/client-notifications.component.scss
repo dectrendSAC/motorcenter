@@ -59,7 +59,12 @@
   }
 
   .dropBtn{
-    transform: scale(1.2);
+    transform: scale(0.8);
+    border-radius: 50px;
+
+    mat-icon{
+      margin-right: 5px;
+    }
   }
 
   .headerActions{
@@ -70,9 +75,15 @@
     }
   }
 
+  .filterBtn{
+    span{
+      color: green;
+    }
+  }
+
   mat-divider{
     padding-top: 5%;
-    margin: 0px 30px;
+    margin: 0px 20px;
     border: solid 1px #C6CCD6;
   }
 }
@@ -182,8 +193,8 @@
           color: #bababa;
         }
 
-        .star{
-          color: #FFD500;
+        .favorite{
+          color:#c62828;
         }
       }
     }

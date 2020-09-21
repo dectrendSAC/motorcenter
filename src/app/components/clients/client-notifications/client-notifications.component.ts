@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatCheckboxChange } from '@angular/material/checkbox';
 
 @Component({
@@ -11,9 +11,14 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 export class ClientNotificationsComponent implements OnInit {
   notifications = [];
   allchecked = [];
+  chkAll: boolean;
+  notifyFilterIcon: string = '';
+  notifyFilterText: string = 'FILTRO';
   showReadBtn: boolean = false;
   showUnreadBtn: boolean = false;
   showDeleteBtn: boolean = false;
+
+  @ViewChild('menuTrigger') trigger:any;
 
   clientNotifications = [
     {tittle: 'Ya puede recoger su vehículo de placa 456-YT8', content:'Se realizaron los trabajos de planchado y pintura por un costo de S/580', date:'20/05/2020 18:43', status:'read', favorite:true},
@@ -28,13 +33,26 @@ export class ClientNotificationsComponent implements OnInit {
   }
 
   //select all checkboxes method
-  toggleAll(event: MatCheckboxChange) {
-    if ( event.checked ) {
-       this.clientNotifications.forEach(row => {
+  toggleAll(event:boolean) {
+    let checkstatus = [];
+    this.allchecked = [];
+    if ( event ) {
+       this.notifications.forEach(row => {
           this.allchecked.push(row)
         });
-        this.showReadBtn = true;
-        this.showUnreadBtn = true;
+        this.allchecked.forEach((row) => {
+          row.status == 'read' ? checkstatus.push('read') : checkstatus.push('unread');
+        });
+        if(checkstatus.every( (val) => val === 'read' ) ){
+          this.showReadBtn = false;
+          this.showUnreadBtn = true;
+        } else if (checkstatus.every( (val) => val === 'unread' )){
+          this.showUnreadBtn = false;
+          this.showReadBtn = true;
+        } else {
+          this.showUnreadBtn = true;
+          this.showReadBtn = true;
+        }
         this.showDeleteBtn = true;
     } else {
        this.allchecked.length = 0 ;
@@ -42,42 +60,55 @@ export class ClientNotificationsComponent implements OnInit {
        this.showUnreadBtn = false;
        this.showDeleteBtn = false;
     }
+
   }
 
   exists(item:any) {
     //Show actions buttons
-    /*console.log(index)*/
     return this.allchecked.indexOf(item) > -1;
-  };
-
-  isChecked() {
-    return this.allchecked.length === this.clientNotifications.length;
   };
 
   //Show only read notifications
   showOnlyRead(){
+    this.notifyFilterIcon = 'mark_email_read';
+    this.notifyFilterText = 'LEIDOS';
     this.notifications = this.clientNotifications.filter(function( obj ) {
       return obj.status !== 'unread';
     });
+    this.toggleAll(true);
   }
 
   //Show only unread notifications
   showOnlyUnread(){
+    this.notifyFilterIcon = 'mark_email_unread';
+    this.notifyFilterText = 'NO LEIDOS';
     this.notifications = this.clientNotifications.filter(function( obj ) {
       return obj.status !== 'read';
     });
+    this.toggleAll(true);
   }
 
   //Show only favorites notifications
   showOnlyFavorites(){
+    this.notifyFilterIcon = 'favorite';
+    this.notifyFilterText = 'FAVORITOS';
     this.notifications = this.clientNotifications.filter(function( obj ) {
       return obj.favorite !== false && obj.status !== 'read';
     });
+    this.toggleAll(true);
   }
 
   //Show all notifications
   showAll(){
-    return this.notifications = this.clientNotifications;
+    if( this.notifyFilterText != 'FILTRO' ){
+      this.notifyFilterIcon = '';
+      this.notifyFilterText = 'FILTRO';
+      this.trigger.closeMenu();
+    }
+    this.notifications = this.clientNotifications;
+    if(this.chkAll == false){
+      this.toggleAll(true);
+    }
   }
 
   ShowActionBtn(index:number, event:MatCheckboxChange){

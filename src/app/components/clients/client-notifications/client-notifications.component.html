@@ -1,28 +1,33 @@
 <mat-toolbar id="notifyHeader">
-  <mat-checkbox color="primary" class="headerActions" (change)="$event ? toggleAll($event) : null"></mat-checkbox>
-  <button mat-icon-button class="dropBtn" color="primary" [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <mat-icon>arrow_drop_down</mat-icon>
+  <mat-checkbox color="primary" class="headerActions" [checked]="chkAll" (change)="$event ? toggleAll($event.checked) : null"></mat-checkbox>
+  <button mat-raised-button class="dropBtn" color="primary" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" (click)="showAll()">
+    <mat-icon *ngIf="notifyFilterText != 'FILTRO'">{{notifyFilterIcon}}</mat-icon>
+    {{notifyFilterText}}
   </button>
   <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon style="color: #c62828;">radio_button_checked</mat-icon>
+      <span style="color: #c62828;">Todos</span>
+    </button>
     <button mat-menu-item (click)="showOnlyRead()">
-      <span>Mostrar leídos</span>
+      <mat-icon>mark_email_read</mat-icon>
+      <span>Leídos</span>
     </button>
     <button mat-menu-item (click)="showOnlyUnread()">
-      <span>Mostrar no leídos</span>
+      <mat-icon>mark_email_unread</mat-icon>
+      <span>No leídos</span>
     </button>
     <button mat-menu-item (click)="showOnlyFavorites()">
-      <span>Mostrar favoritos</span>
-    </button>
-    <button mat-menu-item (click)="showAll()">
-      <span>Mostrar todo</span>
+      <mat-icon>favorite</mat-icon>
+      <span>Favoritos</span>
     </button>
   </mat-menu>
   <mat-divider vertical></mat-divider>
   <button mat-icon-button *ngIf="showReadBtn" class="headerActions actionBtn" aria-label="Más información">
-    <mat-icon>mark_chat_read</mat-icon>
+    <mat-icon>mark_email_read</mat-icon>
   </button>
   <button mat-icon-button *ngIf="showUnreadBtn" class="headerActions actionBtn" aria-label="Más información">
-    <mat-icon>mark_chat_unread</mat-icon>
+    <mat-icon>mark_email_unread</mat-icon>
   </button>
   <button mat-icon-button *ngIf="showDeleteBtn" class="headerActions actionBtn" aria-label="Más información">
     <mat-icon>delete_outline</mat-icon>
@@ -44,8 +49,8 @@
         <button mat-icon-button *ngIf="notification.status == 'unread'" class="optionBtn" aria-label="Más información">
           <mat-icon>read_more</mat-icon>
         </button>
-        <button mat-icon-button class="optionBtn" [class.disabled]="notification.status == 'read'" [class.star]="notification.favorite && notification.status == 'unread'" aria-label="Colocar en favoritos">
-          <mat-icon>{{notification.status == 'read'? 'star_border' : notification.favorite? 'star' : 'star_border'}}</mat-icon>
+        <button mat-icon-button class="optionBtn" [class.disabled]="notification.status == 'read'" [class.favorite]="notification.favorite && notification.status == 'unread'" aria-label="Colocar en favoritos">
+          <mat-icon>{{notification.status == 'read'? 'favorite_border' : notification.favorite? 'favorite' : 'favorite_border'}}</mat-icon>
         </button>
       </div>
     </div>
