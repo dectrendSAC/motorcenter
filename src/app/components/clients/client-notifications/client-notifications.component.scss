@@ -59,7 +59,7 @@
   }
 
   .dropBtn{
-    transform: scale(0.8);
+    transform: scale(0.9);
     border-radius: 50px;
 
     mat-icon{
@@ -133,13 +133,20 @@
         display: inline-block;
       }
 
-      .read{
+      .overlap{
         position: absolute;
-        background: rgba(0, 0, 0, 0.05);
         width: 100%;
         height: 100%;
         margin-left: -2%;
         z-index: 2;
+      }
+
+      .read{
+        background: rgba(0, 0, 0, 0.05);
+      }
+
+      .unread{
+        background: rgba(0, 0, 0, 0);
       }
 
       .notifChk{
@@ -173,6 +180,9 @@
 
         p:nth-child(2){
           font-size: 11pt;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
         }
 
         p:nth-child(3){

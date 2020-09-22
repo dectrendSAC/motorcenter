@@ -1,5 +1,5 @@
 <mat-toolbar id="notifyHeader">
-  <mat-checkbox color="primary" class="headerActions" [checked]="chkAll" (change)="$event ? toggleAll($event.checked) : null"></mat-checkbox>
+  <mat-checkbox #allCheckbox color="primary" class="headerActions" (change)="$event ? toggleAll($event.checked) : null"></mat-checkbox>
   <button mat-raised-button class="dropBtn" color="primary" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" (click)="showAll()">
     <mat-icon *ngIf="notifyFilterText != 'FILTRO'">{{notifyFilterIcon}}</mat-icon>
     {{notifyFilterText}}
@@ -18,8 +18,8 @@
       <span>No leídos</span>
     </button>
     <button mat-menu-item (click)="showOnlyFavorites()">
-      <mat-icon>favorite</mat-icon>
-      <span>Favoritos</span>
+      <mat-icon>bookmark</mat-icon>
+      <span>Marcados</span>
     </button>
   </mat-menu>
   <mat-divider vertical></mat-divider>
@@ -34,9 +34,9 @@
   </button>
 </mat-toolbar>
 <mat-card id="clientNotfications">
-  <mat-card-content #notify *ngFor="let notification of notifications; let last = last; let i = index" [className] = "notification.favorite ? notification.status == 'read' ? 'read' : 'unread favorite' : 'unread'" >
+  <mat-card-content #notify *ngFor="let notification of notifications; let last = last; let i = index" [className] = "notification.favorite ? notification.status == 'read' ? 'read' : 'unread favorite' : 'unread'">
     <div class="notification" [class.last]="last">
-      <div *ngIf="notification.status == 'read'" class="read"></div>
+      <div [className]="notification.status == 'read'? 'overlap read' : 'overlap unread'" (click)="showNotification(i)"></div>
       <div class="notifChk inline">
         <mat-checkbox color="primary" [checked]="exists(notification)" (change)="ShowActionBtn(i,$event)"></mat-checkbox>
       </div>
@@ -50,7 +50,7 @@
           <mat-icon>read_more</mat-icon>
         </button>
         <button mat-icon-button class="optionBtn" [class.disabled]="notification.status == 'read'" [class.favorite]="notification.favorite && notification.status == 'unread'" aria-label="Colocar en favoritos">
-          <mat-icon>{{notification.status == 'read'? 'favorite_border' : notification.favorite? 'favorite' : 'favorite_border'}}</mat-icon>
+          <mat-icon>{{notification.status == 'read'? 'bookmark_border' : notification.favorite? 'bookmark' : 'bookmark_border'}}</mat-icon>
         </button>
       </div>
     </div>

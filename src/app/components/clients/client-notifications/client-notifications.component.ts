@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MatCheckboxChange } from '@angular/material/checkbox';
+import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
+import { MatDialog } from '@angular/material/dialog';
+import { ClientDialogComponent } from '../client-dialog/client-dialog.component';
 
 @Component({
   selector: 'app-client-notifications',
@@ -11,7 +13,6 @@ import { MatCheckboxChange } from '@angular/material/checkbox';
 export class ClientNotificationsComponent implements OnInit {
   notifications = [];
   allchecked = [];
-  chkAll: boolean;
   notifyFilterIcon: string = '';
   notifyFilterText: string = 'FILTRO';
   showReadBtn: boolean = false;
@@ -19,14 +20,15 @@ export class ClientNotificationsComponent implements OnInit {
   showDeleteBtn: boolean = false;
 
   @ViewChild('menuTrigger') trigger:any;
+  @ViewChild('allCheckbox') private allCheckbox: MatCheckbox;
 
   clientNotifications = [
     {tittle: 'Ya puede recoger su vehículo de placa 456-YT8', content:'Se realizaron los trabajos de planchado y pintura por un costo de S/580', date:'20/05/2020 18:43', status:'read', favorite:true},
     {tittle: 'Ya puede recoger su vehículo de placa 456-YT8', content:'Se realizaron los trabajos de planchado y pintura por un costo de S/580', date:'20/05/2020 18:43', status:'unread', favorite:true},
-    {tittle: 'Ya puede recoger su vehículo de placa 456-YT8', content:'Se realizaron los trabajos de planchado y pintura por un costo de S/580', date:'20/05/2020 18:43', status:'unread', favorite:false}
+    {tittle: 'Ya puede recoger su vehículo de placa 456-YT8', content:'Escena el oh el cuenta cruzar. Cogio la negra ukase mucho llamo bajos si. Gozaba era dia una delito decida. Comenzaba recordaba se gentilica despierta izquierda sensibles es.', date:'20/05/2020 18:43', status:'unread', favorite:false}
   ];
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.notifications = this.clientNotifications;
@@ -75,7 +77,7 @@ export class ClientNotificationsComponent implements OnInit {
     this.notifications = this.clientNotifications.filter(function( obj ) {
       return obj.status !== 'unread';
     });
-    this.toggleAll(true);
+    this.allCheckbox.checked ? this.toggleAll(true) : null;
   }
 
   //Show only unread notifications
@@ -85,17 +87,17 @@ export class ClientNotificationsComponent implements OnInit {
     this.notifications = this.clientNotifications.filter(function( obj ) {
       return obj.status !== 'read';
     });
-    this.toggleAll(true);
+    this.allCheckbox.checked ? this.toggleAll(true) : null;
   }
 
   //Show only favorites notifications
   showOnlyFavorites(){
-    this.notifyFilterIcon = 'favorite';
-    this.notifyFilterText = 'FAVORITOS';
+    this.notifyFilterIcon = 'bookmark';
+    this.notifyFilterText = 'MARCADOS';
     this.notifications = this.clientNotifications.filter(function( obj ) {
       return obj.favorite !== false && obj.status !== 'read';
     });
-    this.toggleAll(true);
+    this.allCheckbox.checked ? this.toggleAll(true) : null;
   }
 
   //Show all notifications
@@ -106,11 +108,10 @@ export class ClientNotificationsComponent implements OnInit {
       this.trigger.closeMenu();
     }
     this.notifications = this.clientNotifications;
-    if(this.chkAll == false){
-      this.toggleAll(true);
-    }
+    this.allCheckbox.checked ? this.toggleAll(true) : null;
   }
 
+  //Show buttons according to notify status
   ShowActionBtn(index:number, event:MatCheckboxChange){
     if (event.checked){
       if ( this.notifications[index].status == 'read' ) {
@@ -142,5 +143,16 @@ export class ClientNotificationsComponent implements OnInit {
         this.showDeleteBtn = false;
       }
     }
+  }
+
+  //open dialog with notification message
+  showNotification(index:number){
+    const dialogRef = this.dialog.open(ClientDialogComponent, {
+      data: {tittle: this.notifications[index].tittle, format:'simple', content: this.notifications[index].content, info: false}
+    });
+
+    dialogRef.afterClosed().subscribe( result => {
+        this.notifications[index].status = 'read'
+    });
   }
 }
