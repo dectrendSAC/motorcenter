@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
+import { Router } from '@angular/router';
 
 
 import * as _moment from 'moment';
@@ -15,11 +16,12 @@ const moment = _moment;
 export class ClientDialogComponent implements OnInit {
   records = [];
   recordDates= [];
+  notificationSection: boolean = false;
   step: number;
 
   @ViewChild('accordion',{static:false}) Accordion: MatAccordion;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>, private router: Router) { }
 
   ngOnInit(): void {
     moment.locale('es');
@@ -38,6 +40,11 @@ export class ClientDialogComponent implements OnInit {
       } else {
         this.data.info = true;
       }
+    }
+
+    //Check if notification screen is visible
+    if (this.router.url.indexOf('/notificaciones') > -1) {
+      this.notificationSection = true;
     }
   }
 

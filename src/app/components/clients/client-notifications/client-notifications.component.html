@@ -23,10 +23,10 @@
     </button>
   </mat-menu>
   <mat-divider vertical></mat-divider>
-  <button mat-icon-button *ngIf="showReadBtn" class="headerActions actionBtn" aria-label="Más información">
+  <button mat-icon-button *ngIf="showReadBtn" class="headerActions actionBtn" aria-label="Más información" (click)="changeStatus('read')">
     <mat-icon>mark_email_read</mat-icon>
   </button>
-  <button mat-icon-button *ngIf="showUnreadBtn" class="headerActions actionBtn" aria-label="Más información">
+  <button mat-icon-button *ngIf="showUnreadBtn" class="headerActions actionBtn" aria-label="Más información" (click)="changeStatus('unread')">
     <mat-icon>mark_email_unread</mat-icon>
   </button>
   <button mat-icon-button *ngIf="showDeleteBtn" class="headerActions actionBtn" aria-label="Más información">
@@ -49,8 +49,8 @@
         <button mat-icon-button *ngIf="notification.status == 'unread'" class="optionBtn" aria-label="Más información">
           <mat-icon>read_more</mat-icon>
         </button>
-        <button mat-icon-button class="optionBtn" [class.disabled]="notification.status == 'read'" [class.favorite]="notification.favorite && notification.status == 'unread'" aria-label="Colocar en favoritos">
-          <mat-icon>{{notification.status == 'read'? 'bookmark_border' : notification.favorite? 'bookmark' : 'bookmark_border'}}</mat-icon>
+        <button mat-icon-button class="optionBtn" [class.favorite]="notification.favorite" aria-label="Colocar marcador" (click)="putBookmark(i)">
+          <mat-icon>{{notification.favorite ? 'bookmark' : 'bookmark_border'}}</mat-icon>
         </button>
       </div>
     </div>

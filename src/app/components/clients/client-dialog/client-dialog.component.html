@@ -1,8 +1,8 @@
 <div *ngIf="data.info" class="closeBtn" mat-dialog-close></div>
-<h1 [class.no-record]="!records" mat-dialog-title>{{data.tittle}}&nbsp;</h1>
+<h1 mat-dialog-title [class.no-record]="!records" [class.notify]="notificationSection">{{data.tittle}}&nbsp;</h1>
 <div mat-dialog-content [ngSwitch]="data.format">
   <div *ngSwitchCase="'simple'">
-    <p *ngIf="!data.info else info">{{data.content}}</p>
+    <p *ngIf="!data.info else info" [class.notify]="notificationSection">{{data.content}}</p>
     <ng-template #info>
       <div mat-dialog-content [ngSwitch]="data.description">
         <div class="km" *ngSwitchCase="'kilometraje'">
@@ -57,6 +57,7 @@
   </div>
 </div>
 <div mat-dialog-actions *ngIf="!data.info">
-  <button mat-raised-button color="primary" (click)="restoreChanges()" cdkFocusInitial>{{data.format === 'simple' ? 'SI' : 'REVISAR'}}</button>
-  <button mat-stroked-button color="primary" (click)="closeDialog()">{{data.format === 'simple' ? 'NO' : 'SALIR'}}</button>
+  <button mat-raised-button color="primary" *ngIf="!notificationSection" (click)="restoreChanges()" cdkFocusInitial>{{data.format === 'simple' ? 'SI' : 'REVISAR'}}</button>
+  <button mat-stroked-button color="primary" *ngIf="!notificationSection" (click)="closeDialog()">{{data.format === 'simple' ? 'NO' : 'SALIR'}}</button>
+  <button mat-raised-button color="primary" *ngIf="notificationSection" (click)="closeDialog()">ENTIENDO</button>
 </div>

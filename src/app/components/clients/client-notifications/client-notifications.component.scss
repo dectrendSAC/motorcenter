@@ -176,13 +176,18 @@
 
         p:nth-child(1){
           font-size: 13pt;
-        }
-
-        p:nth-child(2){
-          font-size: 11pt;
           white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
+        }
+
+        p:nth-child(2){
+          display: -webkit-box;
+          font-size: 11pt;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          -webkit-line-clamp: 1;
+          -webkit-box-orient: vertical;
         }
 
         p:nth-child(3){
@@ -193,6 +198,7 @@
       .notifBtns{
         width: 25%;
         text-align: right;
+        z-index: 3;
 
         .optionBtn{
           transform: scale(1.3);

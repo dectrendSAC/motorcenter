@@ -95,7 +95,7 @@ export class ClientNotificationsComponent implements OnInit {
     this.notifyFilterIcon = 'bookmark';
     this.notifyFilterText = 'MARCADOS';
     this.notifications = this.clientNotifications.filter(function( obj ) {
-      return obj.favorite !== false && obj.status !== 'read';
+      return obj.favorite !== false;
     });
     this.allCheckbox.checked ? this.toggleAll(true) : null;
   }
@@ -153,6 +153,22 @@ export class ClientNotificationsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe( result => {
         this.notifications[index].status = 'read'
+    });
+  }
+
+  //Put bookmark on notification
+  putBookmark(index:number){
+    if(this.notifications[index].favorite){
+      this.notifications[index].favorite = false;
+    } else {
+      this.notifications[index].favorite = true;
+    }
+  }
+
+  //change notification status
+  changeStatus(option:string){
+    this.allchecked.forEach((row) => {
+      if ( row.status == 'read')
     });
   }
 }
