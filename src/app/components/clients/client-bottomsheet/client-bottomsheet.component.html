@@ -1,0 +1,9 @@
+<mat-nav-list>
+  <a mat-list-item (click)="execAction($event)">
+    <span mat-line>{{data.content}}</span>
+    <span style="display: inline-flex; line-height: 25px;">
+      <mat-icon style="margin-right: 15px;">undo</mat-icon>
+      {{data.button}}
+    </span>
+  </a>
+</mat-nav-list>

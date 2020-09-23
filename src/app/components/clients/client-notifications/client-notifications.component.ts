@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { MatCheckbox, MatCheckboxChange } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientDialogComponent } from '../client-dialog/client-dialog.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
+import { ClientBottomsheetComponent } from '../client-bottomsheet/client-bottomsheet.component';
 
 @Component({
   selector: 'app-client-notifications',
@@ -28,7 +30,7 @@ export class ClientNotificationsComponent implements OnInit {
     {tittle: 'Ya puede recoger su vehículo de placa 456-YT8', content:'Escena el oh el cuenta cruzar. Cogio la negra ukase mucho llamo bajos si. Gozaba era dia una delito decida. Comenzaba recordaba se gentilica despierta izquierda sensibles es.', date:'20/05/2020 18:43', status:'unread', favorite:false}
   ];
 
-  constructor(private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, private _bottomSheet: MatBottomSheet) { }
 
   ngOnInit(): void {
     this.notifications = this.clientNotifications;
@@ -55,14 +57,13 @@ export class ClientNotificationsComponent implements OnInit {
           this.showUnreadBtn = true;
           this.showReadBtn = true;
         }
-        this.showDeleteBtn = true;
+      this.showDeleteBtn = true;
     } else {
        this.allchecked.length = 0 ;
        this.showReadBtn = false;
        this.showUnreadBtn = false;
        this.showDeleteBtn = false;
     }
-
   }
 
   exists(item:any) {
@@ -167,8 +168,66 @@ export class ClientNotificationsComponent implements OnInit {
 
   //change notification status
   changeStatus(option:string){
-    this.allchecked.forEach((row) => {
-      if ( row.status == 'read')
+    this.allchecked.forEach((row, index) => {
+      if ( row.status == 'read' && option == 'unread' ){
+        if (row.id){
+          this.notifications[row.id].status = 'unread';
+        } else {
+          this.notifications[index].status = 'unread';
+        }
+      }
+
+      if ( row.status == 'unread' && option == 'read' ){
+        if (row.id){
+          this.notifications[row.id].status = 'read';
+        } else {
+          this.notifications[index].status = 'read';
+        }
+      }
+    });
+    this.toggleAll(false);
+    this.allCheckbox.checked = false;
+  }
+
+  //Remove notification
+  removeNotification(){
+    let storedRows = [];
+    if(this.allchecked[0].id){
+      this.allchecked.forEach((row) => {
+        storedRows.push(this.notifications[row.id]);
+      });
+    } else {
+      storedRows = this.allchecked;
+    }
+
+    let reverseChecked = [];
+    if(this.allchecked.length != 1){
+      this.allchecked[0].id < this.allchecked[1].id ? reverseChecked = this.allchecked.reverse() : reverseChecked = this.allchecked;
+    } else {
+      reverseChecked = this.allchecked;
+    }
+    reverseChecked.forEach((row) => {
+      this.notifications.splice(row.id, 1);
+    });
+
+    let sheetContent: string;
+    this.allchecked.length == 1 ? sheetContent = 'Se elimino la notificaión' : sheetContent = 'Se eliminaron las notificaiones';
+
+    const bottomSheetRef = this._bottomSheet.open(ClientBottomsheetComponent, {
+      data: {content: sheetContent, button: 'DESHACER'}
+    });
+
+    bottomSheetRef.afterDismissed().subscribe(result => {
+      if(result.data){
+        this.allchecked.forEach((row, index) => {
+          this.notifications.splice(row.id, 0, storedRows[index]);
+        });
+      } else {
+        return null;
+      }
+      this.toggleAll(false);
+      this.allCheckbox.checked = false;
+      this.allchecked.length = 0 ;
     });
   }
 }

@@ -46,6 +46,7 @@ import { ClientDialogComponent } from './components/clients/client-dialog/client
 import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { ColorPickerComponent } from './components/color-picker/color-picker.component';
 import { VehiclesTypesComponent } from './components/vehicles-types/vehicles-types.component';
+import { ClientBottomsheetComponent } from './components/clients/client-bottomsheet/client-bottomsheet.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +82,8 @@ import { VehiclesTypesComponent } from './components/vehicles-types/vehicles-typ
     SidebarComponent,
     ClientDialogComponent,
     ColorPickerComponent,
-    VehiclesTypesComponent
+    VehiclesTypesComponent,
+    ClientBottomsheetComponent
   ],
   imports: [
     BrowserModule,
