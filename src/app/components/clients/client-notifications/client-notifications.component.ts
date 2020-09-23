@@ -192,7 +192,8 @@ export class ClientNotificationsComponent implements OnInit {
   //Remove notification
   removeNotification(){
     let storedRows = [];
-    if(this.allchecked[0].id){
+    console.log(this.allchecked)
+    if(this.allchecked[0].id != null){
       this.allchecked.forEach((row) => {
         storedRows.push(this.notifications[row.id]);
       });
@@ -217,17 +218,27 @@ export class ClientNotificationsComponent implements OnInit {
       data: {content: sheetContent, button: 'DESHACER'}
     });
 
+    this.showReadBtn = false;
+    this.showUnreadBtn = false;
+    this.showDeleteBtn = false;
+    reverseChecked.forEach((row) => {
+      this.exists(row)
+    });
+    this.allCheckbox.checked = false;
+
     bottomSheetRef.afterDismissed().subscribe(result => {
-      if(result.data){
-        this.allchecked.forEach((row, index) => {
-          this.notifications.splice(row.id, 0, storedRows[index]);
-        });
-      } else {
-        return null;
+      if(result){
+        if(result.data){
+          console.log(reverseChecked, storedRows)
+          if(this.allchecked[0].id != null){
+            reverseChecked.forEach((row, index) => {
+              this.notifications.splice(row.id, 0, storedRows[index]);
+            });
+          } else {
+            this.notifications = reverseChecked;
+          }
+        }
       }
-      this.toggleAll(false);
-      this.allCheckbox.checked = false;
-      this.allchecked.length = 0 ;
     });
   }
 }

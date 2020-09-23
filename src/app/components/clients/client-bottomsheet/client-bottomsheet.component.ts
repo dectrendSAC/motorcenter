@@ -12,7 +12,7 @@ export class ClientBottomsheetComponent implements OnInit {
 
   ngOnInit(): void {
     setTimeout(() => {
-      this._bottomSheetRef.dismiss();
+      this._bottomSheetRef.dismiss({data:false});
     }, 3500);
   }
 
