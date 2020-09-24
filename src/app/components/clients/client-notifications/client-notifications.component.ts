@@ -66,8 +66,12 @@ export class ClientNotificationsComponent implements OnInit {
     }
   }
 
-  exists(item:any) {
-    return this.allchecked.indexOf(item) > -1;
+  exists(item:any, origin: boolean) {
+    if (origin){
+      return this.allchecked.indexOf(item) > -1;
+    } else {
+      return false;
+    }
   };
 
   //Show only read notifications
@@ -191,7 +195,6 @@ export class ClientNotificationsComponent implements OnInit {
   //Remove notification
   removeNotification(){
     let storedRows = [];
-    console.log(this.allchecked)
     if(this.allchecked[0].id != null){
       this.allchecked.forEach((row) => {
         storedRows.push(this.notifications[row.id]);
@@ -221,7 +224,7 @@ export class ClientNotificationsComponent implements OnInit {
     this.showUnreadBtn = false;
     this.showDeleteBtn = false;
     reverseChecked.forEach((row) => {
-      this.exists(row)
+      this.exists(row, false);
     });
     this.allCheckbox.checked = false;
 
@@ -235,6 +238,7 @@ export class ClientNotificationsComponent implements OnInit {
           } else {
             this.notifications = reverseChecked;
           }
+          this.toggleAll(false);
         }
       }
     });

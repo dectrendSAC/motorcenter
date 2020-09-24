@@ -38,7 +38,7 @@
     <div class="notification" [class.last]="last">
       <div [className]="notification.status == 'read'? 'overlap read' : 'overlap unread'" (click)="showNotification(i)"></div>
       <div class="notifChk inline">
-        <mat-checkbox color="primary" [checked]="exists(notification)" (change)="ShowActionBtn(i,$event)"></mat-checkbox>
+        <mat-checkbox color="primary" [checked]="exists(notification, true)" (change)="ShowActionBtn(i,$event)"></mat-checkbox>
       </div>
       <div class="notifContent inline" [class.disabled]="notification.status == 'read'">
         <p><b>{{notification.tittle}}</b></p>
