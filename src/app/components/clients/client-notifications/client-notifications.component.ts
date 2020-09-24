@@ -67,7 +67,6 @@ export class ClientNotificationsComponent implements OnInit {
   }
 
   exists(item:any) {
-    //Show actions buttons
     return this.allchecked.indexOf(item) > -1;
   };
 
@@ -229,7 +228,6 @@ export class ClientNotificationsComponent implements OnInit {
     bottomSheetRef.afterDismissed().subscribe(result => {
       if(result){
         if(result.data){
-          console.log(reverseChecked, storedRows)
           if(this.allchecked[0].id != null){
             reverseChecked.forEach((row, index) => {
               this.notifications.splice(row.id, 0, storedRows[index]);
