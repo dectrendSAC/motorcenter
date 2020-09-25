@@ -1,4 +1,4 @@
-<mat-toolbar id="notifyHeader">
+<mat-toolbar id="notifyHeader" *ngIf="!noNotifications">
   <mat-checkbox #allCheckbox color="primary" class="headerActions" (change)="$event ? toggleAll($event.checked) : null"></mat-checkbox>
   <button mat-raised-button class="dropBtn" color="primary" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" (click)="showAll()">
     <mat-icon *ngIf="notifyFilterText != 'FILTRO'">{{notifyFilterIcon}}</mat-icon>
@@ -34,25 +34,31 @@
   </button>
 </mat-toolbar>
 <mat-card id="clientNotfications">
-  <mat-card-content #notify *ngFor="let notification of notifications; let last = last; let i = index" [className] = "notification.favorite ? notification.status == 'read' ? 'read' : 'unread favorite' : 'unread'">
-    <div class="notification" [class.last]="last">
-      <div [className]="notification.status == 'read'? 'overlap read' : 'overlap unread'" (click)="showNotification(i)"></div>
-      <div class="notifChk inline">
-        <mat-checkbox color="primary" [checked]="exists(notification, true)" (change)="ShowActionBtn(i,$event)"></mat-checkbox>
+  <div *ngIf="!noNotifications">
+    <mat-card-content #notify *ngFor="let notification of notifications; let last = last; let i = index" [className] = "notification.favorite ? notification.status == 'read' ? 'read' : 'unread favorite' : 'unread'">
+      <div class="notification" [class.last]="last">
+        <div [className]="notification.status == 'read'? 'overlap read' : 'overlap unread'" (click)="showNotification(i)"></div>
+        <div class="notifChk inline">
+          <mat-checkbox color="primary" [checked]="exists(notification, true)" (change)="ShowActionBtn(i,$event)"></mat-checkbox>
+        </div>
+        <div class="notifContent inline" [class.disabled]="notification.status == 'read'">
+          <p><b>{{notification.tittle}}</b></p>
+          <p>{{notification.content}}</p>
+          <p>{{notification.date}}</p>
+        </div>
+        <div class="notifBtns inline">
+          <button mat-icon-button *ngIf="notification.status == 'unread'" class="optionBtn" aria-label="Más información">
+            <mat-icon>read_more</mat-icon>
+          </button>
+          <button mat-icon-button class="optionBtn" [class.favorite]="notification.favorite" aria-label="Colocar marcador" (click)="putBookmark(i)">
+            <mat-icon>{{notification.favorite ? 'bookmark' : 'bookmark_border'}}</mat-icon>
+          </button>
+        </div>
       </div>
-      <div class="notifContent inline" [class.disabled]="notification.status == 'read'">
-        <p><b>{{notification.tittle}}</b></p>
-        <p>{{notification.content}}</p>
-        <p>{{notification.date}}</p>
-      </div>
-      <div class="notifBtns inline">
-        <button mat-icon-button *ngIf="notification.status == 'unread'" class="optionBtn" aria-label="Más información">
-          <mat-icon>read_more</mat-icon>
-        </button>
-        <button mat-icon-button class="optionBtn" [class.favorite]="notification.favorite" aria-label="Colocar marcador" (click)="putBookmark(i)">
-          <mat-icon>{{notification.favorite ? 'bookmark' : 'bookmark_border'}}</mat-icon>
-        </button>
-      </div>
-    </div>
-  </mat-card-content>
+    </mat-card-content>
+  </div>
+  <ng-template *ngIf="noNotifications">
+    <div class="noRecordsImage"></div>
+    <p class="infoText index2">Nada que ver por aquí</p>
+  </ng-template>
 </mat-card>

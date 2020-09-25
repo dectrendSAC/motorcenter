@@ -13,6 +13,7 @@ import { ClientBottomsheetComponent } from '../client-bottomsheet/client-bottoms
 })
 
 export class ClientNotificationsComponent implements OnInit {
+  noNotifications: boolean = false;
   notifications = [];
   allchecked = [];
   notifyFilterIcon: string = '';
@@ -33,7 +34,11 @@ export class ClientNotificationsComponent implements OnInit {
   constructor(private dialog: MatDialog, private _bottomSheet: MatBottomSheet) { }
 
   ngOnInit(): void {
-    this.notifications = this.clientNotifications;
+    if( this.clientNotifications.length > 0) {
+      this.notifications = this.clientNotifications;
+    } else {
+      this.noNotifications = true;
+    }
   }
 
   //select all checkboxes method
@@ -203,6 +208,7 @@ export class ClientNotificationsComponent implements OnInit {
       });
     } else {
       storedRows = this.allchecked;
+      reverseChecked = this.allchecked;
     }
 
     if(this.allchecked.length != 1){
@@ -210,7 +216,7 @@ export class ClientNotificationsComponent implements OnInit {
         reverseChecked.reverse();
       }
     }
-
+    console.log(reverseChecked)
     reverseChecked.forEach((row) => {
       this.notifications.splice(row.id, 1);
     });
