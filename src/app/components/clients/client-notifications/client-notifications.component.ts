@@ -125,7 +125,7 @@ export class ClientNotificationsComponent implements OnInit {
       }
       this.showDeleteBtn = true;
       if(this.allchecked.findIndex(x => x.id==index) === -1){
-        this.allchecked.push({'id': index, 'status': this.clientNotifications[index].status});
+        this.allchecked.push({'id': index, 'status': this.notifications[index].status});
       }
     } else {
       let checkstatus = [];
@@ -195,20 +195,22 @@ export class ClientNotificationsComponent implements OnInit {
   //Remove notification
   removeNotification(){
     let storedRows = [];
+    let reverseChecked = [];
     if(this.allchecked[0].id != null){
       this.allchecked.forEach((row) => {
+        reverseChecked.push(row);
         storedRows.push(this.notifications[row.id]);
       });
     } else {
       storedRows = this.allchecked;
     }
 
-    let reverseChecked = [];
     if(this.allchecked.length != 1){
-      this.allchecked[0].id < this.allchecked[1].id ? reverseChecked = this.allchecked.reverse() : reverseChecked = this.allchecked;
-    } else {
-      reverseChecked = this.allchecked;
+      if(this.allchecked[0].id < this.allchecked[1].id) {
+        reverseChecked.reverse();
+      }
     }
+
     reverseChecked.forEach((row) => {
       this.notifications.splice(row.id, 1);
     });
@@ -232,7 +234,8 @@ export class ClientNotificationsComponent implements OnInit {
       if(result){
         if(result.data){
           if(this.allchecked[0].id != null){
-            reverseChecked.forEach((row, index) => {
+            console.log(this.allchecked, reverseChecked, storedRows)
+            this.allchecked.forEach((row, index) => {
               this.notifications.splice(row.id, 0, storedRows[index]);
             });
           } else {
