@@ -25,6 +25,14 @@ $waiting:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns
 
   #clientNotfications{
     max-height: 80%;
+
+    .noNotifications{
+      padding-top: 35%;
+    }
+
+    .infoText{
+      font-size: 20pt;
+    }
   }
 }
 
@@ -36,6 +44,14 @@ $waiting:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns
 
   #clientNotfications{
     max-height: 85%;
+
+    .noNotifications{
+      padding-top: 40%;
+    }
+
+    .infoText{
+      font-size: 25pt;
+    }
   }
 }
 
@@ -223,7 +239,6 @@ $waiting:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns
   .noNotifications{
     position: relative;
     width: 100%;
-    padding-top: 40%;
     z-index: 2;
     background: url("data:image/svg+xml, #{$waiting}") left center/100% 100% no-repeat !important;
   }
@@ -233,7 +248,6 @@ $waiting:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns
     line-height: 1.1em;
     font-weight: bold;
     color: #CA181F;
-    font-size: 25pt;
     text-align: center;
   }
 }
