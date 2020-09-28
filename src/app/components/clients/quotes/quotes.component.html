@@ -1,1 +1,56 @@
-<p>quotes works!</p>
+<div id="clientQuotes">
+  <form>
+    <div class="formContainer" [formArrayName]="'formArrayName'">
+      <mat-card class="quoteCard" *ngFor="let quote of clientQuotes; let i = index">
+        <mat-card-header>
+          <mat-card-title>{{quote.vehicleName}}</mat-card-title>
+          <button mat-icon-button aria-label="Descargar cotización">
+            <mat-icon>cloud_download</mat-icon>
+          </button>
+          <button mat-icon-button id="{{'saveIconBtn-' + i}}" aria-label="Guardar información" class="save" *ngIf="vehicleIndex === i? displaySaveBtn : false" (click)="saveEditedVehicle(i)">
+            <mat-icon>save</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Editar información" (click)="enableEditing(i)">
+            <mat-icon>{{vehicleIndex === i? formVehicleButton : 'edit'}}</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-card-content>
+          <div [formGroupName]="i">
+            <mat-form-field>
+              <mat-label>Ejecutivo a cargo</mat-label>
+              <mat-icon matTooltip="Más información sobre el kilometraje" matTooltipPosition="after" aria-label="Más información sobre el kilometraje" (click)="moreInfo()">info</mat-icon>
+              <input matInput placeholder="Nombre del ejecutivo comercial" value="{{quote.executive}}" readonly>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Precio de separación</mat-label>
+              <mat-icon matTooltip="Más información sobre el kilometraje" matTooltipPosition="after" aria-label="Más información sobre el kilometraje" (click)="moreInfo()">info</mat-icon>
+              <input matInput placeholder="Precio de separación" value="{{quote.vehiclePrice}}" readonly>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Versión</mat-label>
+              <input matInput placeholder="Año de fabricación" value="{{quote.vehicleVersion}}" readonly>
+            </mat-form-field>
+            <app-color-picker *ngIf="vehicleIndex === i? showColorPalette : false" class="cdk-overlay-container" [position]="colorPickerPosition" [color]="colorDetails" (colorData)="setColor($event, i)" (close)="closeColorPicker($event)"></app-color-picker>
+            <mat-form-field class="color" floatLabel="always">
+              <mat-label>Color</mat-label>
+              <button mat-icon-button aria-label="Mostrar selección de color" (click)="openColorPicker(i)" [disabled]="vehicleIndex === i? enableReadonly : true">
+                <mat-icon>palette</mat-icon>
+              </button>
+              <input matInput id="{{'colorPickerInput-' + i}}" formControlName="colorFormControl" placeholder="Color del vehículo" (click)="openColorPicker(i)" readonly>
+            </mat-form-field>
+          </div>
+          <div class="vehicleExtras">
+            <div class="vehiclePic">
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-stroked-button class="storyBtn">
+            <div class="bg-gradient"></div>
+            <span>HISTORIAL</span>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </form>
+</div>

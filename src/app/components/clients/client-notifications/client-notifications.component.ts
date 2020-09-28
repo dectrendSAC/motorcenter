@@ -235,6 +235,7 @@ export class ClientNotificationsComponent implements OnInit {
       this.exists(row, false);
     });
     this.allCheckbox.checked = false;
+    this.noNotifications = true;
 
     bottomSheetRef.afterDismissed().subscribe(result => {
       if(result){
@@ -248,6 +249,7 @@ export class ClientNotificationsComponent implements OnInit {
             this.notifications = reverseChecked;
           }
           this.toggleAll(false);
+          this.noNotifications = false;
         }
       }
     });

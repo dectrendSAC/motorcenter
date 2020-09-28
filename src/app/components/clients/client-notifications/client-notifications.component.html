@@ -57,8 +57,8 @@
       </div>
     </mat-card-content>
   </div>
-  <ng-template *ngIf="noNotifications">
-    <div class="noRecordsImage"></div>
-    <p class="infoText index2">Nada que ver por aquí</p>
-  </ng-template>
+  <div *ngIf="noNotifications">
+    <div class="noNotifications"></div>
+    <p class="infoText">Nada que ver por aquí</p>
+  </div>
 </mat-card>
