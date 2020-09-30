@@ -7,7 +7,7 @@
           <button mat-icon-button aria-label="Descargar cotización">
             <mat-icon>cloud_download</mat-icon>
           </button>
-          <button mat-icon-button id="{{'saveIconBtn-' + i}}" aria-label="Guardar información" class="save" *ngIf="vehicleIndex === i? displaySaveBtn : false" (click)="saveEditedVehicle(i)">
+          <button mat-icon-button id="{{'saveIconBtn-' + i}}" aria-label="Guardar información" class="save" *ngIf="vehicleIndex === i? displaySaveBtn : false" (click)="saveEditedQuote(i)">
             <mat-icon>save</mat-icon>
           </button>
           <button mat-icon-button aria-label="Editar información" (click)="enableEditing(i)">
