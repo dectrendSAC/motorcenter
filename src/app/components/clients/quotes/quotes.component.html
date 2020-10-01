@@ -1,5 +1,5 @@
 <div id="clientQuotes">
-  <form>
+  <form [formGroup]="QuoteFormGroup">
     <div class="formContainer" [formArrayName]="'formArrayName'">
       <mat-card class="quoteCard" *ngFor="let quote of clientQuotes; let i = index">
         <mat-card-header>

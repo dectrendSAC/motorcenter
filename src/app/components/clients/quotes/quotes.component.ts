@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray, AbstractControl } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ClientDialogComponent } from '../client-dialog/client-dialog.component';
+import { merge } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+let count = 0, color: string, index:number;
 
 @Component({
   selector: 'app-quotes',
@@ -9,12 +13,15 @@ import { ClientDialogComponent } from '../client-dialog/client-dialog.component'
   styleUrls: ['./quotes.component.scss']
 })
 export class QuotesComponent implements OnInit {
+  QuoteFormGroup: FormGroup;
+  controlArray: FormArray;
   vehicleIndex: number;
   displaySaveBtn: boolean = false;
   formVehicleButton: string = 'edit';
   showColorPalette: boolean = false;
   colorDetails: any;
   colorPickerPosition: any;
+  colorHex: string;
   enableReadonly: any;
 
   clientQuotes = [
@@ -23,7 +30,50 @@ export class QuotesComponent implements OnInit {
     {vehicleName: 'Hyundai Atos', vehicleVersion:'sedan', vehicleColorCode:'#212121', vehicleColorName:'Negro', vehiclePrice:50000, vehicleInitialPrice:50000, executive: 'asdasdasd' }
   ];
 
-  constructor(private _formBuilder: FormBuilder, private dialog: MatDialog) { }
+  constructor(private _formBuilder: FormBuilder, private dialog: MatDialog) {
+    //Form array
+    this.QuoteFormGroup = new FormGroup({
+      formArrayName: this._formBuilder.array([])
+    })
+
+    this.buildForm();
+
+    //Detect form inputs changes
+    merge(...this.controlArray.controls.map((control: AbstractControl, index: number) =>
+        control.valueChanges.pipe(map(value => ({ rowIndex: index, value })))))
+      .subscribe(changes => {
+        var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
+
+        var formGroup = {};
+        Object.keys(this.controlArray.controls[changes.rowIndex].value).forEach(key => {
+          formGroup[key] = this.controlArray.controls[changes.rowIndex].get(key).value
+        })
+
+        if (formValues){
+          if(JSON.stringify(formGroup) === JSON.stringify(formValues)){
+            this.displaySaveBtn = false;
+            this.formVehicleButton = 'undo';
+          } else {
+            this.formVehicleButton = 'restore';
+            this.displaySaveBtn = true;
+          }
+        }
+      });
+  }
+
+  buildForm(){
+    this.controlArray = this.QuoteFormGroup.get('formArrayName') as FormArray;
+
+    Object.keys(this.clientQuotes).forEach((i) => {
+      this.controlArray.push(
+        this._formBuilder.group({
+          kmFormControl: [{value: this.clientQuotes[i].km, disabled: false}, [Validators.required]],
+          colorFormControl: [{value: this.clientQuotes[i].colorName, disabled: false}, [Validators.required]]
+        })
+      )
+    })
+  }
+
 
   ngOnInit(): void {
   }
@@ -34,7 +84,7 @@ export class QuotesComponent implements OnInit {
     if (count == 0){
       let items = {'kmFormControl':this.controlArray.controls[i].get('kmFormControl').value, 'colorFormControl':this.controlArray.controls[i].get('colorFormControl').value};
       sessionStorage.setItem("VehicleForm", JSON.stringify(items));
-      this.colorHex = this.clientVehicles[i].colorCode;
+      this.colorHex = this.clientQuotes[i].vehicleColorCode;
       color = this.colorHex;
       index = i;
     }
@@ -87,16 +137,8 @@ export class QuotesComponent implements OnInit {
 
   //Save vehicle info
   saveEditedQuote(i: any){
-    this.vehicleIndex = i;
-    let formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
-    if(this.controlArray.controls[i].get('colorFormControl').value !== formValues.colorFormControl){
-      this.dialogContent = 'No olvide registrar el cambio en la SUNARP para que podamos validarlo';
-    } else {
-      this.dialogContent = 'Esta decisión no se puede modificar luego';
-    }
-
     const dialogRef = this.dialog.open(ClientDialogComponent, {
-      data: {tittle: '¿Seguro que desea guardar los cambios?', format:'simple', content: this.dialogContent}
+      data: {tittle: '¿Seguro que desea guardar los cambios?', format:'simple', content: 'Esta decisión no se puede modificar luego'}
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result.data){
