@@ -10,18 +10,18 @@
           <button mat-icon-button id="{{'saveIconBtn-' + i}}" aria-label="Guardar información" class="save" *ngIf="vehicleIndex === i? displaySaveBtn : false" (click)="saveEditedQuote(i)">
             <mat-icon>save</mat-icon>
           </button>
-          <button mat-icon-button aria-label="Editar información" (click)="enableEditing(i)">
+          <button mat-icon-button aria-label="Editar información" class="edit" (click)="enableEditing(i)">
             <mat-icon>{{vehicleIndex === i? formVehicleButton : 'edit'}}</mat-icon>
           </button>
         </mat-card-header>
         <mat-card-content>
           <div [formGroupName]="i">
-            <mat-form-field>
+            <mat-form-field class="info executive">
               <mat-label>Ejecutivo a cargo</mat-label>
-              <mat-icon matTooltip="Más información sobre el kilometraje" matTooltipPosition="after" aria-label="Más información sobre el kilometraje" (click)="moreInfo()">info</mat-icon>
+              <mat-icon matTooltip="Más información sobre el kilometraje" matTooltipPosition="after" aria-label="Más información sobre el kilometraje" (click)="moreInfo()">person_search</mat-icon>
               <input matInput placeholder="Nombre del ejecutivo comercial" value="{{quote.executive}}" readonly>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field class="info price">
               <mat-label>Precio de separación</mat-label>
               <mat-icon matTooltip="Más información sobre el kilometraje" matTooltipPosition="after" aria-label="Más información sobre el kilometraje" (click)="moreInfo()">info</mat-icon>
               <input matInput placeholder="Precio de separación" value="{{quote.vehiclePrice}}" readonly>

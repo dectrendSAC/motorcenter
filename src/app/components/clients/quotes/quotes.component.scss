@@ -27,6 +27,10 @@
               transform: scale(1.3);
 
               &.save{
+                right: 120px;
+              }
+
+              &.edit{
                 right: 75px;
               }
             }
@@ -55,7 +59,7 @@
                 }
               }
 
-              &.km{
+              &.info{
                 mat-icon{
                   left: 75px;
                   top: -20px;
@@ -80,6 +84,10 @@
               transform: scale(1.5);
 
               &.save{
+                right: 150px;
+              }
+
+              &.edit{
                 right: 90px;
               }
             }
@@ -106,10 +114,19 @@
                 }
               }
 
-              &.km{
-                mat-icon{
-                  left: 100px;
-                  top: -22px;
+              &.info{
+                &.executive{
+                  mat-icon{
+                    left: 145px;
+                    top: -22px;
+                  }
+                }
+
+                &.price{
+                  mat-icon{
+                    left: 178px;
+                    top: -22px;
+                  }
                 }
               }
           }
@@ -208,7 +225,7 @@
                   }
                 }
 
-                &.km{
+                &.info{
                   ::ng-deep .mat-form-field-wrapper{
                     padding-bottom: 1em;
                   }
