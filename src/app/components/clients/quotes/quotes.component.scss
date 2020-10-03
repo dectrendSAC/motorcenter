@@ -226,13 +226,21 @@
                 }
 
                 &.info{
-                  ::ng-deep .mat-form-field-wrapper{
-                    padding-bottom: 1em;
-                  }
-
                   mat-icon{
                     position: absolute;
                     cursor: pointer;
+                  }
+                }
+
+                &.version{
+                  width: 25%;
+                }
+
+                mat-select{
+                  &.readonly{
+                    ::ng-deep .mat-select-value{
+                      color: black;
+                    }
                   }
                 }
             }

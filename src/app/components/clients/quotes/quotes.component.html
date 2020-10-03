@@ -26,9 +26,11 @@
               <mat-icon matTooltip="Más información sobre el kilometraje" matTooltipPosition="after" aria-label="Más información sobre el kilometraje" (click)="moreInfo()">info</mat-icon>
               <input matInput placeholder="Precio de separación" value="{{quote.vehiclePrice}}" readonly>
             </mat-form-field>
-            <mat-form-field>
+            <mat-form-field class="version" floatLabel="always">
               <mat-label>Versión</mat-label>
-              <input matInput placeholder="Año de fabricación" value="{{quote.vehicleVersion}}" readonly>
+              <mat-select formControlName="versionFormControl" class="readonly">
+                <mat-option [value]="version.selected ? 'default' : version.description" *ngFor="let version of quote.vehicleVersions; let i = index">{{version.description}}</mat-option>
+              </mat-select>
             </mat-form-field>
             <app-color-picker *ngIf="vehicleIndex === i? showColorPalette : false" class="cdk-overlay-container" [position]="colorPickerPosition" [color]="colorDetails" (colorData)="setColor($event, i)" (close)="closeColorPicker($event)"></app-color-picker>
             <mat-form-field class="color" floatLabel="always">
