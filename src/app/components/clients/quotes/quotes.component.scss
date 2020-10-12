@@ -60,10 +60,18 @@
               }
 
               &.info{
-                mat-icon{
-                  left: 75px;
-                  top: -20px;
-                  transform: scale(0.9);
+                &.executive{
+                  mat-icon{
+                    left: 115px;
+                    top: -22px;
+                  }
+                }
+
+                &.price{
+                  mat-icon{
+                    left: 140px;
+                    top: -22px;
+                  }
                 }
               }
           }
