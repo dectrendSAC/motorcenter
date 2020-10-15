@@ -47,9 +47,17 @@
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-stroked-button class="storyBtn">
+          <button mat-stroked-button *ngIf="!quoteStatus" class="cancelBtn">
             <div class="bg-gradient"></div>
-            <span>HISTORIAL</span>
+            <span>CANCELAR</span>
+          </button>
+          <button mat-raised-button *ngIf="!quoteStatus" color="primary" class="acceptBtn" disabled>
+            <div class="bg-gradient"></div>
+            <span>SEPARAR</span>
+          </button>
+          <button *ngIf="quoteStatus" color="primary" class="cancelBtn" mat-raised-button class="storyBtn">
+            <div class="bg-gradient"></div>
+            <span>VER ESTADO DE COMPRA</span>
           </button>
         </mat-card-actions>
       </mat-card>
