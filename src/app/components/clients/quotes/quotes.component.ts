@@ -175,10 +175,15 @@ export class QuotesComponent implements OnInit {
     this.showColorPalette = !status;
   }
 
-  //Show km information
-  moreInfo(){
+  //Show seller information
+  sellerInfo(){
     const dialogRef = this.dialog.open(ClientDialogComponent, {
       data: {tittle: '', description:'kilometraje', format:'simple', content: ['Mantenga actualizado el kilometraje de su vehículo', 'Puede obtener mantenimientos con descuento, Motor puntos y más', '¡QUÉ ESPERA, ACTUALICE YA!'], info: true}
     });
+  }
+
+  //show price information
+  priceInfo(){
+
   }
 }
