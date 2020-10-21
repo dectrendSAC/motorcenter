@@ -29,7 +29,7 @@ export class ClientDialogComponent implements OnInit {
       this.step = 0;
     },250);
 
-    if (this.data.format == 'accordion'){
+    if (this.data.format.indexOf('accordion') !== -1){
       this.records = this.data.content;
 
       //Format record dates

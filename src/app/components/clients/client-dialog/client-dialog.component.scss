@@ -382,8 +382,17 @@ $offer2:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%
     box-shadow: none;
     border-bottom: 1px solid #EFEFEF;
 
-    mat-panel-title{
+    .accordion1{
       width: 80px;
+      flex-grow: unset;
+    }
+
+    .accordion2{
+      width: 100%;
+      margin-right: 0px;
+      display: initial;
+      text-align: center;
+      font-size: 20px;
       flex-grow: unset;
     }
 

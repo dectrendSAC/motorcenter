@@ -201,7 +201,7 @@ export class ClientVehiclesComponent implements OnInit {
     this.dialogContent = this.clientVehicles[i].records
 
     const dialogRef = this.dialog.open(ClientDialogComponent, {
-      data: {tittle: 'Historial del vehículo', format:'accordion', content: this.dialogContent}
+      data: {tittle: 'Historial del vehículo', format:'accordion1', content: this.dialogContent}
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result){

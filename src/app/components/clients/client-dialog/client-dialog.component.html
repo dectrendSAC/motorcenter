@@ -30,11 +30,11 @@
       <p [className]="'infoText index'+i" *ngFor="let content of data.content; let i = index">{{data.content[i]}}</p>
     </ng-template>
   </div>
-  <div *ngSwitchCase="'accordion'">
+  <div *ngSwitchCase="'accordion1'">
     <mat-accordion [multi]="true" #accordion="matAccordion" *ngIf="records else norecords">
       <mat-expansion-panel *ngFor="let record of records; let first = first; let last = last; let i = index" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
         <mat-expansion-panel-header>
-          <mat-panel-title>
+          <mat-panel-title class="accordion1">
             {{record.area}}
           </mat-panel-title>
           <mat-panel-description>
@@ -55,9 +55,26 @@
       <p class="infoText index2">Nada que ver por aquí</p>
     </ng-template>
   </div>
+  <div *ngSwitchCase="'accordion2'">
+    <mat-accordion [multi]="true" #accordion="matAccordion" *ngIf="records else norecords">
+      <mat-expansion-panel *ngFor="let record of records; let first = first; let last = last; let i = index" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="accordion2">
+            {{record.name}}
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p><b>Correo electrónico:</b>&nbsp;&nbsp;{{record.email}}</p>
+        <p><b>Celular:</b>&nbsp;&nbsp;{{record.phone}}</p>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <ng-template #norecords>
+      <div class="noRecordsImage"></div>
+      <p class="infoText index2">Nada que ver por aquí</p>
+    </ng-template>
+  </div>
 </div>
 <div mat-dialog-actions *ngIf="!data.info">
-  <button mat-raised-button color="primary" *ngIf="!notificationSection" (click)="restoreChanges()" cdkFocusInitial>{{data.format === 'simple' ? 'SI' : 'REVISAR'}}</button>
-  <button mat-stroked-button color="primary" *ngIf="!notificationSection" (click)="closeDialog()">{{data.format === 'simple' ? 'NO' : 'SALIR'}}</button>
+  <button mat-raised-button color="primary" *ngIf="!notificationSection" (click)="restoreChanges()" cdkFocusInitial>{{data.format === 'simple' ? 'SI' : data.format === 'accordion1' ? 'REVISAR' : 'CONTACTAR'}}</button>
+  <button mat-stroked-button color="primary" *ngIf="!notificationSection" (click)="closeDialog()">{{data.format === 'simple' ? 'NO' : 'CERRAR'}}</button>
   <button mat-raised-button color="primary" *ngIf="notificationSection" (click)="closeDialog()">ENTIENDO</button>
 </div>

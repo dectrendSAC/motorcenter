@@ -18,8 +18,8 @@
           <div [formGroupName]="i">
             <mat-form-field class="info executive">
               <mat-label>Ejecutivo a cargo</mat-label>
-              <mat-icon matTooltip="Más información sobre el kilometraje" matTooltipPosition="after" aria-label="Información del ejecutivo de ventas" (click)="sellerInfo()">person_search</mat-icon>
-              <input matInput placeholder="Nombre del ejecutivo comercial" value="{{quote.executive}}" readonly>
+              <mat-icon matTooltip="Más información sobre el kilometraje" matTooltipPosition="after" aria-label="Información del ejecutivo de ventas" (click)="sellerInfo(i)">person_search</mat-icon>
+              <input matInput placeholder="Nombre del ejecutivo comercial" value="{{quote.quoteExecutive[0].name}}" readonly>
             </mat-form-field>
             <mat-form-field class="info price">
               <mat-label>Precio de separación</mat-label>
