@@ -192,7 +192,7 @@ export class QuotesComponent implements OnInit {
   //show price information
   priceInfo(){
     this.dialog.open(ClientDialogComponent, {
-      data: {tittle: '', description:'kilometraje', format:'simple', content: ['Mantenga actualizado el kilometraje de su vehículo', 'Puede obtener mantenimientos con descuento, Motor puntos y más', '¡QUÉ ESPERA, ACTUALICE YA!'], info: true}
+      data: {tittle: '', description:'precio', format:'simple', content: ['Separa tu vehículo sin intereses o paga la totalidad del vehículo', 'Recuerda que ofrecemos las mejores opciones de financiamiento de acuerdo a tu perfil', 'NO OLVIDE CONTACTAR A SU EJECUTIVO DE VENTAS'], info: true}
     });
   }
 }
