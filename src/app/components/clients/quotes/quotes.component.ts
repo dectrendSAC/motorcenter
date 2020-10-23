@@ -192,7 +192,7 @@ export class QuotesComponent implements OnInit {
   //show price information
   priceInfo(){
     this.dialog.open(ClientDialogComponent, {
-      data: {tittle: '', description:'precio', format:'simple', content: ['Separa tu vehículo sin intereses o paga la totalidad del vehículo', 'Recuerda que ofrecemos las mejores opciones de financiamiento de acuerdo a tu perfil', 'NO OLVIDE CONTACTAR A SU EJECUTIVO DE VENTAS'], info: true}
+      data: {tittle: '', description:'precio', format:'simple', content: ['Separa tu vehículo con un inicial o la totalidad del precio sin intereses', 'Recuerda que ofrecemos las mejores opciones de financiamiento según tu perfil', ' NO OLVIDE CONTACTAR A SU EJECUTIVO DE VENTAS'], info: true}
     });
   }
 }

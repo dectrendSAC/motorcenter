@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { Router } from '@angular/router';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import * as _moment from 'moment';
 
 const moment = _moment;
+var slideIndex = 0;
 
 @Component({
   selector: 'app-client-dialog',
@@ -18,8 +19,10 @@ export class ClientDialogComponent implements OnInit {
   recordDates= [];
   notificationSection: boolean = false;
   step: number;
+  showStep: string;
 
   @ViewChild('accordion',{static:false}) Accordion: MatAccordion;
+  @ViewChildren('slides') private _slidesElements:  QueryList<ElementRef>;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>, private router: Router) { }
 
@@ -78,4 +81,16 @@ export class ClientDialogComponent implements OnInit {
     }
   }
 
+  //Price carousel
+  simplecarousel(){
+    this._slidesElements.forEach((element)=>{
+      const htmlElement = element.nativeElement as HTMLElement;
+      htmlElement.style.display = 'none';
+    });
+
+    slideIndex++;
+    if (slideIndex > this._slidesElements.length) {slideIndex = 1}
+    slides[slideIndex-1].style.display = "block";
+    setTimeout(this.simplecarousel, 2000); // Change image every 2 seconds
+  }
 }
