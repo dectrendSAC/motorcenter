@@ -22,7 +22,7 @@ export class ClientDialogComponent implements OnInit {
   showStep: string;
 
   @ViewChild('accordion',{static:false}) Accordion: MatAccordion;
-  @ViewChildren('slides') private _slidesElements:  QueryList<ElementRef>;
+  @ViewChildren('slide1, slide2, slide3', { read: ElementRef }) slidesElements:  QueryList<ElementRef>;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>, private router: Router) { }
 
@@ -48,6 +48,15 @@ export class ClientDialogComponent implements OnInit {
     //Check if notification screen is visible
     if (this.router.url.indexOf('/notificaciones') > -1) {
       this.notificationSection = true;
+    }
+  }
+
+  ngAfterViewInit() {
+    //Check if quotes screen is visible
+    if(this.router.url.indexOf('/cotizaciones') > -1) {
+      setInterval(() => {
+        this.simplecarousel();
+      }, 4000);
     }
   }
 
@@ -83,14 +92,18 @@ export class ClientDialogComponent implements OnInit {
 
   //Price carousel
   simplecarousel(){
-    this._slidesElements.forEach((element)=>{
+    this.slidesElements.forEach((element)=>{
       const htmlElement = element.nativeElement as HTMLElement;
       htmlElement.style.display = 'none';
     });
 
     slideIndex++;
-    if (slideIndex > this._slidesElements.length) {slideIndex = 1}
-    slides[slideIndex-1].style.display = "block";
-    setTimeout(this.simplecarousel, 2000); // Change image every 2 seconds
+    if (slideIndex > this.slidesElements.length) {slideIndex = 1}
+    this.slidesElements.forEach((element, index)=>{
+      const htmlElement = element.nativeElement as HTMLElement;
+      if (index == slideIndex-1){
+        htmlElement.style.display = "inline-flex";
+      }
+    });
   }
 }
