@@ -81,6 +81,10 @@ $step3:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3
         width: 80%;
         padding-top: 35%;
       }
+
+      .image{
+        width: 35%;
+      }
     }
 
     .infoText{
@@ -129,6 +133,24 @@ $step3:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3
       .priceImage{
         width: 100%;
         padding-top: 40%;
+
+        .step1Image{
+          margin-right: 5%;
+          margin-left: 5%;
+          width: 32%;
+        }
+
+        .step2Image{
+          margin-right: 10%;
+          margin-left: 5%;
+          width: 27%;
+        }
+
+        .step3Image{
+          margin-right: 10%;
+          margin-left: 5%;
+          width: 27%;
+        }
       }
     }
 
@@ -390,33 +412,22 @@ $step3:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3
         display: inline-flex;
       }
 
-      .step1Image{
+      .image{
         position: relative;
-        margin-right: 10%;
-        width: 35%;
         height: 100%;
         top: -7%;
         z-index: 3;
+      }
+
+      .step1Image{
         background: url("data:image/svg+xml, #{$step1}") left center/100% 100% no-repeat !important;
       }
 
       .step2Image{
-        position: relative;
-        margin-right: 10%;
-        width: 35%;
-        height: 100%;
-        top: -7%;
-        z-index: 3;
         background: url("data:image/svg+xml, #{$step2}") left center/100% 100% no-repeat !important;
       }
 
       .step3Image{
-        position: relative;
-        margin-right: 10%;
-        width: 35%;
-        height: 100%;
-        top: -7%;
-        z-index: 3;
         background: url("data:image/svg+xml, #{$step3}") left center/100% 100% no-repeat !important;
       }
     }
@@ -430,6 +441,10 @@ $step3:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3
       color: #1d66a8;
       width: 50%;
       height: 100%;
+    }
+
+    .rightSide{
+      text-align: right;
     }
   }
 

@@ -1,4 +1,4 @@
-<div *ngIf="data.info" class="closeBtn" mat-dialog-close></div>
+<div *ngIf="data.info" class="closeBtn" mat-dialog-close (click)="closeDialog()"></div>
 <h1 mat-dialog-title [class.no-record]="!records" [class.notify]="notificationSection">{{data.tittle}}&nbsp;</h1>
 <div mat-dialog-content [ngSwitch]="data.format">
   <div *ngSwitchCase="'simple'">
@@ -29,16 +29,16 @@
         <div class="price" *ngSwitchCase="'precio'">
           <div class="priceImage">
             <div #slide1 class="steps fade">
-              <div class="step1Image"></div>
-              <span>El asesor te detallará las versiones y colores disponibles del vehículo de tu elección</span>
+              <div class="image step1Image"></div>
+              <span><mat-icon>looks_one</mat-icon>  El asesor te detallará las versiones y colores disponibles del vehículo de tu elección</span>
             </div>
             <div #slide2 class="steps fade">
-              <div class="step2Image"></div>
-              <span>Si ya estas decidido, procede a separar tu vehículo con un solo click</span>
+              <span class="rightSide"><mat-icon>looks_two</mat-icon>  Si ya estas decidido, procede a separar tu vehículo con un solo click</span>
+              <div class="image step2Image"></div>
             </div>
             <div #slide3 class="steps fade">
-              <div class="step3Image"></div>
-              <span>Realiza la transferencia o depósito, envianos una foto del voucher para verificarlo y listo</span>
+              <div class="image step3Image"></div>
+              <span><mat-icon>looks_3</mat-icon>  Realiza la transferencia o depósito, envianos una foto del voucher para verificarlo y listo</span>
             </div>
           </div>
         </div>

@@ -20,6 +20,7 @@ export class ClientDialogComponent implements OnInit {
   notificationSection: boolean = false;
   step: number;
   showStep: string;
+  simpleCarouselInterval: any;
 
   @ViewChild('accordion',{static:false}) Accordion: MatAccordion;
   @ViewChildren('slide1, slide2, slide3', { read: ElementRef }) slidesElements:  QueryList<ElementRef>;
@@ -49,15 +50,17 @@ export class ClientDialogComponent implements OnInit {
     if (this.router.url.indexOf('/notificaciones') > -1) {
       this.notificationSection = true;
     }
+
+    //Check if quotes screen is visible
+    if(this.router.url.indexOf('/cotizaciones') > -1) {
+      this.simpleCarouselInterval = setInterval(() => {
+        this.simplecarousel();
+      }, 4500);
+    }
   }
 
   ngAfterViewInit() {
-    //Check if quotes screen is visible
-    if(this.router.url.indexOf('/cotizaciones') > -1) {
-      setInterval(() => {
-        this.simplecarousel();
-      }, 4000);
-    }
+
   }
 
   //Restore profile data
@@ -88,6 +91,8 @@ export class ClientDialogComponent implements OnInit {
     } else {
       this.dialogRef.close();
     }
+    clearInterval(this.simpleCarouselInterval);
+    slideIndex = 0;
   }
 
   //Price carousel
@@ -98,11 +103,14 @@ export class ClientDialogComponent implements OnInit {
     });
 
     slideIndex++;
+    console.log(slideIndex)
     if (slideIndex > this.slidesElements.length) {slideIndex = 1}
     this.slidesElements.forEach((element, index)=>{
       const htmlElement = element.nativeElement as HTMLElement;
       if (index == slideIndex-1){
         htmlElement.style.display = "inline-flex";
+      } else {
+        htmlElement.style.display = 'none';
       }
     });
   }
