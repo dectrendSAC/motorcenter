@@ -80,6 +80,24 @@ $step3:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3
       .priceImage{
         width: 80%;
         padding-top: 35%;
+
+        .step1Image{
+          margin-right: 10%;
+          margin-left: 5%;
+          width: 32%;
+        }
+
+        .step2Image{
+          margin-right: 10%;
+          margin-left: 5%;
+          width: 27%;
+        }
+
+        .step3Image{
+          margin-right: 10%;
+          margin-left: 5%;
+          width: 27%;
+        }
       }
 
       .image{
