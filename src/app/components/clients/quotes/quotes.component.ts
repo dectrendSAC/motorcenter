@@ -84,7 +84,7 @@ export class QuotesComponent implements OnInit {
   enableEditing(i:any){
 
     if (count == 0){
-      let items = {'kmFormControl':this.controlArray.controls[i].get('kmFormControl').value, 'colorFormControl':this.controlArray.controls[i].get('colorFormControl').value};
+      let items = {'versionFormControl':this.controlArray.controls[i].get('versionFormControl').value, 'colorFormControl':this.controlArray.controls[i].get('colorFormControl').value};
       sessionStorage.setItem("VehicleForm", JSON.stringify(items));
       this.colorHex = this.clientQuotes[i].vehicleColorCode;
       color = this.colorHex;
@@ -104,7 +104,7 @@ export class QuotesComponent implements OnInit {
         dialogRef.afterClosed().subscribe(result => {
           if(result.data){
             var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
-            this.controlArray.controls[i].get('kmFormControl').setValue(formValues.kmFormControl);
+            this.controlArray.controls[i].get('versionFormControl').setValue(formValues.versionFormControl);
             this.controlArray.controls[i].get('colorFormControl').setValue(formValues.colorFormControl);
             sessionStorage.removeItem("VehicleForm");
             this.colorHex = color;
@@ -129,7 +129,7 @@ export class QuotesComponent implements OnInit {
     }else{
       count = 0;
       var formValues = JSON.parse(sessionStorage.getItem("VehicleForm"));
-      this.controlArray.controls[index].get('kmFormControl').setValue(formValues.kmFormControl);
+      this.controlArray.controls[index].get('versionFormControl').setValue(formValues.versionFormControl);
       this.controlArray.controls[index].get('colorFormControl').setValue(formValues.colorFormControl);
       sessionStorage.removeItem("VehicleForm");
       this.displaySaveBtn = false;
