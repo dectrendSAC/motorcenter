@@ -41,7 +41,11 @@
 
       .colors {
         display: flex;
+        flex-direction: row;
         flex-wrap: wrap;
+        align-items: center;
+        align-content: center;
+        justify-content: center;
 
         .circle {
           flex: 40px 0 0;

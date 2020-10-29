@@ -181,7 +181,19 @@ export class ClientVehiclesComponent implements OnInit {
       let viewportOffset = document.getElementById('colorPickerInput-'+i).getBoundingClientRect();
       const { top, left } = viewportOffset;
       this.colorPickerPosition = { top: top, left: left };
-      this.colorDetails = { name: this.controlArray.controls[i].get('colorFormControl').value, hex: this.colorHex };
+      this.colorDetails = { name: this.controlArray.controls[i].get('colorFormControl').value, hex: this.colorHex, options: [
+        {"hex": "#ffffff", "name": "Blanco"},
+        {"hex": "#808080", "name": "Gris"},
+        {"hex": "#C0C0C0", "name": "Plateado"},
+        {"hex": "#212121", "name": "Negro"},
+        {"hex": "#87CEEB", "name": "Celeste"},
+        {"hex": "#4682b4", "name": "Azul metalico"},
+        {"hex": "#ff7f00", "name": "Naranja"},
+        {"hex": "#cd7f32", "name": "Bronce"},
+        {"hex": "#ffd700", "name": "Amarillo"},
+        {"hex": "#cd2626", "name": "Rojo"},
+        {"hex": "#2e8b57", "name": "Verde"}
+      ]};
     }
   }
 

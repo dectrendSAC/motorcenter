@@ -12,30 +12,16 @@ export class ColorPickerComponent implements OnInit {
   colorIndex: number;
   topPosition: number;
 
-  @Input() color: { name: string; hex: string; };
+  @Input() color: { name: string; hex: string; options: any };
   @Input() position: { top: number; left: number; };
   @Output() close: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() colorData = new EventEmitter<{event: string, extra: string}>();
-
-  public defaultColors = [
-    {"hex": "#ffffff", "name": "Blanco"},
-    {"hex": "#808080", "name": "Gris"},
-    {"hex": "#C0C0C0", "name": "Plateado"},
-    {"hex": "#212121", "name": "Negro"},
-    {"hex": "#87CEEB", "name": "Celeste"},
-    {"hex": "#4682b4", "name": "Azul metalico"},
-    {"hex": "#ff7f00", "name": "Naranja"},
-    {"hex": "#cd7f32", "name": "Bronce"},
-    {"hex": "#ffd700", "name": "Amarillo"},
-    {"hex": "#cd2626", "name": "Rojo"},
-    {"hex": "#2e8b57", "name": "Verde"}
-  ];
 
   constructor(private cdRef:ChangeDetectorRef) { }
 
   ngOnInit(): void {
     var colorHex = [];
-    this.defaultColors.forEach(element => {
+    this.color.options.forEach(element => {
       colorHex.push(element.hex)
     });
     this.colorHex = colorHex;
@@ -49,11 +35,11 @@ export class ColorPickerComponent implements OnInit {
 
     this.colorIndex = this.colorHex.findIndex(x => x === this.color.hex);
     if(this.colorIndex > -1){
-      this.colorName = this.defaultColors[this.colorIndex].name;
+      this.colorName = this.color.options[this.colorIndex].name;
     }
 
     this.colorName = this.color.name;
-    this.colorIndex = this.defaultColors.findIndex(x => x.name === this.colorName);
+    this.colorIndex = this.color.options.findIndex(x => x.name === this.colorName);
 
     this.cdRef.detectChanges();
   }
@@ -64,8 +50,8 @@ export class ColorPickerComponent implements OnInit {
 
   changeColorName(code:string){
      if(code.length > 0){
-      let index = this.defaultColors.findIndex(x => x.hex === code);
-      this.colorName = this.defaultColors[index].name;
+      let index = this.color.options.findIndex(x => x.hex === code);
+      this.colorName = this.color.options[index].name;
     } else {
       this.colorName = this.color.name;
     }
@@ -76,10 +62,10 @@ export class ColorPickerComponent implements OnInit {
    * @param {string} color
    */
   public changeColor(color: string): void {
-    let index = this.defaultColors.findIndex(x => x.hex === color);
+    let index = this.color.options.findIndex(x => x.hex === color);
     this.colorIndex = index;
-    this.colorName = this.defaultColors[index].name;
-    this.colorCode = this.defaultColors[index].hex;
+    this.colorName = this.color.options[index].name;
+    this.colorCode = this.color.options[index].hex;
     this.colorData.emit({event: this.colorName, extra: this.colorCode});
     this.close.emit(true);
   }

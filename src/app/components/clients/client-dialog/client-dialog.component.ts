@@ -103,7 +103,6 @@ export class ClientDialogComponent implements OnInit {
     });
 
     slideIndex++;
-    console.log(slideIndex)
     if (slideIndex > this.slidesElements.length) {slideIndex = 1}
     this.slidesElements.forEach((element, index)=>{
       const htmlElement = element.nativeElement as HTMLElement;

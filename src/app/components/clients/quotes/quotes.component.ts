@@ -22,14 +22,14 @@ export class QuotesComponent implements OnInit {
   colorDetails: any;
   colorPickerPosition: any;
   colorHex: string;
-  enableReadonly: any;
+  enableReadonly: boolean = true;
   quoteStatus: boolean = false;
   dialogContent: any;
 
   clientQuotes = [
-    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColorCode:'#212121', vehicleColorName:'Negro', vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}, {date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}] },
-    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColorCode:'#212121', vehicleColorName:'Negro', vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}, {date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}] },
-    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColorCode:'#212121', vehicleColorName:'Negro', vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}, {date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}] }
+    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}, {date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}] },
+    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:false}, {hex:'#C0C0C0', name:'Plateado', selected:true}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}, {date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}] },
+    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}, {date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}] }
   ];
 
   constructor(private _formBuilder: FormBuilder, private dialog: MatDialog) {
@@ -67,10 +67,15 @@ export class QuotesComponent implements OnInit {
     this.controlArray = this.QuoteFormGroup.get('formArrayName') as FormArray;
 
     Object.keys(this.clientQuotes).forEach((i) => {
+      let colorname: string;
+      Object.keys(this.clientQuotes[i].vehicleColors).forEach(obj => {
+        if (this.clientQuotes[i].vehicleColors[obj].selected) {colorname = this.clientQuotes[i].vehicleColors[obj].name}
+      });
+
       this.controlArray.push(
         this._formBuilder.group({
           versionFormControl: [{value: 'default', disabled: true}, [Validators.required]],
-          colorFormControl: [{value: this.clientQuotes[i].colorName, disabled: false}, [Validators.required]]
+          colorFormControl: [{value: colorname, disabled: false}, [Validators.required]]
         })
       )
     })
@@ -86,10 +91,14 @@ export class QuotesComponent implements OnInit {
     if (count == 0){
       let items = {'versionFormControl':this.controlArray.controls[i].get('versionFormControl').value, 'colorFormControl':this.controlArray.controls[i].get('colorFormControl').value};
       sessionStorage.setItem("VehicleForm", JSON.stringify(items));
-      this.colorHex = this.clientQuotes[i].vehicleColorCode;
+      Object.keys(this.clientQuotes[i].vehicleColors).forEach(obj => {
+        if (this.clientQuotes[i].vehicleColors[obj].selected) {this.colorHex = this.clientQuotes[i].vehicleColors[obj].hex}
+      });
       color = this.colorHex;
       index = i;
     }
+
+    this.controlArray.controls[i].get('versionFormControl').enable();
 
     if(index === i) {
       this.vehicleIndex = i;
@@ -161,7 +170,7 @@ export class QuotesComponent implements OnInit {
       let viewportOffset = document.getElementById('colorPickerInput-'+i).getBoundingClientRect();
       const { top, left } = viewportOffset;
       this.colorPickerPosition = { top: top, left: left };
-      this.colorDetails = { name: this.controlArray.controls[i].get('colorFormControl').value, hex: this.colorHex };
+      this.colorDetails = { name: this.controlArray.controls[i].get('colorFormControl').value, hex: this.colorHex, options: this.clientQuotes[i].vehicleColors };
     }
   }
 
