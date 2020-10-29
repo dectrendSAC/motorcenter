@@ -41,8 +41,12 @@
               <input matInput id="{{'colorPickerInput-' + i}}" formControlName="colorFormControl" placeholder="Color del vehículo" (click)="openColorPicker(i)" readonly>
             </mat-form-field>
           </div>
-          <div class="vehicleExtras">
-            <div class="vehiclePic">
+          <div id="image-stack">
+            <div *ngIf="changeSuccessContent" id="stamp">
+                <img src="assets/images/stamp.png">
+            </div>
+            <div *ngIf="changeSuccessContent" id="approved">
+               <img src="assets/images/approved.png">
             </div>
           </div>
         </mat-card-content>
