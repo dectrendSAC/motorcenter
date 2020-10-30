@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
 import { Router } from '@angular/router';
@@ -22,12 +23,24 @@ export class ClientDialogComponent implements OnInit {
   showStep: string;
   simpleCarouselInterval: any;
 
+  isLinear: boolean = true;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+
   @ViewChild('accordion',{static:false}) Accordion: MatAccordion;
   @ViewChildren('slide1, slide2, slide3', { read: ElementRef }) slidesElements:  QueryList<ElementRef>;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>, private router: Router) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>, private router: Router, private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    //temporal script
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+
     moment.locale('es');
     setTimeout(()=>{
       this.step = 0;

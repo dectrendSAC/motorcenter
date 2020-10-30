@@ -205,7 +205,9 @@ export class QuotesComponent implements OnInit {
   }
 
   //Show quote status
-  displayQuoteStatus(){
-
+  displayQuoteStatus(i: any){
+    this.dialog.open(ClientDialogComponent, {
+      data: {tittle: 'ESTADO DE LA COMPRA', description:'estado', format:'stepper', content: this.clientQuotes[i].state, info: true}
+    });
   }
 }
