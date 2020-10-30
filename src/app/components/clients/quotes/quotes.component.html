@@ -7,12 +7,14 @@
           <button mat-icon-button aria-label="Descargar cotización">
             <mat-icon>cloud_download</mat-icon>
           </button>
-          <button mat-icon-button id="{{'saveIconBtn-' + i}}" aria-label="Guardar información" class="save" *ngIf="vehicleIndex === i? displaySaveBtn : false" (click)="saveEditedQuote(i)">
-            <mat-icon>save</mat-icon>
-          </button>
-          <button mat-icon-button aria-label="Editar información" class="edit" (click)="enableEditing(i)">
-            <mat-icon>{{vehicleIndex === i? formVehicleButton : 'edit'}}</mat-icon>
-          </button>
+          <ng-container *ngIf="quote.state.length < 1">
+            <button mat-icon-button id="{{'saveIconBtn-' + i}}" aria-label="Guardar información" class="save" *ngIf="vehicleIndex === i? displaySaveBtn : false" (click)="saveEditedQuote(i)">
+              <mat-icon>save</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="Editar información" class="edit" (click)="enableEditing(i)">
+              <mat-icon>{{vehicleIndex === i? formVehicleButton : 'edit'}}</mat-icon>
+            </button>
+          </ng-container>
         </mat-card-header>
         <mat-card-content>
           <div [formGroupName]="i">
@@ -42,24 +44,24 @@
             </mat-form-field>
           </div>
           <div id="image-stack">
-            <div *ngIf="changeSuccessContent" id="stamp">
+            <div *ngIf="quote.state.length > 0" id="stamp">
                 <img src="assets/images/stamp.png">
             </div>
-            <div *ngIf="changeSuccessContent" id="approved">
+            <div *ngIf="quote.state.length > 0" id="approved">
                <img src="assets/images/approved.png">
             </div>
           </div>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-stroked-button *ngIf="!quoteStatus" class="cancelBtn">
+          <button mat-stroked-button *ngIf="quote.state.length < 1" class="cancelBtn">
             <div class="bg-gradient"></div>
             <span>CANCELAR</span>
           </button>
-          <button mat-raised-button *ngIf="!quoteStatus" color="primary" class="acceptBtn" disabled>
+          <button mat-raised-button *ngIf="quote.state.length < 1" color="primary" class="acceptBtn" disabled>
             <div class="bg-gradient"></div>
             <span>SEPARAR</span>
           </button>
-          <button *ngIf="quoteStatus" color="primary" class="cancelBtn" mat-raised-button class="storyBtn">
+          <button mat-raised-button *ngIf="quote.state.length > 0" color="primary" class="acceptBtn status" (click)="displayQuoteStatus()">
             <div class="bg-gradient"></div>
             <span>VER ESTADO DE COMPRA</span>
           </button>

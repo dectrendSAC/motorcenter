@@ -151,6 +151,11 @@
     display: inline-flex;
     flex-wrap: wrap;
 
+    img{
+      width: 100%;
+      height: auto;
+    }
+
     form{
       display: contents;
 
@@ -289,6 +294,31 @@
                 }
               }
             }
+
+            #image-stack{
+              display: grid;
+              grid-template-columns: repeat(9, 1fr);
+              position: absolute;
+              top: 30%;
+              right: 0;
+              width: 45%;
+              z-index: 1;
+
+              #stamp{
+                  grid-column: 1/10;
+                  grid-row: 1;
+                  z-index: 4;
+                  padding-top: 0%;
+              }
+
+              #approved{
+                  grid-column: 1/6;
+                  grid-row: 1;
+                  z-index: 2;
+                  padding-right: 0%;
+                  padding-top: 100%;
+              }
+          }
         }
 
         mat-card-actions{
@@ -344,6 +374,10 @@
             mat-icon{
               margin-right: 5px;
             }
+          }
+
+          .status{
+            width: 60%;
           }
         }
     }

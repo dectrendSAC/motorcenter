@@ -23,13 +23,12 @@ export class QuotesComponent implements OnInit {
   colorPickerPosition: any;
   colorHex: string;
   enableReadonly: boolean = true;
-  quoteStatus: boolean = false;
   dialogContent: any;
 
   clientQuotes = [
-    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}, {date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}] },
-    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:false}, {hex:'#C0C0C0', name:'Plateado', selected:true}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}, {date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}] },
-    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}, {date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}] }
+    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]},
+    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:false}, {hex:'#C0C0C0', name:'Plateado', selected:true}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}, {date:'2020-02-12T12:47:55Z', description:'Compra del vehículo', status:true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]},
+    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]}
   ];
 
   constructor(private _formBuilder: FormBuilder, private dialog: MatDialog) {
@@ -203,5 +202,10 @@ export class QuotesComponent implements OnInit {
     this.dialog.open(ClientDialogComponent, {
       data: {tittle: '', description:'precio', format:'simple', content: ['Separa tu vehículo con un inicial o la totalidad del precio sin intereses', 'Recuerda que ofrecemos las mejores opciones de financiamiento según tu perfil', ' NO OLVIDE CONTACTAR A SU EJECUTIVO DE VENTAS'], info: true}
     });
+  }
+
+  //Show quote status
+  displayQuoteStatus(){
+
   }
 }
