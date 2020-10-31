@@ -89,7 +89,7 @@
     </ng-template>
   </div>
   <div *ngSwitchCase="'stepper'">
-    <mat-vertical-stepper #stepper [linear]="isLinear" #stepper [selectedIndex]="data.content.length-1" (animationDone)="setMatStepsAsInteracted()">
+    <mat-vertical-stepper class="dialogStepper" #stepper [linear]="isLinear" #stepper [selectedIndex]="data.content.length-1" (animationDone)="setMatStepsAsInteracted()">
       <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
           <ng-template matStepLabel>Verificación de pago</ng-template>
