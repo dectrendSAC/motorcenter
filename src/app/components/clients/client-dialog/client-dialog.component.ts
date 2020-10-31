@@ -1,7 +1,9 @@
+import { CdkStep } from '@angular/cdk/stepper';
 import { Component, OnInit, Inject, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
+import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 
 
@@ -17,30 +19,26 @@ var slideIndex = 0;
 })
 export class ClientDialogComponent implements OnInit {
   records = [];
-  recordDates= [];
+  recordDates = [];
   notificationSection: boolean = false;
   step: number;
   showStep: string;
   simpleCarouselInterval: any;
 
+  BuyStatusFormGroup: FormGroup;
   isLinear: boolean = true;
+  statesIcon = [];
+  statusDates = [];
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
   @ViewChild('accordion',{static:false}) Accordion: MatAccordion;
   @ViewChildren('slide1, slide2, slide3', { read: ElementRef }) slidesElements:  QueryList<ElementRef>;
+  @ViewChild('stepper') formStepper: MatStepper;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>, private router: Router, private _formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    //temporal script
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
-    });
-
     moment.locale('es');
     setTimeout(()=>{
       this.step = 0;
@@ -70,10 +68,23 @@ export class ClientDialogComponent implements OnInit {
         this.simplecarousel();
       }, 4500);
     }
-  }
 
-  ngAfterViewInit() {
+    //Format buy status
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: [this.data.content[0].status ? 'verified' : '', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: [this.data.content[1].status ? 'verified' : '', Validators.required]
+    });
 
+    if (this.data.format.indexOf('stepper') !== -1){
+      //Format dates
+      if (this.data.content){
+        for(let i=0; i<this.data.content.length; i++){
+          this.statusDates.push(moment(this.data.content[i].date).format('LL h:mm A'));
+        }
+      }
+    }
   }
 
   //Restore profile data
@@ -123,6 +134,17 @@ export class ClientDialogComponent implements OnInit {
         htmlElement.style.display = "inline-flex";
       } else {
         htmlElement.style.display = 'none';
+      }
+    });
+  }
+
+  //Set steps as interacted
+  setMatStepsAsInteracted(){
+    this.formStepper.steps.forEach((matStep : CdkStep, index)=>{
+      if (this.data.content[index]){
+        if(this.data.content[index].status){
+          matStep.interacted=true;
+        }
       }
     });
   }
