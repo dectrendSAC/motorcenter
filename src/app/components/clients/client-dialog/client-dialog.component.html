@@ -88,36 +88,40 @@
       <p class="infoText index2">Nada que ver por aquí</p>
     </ng-template>
   </div>
-  <div *ngSwitchCase="'stepper'">
-    <mat-vertical-stepper class="dialogStepper" #stepper [linear]="isLinear" #stepper [selectedIndex]="data.content.length-1" (animationDone)="setMatStepsAsInteracted()">
-      <mat-step [stepControl]="firstFormGroup">
-        <form [formGroup]="firstFormGroup">
-          <ng-template matStepLabel>Verificación de pago</ng-template>
-          <p><b>Descripción:</b>&nbsp;&nbsp;{{data.content[0].description}}</p>
-          <p><b>Nro. Operación:</b>&nbsp;&nbsp;{{data.content[0].operation}}</p>
-          <p><b>Fecha y hora:</b>&nbsp;&nbsp;{{data.content[0].date.length > 1 ? statusDates[0] : 'En proceso'}}</p>
-          <input style="display: none;" matInput formControlName="firstCtrl" required>
-        </form>
-      </mat-step>
-      <mat-step [stepControl]="secondFormGroup" state="edit">
-        <form [formGroup]="secondFormGroup">
-          <ng-template matStepLabel>Matriculación del vehículo</ng-template>
-          <p><b>Descripción:</b>&nbsp;&nbsp;{{data.content[1].description}}</p>
-          <p><b>Fecha y hora:</b>&nbsp;&nbsp;{{data.content[1].date.length > 1 ? statusDates[1] : 'En proceso'}}</p>
-          <input style="display: none;" matInput formControlName="secondCtrl" required>
-        </form>
-      </mat-step>
-      <mat-step>
-        <ng-template matStepLabel>Listo para entrega</ng-template>
-        <p><b>Puede acercarse al concesionar a recoger su vehículo</b></p>
-        <p><b>Fecha y hora:</b>&nbsp;&nbsp;{{statusDates[2]}}</p>
-        <p></p>
-        <p>¡MUCHAS GRACIAS POR SU PREFERENCIA!</p>
-      </mat-step>
-      <ng-template matStepperIcon="edit">
-        <mat-icon>done</mat-icon>
-      </ng-template>
-    </mat-vertical-stepper>
+  <div class="dialogStepper" *ngSwitchCase="'stepper'">
+    <div class='firstClass'>
+      <div class='secondClass'>
+        <mat-vertical-stepper #stepper [linear]="isLinear" #stepper [selectedIndex]="data.content.length-1" (animationDone)="setMatStepsAsInteracted()">
+          <mat-step [stepControl]="firstFormGroup">
+            <form [formGroup]="firstFormGroup">
+              <ng-template matStepLabel>Verificación de pago</ng-template>
+              <p><b>Descripción:</b>&nbsp;&nbsp;{{data.content[0].description}}</p>
+              <p><b>Nro. Operación:</b>&nbsp;&nbsp;{{data.content[0].operation}}</p>
+              <p><b>Fecha y hora:</b>&nbsp;&nbsp;{{data.content[0].date.length > 1 ? statusDates[0] : 'En proceso'}}</p>
+              <input style="display: none;" matInput formControlName="firstCtrl" required>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="secondFormGroup">
+            <form [formGroup]="secondFormGroup">
+              <ng-template matStepLabel>Matriculación del vehículo</ng-template>
+              <p><b>Descripción:</b>&nbsp;&nbsp;{{data.content[1].description}}</p>
+              <p><b>Fecha y hora:</b>&nbsp;&nbsp;{{data.content[1].date.length > 1 ? statusDates[1] : 'En proceso'}}</p>
+              <input style="display: none;" matInput formControlName="secondCtrl" required>
+            </form>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Listo para entrega</ng-template>
+            <p>Puede acercarse al concesionar a recoger su vehículo</p>
+            <p><b>Fecha y hora:</b>&nbsp;&nbsp;{{statusDates[2]}}</p>
+            <br>
+            <p class="thanks">¡MUCHAS GRACIAS POR SU PREFERENCIA!</p>
+          </mat-step>
+          <ng-template matStepperIcon="edit">
+            <mat-icon>done</mat-icon>
+          </ng-template>
+        </mat-vertical-stepper>
+      </div>
+    </div>
   </div>
 </div>
 <div mat-dialog-actions *ngIf="!data.info">

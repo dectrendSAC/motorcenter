@@ -1,5 +1,5 @@
 import { CdkStep } from '@angular/cdk/stepper';
-import { Component, OnInit, Inject, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
@@ -17,7 +17,7 @@ var slideIndex = 0;
   templateUrl: './client-dialog.component.html',
   styleUrls: ['./client-dialog.component.scss']
 })
-export class ClientDialogComponent implements OnInit {
+export class ClientDialogComponent implements OnInit, AfterViewInit {
   records = [];
   recordDates = [];
   notificationSection: boolean = false;
@@ -85,6 +85,27 @@ export class ClientDialogComponent implements OnInit {
         }
       }
     }
+  }
+
+  ngAfterViewInit(){
+    const steps = [0, 1, 2];
+    steps.forEach(index => {
+      if (this.data.content[index]){
+        if(this.data.content[index].status){
+          if (index == 0){ document.querySelector("body").style.cssText = "--my-var1: #1eb980"; }
+          if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #1eb980"; }
+          if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #1eb980"; }
+        } else {
+          if (index == 0){ document.querySelector("body").style.cssText = "--my-var1: #d32f2f"; }
+          if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #d32f2f"; }
+          if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #d32f2f"; }
+        }
+      } else {
+        if (index == 0){ document.querySelector("body").style.cssText = "--my-var1: #d32f2f"; }
+        if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #d32f2f"; }
+        if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #d32f2f"; }
+      }
+    });
   }
 
   //Restore profile data
