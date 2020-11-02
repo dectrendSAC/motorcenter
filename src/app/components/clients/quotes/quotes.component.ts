@@ -15,6 +15,7 @@ let count = 0, color: string, index:number;
 export class QuotesComponent implements OnInit {
   QuoteFormGroup: FormGroup;
   controlArray: FormArray;
+  cancelQuoteIndex: number;
   vehicleIndex: number;
   displaySaveBtn: boolean = false;
   formVehicleButton: string = 'edit';
@@ -208,6 +209,19 @@ export class QuotesComponent implements OnInit {
   displayQuoteStatus(i: any){
     this.dialog.open(ClientDialogComponent, {
       data: {tittle: 'ESTADO DE LA COMPRA', description:'estado', format:'stepper', content: this.clientQuotes[i].state, info: true}
+    });
+  }
+
+  //Cancel and disable quote
+  cancelQuote(i:any){
+    const dialogRef = this.dialog.open(ClientDialogComponent, {
+      data: {tittle: '¿Seguro que desea cancelar la cotización?', format:'simple', content: 'Esta acción es irreversible, todos el proceso será anulado'}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.data){
+        this.cancelQuoteIndex = i;
+      }
     });
   }
 }

@@ -214,6 +214,10 @@
             }
         }
 
+        mat-card-header.canceled{
+          background-color: #b3b3b3;
+        }
+
         mat-card-content{
             mat-form-field{
                 display: block;
@@ -256,6 +260,10 @@
                     }
                   }
                 }
+
+                .canceled{
+                  opacity: 0.54;
+                }
             }
 
             .vehicleExtras{
@@ -295,7 +303,7 @@
               }
             }
 
-            #image-stack{
+            #image-stack-1{
               display: grid;
               grid-template-columns: repeat(9, 1fr);
               position: absolute;

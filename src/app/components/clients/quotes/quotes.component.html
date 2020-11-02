@@ -2,48 +2,58 @@
   <form [formGroup]="QuoteFormGroup">
     <div class="formContainer" [formArrayName]="'formArrayName'">
       <mat-card class="quoteCard" *ngFor="let quote of clientQuotes; let i = index">
-        <mat-card-header>
+        <mat-card-header [class.canceled]="cancelQuoteIndex === i">
           <mat-card-title>{{quote.vehicleName}}</mat-card-title>
-          <button mat-icon-button aria-label="Descargar cotización">
-            <mat-icon>cloud_download</mat-icon>
-          </button>
-          <ng-container *ngIf="quote.state.length < 1">
-            <button mat-icon-button id="{{'saveIconBtn-' + i}}" aria-label="Guardar información" class="save" *ngIf="vehicleIndex === i? displaySaveBtn : false" (click)="saveEditedQuote(i)">
-              <mat-icon>save</mat-icon>
+          <ng-container *ngIf="cancelQuoteIndex != i">
+            <button mat-icon-button aria-label="Descargar cotización">
+              <mat-icon>cloud_download</mat-icon>
             </button>
-            <button mat-icon-button aria-label="Editar información" class="edit" (click)="enableEditing(i)">
-              <mat-icon>{{vehicleIndex === i? formVehicleButton : 'edit'}}</mat-icon>
-            </button>
+            <ng-container *ngIf="quote.state.length < 1">
+              <button mat-icon-button id="{{'saveIconBtn-' + i}}" aria-label="Guardar información" class="save" *ngIf="vehicleIndex === i? displaySaveBtn : false" (click)="saveEditedQuote(i)">
+                <mat-icon>save</mat-icon>
+              </button>
+              <button mat-icon-button aria-label="Editar información" class="edit" (click)="enableEditing(i)">
+                <mat-icon>{{vehicleIndex === i? formVehicleButton : 'edit'}}</mat-icon>
+              </button>
+            </ng-container>
           </ng-container>
         </mat-card-header>
         <mat-card-content>
           <div [formGroupName]="i">
             <mat-form-field class="info executive">
               <mat-label>Ejecutivo a cargo</mat-label>
-              <mat-icon matTooltip="Más información sobre el kilometraje" matTooltipPosition="after" aria-label="Información del ejecutivo de ventas" (click)="sellerInfo(i)">person_search</mat-icon>
-              <input matInput placeholder="Nombre del ejecutivo comercial" value="{{quote.quoteExecutive[0].name}}" readonly>
+              <mat-icon *ngIf="cancelQuoteIndex != i" matTooltip="Más información sobre el kilometraje" matTooltipPosition="after" aria-label="Información del ejecutivo de ventas" (click)="sellerInfo(i)">person_search</mat-icon>
+              <input [class.canceled]="cancelQuoteIndex === i" matInput placeholder="Nombre del ejecutivo comercial" value="{{quote.quoteExecutive[0].name}}" readonly>
             </mat-form-field>
             <mat-form-field class="info price">
               <mat-label>Precio de separación</mat-label>
-              <mat-icon matTooltip="Más información sobre el precio" matTooltipPosition="after" aria-label="Información sobre el precio" (click)="priceInfo()">info</mat-icon>
-              <input matInput placeholder="Precio de separación" value="{{quote.vehiclePrice}}" readonly>
+              <mat-icon *ngIf="cancelQuoteIndex != i" matTooltip="Más información sobre el precio" matTooltipPosition="after" aria-label="Información sobre el precio" (click)="priceInfo()">info</mat-icon>
+              <input [class.canceled]="cancelQuoteIndex === i" matInput placeholder="Precio de separación" value="{{quote.vehiclePrice}}" readonly>
             </mat-form-field>
             <mat-form-field class="version" floatLabel="always">
               <mat-label>Versión</mat-label>
-              <mat-select formControlName="versionFormControl" class="readonly">
+              <mat-select [class.canceled]="cancelQuoteIndex === i" formControlName="versionFormControl" class="readonly">
                 <mat-option [value]="version.selected ? 'default' : version.description" *ngFor="let version of quote.vehicleVersions; let i = index">{{version.description}}</mat-option>
               </mat-select>
             </mat-form-field>
             <app-color-picker *ngIf="vehicleIndex === i? showColorPalette : false" class="cdk-overlay-container" [position]="colorPickerPosition" [color]="colorDetails" (colorData)="setColor($event, i)" (close)="closeColorPicker($event)"></app-color-picker>
             <mat-form-field class="color" floatLabel="always">
               <mat-label>Color</mat-label>
-              <button mat-icon-button aria-label="Mostrar selección de color" (click)="openColorPicker(i)" [disabled]="vehicleIndex === i? enableReadonly : true">
+              <button *ngIf="cancelQuoteIndex != i" mat-icon-button aria-label="Mostrar selección de color" (click)="openColorPicker(i)" [disabled]="vehicleIndex === i? enableReadonly : true">
                 <mat-icon>palette</mat-icon>
               </button>
-              <input matInput id="{{'colorPickerInput-' + i}}" formControlName="colorFormControl" placeholder="Color del vehículo" (click)="openColorPicker(i)" readonly>
+              <input [class.canceled]="cancelQuoteIndex === i" matInput id="{{'colorPickerInput-' + i}}" formControlName="colorFormControl" placeholder="Color del vehículo" (click)="openColorPicker(i)" readonly>
             </mat-form-field>
           </div>
-          <div id="image-stack">
+          <div id="image-stack-1">
+            <div *ngIf="quote.state.length > 0" id="stamp">
+                <img src="assets/images/stamp.png">
+            </div>
+            <div *ngIf="quote.state.length > 0" id="approved">
+               <img src="assets/images/approved.png">
+            </div>
+          </div>
+          <div id="image-stack-2" *ngIf="cancelQuoteIndex === i">
             <div *ngIf="quote.state.length > 0" id="stamp">
                 <img src="assets/images/stamp.png">
             </div>
@@ -52,8 +62,8 @@
             </div>
           </div>
         </mat-card-content>
-        <mat-card-actions>
-          <button mat-stroked-button *ngIf="quote.state.length < 1" class="cancelBtn">
+        <mat-card-actions *ngIf="cancelQuoteIndex != i">
+          <button mat-stroked-button *ngIf="quote.state.length < 1" class="cancelBtn" (click)="cancelQuote(i)">
             <div class="bg-gradient"></div>
             <span>CANCELAR</span>
           </button>

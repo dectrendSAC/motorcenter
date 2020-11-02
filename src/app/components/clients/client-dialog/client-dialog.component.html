@@ -1,6 +1,6 @@
 <div *ngIf="data.info" class="closeBtn" mat-dialog-close (click)="closeDialog()"></div>
 <h1 mat-dialog-title [class.no-record]="!records" [class.notify]="notificationSection">{{data.tittle}}&nbsp;</h1>
-<div mat-dialog-content [ngSwitch]="data.format">
+<div mat-dialog-content [ngSwitch]="data.format" [class.stepper]="data.format == 'stepper'">
   <div *ngSwitchCase="'simple'">
     <p *ngIf="!data.info else info" [class.notify]="notificationSection">{{data.content}}</p>
     <ng-template #info>

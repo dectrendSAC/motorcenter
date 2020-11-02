@@ -1,5 +1,5 @@
 import { CdkStep, MAT_STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { Component, OnInit, Inject, ViewChild, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ViewChildren, QueryList, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatAccordion } from '@angular/material/expansion';
@@ -42,7 +42,7 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
   @ViewChildren('slide1, slide2, slide3', { read: ElementRef }) slidesElements:  QueryList<ElementRef>;
   @ViewChild('stepper') formStepper: MatStepper;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>, private router: Router, private _formBuilder: FormBuilder) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>, private router: Router, private _formBuilder: FormBuilder, private cdRef:ChangeDetectorRef) { }
 
   ngOnInit(): void {
     moment.locale('es');
@@ -108,11 +108,12 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
             if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #d32f2f"; this.stepStatus3 = 'schedule';}
           }
         } else {
-          if (index == 0){ document.querySelector("body").style.cssText = "--my-var1: rgba(0,0,0,.38)"; this.stepStatus1 = 'block';}
-          if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: rgba(0,0,0,.38)"; this.stepStatus2 = 'block';}
-          if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: rgba(0,0,0,.38)"; this.stepStatus3 = 'block';}
+          if (index == 0){ document.querySelector("body").style.cssText = "--my-var1: #b3b3b3"; this.stepStatus1 = 'block';}
+          if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #b3b3b3"; this.stepStatus2 = 'block';}
+          if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #b3b3b3"; this.stepStatus3 = 'block';}
         }
       });
+      this.cdRef.detectChanges();
     }
   }
 
