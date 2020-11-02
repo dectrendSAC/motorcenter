@@ -211,13 +211,13 @@ $step3:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3
 }
 
 .mat-dialog-title{
+  line-height: 45px;
   font-family: "palanquin", "arial", sans-serif;
   font-weight: bold;
   text-align: center;
 
   &.no-record{
     display: inline-block;
-    line-height: 45px;
     margin-right: 15px;
   }
 }
@@ -578,7 +578,7 @@ $step3:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3
 
     .thanks{
       font-weight: bold;
-      color: #d32f2f;
+      color: #1eb980;
     }
   }
 }

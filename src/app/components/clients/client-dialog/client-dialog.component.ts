@@ -1,4 +1,4 @@
-import { CdkStep } from '@angular/cdk/stepper';
+import { CdkStep, MAT_STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { Component, OnInit, Inject, ViewChild, ViewChildren, QueryList, ElementRef, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -15,7 +15,10 @@ var slideIndex = 0;
 @Component({
   selector: 'app-client-dialog',
   templateUrl: './client-dialog.component.html',
-  styleUrls: ['./client-dialog.component.scss']
+  styleUrls: ['./client-dialog.component.scss'],
+  providers: [{
+    provide: MAT_STEPPER_GLOBAL_OPTIONS, useValue: { displayDefaultIndicatorType: false }
+  }]
 })
 export class ClientDialogComponent implements OnInit, AfterViewInit {
   records = [];
@@ -26,6 +29,9 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
   simpleCarouselInterval: any;
 
   BuyStatusFormGroup: FormGroup;
+  stepStatus1: string = 'done';
+  stepStatus2: string = 'done';
+  stepStatus3: string = 'done';
   isLinear: boolean = true;
   statesIcon = [];
   statusDates = [];
@@ -88,24 +94,26 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(){
-    const steps = [0, 1, 2];
-    steps.forEach(index => {
-      if (this.data.content[index]){
-        if(this.data.content[index].status){
-          if (index == 0){ document.querySelector("body").style.cssText = "--my-var1: #1eb980"; }
-          if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #1eb980"; }
-          if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #1eb980"; }
+    if (this.data.format.indexOf('stepper') !== -1){
+      const steps = [0, 1, 2];
+      steps.forEach(index => {
+        if (this.data.content[index]){
+          if(this.data.content[index].done){
+            if (index == 0){ document.querySelector("body").style.cssText = "--my-var1: #1eb980"; this.stepStatus1 = 'done';}
+            if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #1eb980"; this.stepStatus2 = 'done';}
+            if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #1eb980"; this.stepStatus3 = 'done';}
+          } else {
+            if (index == 0){ document.querySelector("body").style.cssText = "--my-var1: #d32f2f"; this.stepStatus1 = 'schedule';}
+            if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #d32f2f"; this.stepStatus2 = 'schedule';}
+            if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #d32f2f"; this.stepStatus3 = 'schedule';}
+          }
         } else {
-          if (index == 0){ document.querySelector("body").style.cssText = "--my-var1: #d32f2f"; }
-          if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #d32f2f"; }
-          if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #d32f2f"; }
+          if (index == 0){ document.querySelector("body").style.cssText = "--my-var1: rgba(0,0,0,.38)"; this.stepStatus1 = 'block';}
+          if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: rgba(0,0,0,.38)"; this.stepStatus2 = 'block';}
+          if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: rgba(0,0,0,.38)"; this.stepStatus3 = 'block';}
         }
-      } else {
-        if (index == 0){ document.querySelector("body").style.cssText = "--my-var1: #d32f2f"; }
-        if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #d32f2f"; }
-        if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #d32f2f"; }
-      }
-    });
+      });
+    }
   }
 
   //Restore profile data
@@ -131,10 +139,10 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
     if(this.Accordion){
       this.Accordion.closeAll();
       setTimeout(()=>{
-        this.dialogRef.close();
+        this.dialogRef.close(true);
       },300);
     } else {
-      this.dialogRef.close();
+      this.dialogRef.close(true);
     }
     clearInterval(this.simpleCarouselInterval);
     slideIndex = 0;
