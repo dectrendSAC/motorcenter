@@ -46,10 +46,10 @@
             </mat-form-field>
           </div>
           <div id="image-stack-1">
-            <div *ngIf="quote.state.length > 0" id="stamp">
+            <div *ngIf="quote.state.length > 1" id="stamp">
                 <img src="assets/images/stamp.png">
             </div>
-            <div *ngIf="quote.state.length > 0" id="approved">
+            <div *ngIf="quote.state.length > 1" id="approved">
                <img src="assets/images/approved.png">
             </div>
           </div>
@@ -60,15 +60,15 @@
           </div>
         </mat-card-content>
         <mat-card-actions *ngIf="cancelQuoteIndex != i">
-          <button mat-stroked-button *ngIf="quote.state.length < 1" class="cancelBtn" (click)="cancelQuote(i)">
+          <button mat-stroked-button *ngIf="quote.state.length < 2" class="cancelBtn" (click)="cancelQuote(i)">
             <div class="bg-gradient"></div>
             <span>CANCELAR</span>
           </button>
-          <button mat-raised-button *ngIf="quote.state.length < 1" color="primary" class="acceptBtn" disabled>
+          <button mat-raised-button *ngIf="quote.state.length < 2" color="primary" class="acceptBtn" [disabled]="quote.state[0].disable" (click)="payQuote(i)">
             <div class="bg-gradient"></div>
             <span>SEPARAR</span>
           </button>
-          <button mat-raised-button *ngIf="quote.state.length > 0" color="primary" class="acceptBtn status" (click)="displayQuoteStatus(i)">
+          <button mat-raised-button *ngIf="quote.state.length > 1" color="primary" class="acceptBtn status" (click)="displayQuoteStatus(i)">
             <div class="bg-gradient"></div>
             <span>VER ESTADO DE COMPRA</span>
           </button>
