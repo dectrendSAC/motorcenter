@@ -54,11 +54,8 @@
             </div>
           </div>
           <div id="image-stack-2" *ngIf="cancelQuoteIndex === i">
-            <div *ngIf="quote.state.length > 0" id="stamp">
-                <img src="assets/images/stamp.png">
-            </div>
-            <div *ngIf="quote.state.length > 0" id="approved">
-               <img src="assets/images/approved.png">
+            <div id="canceled">
+               <img src="assets/images/cancel_grayscale.png">
             </div>
           </div>
         </mat-card-content>
