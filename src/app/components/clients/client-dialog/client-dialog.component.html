@@ -133,6 +133,31 @@
       </div>
     </div>
   </div>
+  <div *ngSwitchCase="'accordion3'">
+    <mat-accordion [multi]="true" #accordion="matAccordion" *ngIf="records else norecords">
+      <mat-expansion-panel *ngFor="let record of records; let first = first; let last = last; let i = index" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title class="accordion1">
+            {{record.area}}
+          </mat-panel-title>
+          <mat-panel-description>
+            <span>{{record.description}}</span>
+            <mat-icon [className]="record.status ? 'done' : 'undone'">{{record.status? 'check_circle_outline' : 'schedule'}}</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p><b>Descripción:</b>&nbsp;&nbsp;{{record.description}}</p>
+        <p><b>Fecha y hora:</b>&nbsp;&nbsp;{{record.date.length > 1 ? recordDates[i] : 'En proceso'}}</p>
+        <div class="panelBtns">
+          <button *ngIf="!first" mat-button color="warn" (click)="prevStep()">Anterior</button>
+          <button mat-button color="primary" (click)="nextStep()">{{last ? 'Fin' : 'Siguiente'}}</button>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <ng-template #norecords>
+      <div class="noRecordsImage"></div>
+      <p class="infoText index2">Nada que ver por aquí</p>
+    </ng-template>
+  </div>
 </div>
 <div mat-dialog-actions *ngIf="!data.info">
   <button mat-raised-button color="primary" *ngIf="!notificationSection" (click)="restoreChanges()" cdkFocusInitial>{{data.format === 'simple' ? 'SI' : data.format === 'accordion1' ? 'REVISAR' : 'CONTACTAR'}}</button>

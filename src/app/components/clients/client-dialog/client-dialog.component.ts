@@ -42,6 +42,12 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
   @ViewChildren('slide1, slide2, slide3', { read: ElementRef }) slidesElements:  QueryList<ElementRef>;
   @ViewChild('stepper') formStepper: MatStepper;
 
+  banks = [
+    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{disable:false}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]},
+    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:false}, {hex:'#C0C0C0', name:'Plateado', selected:true}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Depósito de $50000 en cuenta BCP confirmada', detail:'182341762', status:true, done: true}, {date:'', description:'Trámite de placa y registro de tarjeta de propiedad', detail:'', status:false, done: false}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]},
+    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{disable:true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]}
+  ];
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>, private router: Router, private _formBuilder: FormBuilder, private cdRef:ChangeDetectorRef) { }
 
   ngOnInit(): void {
