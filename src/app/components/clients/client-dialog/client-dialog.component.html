@@ -134,29 +134,29 @@
     </div>
   </div>
   <div *ngSwitchCase="'accordion3'">
-    <mat-accordion [multi]="true" #accordion="matAccordion" *ngIf="records else norecords">
-      <mat-expansion-panel *ngFor="let record of records; let first = first; let last = last; let i = index" [expanded]="step === i" (opened)="setStep(i)" hideToggle>
+    <p>Transfiere o deposita a una de nuestras cuentas</p>
+    <p>S/{{records[0]}}.00</p>
+    <mat-accordion [multi]="true" #accordion="matAccordion">
+      <mat-expansion-panel *ngFor="let transaction of transactions; let first = first; let last = last; let i = index" hideToggle>
         <mat-expansion-panel-header>
-          <mat-panel-title class="accordion1">
-            {{record.area}}
+          <mat-panel-title class="accordion3">
+            {{transaction.bankName}}
           </mat-panel-title>
           <mat-panel-description>
-            <span>{{record.description}}</span>
-            <mat-icon [className]="record.status ? 'done' : 'undone'">{{record.status? 'check_circle_outline' : 'schedule'}}</mat-icon>
+            <span>{{transaction.currencies[0]}}</span>
+            <img src="assets/images/bcp-logo.png">
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <p><b>Descripción:</b>&nbsp;&nbsp;{{record.description}}</p>
-        <p><b>Fecha y hora:</b>&nbsp;&nbsp;{{record.date.length > 1 ? recordDates[i] : 'En proceso'}}</p>
+        <p><b>N° de cuenta corriente:</b>&nbsp;&nbsp;{{transaction.accountNumber}}</p>
+        <p><b>CCI:</b>&nbsp;&nbsp;{{transaction.cci}}</p>
+        <p><b>RUC:</b>&nbsp;&nbsp;{{ruc}}</p>
+        <p><b>Nombre de la cuenta:</b>&nbsp;&nbsp;{{razon}}</p>
         <div class="panelBtns">
           <button *ngIf="!first" mat-button color="warn" (click)="prevStep()">Anterior</button>
           <button mat-button color="primary" (click)="nextStep()">{{last ? 'Fin' : 'Siguiente'}}</button>
         </div>
       </mat-expansion-panel>
     </mat-accordion>
-    <ng-template #norecords>
-      <div class="noRecordsImage"></div>
-      <p class="infoText index2">Nada que ver por aquí</p>
-    </ng-template>
   </div>
 </div>
 <div mat-dialog-actions *ngIf="!data.info">

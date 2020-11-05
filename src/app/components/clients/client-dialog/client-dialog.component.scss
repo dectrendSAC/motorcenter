@@ -526,6 +526,15 @@ $step3:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3
       flex-grow: unset;
     }
 
+    .accordion3{
+      width: 40%;
+      margin-right: 0px;
+      display: initial;
+      text-align: left;
+      font-size: 20px;
+      flex-grow: unset;
+    }
+
     mat-panel-description{
       margin-right: 0px;
 
@@ -549,6 +558,11 @@ $step3:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3
         &.undone{
           color: #d32f2f;
         }
+      }
+
+      img{
+        position: relative;
+        width: 8%;
       }
     }
 

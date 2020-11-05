@@ -38,14 +38,18 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
+  ruc: number = 20133932659;
+  razon: string = 'CARRION AUTOMOTRIZ S.A.';
+
   @ViewChild('accordion',{static:false}) Accordion: MatAccordion;
   @ViewChildren('slide1, slide2, slide3', { read: ElementRef }) slidesElements:  QueryList<ElementRef>;
   @ViewChild('stepper') formStepper: MatStepper;
 
-  banks = [
-    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{disable:false}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]},
-    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:false}, {hex:'#C0C0C0', name:'Plateado', selected:true}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Depósito de $50000 en cuenta BCP confirmada', detail:'182341762', status:true, done: true}, {date:'', description:'Trámite de placa y registro de tarjeta de propiedad', detail:'', status:false, done: false}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]},
-    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{disable:true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]}
+  transactions = [
+    {accountNumber: ['3652426429050', '3652381663178'], cci: ['00236500242642905053', '00236500238166317854'], bankName: 'BCP', currencies:['Soles', 'Dólares Americanos']},
+    {accountNumber: ['4358830', '4777189'], cci: ['00918200000435883070', '00918200000477718974'], bankName: 'SCOTIABANK', currencies:['Soles', 'Dólares Americanos']},
+    {accountNumber: ['001102100200794976', '001102100200794984'], cci: ['001121000020097627', '001121000020079498421'], bankName: 'BBVA CONTINENTAL', currencies:['Soles', 'Dólares Americanos']},
+    {accountNumber: ['5613002064017'], cci: ['00356100300206401780'], bankName: 'INTERBANK', currencies:['Soles']}
   ];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>, private router: Router, private _formBuilder: FormBuilder, private cdRef:ChangeDetectorRef) { }
