@@ -38,15 +38,17 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
 
+  currencyType: number = 0;
   ruc: number = 20133932659;
   razon: string = 'CARRION AUTOMOTRIZ S.A.';
+  currentPayView: boolean = false;
 
   @ViewChild('accordion',{static:false}) Accordion: MatAccordion;
   @ViewChildren('slide1, slide2, slide3', { read: ElementRef }) slidesElements:  QueryList<ElementRef>;
   @ViewChild('stepper') formStepper: MatStepper;
 
   transactions = [
-    {accountNumber: ['3652426429050', '3652381663178'], cci: ['00236500242642905053', '00236500238166317854'], bankName: 'BCP', currencies:['Soles', 'Dólares Americanos']},
+    {accountNumber: ['3652426429050', '3652381663178'], cci: ['00236500242642905053', '00236500238166317854'], bankName: 'BANCO DE CRÉDITO DEL PERÚ', currencies:['Soles', 'Dólares Americanos']},
     {accountNumber: ['4358830', '4777189'], cci: ['00918200000435883070', '00918200000477718974'], bankName: 'SCOTIABANK', currencies:['Soles', 'Dólares Americanos']},
     {accountNumber: ['001102100200794976', '001102100200794984'], cci: ['001121000020097627', '001121000020079498421'], bankName: 'BBVA CONTINENTAL', currencies:['Soles', 'Dólares Americanos']},
     {accountNumber: ['5613002064017'], cci: ['00356100300206401780'], bankName: 'INTERBANK', currencies:['Soles']}
@@ -129,7 +131,12 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
 
   //Restore profile data
   restoreChanges(){
-    this.dialogRef.close({data:true});
+    //Show payment second view
+    if(this.data.format == 'accordion3'){
+      this.currentPayView = true;
+    } else {
+      this.dialogRef.close({data:true});
+    }
   }
 
   //Accordion methods
@@ -187,5 +194,10 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
         }
       }
     });
+  }
+
+  //Change variable according to currency
+  changeCurrency(j:any){
+    this.currencyType = j;
   }
 }

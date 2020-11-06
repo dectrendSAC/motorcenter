@@ -1,6 +1,6 @@
 <div *ngIf="data.info" class="closeBtn" mat-dialog-close (click)="closeDialog()"></div>
 <h1 mat-dialog-title [class.no-record]="!records" [class.notify]="notificationSection">{{data.tittle}}&nbsp;</h1>
-<div mat-dialog-content [ngSwitch]="data.format" [class.stepper]="data.format == 'stepper'">
+<div mat-dialog-content [ngSwitch]="data.format" [class.stepper]="data.format == 'stepper'" [class.accordion3]="data.format == 'accordion3'">
   <div *ngSwitchCase="'simple'">
     <p *ngIf="!data.info else info" [class.notify]="notificationSection">{{data.content}}</p>
     <ng-template #info>
@@ -134,33 +134,43 @@
     </div>
   </div>
   <div *ngSwitchCase="'accordion3'">
-    <p>Transfiere o deposita a una de nuestras cuentas</p>
-    <p>S/{{records[0]}}.00</p>
-    <mat-accordion [multi]="true" #accordion="matAccordion">
-      <mat-expansion-panel *ngFor="let transaction of transactions; let first = first; let last = last; let i = index" hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title class="accordion3">
-            {{transaction.bankName}}
-          </mat-panel-title>
-          <mat-panel-description>
-            <span>{{transaction.currencies[0]}}</span>
-            <img src="assets/images/bcp-logo.png">
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <p><b>N° de cuenta corriente:</b>&nbsp;&nbsp;{{transaction.accountNumber}}</p>
-        <p><b>CCI:</b>&nbsp;&nbsp;{{transaction.cci}}</p>
-        <p><b>RUC:</b>&nbsp;&nbsp;{{ruc}}</p>
-        <p><b>Nombre de la cuenta:</b>&nbsp;&nbsp;{{razon}}</p>
-        <div class="panelBtns">
-          <button *ngIf="!first" mat-button color="warn" (click)="prevStep()">Anterior</button>
-          <button mat-button color="primary" (click)="nextStep()">{{last ? 'Fin' : 'Siguiente'}}</button>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
+    <div class="payview1" *ngIf="!currentPayView">
+      <p class="payDetail1">Transfiere o deposite a una de nuestras cuentas</p>
+      <p class="payDetail2">  PEN S/{{records[0]}}.00 ó USD ${{records[0]}}.00</p>
+      <mat-accordion #accordion="matAccordion">
+        <mat-expansion-panel *ngFor="let transaction of transactions; let first = first; let last = last; let i = index">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="accordion3">
+              <div [className]="'bank-'+i"></div>
+            </mat-panel-title>
+            <mat-panel-description>
+              <span>{{transaction.bankName}}</span>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+          <p><b>Seleccione una moneda:</b>&nbsp;&nbsp;
+            <mat-select class="currency" value="Soles">
+              <mat-option [value]="currency" *ngFor="let currency of transaction.currencies; let j = index" (click)="changeCurrency(j)">{{currency}}</mat-option>
+            </mat-select>
+          </p>
+          <p><b>N° de cuenta corriente:</b>&nbsp;&nbsp;{{transaction.accountNumber[currencyType]}}</p>
+          <p><b>CCI:</b>&nbsp;&nbsp;{{transaction.cci[currencyType]}}</p>
+          <p><b>RUC:</b>&nbsp;&nbsp;{{ruc}}</p>
+          <p><b>Nombre de la cuenta:</b>&nbsp;&nbsp;{{razon}}</p>
+        </mat-expansion-panel>
+      </mat-accordion>
+      <div class="payAdvice">
+        <h4><b>Importante</b></h4>
+        <p>Las operaciones inmediatas demoran entre 15 - 45 minutos</p>
+        <!--<p>Las operaciones interbancarias diferidas pueden demorar hasta 24 horas</p>-->
+      </div>
+    </div>
+    <div class="payview2" *ngIf="currentPayView">
+      <p>La segunda vista</p>
+    </div>
   </div>
 </div>
 <div mat-dialog-actions *ngIf="!data.info">
-  <button mat-raised-button color="primary" *ngIf="!notificationSection" (click)="restoreChanges()" cdkFocusInitial>{{data.format === 'simple' ? 'SI' : data.format === 'accordion1' ? 'REVISAR' : 'CONTACTAR'}}</button>
+  <button mat-raised-button color="primary" *ngIf="!notificationSection" (click)="restoreChanges()" cdkFocusInitial>{{data.format === 'simple' ? 'SI' : data.format === 'accordion1' ? 'REVISAR' : data.format === 'accordion3' ? 'YA TRANSFERÍ' : 'CONTACTAR'}}</button>
   <button mat-stroked-button color="primary" *ngIf="!notificationSection" (click)="closeDialog()">{{data.format === 'simple' ? 'NO' : 'CERRAR'}}</button>
   <button mat-raised-button color="primary" *ngIf="notificationSection" (click)="closeDialog()">ENTIENDO</button>
 </div>
