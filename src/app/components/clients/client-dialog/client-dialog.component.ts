@@ -6,9 +6,9 @@ import { MatAccordion } from '@angular/material/expansion';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 
-
 import * as _moment from 'moment';
 
+declare let $: any;
 const moment = _moment;
 var slideIndex = 0;
 
@@ -127,6 +127,32 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
       });
       this.cdRef.detectChanges();
     }
+
+    //Pay warnings owl carousel
+      var owl = $('#payAdvices');
+
+      owl.owlCarousel({
+          loop:true,
+          singleItem: true,
+          margin: 50,
+          nav:false,
+          dots: true,
+          autoplay: true,
+          autoWidth:true,
+          items:4,
+          dotsClass:'owl-dots chango',
+          responsive:{
+              0:{
+                  items:1
+              },
+              600:{
+                  items:3
+              },
+              1000:{
+                  items:3
+              }
+          }
+      })
   }
 
   //Restore profile data

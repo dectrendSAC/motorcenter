@@ -531,8 +531,29 @@ $interbank:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20vie
       border-radius: 5px;
       margin-top: 25px;
 
+      h4{
+        margin-bottom: 5px;
+      }
+
       p{
         font-size: 10pt;
+      }
+
+      #payAdvices{
+        width: 100%;
+        overflow: hidden;
+
+        .item{
+          text-align: center;
+
+          p{
+            width: 450px;
+          }
+        }
+
+        .chango{
+          padding: 0px;
+        }
       }
     }
   }
