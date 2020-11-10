@@ -208,7 +208,7 @@ export class QuotesComponent implements OnInit {
   //Show quote status
   displayQuoteStatus(i: any){
     this.dialog.open(ClientDialogComponent, {
-      data: {tittle: 'ESTADO DE LA COMPRA', description:'estado', format:'stepper', content: this.clientQuotes[i].state, info: true}
+      data: {tittle: 'Seguimiento del vehículo', description:'estado', format:'stepper', content: this.clientQuotes[i].state, info: true}
     });
   }
 
@@ -228,7 +228,7 @@ export class QuotesComponent implements OnInit {
   //pay proccess of a quote
   payQuote(i:any){
     const dialogRef = this.dialog.open(ClientDialogComponent, {
-      data: {tittle: 'Nuestros métodos de pago', format:'accordion3', content: [this.clientQuotes[i].vehicleInitialPrice,'MC-1025','3.623']}
+      data: {tittle: ['Nuestros métodos de pago','Confirma la transferencia o depósito','Verificación en proceso'], format:'accordion3', content: [this.clientQuotes[i].vehicleInitialPrice,'MC-1025','3.623']}
     });
   }
 }

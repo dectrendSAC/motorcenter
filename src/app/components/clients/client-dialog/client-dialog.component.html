@@ -1,5 +1,5 @@
 <div *ngIf="data.info" class="closeBtn" mat-dialog-close (click)="closeDialog()"></div>
-<h1 mat-dialog-title [class.no-record]="!records" [class.notify]="notificationSection">{{data.tittle}}&nbsp;</h1>
+<h1 mat-dialog-title [class.no-record]="!records" [class.notify]="notificationSection && currentPayView == 0">{{ data.format == "accordion3" ? data.tittle[currentPayView] : data.tittle }}&nbsp;</h1>
 <div mat-dialog-content [ngSwitch]="data.format" [class.stepper]="data.format == 'stepper'" [class.accordion3]="data.format == 'accordion3'">
   <div *ngSwitchCase="'simple'">
     <p *ngIf="!data.info else info" [class.notify]="notificationSection">{{data.content}}</p>
@@ -48,23 +48,11 @@
             </div>
             <div class="item">
               <div class="steps">
-                <span class="rightSide"><mat-icon>looks_4</mat-icon>  ¡Listo! Puede verificar el progreso de lso tramites y el día de entrega de su vehículo</span>
-                <div class="image step2Image"></div>
+                <span class="rightSide"><mat-icon>looks_4</mat-icon>  ¡Listo! Puede verificar el progreso de los trámites y el día de entrega de su vehículo</span>
+                <div class="image step4Image"></div>
               </div>
             </div>
           </div>
-            <!--<div #slide1 class="steps fade">
-              <div class="image step1Image"></div>
-              <span><mat-icon>looks_one</mat-icon>  El asesor te detallará las versiones y colores disponibles del vehículo de tu elección</span>
-            </div>
-            <div #slide2 class="steps fade">
-              <span class="rightSide"><mat-icon>looks_two</mat-icon>  Si ya estas decidido, procede a separar tu vehículo con un solo click</span>
-              <div class="image step2Image"></div>
-            </div>
-            <div #slide3 class="steps fade">
-              <div class="image step3Image"></div>
-              <span><mat-icon>looks_3</mat-icon>  Realiza la transferencia o depósito, envianos una foto del voucher para verificarlo y listo</span>
-            </div>-->
         </div>
       </div>
       <p [className]="'infoText index'+i" *ngFor="let content of data.content; let i = index">{{data.content[i]}}</p>
@@ -158,7 +146,7 @@
     </div>
   </div>
   <div *ngSwitchCase="'accordion3'">
-    <div class="payview1" *ngIf="!currentPayView">
+    <div class="payview1" *ngIf="currentPayView == 0">
       <p class="payDetail1">Transfiere o deposite a una de nuestras cuentas</p>
       <p class="payDetail2">  PEN S/{{records[0]}}.00 ó USD ${{records[0]}}.00</p>
       <mat-accordion #accordion="matAccordion">
@@ -192,13 +180,28 @@
         </div>
       </div>
     </div>
-    <div class="payview2" *ngIf="currentPayView">
-      <p>La segunda vista</p>
+    <div class="payview2" *ngIf="currentPayView == 1">
+      <p class="payDetail1">Adjunta el comprobante de la operación</p>
+      <p class="payDetail2">Una vez se confirme la transferencia o depósito, podrá visualizar el estado actual de la compra.</p>
+      <div class="uploadVoucher">
+        <mat-icon>add_photo_alternate</mat-icon>
+        <div class="info">
+          <p>Adjunta una foto o captura de pantalla de la operación realizada</p>
+          <span>Peso máximo 10 Mb. JPG, PNG o PDF</span>
+        </div>
+      </div>
+      <p class="payDetail3"><mat-icon>help</mat-icon>  ¿Necesitas ayuda?</p>
     </div>
+  </div>
+  <div class="payview3" *ngIf="currentPayView == 2">
+    <p class="payDetail1">Muchas gracias por su confianza</p>
+    <mat-icon class="done">done_outline</mat-icon>
+    <p class="payDetail2">En unos minutos se procederá a verificar el pago que acaba de realizar.</p>
+    <p class="payDetail3">Comparta su experiencia en  <mat-icon>facebook</mat-icon></p>
   </div>
 </div>
 <div mat-dialog-actions *ngIf="!data.info">
   <button mat-raised-button color="primary" *ngIf="!notificationSection" (click)="restoreChanges()" cdkFocusInitial>{{data.format === 'simple' ? 'SI' : data.format === 'accordion1' ? 'REVISAR' : data.format === 'accordion3' ? 'YA TRANSFERÍ' : 'CONTACTAR'}}</button>
   <button mat-stroked-button color="primary" *ngIf="!notificationSection" (click)="closeDialog()">{{data.format === 'simple' ? 'NO' : 'CERRAR'}}</button>
-  <button mat-raised-button color="primary" *ngIf="notificationSection" (click)="closeDialog()">ENTIENDO</button>
+  <button [class.voucher]="currentPayView == 1" mat-raised-button color="primary" *ngIf="notificationSection" (click)="closeDialog()">{{currentPayView == 1 ? 'ENVIAR' : 'ENTIENDO'}}</button>
 </div>

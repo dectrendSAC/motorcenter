@@ -1,4 +1,5 @@
 import { CdkStep, MAT_STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, Inject, ViewChild, ViewChildren, QueryList, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -41,7 +42,7 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
   currencyType: number = 0;
   ruc: number = 20133932659;
   razon: string = 'CARRION AUTOMOTRIZ S.A.';
-  currentPayView: boolean = false;
+  currentPayView: number = 0;
 
   @ViewChild('accordion',{static:false}) Accordion: MatAccordion;
   @ViewChildren('slide1, slide2, slide3', { read: ElementRef }) slidesElements:  QueryList<ElementRef>;
@@ -87,15 +88,15 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
       }, 4500);
     }
 
-    //Format buy status
-    this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: [this.data.content[0].status ? 'verified' : '', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: [this.data.content[1].status ? 'verified' : '', Validators.required]
-    });
-
     if (this.data.format.indexOf('stepper') !== -1){
+      //Format buy status
+      this.firstFormGroup = this._formBuilder.group({
+        firstCtrl: [this.data.content[0].status ? 'verified' : '', Validators.required]
+      });
+      this.secondFormGroup = this._formBuilder.group({
+        secondCtrl: [this.data.content[1].status ? 'verified' : '', Validators.required]
+      });
+
       //Format dates
       if (this.data.content){
         for(let i=0; i<this.data.content.length; i++){
@@ -163,7 +164,8 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
   restoreChanges(){
     //Show payment second view
     if(this.data.format == 'accordion3'){
-      this.currentPayView = true;
+      this.currentPayView = 1;
+      this.notificationSection = true;
     } else {
       this.dialogRef.close({data:true});
     }
@@ -184,16 +186,20 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
 
   //Close dialog
   closeDialog(){
-    if(this.Accordion){
-      this.Accordion.closeAll();
-      setTimeout(()=>{
-        this.dialogRef.close(true);
-      },300);
+    if(this.currentPayView == 1){
+      this.currentPayView = 2;
     } else {
-      this.dialogRef.close(true);
+      if(this.Accordion){
+        this.Accordion.closeAll();
+        setTimeout(()=>{
+          this.dialogRef.close(true);
+        },300);
+      } else {
+        this.dialogRef.close(true);
+      }
+      clearInterval(this.simpleCarouselInterval);
+      slideIndex = 0;
     }
-    clearInterval(this.simpleCarouselInterval);
-    slideIndex = 0;
   }
 
   //Price carousel

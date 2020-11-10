@@ -65,6 +65,10 @@ body { margin: 0; font-family: "palanquin", "arial", sans-serif; }
 }
 
 /* Carousel specail classes*/
+.owl-theme .owl-dots .owl-dot {
+  outline: none;
+}
+
 .carousel-pay{
   margin: 0px !important;
 }
