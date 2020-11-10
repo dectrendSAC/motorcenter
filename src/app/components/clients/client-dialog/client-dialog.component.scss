@@ -83,7 +83,6 @@ $interbank:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20vie
     .price{
       .priceImage{
         width: 80%;
-        padding-top: 35%;
 
         .step1Image{
           margin-right: 10%;
@@ -154,7 +153,6 @@ $interbank:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20vie
     .price{
       .priceImage{
         width: 100%;
-        padding-top: 40%;
 
         .step1Image{
           margin-right: 5%;
@@ -416,42 +414,35 @@ $interbank:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20vie
   }
 
   .price{
-    .priceImage{
+    padding-bottom: 30px;
+    overflow: hidden;
+    width: 760px;
+
+    .item{
+      text-align: center;
+    }
+
+    .steps{
+      display: inline-flex;
+    }
+
+    .image{
       position: relative;
-      margin: 0 auto;
-      overflow: hidden;
+      height: 250px;
+      top: -7%;
+      z-index: 3;
+    }
 
-      .steps{
-        display: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-      }
+    .step1Image{
+      background: url("data:image/svg+xml, #{$step1}") left center/100% 100% no-repeat !important;
+    }
 
-      .steps:nth-child(1){
-        display: inline-flex;
-      }
+    .step2Image{
+      background: url("data:image/svg+xml, #{$step2}") left center/100% 100% no-repeat !important;
+    }
 
-      .image{
-        position: relative;
-        height: 100%;
-        top: -7%;
-        z-index: 3;
-      }
-
-      .step1Image{
-        background: url("data:image/svg+xml, #{$step1}") left center/100% 100% no-repeat !important;
-      }
-
-      .step2Image{
-        background: url("data:image/svg+xml, #{$step2}") left center/100% 100% no-repeat !important;
-      }
-
-      .step3Image{
-        background: url("data:image/svg+xml, #{$step3}") left center/100% 100% no-repeat !important;
-      }
+    .step3Image{
+      background: url("data:image/svg+xml, #{$step3}") left center/100% 100% no-repeat !important;
     }
 
     span{
@@ -461,6 +452,7 @@ $interbank:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20vie
       font-size: 1.5em;
       line-height: 1.5em;
       color: #1d66a8;
+      padding-left: 5%;
       width: 50%;
       height: 100%;
     }
@@ -468,24 +460,6 @@ $interbank:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20vie
     .rightSide{
       text-align: right;
     }
-  }
-
-  /* Fading animation */
-  .fade {
-    -webkit-animation-name: fade;
-    -webkit-animation-duration: 1.5s;
-    animation-name: fade;
-    animation-duration: 1.5s;
-  }
-
-  @-webkit-keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
-  }
-
-  @keyframes fade {
-    from {opacity: .4}
-    to {opacity: 1}
   }
 
   .infoText{
@@ -549,10 +523,6 @@ $interbank:"%0A%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20vie
           p{
             width: 450px;
           }
-        }
-
-        .chango{
-          padding: 0px;
         }
       }
     }

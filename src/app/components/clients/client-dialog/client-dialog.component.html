@@ -27,8 +27,33 @@
           </div>
         </div>
         <div class="price" *ngSwitchCase="'precio'">
-          <div class="priceImage">
-            <div #slide1 class="steps fade">
+          <div id="priceImage" class="owl-carousel owl-theme">
+            <div class="item">
+              <div class="steps">
+                <div class="image step1Image"></div>
+                <span><mat-icon>looks_one</mat-icon>  El asesor te detallará las versiones y colores disponibles del vehículo de tu elección</span>
+              </div>
+            </div>
+            <div class="item">
+              <div class="steps">
+                <span class="rightSide"><mat-icon>looks_two</mat-icon>  Si ya estas decidido, procede a separar tu vehículo con un solo click</span>
+                <div class="image step2Image"></div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="steps">
+                <div class="image step3Image"></div>
+                <span><mat-icon>looks_3</mat-icon>  Realiza la transferencia o depósito, envianos una foto del voucher para verificarlo</span>
+              </div>
+            </div>
+            <div class="item">
+              <div class="steps">
+                <span class="rightSide"><mat-icon>looks_4</mat-icon>  ¡Listo! Puede verificar el progreso de lso tramites y el día de entrega de su vehículo</span>
+                <div class="image step2Image"></div>
+              </div>
+            </div>
+          </div>
+            <!--<div #slide1 class="steps fade">
               <div class="image step1Image"></div>
               <span><mat-icon>looks_one</mat-icon>  El asesor te detallará las versiones y colores disponibles del vehículo de tu elección</span>
             </div>
@@ -39,8 +64,7 @@
             <div #slide3 class="steps fade">
               <div class="image step3Image"></div>
               <span><mat-icon>looks_3</mat-icon>  Realiza la transferencia o depósito, envianos una foto del voucher para verificarlo y listo</span>
-            </div>
-          </div>
+            </div>-->
         </div>
       </div>
       <p [className]="'infoText index'+i" *ngFor="let content of data.content; let i = index">{{data.content[i]}}</p>
@@ -161,7 +185,7 @@
       <div class="payAdvice">
         <h4><b>Importante</b></h4>
         <div id="payAdvices" class="owl-carousel owl-theme">
-          <div class="item"><p>Las operaciones inmediatas demoran entre 15 - 45 minutos</p></div>
+          <div class="item"><p>Las operaciones inmediatas demoran entre 15 a 45 minutos</p></div>
           <div class="item"><p>Las operaciones interbancarias diferidas pueden demorar hasta 24 horas</p></div>
           <div class="item"><p>Las operaciones interbancarias diferidas pueden demorar hasta 24 horas</p></div>
           <div class="item"><p>Las operaciones interbancarias diferidas pueden demorar hasta 24 horas</p></div>

@@ -128,10 +128,25 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
       this.cdRef.detectChanges();
     }
 
-    //Pay warnings owl carousel
-      var owl = $('#payAdvices');
+    //Buy guide images
+      var owl1 = $('#priceImage');
 
-      owl.owlCarousel({
+      owl1.owlCarousel({
+        loop:true,
+        margin: 0,
+        nav:false,
+        dots: true,
+        singleItem:true,
+        autoplay: true,
+        items:1,
+        dotsClass:'owl-dots carousel-pay'
+
+    })
+
+    //Pay warnings owl carousel
+      var owl2 = $('#payAdvices');
+
+      owl2.owlCarousel({
           loop:true,
           singleItem: true,
           margin: 50,
@@ -139,19 +154,8 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
           dots: true,
           autoplay: true,
           autoWidth:true,
-          items:4,
-          dotsClass:'owl-dots chango',
-          responsive:{
-              0:{
-                  items:1
-              },
-              600:{
-                  items:3
-              },
-              1000:{
-                  items:3
-              }
-          }
+          items:1,
+          dotsClass:'owl-dots carousel-pay'
       })
   }
 
