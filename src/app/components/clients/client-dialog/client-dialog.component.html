@@ -1,4 +1,4 @@
-<div *ngIf="data.info" class="closeBtn" mat-dialog-close (click)="closeDialog()"></div>
+<div *ngIf="currentPayView == 2 ? true :  data.info" class="closeBtn" mat-dialog-close (click)="closeDialog()"></div>
 <h1 mat-dialog-title [class.no-record]="!records" [class.notify]="notificationSection && currentPayView == 0">{{ data.format == "accordion3" ? data.tittle[currentPayView] : data.tittle }}&nbsp;</h1>
 <div mat-dialog-content [ngSwitch]="data.format" [class.stepper]="data.format == 'stepper'" [class.accordion3]="data.format == 'accordion3'">
   <div *ngSwitchCase="'simple'">
@@ -200,7 +200,7 @@
     <p class="payDetail3">Comparta su experiencia en  <mat-icon>facebook</mat-icon></p>
   </div>
 </div>
-<div mat-dialog-actions *ngIf="!data.info">
+<div mat-dialog-actions *ngIf="currentPayView == 2 ? false :  !data.info">
   <button mat-raised-button color="primary" *ngIf="!notificationSection" (click)="restoreChanges()" cdkFocusInitial>{{data.format === 'simple' ? 'SI' : data.format === 'accordion1' ? 'REVISAR' : data.format === 'accordion3' ? 'YA TRANSFERÍ' : 'CONTACTAR'}}</button>
   <button mat-stroked-button color="primary" *ngIf="!notificationSection" (click)="closeDialog()">{{data.format === 'simple' ? 'NO' : 'CERRAR'}}</button>
   <button [class.voucher]="currentPayView == 1" mat-raised-button color="primary" *ngIf="notificationSection" (click)="closeDialog()">{{currentPayView == 1 ? 'ENVIAR' : 'ENTIENDO'}}</button>

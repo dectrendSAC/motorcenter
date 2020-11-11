@@ -90,12 +90,21 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
 
     if (this.data.format.indexOf('stepper') !== -1){
       //Format buy status
-      this.firstFormGroup = this._formBuilder.group({
-        firstCtrl: [this.data.content[0].status ? 'verified' : '', Validators.required]
-      });
-      this.secondFormGroup = this._formBuilder.group({
-        secondCtrl: [this.data.content[1].status ? 'verified' : '', Validators.required]
-      });
+      if(this.data.content.length == 1){
+        this.firstFormGroup = this._formBuilder.group({
+          firstCtrl: ['', Validators.required]
+        });
+        this.secondFormGroup = this._formBuilder.group({
+          secondCtrl: ['', Validators.required]
+        });
+      } else {
+        this.firstFormGroup = this._formBuilder.group({
+          firstCtrl: [this.data.content[0].status ? 'verified' : '', Validators.required]
+        });
+        this.secondFormGroup = this._formBuilder.group({
+          secondCtrl: [this.data.content[1].status ? 'verified' : '', Validators.required]
+        });
+      }
 
       //Format dates
       if (this.data.content){
@@ -188,6 +197,8 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
   closeDialog(){
     if(this.currentPayView == 1){
       this.currentPayView = 2;
+    } else if (this.currentPayView == 2){
+      this.dialogRef.close({data:true});
     } else {
       if(this.Accordion){
         this.Accordion.closeAll();

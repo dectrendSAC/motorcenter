@@ -25,11 +25,13 @@ export class QuotesComponent implements OnInit {
   colorHex: string;
   enableReadonly: boolean = true;
   dialogContent: any;
+  approvedState: number = -1;
 
   clientQuotes = [
-    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{disable:false}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]},
-    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:false}, {hex:'#C0C0C0', name:'Plateado', selected:true}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Depósito de $50000 en cuenta BCP confirmada', detail:'182341762', status:true, done: true}, {date:'', description:'Trámite de placa y registro de tarjeta de propiedad', detail:'', status:false, done: false}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]},
-    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{disable:true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]}
+    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'', description:'Verificando depósito o transferencia', detail:'', status:false, done: false, disable: false, canceled: false}, {date:'', description:'', detail:'', status:false, done: false, disable: false, canceled: false}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]},
+    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:false}, {hex:'#C0C0C0', name:'Plateado', selected:true}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'2020-02-12T12:47:55Z', description:'Depósito de $50000 en cuenta BCP confirmada', detail:'182341762', status:true, done: true, disable: false, canceled: false}, {date:'', description:'Trámite de placa y registro de tarjeta de propiedad', detail:'', status:false, done: false}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]},
+    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'', description:'Verificando depósito o transferencia', detail:'', status:false, done: false, disable: true, canceled: false}, {date:'', description:'', detail:'', status:false, done: false, disable: true, canceled: false}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]},
+    {vehicleName: 'Hyundai Atos', vehicleVersions: [{description:'basico', selected:false}, {description:'full', selected:true}], vehicleColors: [{hex:'#212121', name:'Negro', selected:true}, {hex:'#C0C0C0', name:'Plateado', selected:false}], vehiclePrice:50000, vehicleInitialPrice:50000, state: [{date:'', description:'Verificando depósito o transferencia', detail:'', status:false, done: false, disable: false, canceled: true}, {date:'', description:'', detail:'', status:false, done: false, disable: false, canceled: true}], quoteExecutive: [{name:'Luis Aponte Valdiviezo', phone:962548713, email:'laponte@mail.com'}]}
   ];
 
   constructor(private _formBuilder: FormBuilder, private dialog: MatDialog) {
@@ -83,6 +85,12 @@ export class QuotesComponent implements OnInit {
 
 
   ngOnInit(): void {
+    //Check if quote is canceled
+    this.clientQuotes.forEach((item, index) => {
+      if(item.state[0].canceled){
+        this.cancelQuoteIndex = index;
+      }
+    })
   }
 
   //Enable vehicle form fields editing
@@ -229,6 +237,12 @@ export class QuotesComponent implements OnInit {
   payQuote(i:any){
     const dialogRef = this.dialog.open(ClientDialogComponent, {
       data: {tittle: ['Nuestros métodos de pago','Confirma la transferencia o depósito','Verificación en proceso'], format:'accordion3', content: [this.clientQuotes[i].vehicleInitialPrice,'MC-1025','3.623']}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.data){
+        this.approvedState = i;
+      }
     });
   }
 }
