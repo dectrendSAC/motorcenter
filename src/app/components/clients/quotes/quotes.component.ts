@@ -5,7 +5,7 @@ import { ClientDialogComponent } from '../client-dialog/client-dialog.component'
 import { merge } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-let count = 0, color: string, index:number;
+let count = 0, color: string, index:number, canceledQuotes = [];
 
 @Component({
   selector: 'app-quotes',
@@ -15,7 +15,7 @@ let count = 0, color: string, index:number;
 export class QuotesComponent implements OnInit {
   QuoteFormGroup: FormGroup;
   controlArray: FormArray;
-  cancelQuoteIndex: number;
+  cancelQuoteIndexArray: any;
   vehicleIndex: number;
   displaySaveBtn: boolean = false;
   formVehicleButton: string = 'edit';
@@ -88,7 +88,14 @@ export class QuotesComponent implements OnInit {
     //Check if quote is canceled
     this.clientQuotes.forEach((item, index) => {
       if(item.state[0].canceled){
-        this.cancelQuoteIndex = index;
+        if(canceledQuotes.indexOf(index) === -1) {
+          canceledQuotes.push(index);
+          sessionStorage.setItem("CanceledQutes", JSON.stringify(canceledQuotes));
+        }
+
+        this.cancelQuoteIndexArray = JSON.parse(sessionStorage.getItem("CanceledQutes"));
+        console.log(this.cancelQuoteIndexArray);
+
       }
     })
   }
@@ -222,13 +229,18 @@ export class QuotesComponent implements OnInit {
 
   //Cancel and disable quote
   cancelQuote(i:any){
+    if(canceledQuotes.indexOf(i) === -1) {
+      canceledQuotes.push(i);
+      sessionStorage.setItem("CanceledQutes", JSON.stringify(canceledQuotes));
+    }
+
     const dialogRef = this.dialog.open(ClientDialogComponent, {
       data: {tittle: '¿Seguro que desea cancelar la cotización?', format:'simple', content: 'Esta acción es irreversible, todos el proceso será anulado'}
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result.data){
-        this.cancelQuoteIndex = i;
+        this.cancelQuoteIndexArray = JSON.parse(sessionStorage.getItem("CanceledQutes"));
       }
     });
   }
