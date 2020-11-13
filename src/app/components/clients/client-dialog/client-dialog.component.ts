@@ -1,5 +1,4 @@
 import { CdkStep, MAT_STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit, Inject, ViewChild, ViewChildren, QueryList, ElementRef, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -27,7 +26,6 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
   notificationSection: boolean = false;
   step: number;
   showStep: string;
-  simpleCarouselInterval: any;
 
   BuyStatusFormGroup: FormGroup;
   stepStatus1: string = 'done';
@@ -55,9 +53,13 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
     {accountNumber: ['5613002064017'], cci: ['00356100300206401780'], bankName: 'INTERBANK', currencies:['Soles']}
   ];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>, private router: Router, private _formBuilder: FormBuilder, private cdRef:ChangeDetectorRef) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientDialogComponent>, private router: Router, private _formBuilder: FormBuilder, private cdRef:ChangeDetectorRef) {
+    dialogRef.disableClose = true;
+  }
 
   ngOnInit(): void {
+    console.log(this.data.content);
+
     moment.locale('es');
     setTimeout(()=>{
       this.step = 0;
@@ -79,13 +81,6 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
     //Check if notification screen is visible
     if (this.router.url.indexOf('/notificaciones') > -1) {
       this.notificationSection = true;
-    }
-
-    //Check if quotes screen is visible
-    if(this.router.url.indexOf('/cotizaciones') > -1) {
-      this.simpleCarouselInterval = setInterval(() => {
-        this.simplecarousel();
-      }, 4500);
     }
 
     if (this.data.format.indexOf('stepper') !== -1){
@@ -208,26 +203,19 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
       } else {
         this.dialogRef.close(true);
       }
-      clearInterval(this.simpleCarouselInterval);
       slideIndex = 0;
     }
   }
 
-  //Price carousel
-  simplecarousel(){
-    this.slidesElements.forEach((element)=>{
-      const htmlElement = element.nativeElement as HTMLElement;
-      htmlElement.style.display = 'none';
-    });
-
-    slideIndex++;
-    if (slideIndex > this.slidesElements.length) {slideIndex = 1}
-    this.slidesElements.forEach((element, index)=>{
-      const htmlElement = element.nativeElement as HTMLElement;
-      if (index == slideIndex-1){
-        htmlElement.style.display = "inline-flex";
-      } else {
-        htmlElement.style.display = 'none';
+  //Get selected index
+  getSelectedStep(){
+    this.data.content.forEach(index => {
+      if (this.data.content[index]){
+        if (this.data.content[index].done) {
+          return index + 1;
+        } else {
+          return index;
+        }
       }
     });
   }

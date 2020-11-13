@@ -175,7 +175,7 @@
         }
 
         &:nth-child(even){
-          margin: 0 2.5% 5% 2.5%;
+          margin: 0 2.5% 4.5% 2.5%;
         }
 
         mat-card-header{
@@ -404,6 +404,13 @@
           .status{
             width: 60%;
           }
+        }
+
+        .phantomDiv{
+          position: relative;
+          width: 100%;
+          height: 1px;
+          margin-bottom: 15.8%;
         }
     }
 }
