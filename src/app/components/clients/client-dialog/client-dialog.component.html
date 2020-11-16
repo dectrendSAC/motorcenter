@@ -128,9 +128,9 @@
           <mat-step [stepControl]="secondFormGroup" completed="false" state="docs">
             <form [formGroup]="secondFormGroup">
               <ng-template matStepLabel>Matriculación del vehículo</ng-template>
-              <p><b>Descripción:</b>&nbsp;&nbsp;{{data.content[1].description}}</p>
-              <p><b>Nro. Placa:</b>&nbsp;&nbsp;{{data.content[1].detail}}</p>
-              <p><b>Fecha y hora:</b>&nbsp;&nbsp;{{data.content[1].date.length > 1 ? statusDates[1] : 'En proceso'}}</p>
+              <p><b>Descripción:</b>&nbsp;&nbsp;{{data.content.length > 1 ? data.content[1].description : ''}}</p>
+              <p><b>Nro. Placa:</b>&nbsp;&nbsp;{{data.content.length > 1 ? data.content[1].detail : ''}}</p>
+              <p><b>Fecha y hora:</b>&nbsp;&nbsp;{{data.content.length > 1 ? data.content[1].date.length > 1 ? statusDates[1] : 'En proceso' : ''}}</p>
               <input style="display: none;" matInput formControlName="secondCtrl" required>
             </form>
           </mat-step>

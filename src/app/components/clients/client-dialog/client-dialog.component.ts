@@ -58,8 +58,6 @@ export class ClientDialogComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    console.log(this.data.content);
-
     moment.locale('es');
     setTimeout(()=>{
       this.step = 0;
