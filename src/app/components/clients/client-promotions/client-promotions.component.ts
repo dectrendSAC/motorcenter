@@ -7,9 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientPromotionsComponent implements OnInit {
 
+  clientPromotions = [
+    {promTitle: 'Planchado & Pintura', promImage: 'assets/images/historia_1-min.jpg'},
+    {promTitle: 'Planchado & Pintura', promImage: 'assets/images/historia_1-min.jpg'},
+    {promTitle: 'Planchado & Pintura', promImage: 'assets/images/historia_1-min.jpg'}
+  ];
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  enlargeImage(i){
+
   }
 
 }
