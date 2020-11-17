@@ -1,3 +1,11 @@
-<div class="promotionImage">
-  <img src={{data.image}}>
-</div>
+<mat-dialog-content class="mat-typography">
+  <div class="promsCarousel">
+    <div class="promotionImage">
+      <img src={{data.image}}>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Install</button>
+</mat-dialog-actions>

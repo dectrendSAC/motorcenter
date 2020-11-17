@@ -26,8 +26,11 @@
             }
         }
 
-        mat-card-content{
-          margin-top: -10px;
+        mat-card-actions{
+          .showMore{
+            font-size: 13pt;
+            padding: 5px;
+          }
         }
     }
   }
@@ -55,7 +58,11 @@
             }
         }
 
-        mat-card-content{
+        mat-card-actions{
+          .showMore{
+            font-size: 15pt;
+            padding: 10px;
+          }
         }
     }
   }
@@ -121,8 +128,6 @@
             left: -22px;
             width: calc(100% + 44px);
             color: #CA181F;
-            font-size: 15pt;
-            padding: 10px;
             border-top: 2px solid #dfdfdf;
             font-family: "palanquin", "arial", sans-serif;
             font-weight: bold;

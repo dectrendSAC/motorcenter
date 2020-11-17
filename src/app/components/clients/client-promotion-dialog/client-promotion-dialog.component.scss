@@ -24,18 +24,27 @@
 
 //---------------------------------------------------
 
-.promotionImage{
+img{
+  width: 100%;
+  height: auto;
+}
+
+mat-dialog-content{
+  width: 450px;
+
+  .promsCarousel{
     position: relative;
-    width: 50%;
-    display: inline-flex;
-    flex-wrap: wrap;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 100%;
 
-    img{
+    .promotionImage{
+      position: absolute;
       width: 100%;
-      height: auto;
+      top: 0%;
+      left: 0%;
+      z-index: 3;
     }
-
-    .mat-dialog-container {
-      display: contents;
-    }
+  }
 }
