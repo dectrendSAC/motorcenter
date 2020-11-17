@@ -22,6 +22,7 @@
 
             mat-card-title{
                 font-size: 15pt;
+                width: 118%;
             }
         }
 
@@ -50,6 +51,7 @@
 
             mat-card-title{
                 font-size: 20pt;
+                width: 126%;
             }
         }
 
@@ -97,12 +99,43 @@
 
             mat-card-title{
               margin-bottom: 0px;
-              width: 118%;
             }
         }
 
         mat-card-content{
+          .promotionImage{
+            img{
+              border-radius: 25px;
+              box-shadow: 0px 0px 15px 0px #afafaf;
+            }
+          }
 
+        }
+
+        mat-card-actions{
+          text-align: center;
+          margin-bottom: -10px;
+
+          .showMore{
+            position: relative;
+            left: -22px;
+            width: calc(100% + 44px);
+            color: #CA181F;
+            font-size: 15pt;
+            padding: 10px;
+            border-top: 2px solid #dfdfdf;
+            font-family: "palanquin", "arial", sans-serif;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: none;
+            border-radius: 0px 0px 25px 25px;
+
+            span{
+                z-index: 5;
+                position: relative;
+                vertical-align: inherit;
+            }
+          }
         }
     }
 }

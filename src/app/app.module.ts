@@ -47,6 +47,7 @@ import { MatPasswordStrengthModule } from '@angular-material-extensions/password
 import { ColorPickerComponent } from './components/color-picker/color-picker.component';
 import { VehiclesTypesComponent } from './components/vehicles-types/vehicles-types.component';
 import { ClientBottomsheetComponent } from './components/clients/client-bottomsheet/client-bottomsheet.component';
+import { ClientPromotionDialogComponent } from './components/clients/client-promotion-dialog/client-promotion-dialog.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +84,8 @@ import { ClientBottomsheetComponent } from './components/clients/client-bottomsh
     ClientDialogComponent,
     ColorPickerComponent,
     VehiclesTypesComponent,
-    ClientBottomsheetComponent
+    ClientBottomsheetComponent,
+    ClientPromotionDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ClientPromotionDialogComponent } from '../client-promotion-dialog/client-promotion-dialog.component';
 
 @Component({
   selector: 'app-client-promotions',
@@ -13,13 +15,14 @@ export class ClientPromotionsComponent implements OnInit {
     {promTitle: 'Planchado & Pintura', promImage: 'assets/images/historia_1-min.jpg'}
   ];
 
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  enlargeImage(i){
-
+  enlargeImage(i:any){
+    this.dialog.open(ClientPromotionDialogComponent, {
+      data: {image: this.clientPromotions[i].promImage}
+    });
   }
-
 }
