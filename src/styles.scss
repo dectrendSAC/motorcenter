@@ -41,7 +41,6 @@ body { margin: 0; font-family: "palanquin", "arial", sans-serif; }
 }
 
 /* Password strength component material bar colors change */
-
 .mat-warn .mat-progress-bar-buffer {
   background-color: #E4E8EB!important;
 }
@@ -71,4 +70,14 @@ body { margin: 0; font-family: "palanquin", "arial", sans-serif; }
 
 .carousel-pay{
   margin: 0px !important;
+}
+
+/*Promotion dialog image*/
+.imgProm .mat-dialog-container {
+    padding: 0px;
+    overflow: unset;
+}
+
+.backdropProm{
+  background: rgba(0, 0, 0, 0.85);
 }

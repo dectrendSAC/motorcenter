@@ -15,11 +15,67 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
+  #navigator{
+    margin-top: 10px;
+
+    #navCenter{
+        width: 140px;
+        height: 36px;
+
+        #navLeft{
+            border-top: 18px solid transparent;
+            border-bottom: 18px solid transparent;
+            border-right: 26px solid #CA181F;
+        }
+
+        #navRight{
+            border-top: 18px solid transparent;
+            border-bottom: 18px solid transparent;
+            border-left: 26px solid #CA181F;
+        }
+    }
+  }
+
+  mat-dialog-content{
+    width: 450px;
+
+    .promsCarousel{
+      height: 450px;
+    }
+  }
 
 }
 
 /* Extra large devices (large laptops and desktops, 1900px and up) */
 @media only screen and (min-width: 119em) {
+  #navigator{
+    margin-top: 1%;
+
+    #navCenter{
+        width: 825px;
+        height: 50px;
+
+        #navLeft{
+          border-top: 40px solid transparent;
+          border-bottom: 40px solid transparent;
+          border-right: 55px solid white;
+        }
+
+        #navRight{
+            border-top: 40px solid transparent;
+            border-bottom: 40px solid transparent;
+            border-left: 55px solid white;
+        }
+    }
+  }
+
+  mat-dialog-content{
+    width: 600px;
+
+    .promsCarousel{
+      height: 600px;
+    }
+  }
 }
 
 //---------------------------------------------------
@@ -30,31 +86,63 @@ img{
 }
 
 .closeBtn{
-  transform: scale(2);
   position: absolute;
-  top: 0%;
-  left: 47%;
+  top: 5%;
+  left: 50%;
   z-index: 2;
-  cursor: pointer;
-  color: white;
+
+  .closeIcon{
+    position: relative;
+    left: -50%;
+    height: 96px !important;
+    width: 96px !important;
+    font-size: 96px !important;
+    line-height: 76px !important;
+    cursor: pointer;
+    color: white;
+
+    ::ng-deep .mat-icon{
+      height: 96px !important;
+      width: 96px !important;
+      font-size: 96px !important;
+      line-height: 96px !important;
+    }
+  }
 }
 
+#navigator{
+  position: absolute;
+  left: 50%;
+  top: 45%;
+
+  #navCenter{
+      position: relative;
+      left: -50%;
+
+      #navLeft{
+          position: absolute;
+          cursor: pointer;
+          left: 0px;
+          width: 0;
+          height: 0;
+      }
+
+      #navRight{
+          position: absolute;
+          cursor: pointer;
+          right: 0px;
+          width: 0;
+          height: 0;
+      }
+  }
+}
+
+
 mat-dialog-content{
-  width: 450px;
-  margin: 0 0 11% 0 !important;
-  padding: 0px !important;
-  overflow: visible;
+  overflow: unset;
 
   .promsCarousel{
     position: relative;
     width: 100%;
-    padding-top: 100%;
-
-    .promotionImage{
-      position: absolute;
-      width: 110.6%;
-      top: -5.2%;
-      left: -5.3%;
-    }
   }
 }

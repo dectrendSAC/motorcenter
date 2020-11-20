@@ -22,7 +22,9 @@ export class ClientPromotionsComponent implements OnInit {
 
   enlargeImage(i:any){
     this.dialog.open(ClientPromotionDialogComponent, {
-      data: {image: this.clientPromotions[i].promImage}
+      data: {image: this.clientPromotions[i].promImage},
+      panelClass: 'imgProm',
+      backdropClass: 'backdropProm'
     });
   }
 }
