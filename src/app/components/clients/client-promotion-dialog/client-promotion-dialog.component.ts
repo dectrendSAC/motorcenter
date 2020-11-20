@@ -43,6 +43,7 @@ export class ClientPromotionDialogComponent implements OnInit {
         margin:50,
         nav:false,
         dots:false,
+        animateOut: 'fadeOut',
         startPosition: this.data.selectedImage,
         responsive:{
             0:{
