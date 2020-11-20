@@ -5,14 +5,14 @@
 </div>
 <div id="navigator">
   <div id="navCenter">
-      <div *ngIf="displayLeft" id="navLeft" (click)="navLeft()"></div>
-      <div *ngIf="displayRight" id="navRight" (click)="navRight()"></div>
+    <div *ngIf="displayLeft" id="navLeft" (click)="navLeft()"></div>
+    <div *ngIf="displayRight" id="navRight" (click)="navRight()"></div>
   </div>
 </div>
 <mat-dialog-content class="mat-typography">
   <div id="promsList" class="owl-carousel">
-    <div class="promsCarousel">
-      <img src={{data.image}}>
+    <div class="item promsCarousel" *ngFor="let promImage of data.images; let i = index">
+      <img src={{promImage}}>
     </div>
   </div>
 </mat-dialog-content>

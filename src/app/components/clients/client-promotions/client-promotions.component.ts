@@ -21,8 +21,13 @@ export class ClientPromotionsComponent implements OnInit {
   }
 
   enlargeImage(i:any){
+    let promImages = [];
+    this.clientPromotions.forEach(proms => {
+      promImages.push(proms.promImage)
+    });
+
     this.dialog.open(ClientPromotionDialogComponent, {
-      data: {image: this.clientPromotions[i].promImage},
+      data: {selectedImage: i, images: promImages},
       panelClass: 'imgProm',
       backdropClass: 'backdropProm'
     });

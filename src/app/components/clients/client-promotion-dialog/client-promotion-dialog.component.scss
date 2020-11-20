@@ -15,32 +15,56 @@
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
+  .closeBtn{
+    top: 2%;
+
+    .closeIcon{
+      height: 75px !important;
+      width: 75px !important;
+      font-size: 75px !important;
+      line-height: 75px !important;
+
+      ::ng-deep .mat-icon{
+        height: 75px !important;
+        width: 75px !important;
+        font-size: 75px !important;
+        line-height: 75px !important;
+      }
+    }
+  }
+
   #navigator{
     margin-top: 10px;
+    top: 44%;
 
     #navCenter{
-        width: 140px;
+        width: 550px;
         height: 36px;
 
-        #navLeft{
-            border-top: 18px solid transparent;
-            border-bottom: 18px solid transparent;
-            border-right: 26px solid #CA181F;
+        #navLeft,
+        #navRight{
+          display: block;
+          width: 40px;
+          height: 40px;
+          border-top: 5px solid white;
+          border-left: 5px solid white;
         }
 
         #navRight{
-            border-top: 18px solid transparent;
-            border-bottom: 18px solid transparent;
-            border-left: 26px solid #CA181F;
+        transform: rotate(135deg);
+        }
+
+        #navLeft{
+        transform: rotate(-45deg);
         }
     }
   }
 
   mat-dialog-content{
-    width: 450px;
+    width: 400px;
 
     .promsCarousel{
-      height: 450px;
+      height: 400px;
     }
   }
 
@@ -48,23 +72,47 @@
 
 /* Extra large devices (large laptops and desktops, 1900px and up) */
 @media only screen and (min-width: 119em) {
+  .closeBtn{
+    top: 5%;
+
+    .closeIcon{
+      height: 96px !important;
+      width: 96px !important;
+      font-size: 96px !important;
+      line-height: 76px !important;
+
+      ::ng-deep .mat-icon{
+        height: 96px !important;
+        width: 96px !important;
+        font-size: 96px !important;
+        line-height: 96px !important;
+      }
+    }
+  }
+
   #navigator{
     margin-top: 1%;
+    top: 45%;
 
     #navCenter{
         width: 825px;
         height: 50px;
 
-        #navLeft{
-          border-top: 40px solid transparent;
-          border-bottom: 40px solid transparent;
-          border-right: 55px solid white;
+        #navLeft,
+        #navRight{
+          display: block;
+          width: 60px;
+          height: 60px;
+          border-top: 5px solid white;
+          border-left: 5px solid white;
         }
 
         #navRight{
-            border-top: 40px solid transparent;
-            border-bottom: 40px solid transparent;
-            border-left: 55px solid white;
+        transform: rotate(135deg);
+        }
+
+        #navLeft{
+        transform: rotate(-45deg);
         }
     }
   }
@@ -87,52 +135,36 @@ img{
 
 .closeBtn{
   position: absolute;
-  top: 5%;
   left: 50%;
   z-index: 2;
 
   .closeIcon{
     position: relative;
     left: -50%;
-    height: 96px !important;
-    width: 96px !important;
-    font-size: 96px !important;
-    line-height: 76px !important;
     cursor: pointer;
     color: white;
-
-    ::ng-deep .mat-icon{
-      height: 96px !important;
-      width: 96px !important;
-      font-size: 96px !important;
-      line-height: 96px !important;
-    }
   }
 }
 
 #navigator{
   position: absolute;
   left: 50%;
-  top: 45%;
 
   #navCenter{
       position: relative;
       left: -50%;
 
+      #navLeft,
+      #navRight{
+        cursor: pointer;
+      }
+
       #navLeft{
-          position: absolute;
-          cursor: pointer;
-          left: 0px;
-          width: 0;
-          height: 0;
+        float: left;
       }
 
       #navRight{
-          position: absolute;
-          cursor: pointer;
-          right: 0px;
-          width: 0;
-          height: 0;
+        float: right;
       }
   }
 }

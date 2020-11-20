@@ -12,9 +12,12 @@ export class ClientPromotionDialogComponent implements OnInit {
   displayLeft: boolean = false;
   displayRight: boolean = true;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientPromotionDialogComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<ClientPromotionDialogComponent>) {
+    dialogRef.disableClose = true;
+  }
 
   ngOnInit(): void {
+    console.log(this.data.images);
   }
 
   ngAfterViewInit(){
@@ -39,6 +42,8 @@ export class ClientPromotionDialogComponent implements OnInit {
         loop:false,
         margin:50,
         nav:false,
+        dots:false,
+        startPosition: this.data.selectedImage,
         responsive:{
             0:{
                 items:1
