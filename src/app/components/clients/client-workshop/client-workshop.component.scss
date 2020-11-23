@@ -1,0 +1,164 @@
+/* Extra small devices (phones, 688px and down) */
+@media only screen and (max-width: 43em) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 688px and up) */
+@media only screen and (min-width: 43em) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 48em) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 62em) {
+  #clientPromotions{
+    .profileCard{
+        mat-card-header{
+            height: 50px;
+
+            mat-card-title{
+                font-size: 15pt;
+                width: 118%;
+            }
+        }
+
+        mat-card-actions{
+          .showMore{
+            font-size: 13pt;
+            padding: 5px;
+          }
+        }
+    }
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 119em) {
+  #clientPromotions{
+    .profileCard{
+        mat-card-header{
+            line-height: 70px;
+            height: 70px;
+
+            button{
+              transform: scale(1.5);
+
+              &.save{
+                right: 90px;
+              }
+            }
+
+            mat-card-title{
+                font-size: 20pt;
+                width: 126%;
+            }
+        }
+
+        mat-card-actions{
+          .showMore{
+            font-size: 15pt;
+            padding: 10px;
+          }
+        }
+    }
+  }
+}
+
+//---------------------------------------------------
+
+#clientPromotions{
+    position: relative;
+    width: 100%;
+    display: inline-flex;
+    flex-wrap: wrap;
+
+    img{
+      width: 100%;
+      height: auto;
+    }
+
+    .profileCard{
+        width: 21.5%;
+        padding: 30px 30px 10px 30px;
+        border-radius: 25px;
+        margin: 0 2.5% 5% 2.5%;
+        box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+
+        &:nth-child(1){
+          margin: 0 2.5% 5% 5%;
+        }
+
+        mat-card-header{
+            position: relative;
+            top: -30px;
+            left: -30px;
+            width: calc(100% + 46px);
+            color: white;
+            background-color: #CA181F;
+            border-radius: 20px 20px 0px 0px;
+            align-items: center;
+            padding-left: 14px;
+
+            mat-card-title{
+              text-align: left;
+              margin-bottom: 0px;
+            }
+
+            button{
+              position: absolute;
+              cursor: pointer;
+              float: inline-end;
+              right: 30px;
+            }
+        }
+
+        mat-card-content{
+          margin-bottom: 45px;
+          margin-top: 30px;
+
+          .vehicleName{
+            font-size: 18pt;
+            font-weight: 400;
+            text-align: center;
+          }
+
+          .lastUpdate{
+            color: #AFAFAF;
+            text-align: center;
+            position: relative;
+            margin: 0 auto;
+            width: 90%;
+            font-size: 12pt;
+          }
+
+        }
+
+        mat-card-actions{
+          text-align: center;
+          margin-bottom: -10px;
+
+          .showMore{
+            position: relative;
+            left: -22px;
+            width: calc(100% + 44px);
+            color: #CA181F;
+            border-top: 2px solid #dfdfdf;
+            font-family: "palanquin", "arial", sans-serif;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: none;
+            border-radius: 0px 0px 25px 25px;
+
+            span{
+                z-index: 5;
+                position: relative;
+                vertical-align: inherit;
+            }
+          }
+        }
+    }
+}

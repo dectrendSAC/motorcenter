@@ -1,1 +1,23 @@
-<p>client-workshop works!</p>
+<div id="clientPromotions">
+  <mat-card class="profileCard" *ngFor="let workshop of clientVehiclesWorkshop; let i = index">
+      <mat-card-header>
+        <mat-card-title>{{workshop.service}}</mat-card-title>
+        <button mat-icon-button aria-label="Mostrar cámara">
+          <mat-icon>videocam</mat-icon>
+        </button>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="vehicleName">
+          {{workshop.vehicle}}
+        </p>
+        <p class="lastUpdate">
+          Actualizado {{updatedDates[i]}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button class="showMore" (click)="showWorkshopStatus(i)">
+          <span>SEGUIMIENTO</span>
+        </button>
+      </mat-card-actions>
+  </mat-card>
+</div>
