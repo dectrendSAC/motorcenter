@@ -14,8 +14,8 @@ export class ClientWorkshopComponent implements OnInit {
 
   clientVehiclesWorkshop = [
     {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z'},
-    {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-12-12T12:47:55Z'},
-    {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z'}
+    {service: 'Planchado y pintura', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-12-12T12:47:55Z'},
+    {service: 'Reparación', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z'}
   ];
 
   constructor() { }
@@ -30,5 +30,9 @@ export class ClientWorkshopComponent implements OnInit {
 
   showWorkshopStatus(i:any){
 
+  }
+
+  filterMethod($event){
+    console.log($event)
   }
 }
