@@ -15,10 +15,14 @@ export class ClientWorkshopComponent implements OnInit {
   showDetailsStatus: boolean = false;
 
   clientVehiclesWorkshop = [
-    {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z'},
-    {service: 'Planchado y pintura', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-12-12T12:47:55Z'},
-    {service: 'Reparación', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z'}
+    {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', step: 2},
+    {service: 'Planchado y pintura', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-12-12T12:47:55Z', step: 5},
+    {service: 'Reparación', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', step: 3}
   ];
+
+  servicesSteps = [
+    {service: 'Escaneo', steps: 5, stepsDetails: [{title: 'Ingreso', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:true}, {title: 'Proceso de escaneo', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}]}
+  ]
 
   constructor() { }
 
@@ -31,13 +35,6 @@ export class ClientWorkshopComponent implements OnInit {
     }
   }
 
-  showWorkshopStatus(i:any){
-    this.showDetailsStatus = true;
-
-    console.log(this.clientVehiclesWorkshop[i]);
-
-  }
-
   filterMethod(element:any){
     const allowed = [element];
 
@@ -47,5 +44,13 @@ export class ClientWorkshopComponent implements OnInit {
       this.clientVehiclesWorkshop = workshopArray;
       this.clientVehiclesWorkshop = this.clientVehiclesWorkshop.filter( i => allowed.includes( i.service ) );
     }
+  }
+
+  showWorkshopStatus(i:any){
+    this.showDetailsStatus = true;
+  }
+
+  backToServices(){
+    this.showDetailsStatus = false;
   }
 }

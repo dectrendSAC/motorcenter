@@ -118,7 +118,7 @@
 
 #clientWorkshop{
     position: relative;
-    top: 7.8%;
+    margin-top: 3%;
     width: 100%;
     display: inline-flex;
     flex-wrap: wrap;
@@ -211,18 +211,20 @@
 
 #vehicleWorkshop{
   position: relative;
+  display: inline-flex;
   top: 0px;
   width: 100%;
+  height: 100%;
 
   .sideStatusBar{
     width: 25%;
     position: relative;
-    display: inline-flex;
-    background-color: #FBFBFB;
-
+    display: inline-block;
 
     mat-vertical-stepper{
+      background-color: #FBFBFB;
       width: 100%;
+      height: 100%;
     }
   }
 
@@ -243,15 +245,30 @@
       font-family: "palanquin", "arial", sans-serif;
       font-weight: bold;
       font-size: 25pt;
+      cursor: pointer;
+
+      mat-icon{
+        height: 80px !important;
+        width: 80px !important;
+        font-size: 80px !important;
+        line-height: 80px !important;
+      }
     }
 
-    .profileCard{
+    .statusCard{
       position: relative;
-      display: inline-flex;
-      width: 87%;
-      left: 0px;
-      float: left;
+      width: 85%;
+      top: -3%;
       margin: 5%;
+
+      mat-card-title{
+        font-size: 20pt;
+      }
+
+      .stepContent{
+        margin-top: 20px;
+        font-size: 12pt;
+      }
     }
 
   }
