@@ -10,7 +10,7 @@
     <div class="parent">
         <app-toolbar class="toolbar" [changeItemDescriptionStatus]="changeItemDescriptionStatus"></app-toolbar>
 
-        <div class="itemContent">
+        <div class="itemContent" [class.workshop]="showDistinctTopImage">
             <router-outlet></router-outlet>
         </div>
     </div>

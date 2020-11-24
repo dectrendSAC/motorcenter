@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import * as _moment from 'moment';
 
 const moment = _moment;
+let workshopArray = [];
 
 @Component({
   selector: 'app-client-workshop',
@@ -11,6 +12,7 @@ const moment = _moment;
 })
 export class ClientWorkshopComponent implements OnInit {
   updatedDates = [];
+  showDetailsStatus: boolean = false;
 
   clientVehiclesWorkshop = [
     {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z'},
@@ -22,6 +24,7 @@ export class ClientWorkshopComponent implements OnInit {
 
   ngOnInit(): void {
     moment.locale('es');
+    workshopArray = this.clientVehiclesWorkshop;
 
     for(let i=0; i<this.clientVehiclesWorkshop.length; i++){
       this.updatedDates.push(moment(this.clientVehiclesWorkshop[i].lastUpdate).format('LL h:mm A'));
@@ -29,10 +32,20 @@ export class ClientWorkshopComponent implements OnInit {
   }
 
   showWorkshopStatus(i:any){
+    this.showDetailsStatus = true;
+
+    console.log(this.clientVehiclesWorkshop[i]);
 
   }
 
-  filterMethod($event){
-    console.log($event)
+  filterMethod(element:any){
+    const allowed = [element];
+
+    if (element == 'default'){
+      this.clientVehiclesWorkshop = workshopArray;
+    } else {
+      this.clientVehiclesWorkshop = workshopArray;
+      this.clientVehiclesWorkshop = this.clientVehiclesWorkshop.filter( i => allowed.includes( i.service ) );
+    }
   }
 }

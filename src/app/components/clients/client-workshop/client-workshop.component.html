@@ -1,13 +1,13 @@
-<div id="clientPromotions">
+<div id="clientWorkshop" *ngIf="!showDetailsStatus">
   <div class="topFilter">
     <mat-form-field class="dropdownFilter" appearance="outline">
       <mat-label>Seleccione un servicio</mat-label>
       <mat-select value="default" (selectionChange)="filterMethod($event.value)">
         <mat-option value="default">Todos</mat-option>
         <mat-option value="Mantenimiento">Mantenimiento</mat-option>
-        <mat-option value="Reparacion">Reparación</mat-option>
+        <mat-option value="Reparación">Reparación</mat-option>
         <mat-option value="Escaneo">Escaneo</mat-option>
-        <mat-option value="PlanchadoPintura">Planchado y pintura</mat-option>
+        <mat-option value="Planchado y pintura">Planchado y pintura</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -33,4 +33,46 @@
         </button>
       </mat-card-actions>
   </mat-card>
+</div>
+
+<div id="vehicleWorkshop" *ngIf="showDetailsStatus">
+  <div class="sideStatusBar">
+    <mat-vertical-stepper #stepper>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Done</ng-template>
+      </mat-step>
+    </mat-vertical-stepper>
+  </div>
+
+  <div class="statusContent">
+    <div class="backBtn">
+      <mat-icon>videocam</mat-icon>
+      <span>Volver a selección de servicio</span>
+    </div>
+
+    <mat-card class="profileCard">
+      <mat-card-header>
+        <mat-card-title></mat-card-title>
+        <button mat-icon-button aria-label="Mostrar cámara">
+          <mat-icon>videocam</mat-icon>
+        </button>
+      </mat-card-header>
+      <mat-card-content>
+        <p class="vehicleName">
+         asdasd
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button class="showMore">
+          <span>SEGUIMIENTO</span>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
 </div>
