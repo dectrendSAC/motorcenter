@@ -14,6 +14,7 @@ export class ClientWorkshopComponent implements OnInit {
   updatedDates = [];
   showDetailsStatus: boolean = false;
   detailsIndex: number;
+  selectedStep: number;
 
   clientVehiclesWorkshop = [
     {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', step: 2},
@@ -53,6 +54,7 @@ export class ClientWorkshopComponent implements OnInit {
   showWorkshopStatus(i:any){
     this.detailsIndex = i;
     this.showDetailsStatus = true;
+    this.selectedStep = this.clientVehiclesWorkshop[i].step;
   }
 
   backToServices(){
