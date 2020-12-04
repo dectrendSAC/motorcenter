@@ -221,6 +221,10 @@
     position: relative;
     display: inline-block;
 
+    ::ng-deep .mat-step:nth-of-type(1) .mat-step-icon {
+      background-color: var(--my-var1);
+    }
+
     mat-vertical-stepper{
       background-color: #FBFBFB;
       width: 100%;

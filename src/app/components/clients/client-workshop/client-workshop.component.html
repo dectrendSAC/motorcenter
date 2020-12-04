@@ -38,6 +38,9 @@
 <div id="vehicleWorkshop" *ngIf="showDetailsStatus">
   <div class="sideStatusBar">
     <mat-vertical-stepper #stepper [selectedIndex]="selectedStep">
+      <ng-template matStepperIcon="edit">
+        <mat-icon>{{stepStatus}}</mat-icon>
+      </ng-template>
       <mat-step *ngFor="let steps of servicesSteps[detailsIndex].stepsDetails" [completed]="steps.status">
         <ng-template matStepLabel>{{steps.title}}</ng-template>
       </mat-step>

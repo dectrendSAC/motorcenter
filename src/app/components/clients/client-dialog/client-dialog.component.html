@@ -103,7 +103,7 @@
   <div class="dialogStepper" *ngSwitchCase="'stepper'">
     <div class='firstClass'>
       <div class='secondClass'>
-        <mat-vertical-stepper #stepper [linear]="isLinear" #stepper [selectedIndex]="getSelectedStep()" (animationDone)="setMatStepsAsInteracted()">
+        <mat-vertical-stepper #stepper [linear]="isLinear" [selectedIndex]="getSelectedStep()" (animationDone)="setMatStepsAsInteracted()">
           <ng-template matStepperIcon="edit" let-index="index">
             <mat-icon>{{index +1 == 1 ? 'attach_money' : index +1 == 2 ? 'topic' : index +1 == 3 ? 'vpn_key' : ''}}</mat-icon>
           </ng-template>
