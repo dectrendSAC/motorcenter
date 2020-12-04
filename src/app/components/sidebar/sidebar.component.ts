@@ -18,6 +18,7 @@ export class SidebarComponent implements OnInit {
   time:number = 0;
 
   @Output() changeItemDescription = new EventEmitter<boolean>();
+  @Output() homeBtn = new EventEmitter<boolean>();
 
   constructor(private router: Router) { }
 
@@ -77,5 +78,10 @@ export class SidebarComponent implements OnInit {
         this.router.navigate([url]);
       }, this.time);
     }
+  }
+
+  //Main methods
+  goToMain(){
+    this.homeBtn.emit(true);
   }
 }

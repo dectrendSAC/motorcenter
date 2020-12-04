@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/services/pass-data.service';
 
 @Component({
   selector: 'app-clients',
@@ -9,8 +10,9 @@ import { Router } from '@angular/router';
 export class ClientsComponent implements OnInit {
   changeItemDescriptionStatus:boolean;
   showDistinctTopImage: boolean = false;
+  displayToolbar:boolean = true;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private data: DataService) { }
 
   ngOnInit(): void {
     //Check if workshop screen is visible
@@ -30,6 +32,16 @@ export class ClientsComponent implements OnInit {
     } else {
       this.showDistinctTopImage = false;
     }
+  }
+
+  //Main methods
+  goToMain(status:boolean){
+    this.data.goToMainStatus(status);
+    this.data.awaitAnimationOnScroll(status);
+    setTimeout(() => { this.displayToolbar = false }, 1700);
+    /*setTimeout(() => { this.displaySideScroll = false }, 1700);
+    setTimeout(() => { this.displaySections = false }, 2600);*/
+    setTimeout(() => { this.data.goToMainStatus(false); this.data.awaitAnimationOnScroll(false); }, 500);
   }
 
 }
