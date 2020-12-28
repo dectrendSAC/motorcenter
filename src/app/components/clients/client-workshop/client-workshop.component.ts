@@ -13,21 +13,22 @@ let workshopArray = [];
 export class ClientWorkshopComponent implements OnInit {
   updatedDates = [];
   showDetailsStatus: boolean = false;
+  vehicleWorkshopIndex: number;
   detailsIndex: number;
   selectedStep: number;
   stepStatus = [];
 
   clientVehiclesWorkshop = [
-    {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', step: 1},
-    {service: 'Planchado y pintura', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-12-12T12:47:55Z', step: 4},
-    {service: 'Reparación', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', step: 2}
+    {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', step: 1, details:[{step: 1, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 2, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 3, content:'', date:'2020-02-12T12:47:55Z', status:false}, {step: 4, content:'', date:'2020-02-12T12:47:55Z', status:false}, {step: 5, content:'', date:'2020-02-12T12:47:55Z', status:false}]},
+    {service: 'Planchado y pintura', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-12-12T12:47:55Z', step: 4, details:[{step: 1, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 2, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 3, content:'', date:'2020-02-12T12:47:55Z', status:false}, {step: 4, content:'', date:'2020-02-12T12:47:55Z', status:false}, {step: 5, content:'', date:'2020-02-12T12:47:55Z', status:false}]},
+    {service: 'Reparación', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', step: 2, details:[{step: 1, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 2, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 3, content:'', date:'2020-02-12T12:47:55Z', status:false}, {step: 4, content:'', date:'2020-02-12T12:47:55Z', status:false}, {step: 5, content:'', date:'2020-02-12T12:47:55Z', status:false}]}
   ];
 
   servicesSteps = [
-    {service: 'Escaneo', steps: 5, stepsDetails: [{title: 'Ingreso', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:true}, {title: 'Proceso de escaneo', content:'Se procede a escanear el vehículo', media:'', date:'2020-02-12T12:47:55Z', status:true}, {title: 'Escaneo finalizado', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}, {title: 'Corrección de códigos de falla', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}, {title: 'Listo para recojo', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}]},
-    {service: 'Mantenimiento', steps: 5, stepsDetails: [{title: 'Ingreso', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:true}, {title: 'Proceso de escaneo', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}, {title: 'Escaneo finalizado', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}, {title: 'Corrección de códigos de falla', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}, {title: 'Listo para recojo', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}]},
-    {service: 'Reparación', steps: 5, stepsDetails: [{title: 'Ingreso', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:true}, {title: 'Proceso de escaneo', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}, {title: 'Escaneo finalizado', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}, {title: 'Corrección de códigos de falla', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}, {title: 'Listo para recojo', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}]},
-    {service: 'Planchado y pintura', steps: 5, stepsDetails: [{title: 'Ingreso', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:true}, {title: 'Proceso de escaneo', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}, {title: 'Escaneo finalizado', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}, {title: 'Corrección de códigos de falla', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}, {title: 'Listo para recojo', content:'Estado de la carrocería e inventario de objetos personales.', media:'', date:'2020-02-12T12:47:55Z', status:false}]}
+    {service: 'Escaneo', steps: 5, stepsDetails: [{title: 'Ingreso', content:'Estado de la carrocería e inventario de objetos personales.'}, {title: 'Proceso de escaneo', content:'Se procede a escanear el vehículo'}, {title: 'Escaneo finalizado', content:'Estado de la carrocería e inventario de objetos personales.'}, {title: 'Corrección de códigos de falla', content:'Estado de la carrocería e inventario de objetos personales.'}, {title: 'Listo para recojo', content:'Estado de la carrocería e inventario de objetos personales.'}]},
+    {service: 'Mantenimiento', steps: 5, stepsDetails: [{title: 'Ingreso', content:'Estado de la carrocería e inventario de objetos personales.'}, {title: 'Proceso de escaneo', content:'Se procede a escanear el vehículo'}, {title: 'Escaneo finalizado', content:'Estado de la carrocería e inventario de objetos personales.'}, {title: 'Corrección de códigos de falla', content:'Estado de la carrocería e inventario de objetos personales.'}, {title: 'Listo para recojo', content:'Estado de la carrocería e inventario de objetos personales.'}]},
+    {service: 'Reparación', steps: 5, stepsDetails: [{title: 'Ingreso', content:'Estado de la carrocería e inventario de objetos personales.'}, {title: 'Proceso de escaneo', content:'Se procede a escanear el vehículo'}, {title: 'Escaneo finalizado', content:'Estado de la carrocería e inventario de objetos personales.'}, {title: 'Corrección de códigos de falla', content:'Estado de la carrocería e inventario de objetos personales.'}, {title: 'Listo para recojo', content:'Estado de la carrocería e inventario de objetos personales.'}]},
+    {service: 'Planchado y pintura', steps: 5, stepsDetails: [{title: 'Ingreso', content:'Estado de la carrocería e inventario de objetos personales.'}, {title: 'Proceso de escaneo', content:'Se procede a escanear el vehículo'}, {title: 'Escaneo finalizado', content:'Estado de la carrocería e inventario de objetos personales.'}, {title: 'Corrección de códigos de falla', content:'Estado de la carrocería e inventario de objetos personales.'}, {title: 'Listo para recojo', content:'Estado de la carrocería e inventario de objetos personales.'}]}
   ]
 
   constructor() { }
@@ -53,6 +54,8 @@ export class ClientWorkshopComponent implements OnInit {
   }
 
   showWorkshopStatus(i:any){
+    this.vehicleWorkshopIndex = i;
+
     if(this.clientVehiclesWorkshop[i].service == 'Escaneo'){
       this.detailsIndex = 0;
     } else if (this.clientVehiclesWorkshop[i].service == 'Mantenimiento') {
@@ -69,8 +72,8 @@ export class ClientWorkshopComponent implements OnInit {
     //Verify step status
     const steps = [...Array(this.servicesSteps[this.detailsIndex].steps).keys()]
     steps.forEach(index => {
-      if (this.servicesSteps[this.detailsIndex].stepsDetails[index]){
-        if(this.servicesSteps[this.detailsIndex].stepsDetails[index].status){
+      if (this.clientVehiclesWorkshop[i].details[index]){
+        if(this.clientVehiclesWorkshop[i].details[index].status){
           document.querySelector("body").style.cssText = "--my-var1: #1eb980";
           this.stepStatus.push('done');
         } else {
