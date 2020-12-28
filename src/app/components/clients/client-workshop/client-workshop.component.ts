@@ -15,12 +15,12 @@ export class ClientWorkshopComponent implements OnInit {
   showDetailsStatus: boolean = false;
   detailsIndex: number;
   selectedStep: number;
-  stepStatus: string = 'done';
+  stepStatus = [];
 
   clientVehiclesWorkshop = [
-    {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', step: 2},
-    {service: 'Planchado y pintura', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-12-12T12:47:55Z', step: 5},
-    {service: 'Reparación', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', step: 3}
+    {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', step: 1},
+    {service: 'Planchado y pintura', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-12-12T12:47:55Z', step: 4},
+    {service: 'Reparación', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', step: 2}
   ];
 
   servicesSteps = [
@@ -71,12 +71,13 @@ export class ClientWorkshopComponent implements OnInit {
     steps.forEach(index => {
       if (this.servicesSteps[this.detailsIndex].stepsDetails[index]){
         if(this.servicesSteps[this.detailsIndex].stepsDetails[index].status){
-          document.querySelector("body").style.cssText = "--my-var1: #1eb980"; this.stepStatus = 'done';
+          document.querySelector("body").style.cssText = "--my-var1: #1eb980";
+          this.stepStatus.push('done');
         } else {
-          document.querySelector("body").style.cssText = "--my-var1: #d32f2f"; this.stepStatus = 'schedule';
+          document.querySelector("body").style.cssText = "--my-var1: #d32f2f"; this.stepStatus.push('schedule');
         }
       } else {
-        document.querySelector("body").style.cssText = "--my-var1: #b3b3b3"; this.stepStatus = 'block';
+        document.querySelector("body").style.cssText = "--my-var1: #b3b3b3"; this.stepStatus.push('block');
       }
     });
     /*this.cdRef.detectChanges();*/
