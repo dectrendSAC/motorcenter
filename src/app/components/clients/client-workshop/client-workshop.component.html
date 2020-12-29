@@ -40,7 +40,7 @@
     <mat-vertical-stepper #stepper [selectedIndex]="selectedStep">
       <mat-step *ngFor="let steps of servicesSteps[detailsIndex].stepsDetails; let i = index" [completed]="clientVehiclesWorkshop[vehicleWorkshopIndex].details[i].status">
         <ng-template matStepperIcon="edit" let-index="index">
-          <mat-icon>{{index +1 == 1 ? stepStatus[0] : index +1 == 2 ? stepStatus[1] : index +1 == 3 ? stepStatus[2] : ''}}</mat-icon>
+          <mat-icon>{{stepStatus[i]}}</mat-icon>
         </ng-template>
         <ng-template matStepLabel>{{steps.title}}</ng-template>
       </mat-step>
