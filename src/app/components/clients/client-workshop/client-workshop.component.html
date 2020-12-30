@@ -37,14 +37,21 @@
 
 <div id="vehicleWorkshop" *ngIf="showDetailsStatus">
   <div class="sideStatusBar">
-    <mat-vertical-stepper #stepper [selectedIndex]="selectedStep">
-      <mat-step *ngFor="let steps of servicesSteps[detailsIndex].stepsDetails; let i = index" [completed]="clientVehiclesWorkshop[vehicleWorkshopIndex].details[i].status">
-        <ng-template matStepperIcon="edit" let-index="index">
-          <mat-icon>{{stepStatus[i]}}</mat-icon>
-        </ng-template>
-        <ng-template matStepLabel>{{steps.title}}</ng-template>
-      </mat-step>
-    </mat-vertical-stepper>
+    <div class='firstClass'>
+      <div class='secondClass'>
+        <mat-vertical-stepper #stepper [selectedIndex]="selectedStep">
+          <mat-step *ngFor="let steps of servicesSteps[detailsIndex].stepsDetails; let i = index" [completed]="clientVehiclesWorkshop[vehicleWorkshopIndex].details[i].status">
+            <ng-template matStepperIcon="edit" let-index="index">
+              <mat-icon>{{index ? stepStatus[index] : stepStatus[index]}}</mat-icon>
+            </ng-template>
+            <ng-template matStepperIcon="number" let-index="index">
+              <mat-icon>{{index ? stepStatus[index] : ''}}</mat-icon>
+            </ng-template>
+            <ng-template matStepLabel>{{steps.title}}</ng-template>
+          </mat-step>
+        </mat-vertical-stepper>
+      </div>
+    </div>
   </div>
 
   <div class="statusContent">

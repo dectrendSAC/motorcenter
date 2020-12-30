@@ -225,6 +225,14 @@
       background-color: var(--my-var1);
     }
 
+    ::ng-deep .mat-step:nth-of-type(2) .mat-step-icon {
+      background-color: var(--my-var2);
+    }
+
+    ::ng-deep .mat-step:nth-of-type(3) .mat-step-icon {
+        background-color: var(--my-var3);
+    }
+
     mat-vertical-stepper{
       background-color: #FBFBFB;
       width: 100%;

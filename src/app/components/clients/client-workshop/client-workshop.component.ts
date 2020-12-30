@@ -19,9 +19,9 @@ export class ClientWorkshopComponent implements OnInit {
   stepStatus = [];
 
   clientVehiclesWorkshop = [
-    {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', details:[{step: 1, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 2, content:'', date:'2020-02-12T12:47:55Z', status:false}]},
-    {service: 'Planchado y pintura', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-12-12T12:47:55Z', details:[{step: 1, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 2, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 3, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 4, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 5, content:'', date:'2020-02-12T12:47:55Z', status:true}]},
-    {service: 'Reparación', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', details:[{step: 1, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 2, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 3, content:'', date:'2020-02-12T12:47:55Z', status:false}]}
+    {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', currentStep: 1, details:[{step: 0, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 1, content:'', date:'2020-02-12T12:47:55Z', status:false}, {step: 2, status: false}, {step: 3, status: false}, {step: 4, status: false}]},
+    {service: 'Planchado y pintura', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-12-12T12:47:55Z', currentStep: 4, details:[{step: 0, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 1, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 2, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 3, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 4, content:'', date:'2020-02-12T12:47:55Z', status:true}]},
+    {service: 'Reparación', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', currentStep: 2, details:[{step: 0, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 1, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 2, content:'', date:'2020-02-12T12:47:55Z', status:false}, {step: 3, status: false}, {step: 4, status: false}]}
   ];
 
   servicesSteps = [
@@ -68,14 +68,16 @@ export class ClientWorkshopComponent implements OnInit {
     }
 
     this.showDetailsStatus = true;
-    this.selectedStep = this.clientVehiclesWorkshop[i].details.length;
+    this.selectedStep = this.clientVehiclesWorkshop[i].currentStep;
 
     //Verify step status
     const steps = [...Array(this.servicesSteps[this.detailsIndex].steps).keys()]
     steps.forEach(index => {
-      if (this.clientVehiclesWorkshop[i].details[index]){
+      if (this.clientVehiclesWorkshop[i].details[index].date){
         if(this.clientVehiclesWorkshop[i].details[index].status){
-          document.querySelector("body").style.cssText = "--my-var1: #1eb980";
+          if (index == 0) { document.querySelector("body").style.cssText = "--my-var1: #1eb980"};
+          if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #1eb980"};
+          if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #1eb980"};
           this.stepStatus.push('done');
         } else {
           document.querySelector("body").style.cssText = "--my-var1: #d32f2f"; this.stepStatus.push('schedule');
