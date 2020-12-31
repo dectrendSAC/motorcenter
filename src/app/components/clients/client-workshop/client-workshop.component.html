@@ -38,7 +38,7 @@
 <div id="vehicleWorkshop" *ngIf="showDetailsStatus">
   <div class="sideStatusBar">
     <div class='firstClass'>
-      <div class='secondClass'>
+      <div class="secondClass">
         <mat-vertical-stepper #stepper [selectedIndex]="selectedStep">
           <mat-step *ngFor="let steps of servicesSteps[detailsIndex].stepsDetails; let i = index" [completed]="clientVehiclesWorkshop[vehicleWorkshopIndex].details[i].status">
             <ng-template matStepperIcon="edit" let-index="index">

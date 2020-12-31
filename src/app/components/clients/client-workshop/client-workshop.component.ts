@@ -70,6 +70,9 @@ export class ClientWorkshopComponent implements OnInit {
     this.showDetailsStatus = true;
     this.selectedStep = this.clientVehiclesWorkshop[i].currentStep;
 
+    document.addEventListener("DOMContentLoaded", function () {
+    });
+
     //Verify step status
     const steps = [...Array(this.servicesSteps[this.detailsIndex].steps).keys()]
     steps.forEach(index => {
@@ -77,10 +80,13 @@ export class ClientWorkshopComponent implements OnInit {
         if(this.clientVehiclesWorkshop[i].details[index].status){
           if (index == 0) { document.querySelector("body").style.cssText = "--my-var1: #1eb980"};
           if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #1eb980"};
-          if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #1eb980"};
+          if (index == 2) { (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #1eb980"};
           this.stepStatus.push('done');
         } else {
-          document.querySelector("body").style.cssText = "--my-var1: #d32f2f"; this.stepStatus.push('schedule');
+          if (index == 0) { document.querySelector("body").style.cssText = "--my-var1: #d32f2f"};
+          if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #d32f2f"};
+          if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #d32f2f"};
+          this.stepStatus.push('schedule');
         }
       } else {
         document.querySelector("body").style.cssText = "--my-var1: #b3b3b3"; this.stepStatus.push('block');
