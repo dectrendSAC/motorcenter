@@ -79,13 +79,13 @@ export class ClientWorkshopComponent implements OnInit {
       if (this.clientVehiclesWorkshop[i].details[index].date){
         if(this.clientVehiclesWorkshop[i].details[index].status){
           if (index == 0) { document.querySelector("body").style.cssText = "--my-var1: #1eb980"};
-          if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #1eb980"};
-          if (index == 2) { (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #1eb980"};
+          if (index == 1) { setTimeout(() => { document.querySelector<HTMLElement>('.secondClass').style.cssText = "--my-var2: #1eb980" }, 100);};
+          if (index == 2) { setTimeout(() => { document.querySelector<HTMLElement>('.firstClass').style.cssText  = "--my-var3: #1eb980" }, 100);};
           this.stepStatus.push('done');
         } else {
           if (index == 0) { document.querySelector("body").style.cssText = "--my-var1: #d32f2f"};
-          if (index == 1){ (<HTMLElement>document.querySelector('.secondClass')).style.cssText = "--my-var2: #d32f2f"};
-          if (index == 2){ (<HTMLElement>document.querySelector('.firstClass')).style.cssText = "--my-var3: #d32f2f"};
+          if (index == 1) { setTimeout(() => { document.querySelector<HTMLElement>('.secondClass').style.cssText = "--my-var2: #d32f2f" }, 100);};
+          if (index == 2) { setTimeout(() => { document.querySelector<HTMLElement>('.firstClass').style.cssText = "--my-var3: #d32f2f" }, 100);};
           this.stepStatus.push('schedule');
         }
       } else {
