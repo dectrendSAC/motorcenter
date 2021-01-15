@@ -13,6 +13,7 @@ import { multipleAnimations } from 'src/app/animations';
 export class SidebarComponent implements OnInit {
   displaySidebar: boolean;
   displaySidebarState: boolean = false;
+  currentUrl: string;
   clickedCount: boolean = true;
   clickedItem: boolean;
   time:number = 0;
@@ -25,6 +26,9 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     this.clickedItem = true;
     this.displaySidebar = false;
+
+    this.currentUrl = this.router.url;
+    console.log(/[^/]*$/.exec(this.currentUrl)[0]);
   }
 
   //Change active item button

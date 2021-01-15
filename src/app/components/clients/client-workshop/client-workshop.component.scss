@@ -242,6 +242,12 @@
       background-color: var(--my-var4);
     }
 
+    ::ng-deep .mat-step .mat-step-label p {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
     mat-vertical-stepper{
       background-color: #FBFBFB;
       width: 100%;

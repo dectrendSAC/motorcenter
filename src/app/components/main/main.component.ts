@@ -44,15 +44,26 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     //Random word js function
     clearInterval(ranWordInterval);
-    ranWordInterval = setInterval(()=>{    
+    ranWordInterval = setInterval(()=>{
       this.phrase = randomWord();
     }, 300);
 
     //Check if comes from login url
-    if(history.state.data){  
+    this.previousUrl = this.routerExtService.getPreviousUrl();
+
+    if(history.state.navigationId > 1){
       clearInterval(ranWordInterval);
-      this.phrase = 'RESPONSABLES';
-      this.displayLogin = true; 
+      ranWordInterval = setInterval(()=>{
+        this.phrase = randomWord();
+      }, 300);
+      if(this.previousUrl != undefined){
+        setTimeout(() => {
+          var noLoginExists = document.getElementById("noLogin");
+          if(noLoginExists){
+            this.displayLogin = true;
+          }
+        }, 1500);
+      }
       this.displayBtns = true;
       this.displaySignIn = true;
       this.displayTerrain = 'fadeIn';
@@ -61,11 +72,8 @@ export class MainComponent implements OnInit {
       this.displayLogo = true;
       this.displayPhrase= true;
       this.displayVehicles = true;
-    }
-
-    this.previousUrl = this.routerExtService.getPreviousUrl();
-    //Animation sequence
-    if(!history.state.data){
+    } else {
+      //Animation sequence
       if(this.previousUrl != undefined && this.previousUrl.includes('/concesionario')){
         this.triggerVehiclesEvent = false;
         setTimeout(() => { this.displayTerrain = 'fall' }, 500);
@@ -97,7 +105,7 @@ export class MainComponent implements OnInit {
 
   pauseVideo(){
     clearInterval(ranWordInterval);
-    ranWordInterval = setInterval(()=>{    
+    ranWordInterval = setInterval(()=>{
       this.phrase = randomWord();
     }, 300);
     const video: HTMLVideoElement = this.videoplayer.nativeElement;
@@ -121,8 +129,8 @@ export class MainComponent implements OnInit {
   }
 
   hideLogin(status:boolean) {
-    clearInterval(ranWordInterval);     
-    ranWordInterval = setInterval(()=>{   
+    clearInterval(ranWordInterval);
+    ranWordInterval = setInterval(()=>{
       this.phrase = randomWord();
     }, 300);
     this.displayLogin = status;
