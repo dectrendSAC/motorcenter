@@ -17,6 +17,8 @@ export class ClientWorkshopComponent implements OnInit {
   detailsIndex: number;
   selectedStep: number;
   stepStatus = [];
+  stepTitle: string;
+  stepContent: string;
 
   clientVehiclesWorkshop = [
     {service: 'Escaneo', vehicle: 'Ford Ranger 2018', lastUpdate: '2020-02-12T12:47:55Z', currentStep: 1, details:[{step: 0, content:'', date:'2020-02-12T12:47:55Z', status:true}, {step: 1, content:'', date:'2020-02-12T12:47:55Z', status:false}, {step: 2, status: false}, {step: 3, status: false}, {step: 4, status: false}]},
@@ -70,30 +72,43 @@ export class ClientWorkshopComponent implements OnInit {
     this.showDetailsStatus = true;
     this.selectedStep = this.clientVehiclesWorkshop[i].currentStep;
 
-    document.addEventListener("DOMContentLoaded", function () {
-    });
-
     //Verify step status
     const steps = [...Array(this.servicesSteps[this.detailsIndex].steps).keys()]
     steps.forEach(index => {
       if (this.clientVehiclesWorkshop[i].details[index].date){
         if(this.clientVehiclesWorkshop[i].details[index].status){
-          if (index == 0) { document.querySelector("body").style.cssText = "--my-var1: #1eb980"};
-          if (index == 1) { setTimeout(() => { document.querySelector<HTMLElement>('.secondClass').style.cssText = "--my-var2: #1eb980" }, 100);};
-          if (index == 2) { setTimeout(() => { document.querySelector<HTMLElement>('.firstClass').style.cssText  = "--my-var3: #1eb980" }, 100);};
+          setTimeout(() => { document.querySelector<HTMLElement>('.stepIconColor-'+index).style.cssText = "--my-var"+index+": #1eb980" }, 0);
           this.stepStatus.push('done');
         } else {
-          if (index == 0) { document.querySelector("body").style.cssText = "--my-var1: #d32f2f"};
-          if (index == 1) { setTimeout(() => { document.querySelector<HTMLElement>('.secondClass').style.cssText = "--my-var2: #d32f2f" }, 100);};
-          if (index == 2) { setTimeout(() => { document.querySelector<HTMLElement>('.firstClass').style.cssText = "--my-var3: #d32f2f" }, 100);};
+          setTimeout(() => { document.querySelector<HTMLElement>('.stepIconColor-'+index).style.cssText = "--my-var"+index+": #d32f2f" }, 0);
           this.stepStatus.push('schedule');
         }
       } else {
-        document.querySelector("body").style.cssText = "--my-var1: #b3b3b3"; this.stepStatus.push('block');
+        setTimeout(() => { document.querySelector<HTMLElement>('.stepIconColor-'+index).style.cssText = "--my-var"+index+": #b3b3b3" }, 0);
+        this.stepStatus.push('block');
       }
     });
-    console.log(this.stepStatus);
-    /*this.cdRef.detectChanges();*/
+
+    //Fill service details
+    this.stepTitle = 'Paso '+(this.selectedStep+1)+' - '+this.servicesSteps[this.detailsIndex].stepsDetails[this.selectedStep].title;
+    this.stepContent = this.servicesSteps[this.detailsIndex].stepsDetails[this.selectedStep].content;
+  }
+
+  showServiceDetails(event:any){
+    console.log(event.selectedIndex);
+
+    if(this.clientVehiclesWorkshop[this.vehicleWorkshopIndex].service == 'Escaneo'){
+      this.detailsIndex = 0;
+    } else if (this.clientVehiclesWorkshop[this.vehicleWorkshopIndex].service == 'Mantenimiento') {
+      this.detailsIndex = 1;
+    } else if (this.clientVehiclesWorkshop[this.vehicleWorkshopIndex].service == 'Reparación') {
+      this.detailsIndex = 2;
+    } else {
+      this.detailsIndex = 3;
+    }
+
+    this.stepTitle = 'Paso '+(event.selectedIndex+1)+' - '+this.servicesSteps[this.detailsIndex].stepsDetails[event.selectedIndex].title;
+    this.stepContent = this.servicesSteps[this.detailsIndex].stepsDetails[event.selectedIndex].content;
   }
 
   backToServices(){

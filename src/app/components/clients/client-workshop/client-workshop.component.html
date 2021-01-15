@@ -37,19 +37,27 @@
 
 <div id="vehicleWorkshop" *ngIf="showDetailsStatus">
   <div class="sideStatusBar">
-    <div class='firstClass'>
-      <div class="secondClass">
-        <mat-vertical-stepper #stepper [selectedIndex]="selectedStep">
-          <mat-step [ngClass]="'car-title'+ i" *ngFor="let steps of servicesSteps[detailsIndex].stepsDetails; let i = index" [completed]="clientVehiclesWorkshop[vehicleWorkshopIndex].details[i].status">
-            <ng-template matStepperIcon="edit" let-index="index">
-              <mat-icon>{{index ? stepStatus[index] : stepStatus[index]}}</mat-icon>
-            </ng-template>
-            <ng-template matStepperIcon="number" let-index="index">
-              <mat-icon>{{index ? stepStatus[index] : ''}}</mat-icon>
-            </ng-template>
-            <ng-template matStepLabel>{{steps.title}}</ng-template>
-          </mat-step>
-        </mat-vertical-stepper>
+    <div class='stepIconColor-0'>
+      <div class='stepIconColor-1'>
+        <div class='stepIconColor-2'>
+          <div class='stepIconColor-3'>
+            <div class='stepIconColor-4'>
+              <mat-vertical-stepper #stepper [selectedIndex]="selectedStep" linear (selectionChange)="showServiceDetails($event)">
+                <mat-step *ngFor="let steps of servicesSteps[detailsIndex].stepsDetails; let i = index" [completed]="clientVehiclesWorkshop[vehicleWorkshopIndex].details[i].status">
+                  <ng-template matStepperIcon="edit" let-index="index">
+                    <mat-icon>{{index ? stepStatus[index] : stepStatus[index]}}</mat-icon>
+                  </ng-template>
+                  <ng-template matStepperIcon="number" let-index="index">
+                    <mat-icon>{{index ? stepStatus[index] : stepStatus[index]}}</mat-icon>
+                  </ng-template>
+                  <ng-template matStepLabel>
+                    <p>{{steps.title}}</p>
+                  </ng-template>
+                </mat-step>
+              </mat-vertical-stepper>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -62,10 +70,10 @@
 
     <mat-card class="statusCard">
       <mat-card-header>
-        <mat-card-title>Paso 1 - Ingreso</mat-card-title>
+        <mat-card-title>{{stepTitle}}</mat-card-title>
       </mat-card-header>
       <mat-card-content class="stepContent">
-        <p>Estado de la carrocería e inventario de objetos personales.</p>
+        <p>{{stepContent}}</p>
       </mat-card-content>
     </mat-card>
   </div>

@@ -219,18 +219,27 @@
   .sideStatusBar{
     width: 25%;
     position: relative;
+    background-color: #FBFBFB;
     display: inline-block;
 
     ::ng-deep .mat-step:nth-of-type(1) .mat-step-icon {
-      background-color: var(--my-var1);
+      background-color: var(--my-var0);
     }
 
     ::ng-deep .mat-step:nth-of-type(2) .mat-step-icon {
-      background-color: var(--my-var2);
+      background-color: var(--my-var1);
     }
 
     ::ng-deep .mat-step:nth-of-type(3) .mat-step-icon {
-        background-color: var(--my-var3);
+      background-color: var(--my-var2);
+    }
+
+    ::ng-deep .mat-step:nth-of-type(4) .mat-step-icon {
+      background-color: var(--my-var3);
+    }
+
+    ::ng-deep .mat-step:nth-of-type(5) .mat-step-icon {
+      background-color: var(--my-var4);
     }
 
     mat-vertical-stepper{
