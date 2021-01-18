@@ -5,7 +5,7 @@
       <img src="assets/images/workshop_top.jpg">
     </div>
 
-    <app-sidebar id="sidebarComponent" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)"></app-sidebar>
+    <app-sidebar *ngIf="displaySidebar" id="sidebarComponent" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)"></app-sidebar>
 
     <div class="parent">
         <app-toolbar *ngIf="displayToolbar" class="toolbar" [changeItemDescriptionStatus]="changeItemDescriptionStatus"></app-toolbar>
