@@ -7,8 +7,8 @@
 
     <app-sidebar *ngIf="displaySidebar" id="sidebarComponent" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)"></app-sidebar>
 
-    <div class="parent">
-        <app-toolbar *ngIf="displayToolbar" class="toolbar" [changeItemDescriptionStatus]="changeItemDescriptionStatus"></app-toolbar>
+    <div class="parent" *ngIf="displayContent">
+        <app-toolbar class="toolbar" [changeItemDescriptionStatus]="changeItemDescriptionStatus"></app-toolbar>
 
         <div class="itemContent" [class.workshop]="showDistinctTopImage">
             <router-outlet></router-outlet>

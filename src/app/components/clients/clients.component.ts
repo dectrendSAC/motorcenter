@@ -10,7 +10,7 @@ import { DataService } from 'src/app/services/pass-data.service';
 export class ClientsComponent implements OnInit {
   changeItemDescriptionStatus:boolean;
   showDistinctTopImage: boolean = false;
-  displayToolbar:boolean = true;
+  displayContent:boolean = true;
   displaySidebar:boolean = true;
 
   constructor(private router: Router, private data: DataService) { }
@@ -40,7 +40,7 @@ export class ClientsComponent implements OnInit {
     console.log('omanight')
     this.data.goToMainStatus(status);
     this.data.awaitAnimationOnScroll(status);
-    setTimeout(() => { this.displayToolbar = false }, 1700);
+    setTimeout(() => { this.displayContent = false }, 1700);
     setTimeout(() => { this.displaySidebar = false }, 1700);
     /*setTimeout(() => { this.displaySections = false }, 2600);*/
     setTimeout(() => { this.data.goToMainStatus(false); this.data.awaitAnimationOnScroll(false); }, 500);
