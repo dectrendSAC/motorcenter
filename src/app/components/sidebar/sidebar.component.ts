@@ -13,7 +13,7 @@ import { multipleAnimations } from 'src/app/animations';
 export class SidebarComponent implements OnInit {
   displaySidebar: boolean;
   displaySidebarState: boolean = false;
-  currentUrl: string;
+  currentUrlText: string;
   clickedCount: boolean = true;
   clickedItem: boolean;
   time:number = 0;
@@ -27,19 +27,33 @@ export class SidebarComponent implements OnInit {
     this.clickedItem = true;
     this.displaySidebar = false;
 
-    this.currentUrl = this.router.url;
-    console.log(/[^/]*$/.exec(this.currentUrl)[0]);
+    this.currentUrlText = /[^/]*$/.exec(this.router.url)[0];
+
+    const item = document.getElementsByClassName('item');
+    for(var i = 0 ; i < item.length ; i++){
+      item[i].classList.remove('clicked');
+      let itemText = item[i].childNodes[0].childNodes[1].textContent;
+      let itemNormalized = itemText.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase();
+      if(itemNormalized.indexOf(this.currentUrlText) !== -1){
+        item[i].classList.add('clicked');
+      }
+    }
   }
 
   //Change active item button
   toggleClass(e) {
-    const item = document.getElementsByClassName('item')
+    const item = document.getElementsByClassName('item');
     const classList = e.currentTarget.classList;
-    for(var i = 0 ; i < item.length ; i++){
-      item[i].classList.remove('clicked');
+
+    if(e.currentTarget.childNodes[0].childNodes[1].textContent.indexOf('Cerrar') !== -1){
+      this.homeBtn.emit(true);
+    } else {
+      for(var i = 0 ; i < item.length ; i++){
+        item[i].classList.remove('clicked');
+      }
+      classList.add('clicked');
+      this.changeItemDescription.emit(true);
     }
-    classList.add('clicked');
-    this.changeItemDescription.emit(true);
   }
 
   //Changesidebar display status

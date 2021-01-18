@@ -48,11 +48,8 @@ export class ToolbarComponent implements OnInit {
         const item = document.getElementsByClassName('item')
         for(var i = 0 ; i < item.length ; i++){
           if(item[i].classList.contains('clicked')){
-            console.log('gato')
             this.itemIcon = item[i].firstChild.childNodes[0].textContent;
             this.itemName = item[i].firstChild.childNodes[1].textContent;
-          } else {
-            console.log('perro')
           }
         }
       }, 100);
