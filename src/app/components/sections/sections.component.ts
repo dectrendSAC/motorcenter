@@ -19,7 +19,6 @@ import { Router } from '@angular/router';
 export class SectionsComponent implements OnInit {
   displayToolbar:boolean;
   displaySideScroll:boolean;
-  displaySections:boolean;
   displayLogin:boolean = false;
   displayMore:boolean = false;
   displaySuccess:boolean = false;
@@ -60,7 +59,6 @@ export class SectionsComponent implements OnInit {
     this.data.awaitAnimationOnScroll(status);
     setTimeout(() => { this.displayToolbar = false }, 1700);
     setTimeout(() => { this.displaySideScroll = false }, 1700);
-    setTimeout(() => { this.displaySections = false }, 2600);
     setTimeout(() => { this.data.goToMainStatus(false); this.data.awaitAnimationOnScroll(false); }, 500);
   }
 
@@ -124,7 +122,7 @@ export class SectionsComponent implements OnInit {
     if(elementRef.hideRegister){
       elementRef.hideRegister.subscribe((status:boolean) => {
         this.data.showRegisterStatus(status);
-  
+
         if(document.getElementById('vehicles')){
           this.changeTopLinksClassStatus = status;
         }

@@ -6,7 +6,7 @@ export const multipleAnimations = {
         transition('Main => Vehiculos, Taller => Main, Vehiculos => Repuestos, Repuestos => Taller, Vehiculos => Taller', [
             query(':enter, :leave', style({ position: 'absolute', width:'100%', height:'100%', paddingBottom: '{{paddingBottomSize}}%' })),
             query(':enter', style({ transform: 'translateY(100%)' })),
-            
+
             group([
             query(':leave', [
                 style({ transform: 'translateY(0%)' }),
@@ -25,7 +25,7 @@ export const multipleAnimations = {
         transition('Vehiculos => Main, Main => Taller, Taller => Repuestos, Repuestos => Vehiculos, Taller => Vehiculos', [
             query(':enter, :leave', style({ position: 'absolute', width:'100%',height:'100%' })),
             query(':enter', style({ transform: 'translateY(-100%)' })),
-            
+
             group([
             query(':leave', [
                 style({ transform: 'translateY(0%)' }),
@@ -41,10 +41,10 @@ export const multipleAnimations = {
             ])
             ])
         ]),
-        transition('Repuestos <=> Main', [
+        transition('Repuestos <=> Main, ClientePerfil <=> ClienteVehiculos', [
             query(':enter, :leave', style({ position: 'absolute', width:'100%', height:'100%', paddingBottom: '{{paddingBottomSize}}%' })),
             query(':enter', style({ opacity: 0 })),
-            
+
             group([
             query(':leave', [
                 style({ opacity: 1 }),
@@ -73,7 +73,7 @@ export const multipleAnimations = {
         ])
     ]),
 
-    slideTwoTrigger: trigger('slideUpDown', [ 
+    slideTwoTrigger: trigger('slideUpDown', [
         transition(':enter', [
             style({ transform: 'translateY(-100%)' }),
             animate('.5s ease-in-out', style({ transform: 'translateY(0%)' }))
@@ -84,7 +84,7 @@ export const multipleAnimations = {
         ])
     ]),
 
-    slideThreeTrigger: trigger('slideDownUp', [ 
+    slideThreeTrigger: trigger('slideDownUp', [
         transition(':enter', [
             style({ transform: 'translateY(100%)' }),
             animate('.5s ease-in-out', style({ transform: 'translateY(0%)' }))
@@ -95,7 +95,7 @@ export const multipleAnimations = {
         ])
     ]),
 
-    fadeOneTrigger: trigger('fadeInOut', [ 
+    fadeOneTrigger: trigger('fadeInOut', [
         transition(':enter', [
             style({ opacity: 0 }),
             animate('.7s ease-in-out', style({ opacity: 1}))
@@ -106,7 +106,7 @@ export const multipleAnimations = {
         ])
     ]),
 
-    fadeTwoTrigger: trigger('fadeOut', [ 
+    fadeTwoTrigger: trigger('fadeOut', [
         transition(':leave', [
             style({}),
             animate('.5s ease-in-out', style({ opacity: 0 }))
@@ -137,7 +137,7 @@ export const multipleAnimations = {
         ])
     ]),
 
-    scaleTrigger: trigger('scaleInOut', [ 
+    scaleTrigger: trigger('scaleInOut', [
         transition(':enter', [
             style({ transform: 'scale(0)', transformOrigin:'center' }),
             animate('.5s ease-in-out', style({ transform: 'scale(1)', transformOrigin:'center' }))

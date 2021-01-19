@@ -32,7 +32,7 @@
   </button>
 </mat-menu>
 <mat-menu #user="matMenu">
-  <button mat-menu-item (click)="navigateTo('','../clientes/perfil')">
+  <button mat-menu-item (click)="toggleClass('perfil'); navigateTo('','../clientes/perfil')">
     <mat-icon>account_circle</mat-icon>
     <span>Perfil</span>
   </button>
@@ -40,11 +40,11 @@
       <mat-icon>money</mat-icon>
       <span>Motor Puntos</span>
     </button>
-  <button mat-menu-item (click)="navigateTo('','../clientes/calendario')">
+  <button mat-menu-item (click)="toggleClass('calendario'); navigateTo('','../clientes/calendario')" disabled>
     <mat-icon>event</mat-icon>
     <span>Calendario</span>
   </button>
-  <button mat-menu-item (click)="navigateTo('','../clientes/taller')">
+  <button mat-menu-item (click)="toggleClass('taller'); navigateTo('','../clientes/taller')">
     <mat-icon>home_repair_service</mat-icon>
     <span>Taller mecánico</span>
   </button>

@@ -20,6 +20,7 @@ export class ToolbarComponent implements OnInit {
   @Input() changeItemDescriptionStatus: boolean;
 
   @Output() displayLoginFromToolbar = new EventEmitter<{status: boolean, extra: string}>();
+  @Output() changeItemDescription = new EventEmitter<boolean>();
   @Output() awaitAnimation = new EventEmitter<boolean>();
   @Output() slideStatus = new EventEmitter<string>();
   @Output() homeBtn = new EventEmitter<boolean>();
@@ -88,7 +89,28 @@ export class ToolbarComponent implements OnInit {
   }
 
   logOut(){
-    this.displayLoginFromToolbar.emit({status: false, extra: 'toolbar'});
+    if(document.getElementById('clientScreen')){
+      this.homeBtn.emit(true);
+    } else {
+      this.displayLoginFromToolbar.emit({status: false, extra: 'toolbar'});
+    }
+  }
+
+  //Change active item button
+  toggleClass(itemString:string) {
+    if(document.getElementById('clientScreen')){
+      const item = document.getElementsByClassName('item');
+
+      for(var i = 0 ; i < item.length ; i++){
+        item[i].classList.remove('clicked');
+        let itemText = item[i].childNodes[0].childNodes[1].textContent;
+        let itemNormalized = itemText.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase();
+        if(itemNormalized.indexOf(itemString) !== -1){
+          item[i].classList.add('clicked');
+        }
+      }
+      this.changeItemDescription.emit(true);
+    }
   }
 
   //Main methods
@@ -99,7 +121,7 @@ export class ToolbarComponent implements OnInit {
   //Client methods
   ngOnChanges(changes: SimpleChanges) {
     if(document.getElementById('clientScreen')){
-      if(changes.changeItemDescriptionStatus.currentValue != undefined && changes.changeItemDescriptionStatus.currentValue){
+      if(changes.changeItemDescriptionStatus != undefined && changes.changeItemDescriptionStatus.currentValue){
         const item = document.getElementsByClassName('item')
           for(var i = 0 ; i < item.length ; i++){
             if(item[i].classList.contains('clicked')){
@@ -108,6 +130,8 @@ export class ToolbarComponent implements OnInit {
             }
           }
       }
+    } else {
+      console.log('monson')
     }
   }
 }
