@@ -130,8 +130,6 @@ export class ToolbarComponent implements OnInit {
             }
           }
       }
-    } else {
-      console.log('monson')
     }
   }
 }

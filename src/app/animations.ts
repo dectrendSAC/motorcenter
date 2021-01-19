@@ -3,7 +3,7 @@ import { trigger, transition, animate, style, query, group, state, keyframes, an
 //Routable animations
 export const multipleAnimations = {
     routeTrigger: trigger('routeAnimations', [
-        transition('Main => Vehiculos, Taller => Main, Vehiculos => Repuestos, Repuestos => Taller, Vehiculos => Taller', [
+        transition('Main => Vehiculos, Taller => Main, Vehiculos => Repuestos, Repuestos => Taller, Vehiculos => Taller, Main => ClientePerfil', [
             query(':enter, :leave', style({ position: 'absolute', width:'100%', height:'100%', paddingBottom: '{{paddingBottomSize}}%' })),
             query(':enter', style({ transform: 'translateY(100%)' })),
 
@@ -41,7 +41,7 @@ export const multipleAnimations = {
             ])
             ])
         ]),
-        transition('Repuestos <=> Main, ClientePerfil <=> ClienteVehiculos', [
+        transition('Repuestos <=> Main', [
             query(':enter, :leave', style({ position: 'absolute', width:'100%', height:'100%', paddingBottom: '{{paddingBottomSize}}%' })),
             query(':enter', style({ opacity: 0 })),
 
@@ -52,6 +52,25 @@ export const multipleAnimations = {
             ]),
             query(':enter', [
                 animate('1s ease-in-out', style({opacity: 1})),
+                animateChild()
+            ]),
+            query(':leave *', [
+                style({}),
+                animate(1, style({}))
+            ])
+            ])
+        ]),
+        transition('ClientePerfil <=> *, ClienteVehiculos <=> *, ClienteNotificaciones <=> *, MotorPuntos <=> *, Cotizaciones <=> *, ClienteCalendario <=> *, Compras <=> *, ClientePromociones <=> *, ClienteTaller <=> *', [
+            query(':enter, :leave', style({ position: 'absolute', width:'100%', height:'100%', paddingBottom: '{{paddingBottomSize}}%' })),
+            query(':enter', style({ opacity: 0 })),
+
+            group([
+            query(':leave', [
+                style({ opacity: 1 }),
+                animate('.1s ease-in-out', style({opacity: 0}))
+            ]),
+            query(':enter', [
+                animate('.4s ease-in-out', style({opacity: 1})),
                 animateChild()
             ]),
             query(':leave *', [

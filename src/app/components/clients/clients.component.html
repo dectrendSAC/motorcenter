@@ -1,16 +1,18 @@
 <div id="clientScreen" *ngIf="displayClient">
-    <div @slideUpDown id="topCurve" *ngIf="!showDistinctTopImage"></div>
+  <ng-container @slideUpDown *ngIf="displayTop">
+    <div id="topCurve" *ngIf="!showDistinctTopImage"></div>
 
-    <div @slideUpDown id="topWorkshop" *ngIf="showDistinctTopImage">
+    <div id="topWorkshop" *ngIf="showDistinctTopImage">
       <img src="assets/images/workshop_top.jpg">
     </div>
+  </ng-container>
 
     <app-sidebar @slideInOut *ngIf="displaySidebar" id="sidebarComponent" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)"></app-sidebar>
 
     <div class="parent">
         <app-toolbar @fadeInOut *ngIf="displayToolbar" class="toolbar" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)" [changeItemDescriptionStatus]="changeItemDescriptionStatus"></app-toolbar>
 
-        <div class="itemContent" [class.workshop]="showDistinctTopImage">
+        <div class="itemContent" *ngIf="displayContent" [class.workshop]="showDistinctTopImage">
             <router-outlet></router-outlet>
         </div>
     </div>

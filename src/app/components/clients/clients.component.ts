@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { multipleAnimations } from '../../animations';
+import { RouterExtService } from 'src/app/services/previous-url.service';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/pass-data.service';
 
@@ -20,10 +21,13 @@ export class ClientsComponent implements OnInit {
   changeItemDescriptionStatus:boolean;
   showDistinctTopImage: boolean = false;
   displayClient: boolean = true;
-  displayToolbar:boolean = true;
-  displaySidebar:boolean = true;
+  displayTop: boolean = false;
+  displaySidebar:boolean = false;
+  displayToolbar:boolean = false;
+  displayContent:boolean = false;
+  previousUrl: string;
 
-  constructor(private router: Router, private data: DataService) { }
+  constructor(private routerExtService: RouterExtService, private router: Router, private data: DataService) { }
 
   ngOnInit(): void {
     //Check if workshop screen is visible
@@ -31,6 +35,15 @@ export class ClientsComponent implements OnInit {
       this.showDistinctTopImage = true;
     } else {
       this.showDistinctTopImage = false;
+    }
+
+    this.previousUrl = this.routerExtService.getPreviousUrl();
+    //Animation sequence
+    if(this.previousUrl = '/'){
+      this.displayTop = true;
+      setTimeout(() => { this.displaySidebar = true }, 1600);
+      setTimeout(() => { this.displayToolbar = true }, 2200);
+      setTimeout(() => { this.displayContent = true }, 2500);
     }
   }
 
