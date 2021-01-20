@@ -17,7 +17,7 @@ export class AppComponent {
   prepareRoute(outlet: RouterOutlet) {
     if(outlet.isActivated){
       if(outlet.activatedRoute.firstChild){
-        if(outlet.activatedRoute.snapshot.firstChild.data['animation'] == 'Vehiculos'){
+        if(outlet.activatedRoute.snapshot.firstChild.data['animation'] == 'Vehiculos' || 'ClientePerfil' || 'ClienteTaller'){
           if(window.innerWidth > 1800){
             this.paddingBottom = 10;
           } else {

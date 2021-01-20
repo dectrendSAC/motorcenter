@@ -65,6 +65,7 @@ export class ClientsComponent implements OnInit {
     this.data.awaitAnimationOnScroll(status);
     setTimeout(() => { this.displaySidebar = false }, 1700);
     setTimeout(() => { this.displayToolbar = false }, 1700);
+    setTimeout(() => { this.displayContent = false }, 1700);
     setTimeout(() => { this.displayClient = false }, 2700);
     setTimeout(() => { this.data.goToMainStatus(false); this.data.awaitAnimationOnScroll(false); }, 500);
   }

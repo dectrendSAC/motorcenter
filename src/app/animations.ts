@@ -3,7 +3,7 @@ import { trigger, transition, animate, style, query, group, state, keyframes, an
 //Routable animations
 export const multipleAnimations = {
     routeTrigger: trigger('routeAnimations', [
-        transition('Main => Vehiculos, Taller => Main, Vehiculos => Repuestos, Repuestos => Taller, Vehiculos => Taller, Main => ClientePerfil', [
+        transition('Main => Vehiculos, Taller => Main, Vehiculos => Repuestos, Repuestos => Taller, Vehiculos => Taller, Main => ClientePerfil, Main => ClienteTaller', [
             query(':enter, :leave', style({ position: 'absolute', width:'100%', height:'100%', paddingBottom: '{{paddingBottomSize}}%' })),
             query(':enter', style({ transform: 'translateY(100%)' })),
 
