@@ -20,7 +20,6 @@ import { DataService } from 'src/app/services/pass-data.service';
 export class ClientsComponent implements OnInit {
   changeItemDescriptionStatus:boolean;
   showDistinctTopImage: boolean = false;
-  displayClient: boolean = true;
   displayTop: boolean = false;
   displaySidebar:boolean = false;
   displayToolbar:boolean = false;
@@ -41,9 +40,9 @@ export class ClientsComponent implements OnInit {
     //Animation sequence
     if(this.previousUrl = '/'){
       this.displayTop = true;
-      setTimeout(() => { this.displaySidebar = true }, 1600);
-      setTimeout(() => { this.displayToolbar = true }, 2200);
-      setTimeout(() => { this.displayContent = true }, 2500);
+      setTimeout(() => { this.displaySidebar = true }, 600);
+      setTimeout(() => { this.displayToolbar = true }, 1700);
+      setTimeout(() => { this.displayContent = true }, 2000);
     }
   }
 
@@ -60,14 +59,13 @@ export class ClientsComponent implements OnInit {
 
   //Main methods
   goToMain(status:boolean){
-    console.log('omanight')
-    this.data.goToMainStatus(status);
-    this.data.awaitAnimationOnScroll(status);
-    setTimeout(() => { this.displaySidebar = false }, 1700);
+    console.log('funciona');
+    setTimeout(() => { this.displaySidebar = false }, 200);
+    /*this.data.goToMainStatus(status);
+    setTimeout(() => { this.displayContent = false }, 1500);
     setTimeout(() => { this.displayToolbar = false }, 1700);
-    setTimeout(() => { this.displayContent = false }, 1700);
-    /*setTimeout(() => { this.displayClient = false }, 2500);*/
-    setTimeout(() => { this.data.goToMainStatus(false); this.data.awaitAnimationOnScroll(false); }, 500);
+    setTimeout(() => { this.displaySidebar = false }, 2000);
+    setTimeout(() => { this.data.goToMainStatus(false); }, 500);*/
   }
 
 }
