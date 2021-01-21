@@ -38,25 +38,24 @@ export class ToolbarComponent implements OnInit {
       }
     } else {
       this.displayForMainScreen = false;
-    }
 
-    if(document.getElementById('clientScreen')){
-      this.displayProfile = true;
-      this.displayForUserScreen = true;
-      this.displayForMainScreen = false;
+      if(document.getElementById('clientScreen')){
+        this.displayProfile = true;
+        this.displayForUserScreen = true;
 
-      setTimeout(() => {
-        const item = document.getElementsByClassName('item')
-        for(var i = 0 ; i < item.length ; i++){
-          if(item[i].classList.contains('clicked')){
-            this.itemIcon = item[i].firstChild.childNodes[0].textContent;
-            this.itemName = item[i].firstChild.childNodes[1].textContent;
+        setTimeout(() => {
+          const item = document.getElementsByClassName('item')
+          for(var i = 0 ; i < item.length ; i++){
+            if(item[i].classList.contains('clicked')){
+              this.itemIcon = item[i].firstChild.childNodes[0].textContent;
+              this.itemName = item[i].firstChild.childNodes[1].textContent;
+            }
           }
-        }
-      }, 100);
+        }, 100);
 
-    } else {
-      this.displayForUserScreen = false;
+      } else {
+        this.displayForUserScreen = false;
+      }
     }
   }
 

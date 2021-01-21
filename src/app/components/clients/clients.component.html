@@ -7,13 +7,13 @@
     </div>
   </ng-container>
 
-    <app-sidebar @slideInOut *ngIf="displaySidebar" id="sidebarComponent" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)"></app-sidebar>
+  <app-sidebar @slideInOut *ngIf="displaySidebar" id="sidebarComponent" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)"></app-sidebar>
 
-    <div class="parent">
-        <app-toolbar @fadeInOut *ngIf="displayToolbar" class="toolbar" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)" [changeItemDescriptionStatus]="changeItemDescriptionStatus"></app-toolbar>
+  <div class="parent">
+      <app-toolbar @fadeInOut *ngIf="displayToolbar" class="toolbar" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)" [changeItemDescriptionStatus]="changeItemDescriptionStatus"></app-toolbar>
 
-        <div class="itemContent" *ngIf="displayContent" [class.workshop]="showDistinctTopImage">
-            <router-outlet></router-outlet>
-        </div>
-    </div>
+      <div class="itemContent" *ngIf="displayContent" [class.workshop]="showDistinctTopImage">
+          <router-outlet></router-outlet>
+      </div>
+  </div>
 </div>

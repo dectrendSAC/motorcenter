@@ -22,7 +22,7 @@ export const multipleAnimations = {
             ])
             ])
         ]),
-        transition('Vehiculos => Main, Main => Taller, Taller => Repuestos, Repuestos => Vehiculos, Taller => Vehiculos', [
+        transition('Vehiculos => Main, Main => Taller, Taller => Repuestos, Repuestos => Vehiculos, Taller => Vehiculos, ClientePerfil => Main', [
             query(':enter, :leave', style({ position: 'absolute', width:'100%',height:'100%' })),
             query(':enter', style({ transform: 'translateY(-100%)' })),
 
@@ -60,7 +60,7 @@ export const multipleAnimations = {
             ])
             ])
         ]),
-        transition('ClientePerfil <=> *, ClienteVehiculos <=> *, ClienteNotificaciones <=> *, MotorPuntos <=> *, Cotizaciones <=> *, ClienteCalendario <=> *, Compras <=> *, ClientePromociones <=> *, ClienteTaller <=> *', [
+        transition('ClientePerfil <=> ClienteVehiculos, ClientePerfil <=> ClienteNotificaciones, ClientePerfil <=> MotorPuntos, ClientePerfil <=> Cotizaciones, ClientePerfil <=> ClienteCalendario, ClientePerfil <=> Compras, ClientePerfil <=> ClientePromociones', [
             query(':enter, :leave', style({ position: 'absolute', width:'100%', height:'100%', paddingBottom: '{{paddingBottomSize}}%' })),
             query(':enter', style({ opacity: 0 })),
 
