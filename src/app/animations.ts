@@ -60,7 +60,7 @@ export const multipleAnimations = {
             ])
             ])
         ]),
-        transition('ClientePerfil <=> ClienteVehiculos, ClientePerfil <=> ClienteNotificaciones, ClientePerfil <=> MotorPuntos, ClientePerfil <=> Cotizaciones, ClientePerfil <=> ClienteCalendario, ClientePerfil <=> Compras, ClientePerfil <=> ClientePromociones', [
+        transition('ClientePerfil <=> ClienteVehiculos, ClientePerfil <=> ClienteNotificaciones, ClientePerfil <=> MotorPuntos, ClientePerfil <=> Cotizaciones, ClientePerfil <=> ClienteCalendario, ClientePerfil <=> Compras, ClientePerfil <=> ClientePromociones, ClienteVehiculos <=> ClienteNotificaciones, ClienteVehiculos <=> MotorPuntos, ClienteVehiculos <=> Cotizaciones, ClienteVehiculos <=> ClienteCalendario, ClienteVehiculos <=> ClienteCompras, ClienteVehiculos <=> ClientePromociones, ClienteNotificaciones <=> MotorPuntos, ClienteNotificaciones <=> Cotizaciones, ClienteNotificaciones <=> ClienteCalendario, ClienteNotificaciones <=> ClienteCompras, ClienteNotificaciones <=> ClientePromociones, ClienteNotificaciones <=> ClientePromociones, MotorPuntos <=> Cotizaciones, MotorPuntos <=> ClienteCompras, MotorPuntos <=> ClientePromociones, Cotizaciones <=> ClienteCalendario, Cotizaciones <=> ClienteCompras, Cotizaciones <=> ClientePromociones, ClienteCalendario <=> ClienteCompras, ClienteCalendario <=> ClientePromociones, ClienteCompras <=> ClientePromociones', [
             query(':enter, :leave', style({ position: 'absolute', width:'100%', height:'100%', paddingBottom: '{{paddingBottomSize}}%' })),
             query(':enter', style({ opacity: 0 })),
 

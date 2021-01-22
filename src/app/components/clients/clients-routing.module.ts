@@ -33,7 +33,7 @@ const routes: Routes = [
         path: 'calendario', component: ClientCalendarComponent, data: {animation: 'ClienteCalendario'}
       },
       {
-        path: 'compras', component: PurchasesComponent, data: {animation: 'Compras'}
+        path: 'compras', component: PurchasesComponent, data: {animation: 'ClienteCompras'}
       },
       {
         path: 'promociones', component: ClientPromotionsComponent, data: {animation: 'ClientePromociones'}

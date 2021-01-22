@@ -1,17 +1,17 @@
-<div id="clientWorkshop" *ngIf="!showDetailsStatus">
-  <div class="topFilter">
-    <mat-form-field class="dropdownFilter" appearance="outline">
-      <mat-label>Seleccione un servicio</mat-label>
-      <mat-select value="default" (selectionChange)="filterMethod($event.value)">
-        <mat-option value="default">Todos</mat-option>
-        <mat-option value="Mantenimiento">Mantenimiento</mat-option>
-        <mat-option value="Reparación">Reparación</mat-option>
-        <mat-option value="Escaneo">Escaneo</mat-option>
-        <mat-option value="Planchado y pintura">Planchado y pintura</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+<div id="topFilter">
+  <mat-form-field class="dropdownFilter" appearance="outline">
+    <mat-label>Seleccione un servicio</mat-label>
+    <mat-select value="default" (selectionChange)="filterMethod($event.value)">
+      <mat-option value="default">Todos</mat-option>
+      <mat-option value="Mantenimiento">Mantenimiento</mat-option>
+      <mat-option value="Reparación">Reparación</mat-option>
+      <mat-option value="Escaneo">Escaneo</mat-option>
+      <mat-option value="Planchado y pintura">Planchado y pintura</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
 
+<div id="clientWorkshop" *ngIf="!showDetailsStatus">
   <mat-card class="profileCard" *ngFor="let workshop of clientVehiclesWorkshop; let i = index">
       <mat-card-header>
         <mat-card-title>{{workshop.service}}</mat-card-title>
