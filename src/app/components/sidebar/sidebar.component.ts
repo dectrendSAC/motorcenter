@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, HostBinding } from '@angular/core';
 import { Router } from '@angular/router';
 import { multipleAnimations } from 'src/app/animations';
 
@@ -7,7 +7,8 @@ import { multipleAnimations } from 'src/app/animations';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
   animations: [
-    multipleAnimations.fadeOneTrigger
+    multipleAnimations.fadeOneTrigger,
+    multipleAnimations.slideOneTrigger
   ]
 })
 export class SidebarComponent implements OnInit {
@@ -20,6 +21,8 @@ export class SidebarComponent implements OnInit {
 
   @Output() changeItemDescription = new EventEmitter<boolean>();
   @Output() homeBtn = new EventEmitter<boolean>();
+
+  @HostBinding('@slideUpDown') public sidebar = true;
 
   constructor(private router: Router) { }
 

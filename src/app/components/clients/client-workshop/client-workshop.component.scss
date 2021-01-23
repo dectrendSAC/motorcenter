@@ -16,6 +16,8 @@
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 62em) {
   #clientWorkshop{
+    height: 67%;
+
     .profileCard{
       margin: 0 2.5% 5% 2.5%;
       padding: 30px 30px 0px 30px;
@@ -62,6 +64,8 @@
 /* Extra large devices (large laptops and desktops, 1900px and up) */
 @media only screen and (min-width: 119em) {
   #clientWorkshop{
+    height: 80%;
+
     .profileCard{
       margin: 0 3.5% 5% 3.5%;
       padding: 30px 30px 10px 30px;
@@ -118,8 +122,8 @@
 
 #topFilter{
   position: relative;
-  width: 100%;
-  margin: 0 5.5% 2.5% 2.5%;
+  top: -5%;
+  margin: 0 6% 2.5% 2.5%;
 
   .dropdownFilter{
     float: right;
@@ -129,9 +133,8 @@
 #clientWorkshop{
     position: relative;
     overflow-y: scroll;
-    margin-top: -3%;
+    margin-top: 0%;
     width: 100%;
-    height: 67%;
     display: inline-flex;
     flex-wrap: wrap;
 
@@ -145,7 +148,7 @@
         border-radius: 25px;
         box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
 
-        &:nth-child(1){
+        &:nth-child(3n + 1){
           margin: 0 2.5% 5% 5%;
         }
 
@@ -209,12 +212,33 @@
           }
         }
     }
+
+    /* customize scroll bar */
+    &::-webkit-scrollbar {
+      background-color:#EFEFEF;
+      width:16px
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color:#EFEFEF
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color:#CA181F;
+        border-radius:16px;
+        border:5px solid #EFEFEF;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color:#9f0003;
+        border:4px solid #EFEFEF;
+    }
 }
 
 #vehicleWorkshop{
   position: relative;
   display: inline-flex;
-  top: 0px;
+  top: 16%;
   width: 100%;
   height: 100%;
 

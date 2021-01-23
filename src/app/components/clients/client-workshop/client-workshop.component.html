@@ -1,4 +1,4 @@
-<div id="topFilter">
+<div id="topFilter" *ngIf="!showDetailsStatus">
   <mat-form-field class="dropdownFilter" appearance="outline">
     <mat-label>Seleccione un servicio</mat-label>
     <mat-select value="default" (selectionChange)="filterMethod($event.value)">
