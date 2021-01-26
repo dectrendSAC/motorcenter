@@ -22,7 +22,7 @@ export const multipleAnimations = {
             ])
             ])
         ]),
-        transition('Vehiculos => Main, Main => Taller, Taller => Repuestos, Repuestos => Vehiculos, Taller => Vehiculos, Clientes => Main', [
+        transition('Vehiculos => Main, Main => Taller, Taller => Repuestos, Repuestos => Vehiculos, Taller => Vehiculos, ClientePerfil => Main', [
             query(':enter, :leave', style({ position: 'absolute', width:'100%',height:'100%' })),
             query(':enter', style({ transform: 'translateY(-100%)' })),
 

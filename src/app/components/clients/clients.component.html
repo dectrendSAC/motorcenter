@@ -9,10 +9,10 @@
 
   <app-sidebar @slideInOut *ngIf="displaySidebar" id="sidebarComponent" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)"></app-sidebar>
 
-  <div class="parent">
+  <div @fadeOut class="parent" *ngIf="displayContent">
       <app-toolbar @fadeInOut *ngIf="displayToolbar" class="toolbar" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)" [changeItemDescriptionStatus]="changeItemDescriptionStatus"></app-toolbar>
 
-      <div class="itemContent" *ngIf="displayContent" [class.workshop]="showDistinctTopImage">
+      <div class="itemContent" *ngIf="displayItem" [class.workshop]="showDistinctTopImage">
           <router-outlet></router-outlet>
       </div>
   </div>

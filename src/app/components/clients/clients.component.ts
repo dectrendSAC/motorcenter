@@ -23,12 +23,15 @@ export class ClientsComponent implements OnInit {
   displayTop: boolean = false;
   displaySidebar:boolean = false;
   displayToolbar:boolean = false;
-  displayContent:boolean = false;
+  displayContent:boolean = true;
+  displayItem: boolean = false;
   previousUrl: string;
 
   constructor(private routerExtService: RouterExtService, private router: Router, private data: DataService) { }
 
   ngOnInit(): void {
+    this.displayTop = true;
+
     //Check if workshop screen is visible
     if (this.router.url.indexOf('/taller') > -1) {
       this.showDistinctTopImage = true;
@@ -39,10 +42,9 @@ export class ClientsComponent implements OnInit {
     this.previousUrl = this.routerExtService.getPreviousUrl();
     //Animation sequence
     if(this.previousUrl = '/'){
-      this.displayTop = true;
       setTimeout(() => { this.displaySidebar = true }, 600);
       setTimeout(() => { this.displayToolbar = true }, 1700);
-      setTimeout(() => { this.displayContent = true }, 2000);
+      setTimeout(() => { this.displayItem = true }, 2000);
     }
   }
 
@@ -59,13 +61,12 @@ export class ClientsComponent implements OnInit {
 
   //Main methods
   goToMain(status:boolean){
-    console.log('funciona');
-    setTimeout(() => { this.displaySidebar = false }, 200);
-    /*this.data.goToMainStatus(status);
+    this.data.goToMainStatus(status);
     setTimeout(() => { this.displayContent = false }, 1500);
     setTimeout(() => { this.displayToolbar = false }, 1700);
     setTimeout(() => { this.displaySidebar = false }, 2000);
-    setTimeout(() => { this.data.goToMainStatus(false); }, 500);*/
+    setTimeout(() => { this.displayTop = false }, 2800);
+    setTimeout(() => { this.data.goToMainStatus(false); }, 500);
   }
 
 }
