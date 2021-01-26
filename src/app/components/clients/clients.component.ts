@@ -62,7 +62,7 @@ export class ClientsComponent implements OnInit {
   //Main methods
   goToMain(status:boolean){
     this.data.goToMainStatus(status);
-    setTimeout(() => { this.displayContent = false }, 1500);
+    setTimeout(() => { this.displayItem = false }, 1500);
     setTimeout(() => { this.displayToolbar = false }, 1700);
     setTimeout(() => { this.displaySidebar = false }, 2000);
     setTimeout(() => { this.displayTop = false }, 2800);
