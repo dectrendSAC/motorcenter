@@ -22,7 +22,7 @@ export class SidebarComponent implements OnInit {
   @Output() changeItemDescription = new EventEmitter<boolean>();
   @Output() homeBtn = new EventEmitter<boolean>();
 
-  @HostBinding('@slideUpDown') public sidebar = true;
+  @HostBinding('@slideInOut') public sidebar = true;
 
   constructor(private router: Router) { }
 
