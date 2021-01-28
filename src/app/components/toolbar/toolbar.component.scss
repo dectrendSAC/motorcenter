@@ -420,6 +420,10 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
         .profileContent{
             filter: blur(1px);
         }
+
+        .editProfile{
+          opacity: 1;
+        }
     }
 
     .profileFrame{
@@ -436,12 +440,29 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
             background: url("data:image/svg+xml, #{$male_profile}") center/cover no-repeat !important;
             transition: all 0.5s;
         }
-    }
 
-    .editProfilePic{
-      position: relative;
-      top: -10px;
-      left: 0%;
+        .editProfile{
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          top: 0px;
+          margin: 4px;
+          border-radius: 100px;
+          width: 90.5px;
+          height: 90.5px;
+          z-index: 1;
+          background: rgba(0, 0, 0, 0.6);
+          border: 3px solid red;
+          transition: ease-in-out 0.5s;
+
+          .editProfilePic{
+            position: absolute;
+            color: red;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%,-50%) scale(2.3);
+          }
+        }
     }
 
     &.main{
@@ -460,6 +481,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
 
         span{
             cursor: pointer;
+            margin-left: 30px;
         }
     }
 }

@@ -131,4 +131,12 @@ export class ToolbarComponent implements OnInit {
       }
     }
   }
+
+  //Change profile image and save
+  changeProfilePic(){
+    if(this.displayForUserScreen){
+      this.menuTrigger.closeMenu();
+      console.log('cambiar');
+    }
+  }
 }
