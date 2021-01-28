@@ -14,6 +14,7 @@
       <div class="profileContent"></div>
       <div *ngIf="displayForUserScreen" class="editProfile">
         <button mat-icon-button class="editProfilePic" aria-label="Cambiar imagen de perfil">
+          <input type="file" style="display:none" accept="image/x-png,image/jpeg" (change)="onSelectFile($event)">
           <mat-icon >edit</mat-icon>
         </button>
       </div>

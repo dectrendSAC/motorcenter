@@ -135,8 +135,12 @@ export class ToolbarComponent implements OnInit {
   //Change profile image and save
   changeProfilePic(){
     if(this.displayForUserScreen){
+      document.querySelector('input').click()
       this.menuTrigger.closeMenu();
-      console.log('cambiar');
     }
+  }
+
+  onSelectFile($event){
+    console.log('cambiar');
   }
 }

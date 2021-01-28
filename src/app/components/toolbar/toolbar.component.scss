@@ -79,10 +79,6 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
             }
         }
 
-        .editProfilePic{
-            transform: scale(1.1);
-        }
-
         &.main{
             top: 55vh;
             left: 0vh;
@@ -109,8 +105,19 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
                 height: 84px;
 
                 .profileContent{
-                    width: 87px;
-                    height: 87px;
+                  margin: -2px;
+                  width: 87px;
+                  height: 87px;
+                }
+
+                .editProfile{
+                  margin: 2px;
+                  width: 73.5px;
+                  height: 73.5px;
+
+                  .editProfilePic{
+                    transform: translate(-50%,-50%) scale(1.8);
+                  }
                 }
             }
         }
@@ -230,6 +237,16 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
                 .profileContent{
                     width: 107px;
                     height: 107px;
+                }
+
+                .editProfile{
+                  margin: 4px;
+                  width: 90.5px;
+                  height: 90.5px;
+
+                  .editProfilePic{
+                    transform: translate(-50%,-50%) scale(2.3);
+                  }
                 }
             }
         }
@@ -446,10 +463,7 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
           opacity: 0;
           cursor: pointer;
           top: 0px;
-          margin: 4px;
           border-radius: 100px;
-          width: 90.5px;
-          height: 90.5px;
           z-index: 1;
           background: rgba(0, 0, 0, 0.6);
           border: 3px solid red;
@@ -460,7 +474,6 @@ $bussines_profile:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%2
             color: red;
             left: 50%;
             top: 50%;
-            transform: translate(-50%,-50%) scale(2.3);
           }
         }
     }
