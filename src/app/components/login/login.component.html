@@ -4,19 +4,19 @@
         <div id="loginBackground"></div>
 
         <div id="closeBtn" (click)="hideLogin()"></div>
-        
+
         <span>No olvide ingresar si ya es parte de nuestra gran familia</span>
-        
-        <form name="loginForm" novalidate>
+
+        <form name="loginForm" [formGroup]="loginForm" (submit)="onSubmit()" novalidate>
             <mat-form-field appearance="outline">
                 <mat-label>Correo electrónico</mat-label>
-                <input matInput>
+                <input matInput type="text" formControlName="username" name="username" id="username"/>
                 <mat-icon matSuffix>mail_outline</mat-icon>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
                 <mat-label>Contraseña</mat-label>
-                <input matInput>
+                <input matInput type="password" formControlName="password" name="password" class="form-control"/>
                 <mat-icon matSuffix>visibility_off</mat-icon>
             </mat-form-field>
 
@@ -25,7 +25,7 @@
                 ¿Olvidó su contraseña?
                 </a>
             </div>
-    
+
             <button type="button" id="login" mat-raised-button color="primary" class="submit-button" (click)="logIn()">
                 INICIAR SESIÓN
             </button>
