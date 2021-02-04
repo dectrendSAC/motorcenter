@@ -19,7 +19,7 @@
         </button>
       </div>
     </div>
-    <span *ngIf="displayForMainScreen" (click)="showLogin(); openMenu()">{{profileContent.length > 1 ? profileContent : 'Iniciar sesión'}}</span>
+    <span *ngIf="displayForMainScreen" (click)="showLogin(); openMenu()">{{profileContent != '' ? profileContent : 'Iniciar sesión'}}</span>
     <span *ngIf="displayForUserScreen" (click)="openMenu()">Random client</span>
 </div>
 <mat-menu #menu="matMenu">

@@ -34,6 +34,7 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     if(document.getElementById('mainScreen')){
+      this.callLoginForm = true;
       if (this.displayProfile == undefined){
         this.profileState = false;
         this.profileContent = '';
@@ -141,7 +142,7 @@ export class ToolbarComponent implements OnInit {
 
   //Client methods
   ngOnChanges(changes: SimpleChanges) {
-    if(this.callLoginForm){
+    if(this.callLoginForm && this.displayProfile.profile != ''){
       this.profileState = this.displayProfile.display;
       if(this.displayProfile.rol == ''){
         this.profileContent = 'client';
