@@ -1,1 +1,19 @@
-<p>employees works!</p>
+<div id="employeeScreen">
+  <div @slideUpDown *ngIf="displayTop">
+    <div @fadeInOut id="topCurve" *ngIf="!showDistinctTopImage"></div>
+
+    <div @fadeInOut id="topWorkshop" *ngIf="showDistinctTopImage">
+      <img src="assets/images/workshop_top.png">
+    </div>
+  </div>
+
+  <app-sidebar @slideInOut *ngIf="displaySidebar" id="sidebarComponent" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)"></app-sidebar>
+
+  <div class="parent" *ngIf="displayContent">
+      <app-toolbar @fadeInOut *ngIf="displayToolbar" class="toolbar" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)" [changeItemDescriptionStatus]="changeItemDescriptionStatus"></app-toolbar>
+
+      <div class="itemContent" *ngIf="displayItem" [class.workshop]="showDistinctTopImage">
+          <router-outlet></router-outlet>
+      </div>
+  </div>
+</div>

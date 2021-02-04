@@ -6,11 +6,11 @@
   </div>
 </div>
 
-<span *ngIf="!displayProfile" class="pulse" [class.active] ="changeLoginClass" [class.main] ="displayForMainScreen"></span>
+<span *ngIf="!profileState" class="pulse" [class.active] ="changeLoginClass" [class.main] ="displayForMainScreen"></span>
 <div class="login" [class.active] ="changeLoginClass" [class.main] ="displayForMainScreen" [class.user] ="displayForUserScreen">
-    <div *ngIf="!displayProfile" (click)="showLogin()" id="noLogin" class="no-profile" [matTooltip]="displayForMainScreen? '': 'Iniciar sesión'" matTooltipPosition="before"></div>
-    <div *ngIf="displayProfile" id="Login" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" class="profile" (click)="changeProfilePic()"></div>
-    <div *ngIf="displayProfile" [matMenuTriggerFor]="menu" class="profileFrame">
+    <div *ngIf="!profileState" (click)="showLogin()" id="noLogin" class="no-profile" [matTooltip]="displayForMainScreen? '': 'Iniciar sesión'" matTooltipPosition="before"></div>
+    <div *ngIf="profileState" id="Login" #menuTrigger="matMenuTrigger" [matMenuTriggerFor]="menu" class="profile" (click)="changeProfilePic()"></div>
+    <div *ngIf="profileState" [matMenuTriggerFor]="menu" class="profileFrame">
       <div class="profileContent"></div>
       <div *ngIf="displayForUserScreen" class="editProfile">
         <button mat-icon-button class="editProfilePic" aria-label="Cambiar imagen de perfil">
@@ -19,13 +19,17 @@
         </button>
       </div>
     </div>
-    <span *ngIf="displayForMainScreen" (click)="showLogin(); openMenu()">{{displayProfile ? 'Random client' : 'Iniciar sesión'}}</span>
+    <span *ngIf="displayForMainScreen" (click)="showLogin(); openMenu()">{{profileContent.length > 1 ? profileContent : 'Iniciar sesión'}}</span>
     <span *ngIf="displayForUserScreen" (click)="openMenu()">Random client</span>
 </div>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item [matMenuTriggerFor]="user">
+  <button *ngIf="profileContent == 'client'" mat-menu-item [matMenuTriggerFor]="user">
     <mat-icon>emoji_people</mat-icon>
     <span>Cliente</span>
+  </button>
+  <button *ngIf="profileContent != 'client'" mat-menu-item (click)="navigateTo('','../empleados/perfil')">
+    <mat-icon>settings</mat-icon>
+    <span>Panel de control</span>
   </button>
   <button mat-menu-item [matMenuTriggerFor]="dealer">
     <mat-icon>emoji_transportation</mat-icon>

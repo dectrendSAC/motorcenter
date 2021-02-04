@@ -1,0 +1,142 @@
+//-----SVG-------
+$top:"%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20xmlns%3Axlink%3D%22http%3A%2F%2Fwww.w3.org%2F1999%2Fxlink%22%20viewBox%3D%220%200%202040%20322.33%22%3E%3Cdefs%3E%3Cstyle%3E.cls-1%7Bfill%3Aurl%28%23Degradado_sin_nombre_6%29%3B%7D%3C%2Fstyle%3E%3ClinearGradient%20id%3D%22Degradado_sin_nombre_6%22%20x1%3D%22-2223.55%22%20y1%3D%22829.66%22%20x2%3D%22-2223.55%22%20y2%3D%22829.1%22%20gradientTransform%3D%22matrix%282040%2C%200%2C%200%2C%20-577.16%2C%204537054.81%2C%20478844.87%29%22%20gradientUnits%3D%22userSpaceOnUse%22%3E%3Cstop%20offset%3D%220%22%20stop-color%3D%22%23ca181f%22%2F%3E%3Cstop%20offset%3D%221%22%20stop-color%3D%22%234d4d4d%22%2F%3E%3C%2FlinearGradient%3E%3C%2Fdefs%3E%3Cg%20id%3D%22Capa_3%22%20data-name%3D%22Capa%203%22%3E%3Cpath%20id%3D%22Trazado_1%22%20data-name%3D%22Trazado%201%22%20class%3D%22cls-1%22%20d%3D%22M2040%2C194.56c-78.29-21.83-194.27-44.31-332-32-139.66%2C12.49-188.75%2C50.12-341.33%2C88.89C1167.56%2C302%2C1013.07%2C325%2C849.53%2C322.09%2C716.44%2C319.75%2C550.86%2C297.7%2C357%2C238.51%2C206.67%2C192.61%2C84%2C145.19%2C0%2C102.09V.09q510%2C0%2C1020%2C0%2C510%2C.32%2C1020%2C0Z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E";
+//---------------
+
+/* Extra small devices (phones, 688px and down) */
+@media only screen and (max-width: 43em) {
+
+}
+
+/* Small devices (portrait tablets and large phones, 688px and up) */
+@media only screen and (min-width: 43em) {
+
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 48em) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 62em) {
+    #employeeScreen{
+        #sidebarComponent{
+            &.active{
+                width: 6.7%;
+            }
+        }
+
+        .parent{
+          .workshop{
+            height: 62.5% !important;
+            top: 0%;
+          }
+        }
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1900px and up) */
+@media only screen and (min-width: 119em) {
+    #employeeScreen{
+        #sidebarComponent{
+            &.active{
+                width: 5.7%;
+            }
+        }
+
+        .parent{
+          .workshop{
+            height: 72% !important;
+            top: -11%;
+          }
+        }
+    }
+}
+
+//---------------------------------------------------
+
+#employeeScreen{
+    position: absolute;
+    display: inline-flex;
+    width: 100%;
+    height: 100%;
+
+    img{
+      width: 100%;
+      height: auto;
+    }
+
+    #topCurve{
+        position: absolute;
+        width: 100%;
+        height: 45.8%;
+        z-index: 0;
+        top: 0px;
+        left: 0px;
+        background: url("data:image/svg+xml, #{$top}") top left no-repeat !important;
+    }
+
+    #topWorkshop{
+      position: absolute;
+      width: 100%;
+      height: 45.8%;
+      z-index: 0;
+      top: 0px;
+      left: 0px;
+    }
+
+    #sidebarComponent{
+        position: relative;
+        width: 25%;
+        height: 100%;
+        z-index: 2;
+        transition: .6s all ease-in-out;
+    }
+
+    .parent{
+        position: relative;
+        display: block;
+        flex-basis: 75%;
+        flex-grow: 2;
+
+        .toolbar{
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: 40%;
+        }
+
+        .itemContent{
+            position: relative;
+            overflow-y: scroll;
+            height: 60%;
+            width: 100%;
+
+            /* customize scroll bar */
+            &::-webkit-scrollbar {
+                background-color:#EFEFEF;
+                width:16px
+            }
+
+            &::-webkit-scrollbar-track {
+                background-color:#EFEFEF
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background-color:#CA181F;
+                border-radius:16px;
+                border:5px solid #EFEFEF;
+            }
+
+            &::-webkit-scrollbar-thumb:hover {
+                background-color:#9f0003;
+                border:4px solid #EFEFEF;
+            }
+        }
+
+        .workshop{
+          overflow-y: hidden;
+        }
+    }
+
+}

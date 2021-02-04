@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
   @Output() displayLogin = new EventEmitter<boolean>();
   @Output() displayRegister = new EventEmitter<boolean>();
   @Output() changeToolbarClassFromLogin = new EventEmitter<boolean>();
-  @Output() displayProfile = new EventEmitter<boolean>();
+  @Output() displayProfile = new EventEmitter<{display: boolean, profile: string, rol: string}>();
   @Output() displaySuccess = new EventEmitter<boolean>();
 
   constructor(private router: Router, private fb: FormBuilder) { }
@@ -48,14 +48,22 @@ export class LoginComponent implements OnInit {
   //Log in client
   logIn(){
     //Tempo sign in until db works
+    this.displayLogin.emit(false);
+
     if (this.loginForm.controls['username'].value == 'cliente'){
-      console.log('cliente');
-    } else {
-      console.log('empleado');
+      this.displayProfile.emit({display: true, profile: 'client', rol: ''});
+    } else if (this.loginForm.controls['username'].value == 'vendedor_vehiculos') {
+      this.displayProfile.emit({display: true, profile: 'employee', rol: 'car_sales'});
+    } else if (this.loginForm.controls['username'].value == 'vendedor_repuestos') {
+      this.displayProfile.emit({display: true, profile: 'employee', rol: 'part_sales'});
+    } else if (this.loginForm.controls['username'].value == 'contador') {
+      this.displayProfile.emit({display: true, profile: 'employee', rol: 'accountant'});
+    } else if (this.loginForm.controls['username'].value == 'admin') {
+      this.displayProfile.emit({display: true, profile: 'employee', rol: 'admin'});
+    } else if (this.loginForm.controls['username'].value == 'overlord') {
+      this.displayProfile.emit({display: true, profile: 'employee', rol: 'overlord'});
     }
 
-    this.displayLogin.emit(false);
-    this.displayProfile.emit(true);
     this.changeToolbarClassFromLogin.emit(false);
     this.displayRegister.emit(false);
     if(document.getElementsByClassName('register')[0]){

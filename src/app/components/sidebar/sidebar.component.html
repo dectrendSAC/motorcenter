@@ -10,46 +10,62 @@
     </div>
 
     <div id="options">
-        <span class="optTitle">Usuario</span>
+        <span class="optTitle">{{employeeView ? 'Panel de control':'Usuario'}}</span>
         <div class="line"></div>
         <div class="optContent">
-            <button class="item clicked" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../clientes/perfil')">
+            <button class="item clicked" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('',urlByUser+'/perfil')">
                 <mat-icon>account_circle</mat-icon>
                 <span>Perfil</span>
             </button>
-            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../clientes/vehiculos')">
+            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('',urlByUser+'/vehiculos')">
                 <mat-icon>directions_car</mat-icon>
                 <span>Vehículos</span>
             </button>
-            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../clientes/notificaciones')">
+            <button *ngIf="employeeView" class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../empleados/usuarios')">
+              <mat-icon>supervised_user_circle</mat-icon>
+              <span>Usuarios</span>
+            </button>
+            <button *ngIf="employeeView" class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../empleados/promociones')">
+              <mat-icon>loyalty</mat-icon>
+              <span>Promociones</span>
+            </button>
+            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('',urlByUser+'/notificaciones')">
                 <mat-icon>notifications_none</mat-icon>
                 <span>Notificaciones</span>
             </button>
-            <button class="item last" mat-icon-button color="accent" (click)="toggleClass($event)" disabled>
+            <button *ngIf="!employeeView" class="item" [class.last]="!employeeView" mat-icon-button color="accent" (click)="toggleClass($event)" disabled>
                 <mat-icon>money</mat-icon>
                 <span>Motor Puntos</span>
             </button>
         </div>
-        <span class="optTitle" [class.active]="displaySidebar">Concesionario</span>
-        <div class="line"></div>
+        <span *ngIf="!employeeView" class="optTitle" [class.active]="displaySidebar">Concesionario</span>
+        <div *ngIf="!employeeView" class="line"></div>
         <div class="optContent">
-            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../clientes/cotizaciones')">
+            <button *ngIf="!employeeView" class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../clientes/cotizaciones')">
                 <mat-icon>request_quote</mat-icon>
                 <span>Cotizaciones</span>
             </button>
-            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../clientes/calendario')" disabled>
+            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('',urlByUser+'/calendario')" [disabled]="!employeeView">
                 <mat-icon>event</mat-icon>
                 <span>Calendario</span>
             </button>
-            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../clientes/compras')" disabled>
+            <button *ngIf="employeeView" class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../empleados/prospectos')">
+              <mat-icon>person_search</mat-icon>
+              <span>Prospectos</span>
+            </button>
+            <button *ngIf="!employeeView" class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../clientes/compras')" disabled>
                 <mat-icon>shopping_cart</mat-icon>
                 <span>Compras</span>
             </button>
-            <button class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../clientes/promociones')">
+            <button *ngIf="!employeeView" class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../clientes/promociones')">
                 <mat-icon>loyalty</mat-icon>
                 <span>Promociones</span>
             </button>
-            <button id="workshopBtn" class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../clientes/taller')">
+            <button *ngIf="employeeView" class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('','../empleados/clientes')">
+              <mat-icon>emoji_people</mat-icon>
+              <span>Clientes</span>
+            </button>
+            <button id="workshopBtn" class="item" mat-icon-button color="accent" (click)="toggleClass($event); navigateTo('',urlByUser+'/taller')">
                 <mat-icon>home_repair_service</mat-icon>
                 <span>Taller mecánico</span>
             </button>

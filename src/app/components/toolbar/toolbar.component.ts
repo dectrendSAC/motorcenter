@@ -12,11 +12,14 @@ export class ToolbarComponent implements OnInit {
   displayForUserScreen: boolean;
   itemIcon: string;
   itemName: string;
-  time:number = 0;
+  time: number = 0;
+  profileState: boolean;
+  profileContent: string;
+  callLoginForm: boolean = false;
 
   @Input() changeTopLinksClass: boolean;
   @Input() changeLoginClass: boolean;
-  @Input() displayProfile: boolean;
+  @Input() displayProfile: { display: boolean; profile: string; rol: string };
   @Input() changeItemDescriptionStatus: boolean;
 
   @Output() displayLoginFromToolbar = new EventEmitter<{status: boolean, extra: string}>();
@@ -31,6 +34,14 @@ export class ToolbarComponent implements OnInit {
 
   ngOnInit(): void {
     if(document.getElementById('mainScreen')){
+      if (this.displayProfile == undefined){
+        this.profileState = false;
+        this.profileContent = '';
+      } else {
+        this.profileState = this.displayProfile.display;
+        this.profileContent = this.displayProfile.profile;
+      }
+
       if (this.router.url.indexOf('/concesionario') > -1) {
         this.displayForMainScreen = false;
       } else {
@@ -39,8 +50,14 @@ export class ToolbarComponent implements OnInit {
     } else {
       this.displayForMainScreen = false;
 
-      if(document.getElementById('clientScreen')){
-        this.displayProfile = true;
+      if(document.getElementById('clientScreen') || document.getElementById('employeeScreen')){
+        this.profileState = true;
+
+        if(document.getElementById('employeeScreen')){
+          this.profileContent = 'employee';
+        } else {
+          this.profileContent = 'client';
+        }
         this.displayForUserScreen = true;
 
         setTimeout(() => {
@@ -67,7 +84,11 @@ export class ToolbarComponent implements OnInit {
       if (document.getElementById('workshop')) { this.time = 1000 }
       setTimeout(() => {
         this.slideStatus.emit(element);
-        this.router.navigate([url]);
+        if (this.displayProfile == undefined){
+          this.router.navigate([url]);
+        } else {
+          this.router.navigate([url], {state: {rol: this.displayProfile.rol}});
+        }
       }, this.time);
     }
   }
@@ -77,6 +98,7 @@ export class ToolbarComponent implements OnInit {
     var nologin = document.getElementById("noLogin");
     if(nologin){
       this.displayLoginFromToolbar.emit({status: true, extra: 'toolbar'});
+      this.callLoginForm = true;
     }
   }
 
@@ -119,6 +141,15 @@ export class ToolbarComponent implements OnInit {
 
   //Client methods
   ngOnChanges(changes: SimpleChanges) {
+    if(this.callLoginForm){
+      this.profileState = this.displayProfile.display;
+      if(this.displayProfile.rol == ''){
+        this.profileContent = 'client';
+      } else {
+        this.profileContent = this.displayProfile.rol;
+      }
+    }
+
     if(document.getElementById('clientScreen')){
       if(changes.changeItemDescriptionStatus != undefined && changes.changeItemDescriptionStatus.currentValue){
         const item = document.getElementsByClassName('item')

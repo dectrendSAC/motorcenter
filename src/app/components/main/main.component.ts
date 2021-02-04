@@ -32,7 +32,7 @@ export class MainComponent implements OnInit {
   displayVehicles: boolean;
   displayPhrase: boolean;
   displaySignIn:boolean;
-  showProfileStatus:boolean;
+  showProfileStatus: any;
   noRegisteredClient:boolean;
   triggerVehiclesEvent:boolean;
   previousUrl: string;
@@ -117,10 +117,10 @@ export class MainComponent implements OnInit {
     var noLoginExists = document.getElementById("noLogin");
     if(noLoginExists){
       this.displayLogin = $event.status;
-      this.showProfileStatus = !$event.status;
+      this.showProfileStatus = {display: !$event.status, profile: '', rol: ''};
       this.noRegisteredClient = !$event.status;
     } else {
-      this.showProfileStatus = $event.status;
+      this.showProfileStatus = {display: $event.status, profile: '', rol: ''};
     }
   }
 

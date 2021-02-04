@@ -48,6 +48,15 @@ import { ColorPickerComponent } from './components/color-picker/color-picker.com
 import { VehiclesTypesComponent } from './components/vehicles-types/vehicles-types.component';
 import { ClientBottomsheetComponent } from './components/clients/client-bottomsheet/client-bottomsheet.component';
 import { ClientPromotionDialogComponent } from './components/clients/client-promotion-dialog/client-promotion-dialog.component';
+import { EmployeeProfileComponent } from './components/employees/employee-profile/employee-profile.component';
+import { EmployeeVehiclesComponent } from './components/employees/employee-vehicles/employee-vehicles.component';
+import { EmployeeUsersComponent } from './components/employees/employee-users/employee-users.component';
+import { EmployeePromotionsComponent } from './components/employees/employee-promotions/employee-promotions.component';
+import { EmployeeNotificationsComponent } from './components/employees/employee-notifications/employee-notifications.component';
+import { EmployeeCalendarComponent } from './components/employees/employee-calendar/employee-calendar.component';
+import { EmployeeProspectsComponent } from './components/employees/employee-prospects/employee-prospects.component';
+import { EmployeeClientsComponent } from './components/employees/employee-clients/employee-clients.component';
+import { EmployeeWorkshopComponent } from './components/employees/employee-workshop/employee-workshop.component';
 
 @NgModule({
   declarations: [
@@ -85,7 +94,16 @@ import { ClientPromotionDialogComponent } from './components/clients/client-prom
     ColorPickerComponent,
     VehiclesTypesComponent,
     ClientBottomsheetComponent,
-    ClientPromotionDialogComponent
+    ClientPromotionDialogComponent,
+    EmployeeProfileComponent,
+    EmployeeVehiclesComponent,
+    EmployeeUsersComponent,
+    EmployeePromotionsComponent,
+    EmployeeNotificationsComponent,
+    EmployeeCalendarComponent,
+    EmployeeProspectsComponent,
+    EmployeeClientsComponent,
+    EmployeeWorkshopComponent
   ],
   imports: [
     BrowserModule,

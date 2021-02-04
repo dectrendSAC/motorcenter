@@ -18,6 +18,8 @@ export class SidebarComponent implements OnInit {
   clickedCount: boolean = true;
   clickedItem: boolean;
   time:number = 0;
+  employeeView: boolean;
+  urlByUser: string;
 
   @Output() changeItemDescription = new EventEmitter<boolean>();
   @Output() homeBtn = new EventEmitter<boolean>();
@@ -40,6 +42,15 @@ export class SidebarComponent implements OnInit {
       if(itemNormalized.indexOf(this.currentUrlText) !== -1){
         item[i].classList.add('clicked');
       }
+    }
+
+    //Check if employee screen is visible
+    if (this.router.url.indexOf('/empleados') > -1) {
+      this.employeeView = true;
+      this.urlByUser = '../empleados';
+    } else {
+      this.employeeView = false;
+      this.urlByUser = '../clientes';
     }
   }
 
