@@ -57,6 +57,7 @@ import { EmployeeCalendarComponent } from './components/employees/employee-calen
 import { EmployeeProspectsComponent } from './components/employees/employee-prospects/employee-prospects.component';
 import { EmployeeClientsComponent } from './components/employees/employee-clients/employee-clients.component';
 import { EmployeeWorkshopComponent } from './components/employees/employee-workshop/employee-workshop.component';
+import { EmployeeDialogComponent } from './components/employees/employee-dialog/employee-dialog.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +104,8 @@ import { EmployeeWorkshopComponent } from './components/employees/employee-works
     EmployeeCalendarComponent,
     EmployeeProspectsComponent,
     EmployeeClientsComponent,
-    EmployeeWorkshopComponent
+    EmployeeWorkshopComponent,
+    EmployeeDialogComponent
   ],
   imports: [
     BrowserModule,

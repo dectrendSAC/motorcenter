@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, HostBinding } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, HostBinding, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { multipleAnimations } from 'src/app/animations';
 
@@ -20,6 +20,8 @@ export class SidebarComponent implements OnInit {
   time:number = 0;
   employeeView: boolean;
   urlByUser: string;
+
+  @Input() showItemByRol: string;
 
   @Output() changeItemDescription = new EventEmitter<boolean>();
   @Output() homeBtn = new EventEmitter<boolean>();

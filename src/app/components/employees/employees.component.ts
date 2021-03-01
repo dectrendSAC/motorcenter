@@ -26,12 +26,13 @@ export class EmployeesComponent implements OnInit {
   displayContent:boolean = true;
   displayItem: boolean = false;
   previousUrl: string;
+  showItemsByRol: string;
 
   constructor(private routerExtService: RouterExtService, private router: Router, private data: DataService) { }
 
   ngOnInit(): void {
-    console.log(window.history.state)
     this.displayTop = true;
+    this.showItemsByRol = window.history.state.rol;
 
     //Check if workshop screen is visible
     if (this.router.url.indexOf('/taller') > -1) {

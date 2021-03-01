@@ -7,7 +7,7 @@
     </div>
   </div>
 
-  <app-sidebar @slideInOut *ngIf="displaySidebar" id="sidebarComponent" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)"></app-sidebar>
+  <app-sidebar @slideInOut *ngIf="displaySidebar" id="sidebarComponent" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)" [showItemByRol]="showItemsByRol"></app-sidebar>
 
   <div class="parent" *ngIf="displayContent">
       <app-toolbar @fadeInOut *ngIf="displayToolbar" class="toolbar" (changeItemDescription)="changeItemDescription($event)" (homeBtn)="goToMain($event)" [changeItemDescriptionStatus]="changeItemDescriptionStatus"></app-toolbar>

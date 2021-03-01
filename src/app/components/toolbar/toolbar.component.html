@@ -20,7 +20,7 @@
       </div>
     </div>
     <span *ngIf="displayForMainScreen" (click)="showLogin(); openMenu()">{{profileContent != '' ? profileContent : 'Iniciar sesión'}}</span>
-    <span *ngIf="displayForUserScreen" (click)="openMenu()">Random client</span>
+    <span *ngIf="displayForUserScreen" (click)="openMenu()">{{profileContent != '' ? 'Empleado' : 'Cliente'}}</span>
 </div>
 <mat-menu #menu="matMenu">
   <button *ngIf="profileContent == 'client'" mat-menu-item [matMenuTriggerFor]="user">

@@ -149,9 +149,14 @@ export class ToolbarComponent implements OnInit {
       } else {
         this.profileContent = this.displayProfile.rol;
       }
+    } else {
+      if(document.getElementById('mainScreen')){
+        this.profileState = false;
+        this.profileContent = '';
+      }
     }
 
-    if(document.getElementById('clientScreen')){
+    if(document.getElementById('clientScreen') || document.getElementById('employeeScreen')){
       if(changes.changeItemDescriptionStatus != undefined && changes.changeItemDescriptionStatus.currentValue){
         const item = document.getElementsByClassName('item')
           for(var i = 0 ; i < item.length ; i++){
